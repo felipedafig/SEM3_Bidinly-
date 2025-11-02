@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "M9A+UFVvXV0=",
+  "success": true,
+  "projectFilePath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Client\\BlazorApp\\BlazorApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.0-preview.7.25380.108\\microsoft.aspnetcore.app.internal.assets.10.0.0-preview.7.25380.108.nupkg.sha512"
+  ],
+  "logs": []
+}
