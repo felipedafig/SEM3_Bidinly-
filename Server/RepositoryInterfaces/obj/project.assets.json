@@ -17,8 +17,8 @@
   "libraries": {
     "Model/1.0.0": {
       "type": "project",
-      "path": "../../Server/Model/Model.csproj",
-      "msbuildProject": "../../Server/Model/Model.csproj"
+      "path": "../Model/Model.csproj",
+      "msbuildProject": "../Model/Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
-      "projectName": "DTOs",
-      "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
+      "projectUniqueName": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\RepositoryInterfaces\\RepositoryInterfaces.csproj",
+      "projectName": "RepositoryInterfaces",
+      "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\RepositoryInterfaces\\RepositoryInterfaces.csproj",
       "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-      "outputPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\obj\\",
+      "outputPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\RepositoryInterfaces\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"

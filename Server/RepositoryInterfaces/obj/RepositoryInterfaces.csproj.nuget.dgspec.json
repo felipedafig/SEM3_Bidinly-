@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj": {}
+    "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\RepositoryInterfaces\\RepositoryInterfaces.csproj": {}
   },
   "projects": {
     "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\Model\\Model.csproj": {
@@ -336,14 +336,14 @@
         }
       }
     },
-    "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj": {
+    "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\RepositoryInterfaces\\RepositoryInterfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
-        "projectName": "DTOs",
-        "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
+        "projectUniqueName": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\RepositoryInterfaces\\RepositoryInterfaces.csproj",
+        "projectName": "RepositoryInterfaces",
+        "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\RepositoryInterfaces\\RepositoryInterfaces.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\obj\\",
+        "outputPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\RepositoryInterfaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"

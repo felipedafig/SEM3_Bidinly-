@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net10.0": {
-      "Model/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "compile": {
-          "bin/placeholder/Model.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Model.dll": {}
-        }
-      }
-    }
+    "net10.0": {}
   },
-  "libraries": {
-    "Model/1.0.0": {
-      "type": "project",
-      "path": "../../Server/Model/Model.csproj",
-      "msbuildProject": "../../Server/Model/Model.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net10.0": [
-      "Model >= 1.0.0"
-    ]
+    "net10.0": []
   },
   "packageFolders": {
     "C:\\Users\\felip\\.nuget\\packages\\": {}
@@ -32,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
-      "projectName": "DTOs",
-      "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
+      "projectUniqueName": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\Model\\Model.csproj",
+      "projectName": "Model",
+      "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\Model\\Model.csproj",
       "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-      "outputPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\obj\\",
+      "outputPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\Model\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -50,11 +31,7 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {
-            "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\Model\\Model.csproj": {
-              "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Server\\Model\\Model.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

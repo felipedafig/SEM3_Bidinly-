@@ -1,15 +1,7 @@
-using shared.DTOs.Bids;
+using Server.Model;
 
 namespace shared.DTOs.Bids
 {
-
-    public enum BidStatus
-    {
-        Pending,
-        Accepted,
-        Rejected,
-        Expired
-    }
     public class GetBidDto
     {
         public int Id { get; set; }
