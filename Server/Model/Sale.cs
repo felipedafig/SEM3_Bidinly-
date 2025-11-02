@@ -9,7 +9,7 @@ namespace Server.Model
         public int PropertyId { get; set; }
         public Property? Property { get; set; }
         
-        public int WinningBidId { get; set; }
+        public int BidId { get; set; }
         public Bid? WinningBid { get; set; }
         
         public int BuyerId { get; set; }
