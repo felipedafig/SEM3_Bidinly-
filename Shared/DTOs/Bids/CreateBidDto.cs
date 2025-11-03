@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace shared.DTOs.Bids
+namespace Shared.DTOs.Bids
 {
     public class CreateBidDto
     {

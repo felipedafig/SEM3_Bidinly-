@@ -1,6 +1,14 @@
 @WebAPI_HostAddress = http://localhost:5141
 
-GET {{WebAPI_HostAddress}}/weatherforecast/
-Accept: application/json
+### 1. POST - Create User (Felps)
+POST {{WebAPI_HostAddress}}/users
+Content-Type: application/json
 
-###
+{
+    "Username": "Felps",
+    "Password": "123" 
+}
+
+### 2. POST - Create User (Ninja)
+
+

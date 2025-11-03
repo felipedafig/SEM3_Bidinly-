@@ -8,46 +8,46 @@ namespace Server.Repositories
 {
     public class PropertyRepository : IPropertyRepository
     {
-        private readonly DbContext _context;
+        private readonly DbContext context;
 
         public PropertyRepository(DbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         public async Task<Property> AddAsync(Property property)
         {
-            await _context.Properties.AddAsync(property);
-            await _context.SaveChangesAsync();
+            await context.Properties.AddAsync(property);
+            await context.SaveChangesAsync();
             return property;
         }
 
         public async Task<Property> UpdateAsync(Property property)
         {
-            _context.Properties.Update(property);
-            await _context.SaveChangesAsync();
+            context.Properties.Update(property);
+            await context.SaveChangesAsync();
             return property;
         }
 
         public async Task DeleteAsync(int id)
         {
-            var property = await _context.Properties.FindAsync(id);
+            var property = await context.Properties.FindAsync(id);
             if (property != null)
             {
-                _context.Properties.Remove(property);
-                await _context.SaveChangesAsync();
+                context.Properties.Remove(property);
+                await context.SaveChangesAsync();
             }
         }
 
         public async Task<Property> GetSingleAsync(int id)
         {
-            return await _context.Properties.FindAsync(id) 
+            return await context.Properties.FindAsync(id) 
                 ?? throw new KeyNotFoundException($"Property with ID {id} not found");
         }
 
         public IQueryable<Property> GetMany()
         {
-            return _context.Properties.AsQueryable();
+            return context.Properties.AsQueryable();
         }
     }
 }
