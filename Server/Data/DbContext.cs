@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Server.Model;
+using MainServer.Model;
 
-namespace Server.Data
+namespace MainServer.Data
 {
     public class DbContext : Microsoft.EntityFrameworkCore.DbContext
     {
@@ -19,10 +19,7 @@ namespace Server.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Set default schema
-            modelBuilder.HasDefaultSchema("bidinly_db");
-
+            
             // Configure Role entity
             modelBuilder.Entity<Role>(entity =>
             {
@@ -109,6 +106,7 @@ namespace Server.Data
                 entity.Property(e => e.PropertyId).HasColumnName("PropertyId");
                 entity.Property(e => e.BidId).HasColumnName("BidId");
                 entity.Property(e => e.BuyerId).HasColumnName("BuyerId");
+                entity.Property(e => e.AgentId).HasColumnName("AgentId");
                 
                 entity.HasOne(e => e.Property)
                       .WithMany()
@@ -126,6 +124,12 @@ namespace Server.Data
                       .WithMany()
                       .HasForeignKey(e => e.BuyerId)
                       .HasConstraintName("fk_selling_buyer")
+                      .OnDelete(DeleteBehavior.Restrict);
+                
+                entity.HasOne(e => e.Agent)
+                      .WithMany()
+                      .HasForeignKey(e => e.AgentId)
+                      .HasConstraintName("fk_selling_agent")
                       .OnDelete(DeleteBehavior.Restrict);
             });
         }

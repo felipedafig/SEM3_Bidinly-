@@ -1,14 +1,41 @@
 @WebAPI_HostAddress = http://localhost:5141
 
-### 1. POST - Create User (Felps)
+### 1. GET - Get All Roles
+GET {{WebAPI_HostAddress}}/roles
+
+###
+
+### 2. GET - Get Single Role
+GET {{WebAPI_HostAddress}}/roles/1
+
+###
+
+### 3. POST - Create Role
+POST {{WebAPI_HostAddress}}/roles
+Content-Type: application/json
+
+{
+    "Name": "Buyer"
+}
+
+###
+
+### 4. POST - Create Another Role
+POST {{WebAPI_HostAddress}}/roles
+Content-Type: application/json
+
+{
+    "Name": "Buyer"
+}
+
+###
+
+### 5. POST - Create User
 POST {{WebAPI_HostAddress}}/users
 Content-Type: application/json
 
 {
     "Username": "Felps",
-    "Password": "123" 
+    "Password": "12345",
+    "RoleId": 2
 }
-
-### 2. POST - Create User (Ninja)
-
-

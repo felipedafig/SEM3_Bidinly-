@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using RepositoryInterfaces;
-using Server.Model;
+using MainServer.Model;
 using shared.DTOs.Properties;
+using shared.DTOs.Users;
 
-namespace Server.WebAPI.Controllers
+namespace MainServer.WebAPI.Controllers
 {
     [ApiController]
     [Route("properties")]
@@ -19,10 +20,10 @@ namespace Server.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<GetPropertyDto>> CreateProperty([FromBody] CreatePropertyDto request)
+        public async Task<ActionResult<PropertyDto>> CreateProperty([FromBody] CreatePropertyDto request)
         {
-            // Verify agent exists
-            await userRepository.GetSingleAsync(request.AgentId);
+           
+            await userRepository.GetSingleAsync(request.AgentId); //verify
 
             Property property = new()
             {
@@ -39,9 +40,9 @@ namespace Server.WebAPI.Controllers
 
             Property created = await propertyRepository.AddAsync(property);
 
-            var agent = await userRepository.GetSingleAsync(created.AgentId);
+            User agent = await userRepository.GetSingleAsync(created.AgentId);
 
-            GetPropertyDto dto = new()
+            PropertyDto dto = new()
             {
                 Id = created.Id,
                 Title = created.Title,
@@ -59,12 +60,12 @@ namespace Server.WebAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<GetPropertyDto>> GetSingleProperty([FromRoute] int id)
+        public async Task<ActionResult<PropertyDto>> GetSingleProperty([FromRoute] int id)
         {
             Property property = await propertyRepository.GetSingleAsync(id);
-            var agent = await userRepository.GetSingleAsync(property.AgentId);
+            User agent = await userRepository.GetSingleAsync(property.AgentId);
 
-            GetPropertyDto responseDto = new()
+            PropertyDto responseDto = new()
             {
                 Id = property.Id,
                 Title = property.Title,
@@ -82,7 +83,7 @@ namespace Server.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<GetPropertyDto>>> GetManyProperties([FromQuery] string? title = null, [FromQuery] PropertyStatus? status = null)
+        public async Task<ActionResult<List<PropertyDto>>> GetManyProperties([FromQuery] string? title = null, [FromQuery] PropertyStatus? status = null)
         {
             IQueryable<Property> query = propertyRepository.GetMany();
 
@@ -98,10 +99,10 @@ namespace Server.WebAPI.Controllers
 
             List<Property> filteredProperties = query.ToList();
 
-            var tasks = filteredProperties.Select(async p =>
+            IEnumerable<Task<PropertyDto>> tasks = filteredProperties.Select(async p =>
             {
-                var agent = await userRepository.GetSingleAsync(p.AgentId);
-                return new GetPropertyDto
+                User agent = await userRepository.GetSingleAsync(p.AgentId);
+                return new PropertyDto
                 {
                     Id = p.Id,
                     Title = p.Title,
@@ -116,13 +117,13 @@ namespace Server.WebAPI.Controllers
                 };
             });
 
-            var responseDtos = await Task.WhenAll(tasks);
+            PropertyDto[] responseDtos = await Task.WhenAll(tasks);
 
             return Ok(responseDtos.ToList());
         }
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<GetPropertyDto>> UpdateProperty([FromRoute] int id, [FromBody] UpdatePropertyDto request)
+        public async Task<ActionResult<PropertyDto>> UpdateProperty([FromRoute] int id, [FromBody] UpdatePropertyDto request)
         {
             if (id != request.Id)
             {
@@ -131,8 +132,8 @@ namespace Server.WebAPI.Controllers
 
             Property existingProperty = await propertyRepository.GetSingleAsync(id);
 
-            // Verify agent owns the property
-            if (existingProperty.AgentId != request.AgentId)
+            
+            if (existingProperty.AgentId != request.AgentId) //verify agent owns the property
             {
                 return Forbid("Only the property agent can update this property.");
             }
@@ -174,9 +175,9 @@ namespace Server.WebAPI.Controllers
 
             await propertyRepository.UpdateAsync(existingProperty);
 
-            var agent = await userRepository.GetSingleAsync(existingProperty.AgentId);
+            User agent = await userRepository.GetSingleAsync(existingProperty.AgentId);
 
-            GetPropertyDto responseDto = new()
+            PropertyDto responseDto = new()
             {
                 Id = existingProperty.Id,
                 Title = existingProperty.Title,
@@ -196,14 +197,7 @@ namespace Server.WebAPI.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteProperty([FromRoute] int id)
         {
-            try
-            {
-                await propertyRepository.GetSingleAsync(id);
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound();
-            }
+            await propertyRepository.GetSingleAsync(id); //verified by Global...
 
             await propertyRepository.DeleteAsync(id);
 

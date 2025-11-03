@@ -1,9 +1,8 @@
-namespace MainServer.Model
+namespace Shared.DTOs.Roles
 {
-    public class Role
+    public class RoleDto
     {
         public int Id { get; set; }
-        
         public string? Name { get; set; }
     }
 }

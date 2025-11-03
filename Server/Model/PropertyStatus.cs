@@ -1,4 +1,4 @@
-namespace Server.Model
+namespace MainServer.Model
 {
     public enum PropertyStatus
     {

@@ -1,5 +1,5 @@
 
-using Server.Model;
+using MainServer.Model;
 
 namespace RepositoryInterfaces;
 

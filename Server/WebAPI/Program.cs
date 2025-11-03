@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using RepositoryInterfaces;
-using Server.Data;
-using Server.Repositories;
-using Server.WebAPI.Middlewares;
+using MainServer.Data;
+using MainServer.Repositories;
+using MainServer.WebAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +10,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<Server.Data.DbContext>(options =>
+builder.Services.AddDbContext<MainServer.Data.DbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 //EF Core
@@ -33,8 +32,7 @@ app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapOpenApi();
 }
 
 app.Run();

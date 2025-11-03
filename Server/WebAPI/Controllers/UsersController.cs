@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using RepositoryInterfaces;
-using Server.Model;
+using MainServer.Model;
 using shared.DTOs.Users;
 
-namespace Server.WebAPI.Controllers
+namespace MainServer.WebAPI.Controllers
 {
     [ApiController]
     [Route("users")]
@@ -20,7 +20,7 @@ namespace Server.WebAPI.Controllers
 
         private async Task VerifyUsernameIsAvailableAsync(string username)
         {
-            var existingUser = await userRepository.GetByUsernameAsync(username);
+            User? existingUser = await userRepository.GetByUsernameAsync(username);
             
             if (existingUser != null)
             {
@@ -29,38 +29,40 @@ namespace Server.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<GetUserDto>> AddUser([FromBody] CreateUserDto request)
+        public async Task<ActionResult<UserDto>> AddUser([FromBody] CreateUserDto request)
         {
             await VerifyUsernameIsAvailableAsync(request.Username ?? "");
+
+            await roleRepository.GetSingleAsync(request.RoleId);//GlobalExceptionHandlerMiddleware will catch if RoleId is invalid
 
             User user = new()
             {
                 Username = request.Username,
-                Password = request.Password ?? "", //must Hash password
-                RoleId = 2 
+                Password = request.Password ?? "", //hash it later
+                RoleId = request.RoleId
             };
 
             User created = await userRepository.AddAsync(user);
 
-            var role = await roleRepository.GetSingleAsync(created.RoleId);
+            Role role = await roleRepository.GetSingleAsync(created.RoleId);
 
-            GetUserDto dto = new()
+            UserDto dto = new()
             {
-                Id = created.Id,
+                Id = created.Id, //set by database after creation
                 Username = created.Username,
                 RoleName = role.Name
             };
 
-            return Created($"/api/users/{dto.Id}", dto);
+            return Created($"users/{dto.Id}", dto);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<GetUserDto>> GetSingleUser([FromRoute] int id)
+        public async Task<ActionResult<UserDto>> GetSingleUser([FromRoute] int id)
         {
             User user = await userRepository.GetSingleAsync(id);
-            var role = await roleRepository.GetSingleAsync(user.RoleId);
+            Role role = await roleRepository.GetSingleAsync(user.RoleId);
 
-            GetUserDto responseDto = new()
+            UserDto responseDto = new()
             {
                 Id = user.Id,
                 Username = user.Username,
@@ -71,7 +73,7 @@ namespace Server.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<GetUserDto>>> GetManyUsers([FromQuery] string? username = null)
+        public async Task<ActionResult<List<UserDto>>> GetManyUsers([FromQuery] string? username = null)
         {
             IQueryable<User> query = userRepository.GetMany();
 
@@ -82,10 +84,10 @@ namespace Server.WebAPI.Controllers
 
             List<User> filteredUsers = query.ToList();
 
-            var tasks = filteredUsers.Select(async u =>
+            IEnumerable<Task<UserDto>> tasks = filteredUsers.Select(async u =>
             {
-                var role = await roleRepository.GetSingleAsync(u.RoleId);
-                return new GetUserDto
+                Role role = await roleRepository.GetSingleAsync(u.RoleId);
+                return new UserDto
                 {
                     Id = u.Id,
                     Username = u.Username,
@@ -93,13 +95,13 @@ namespace Server.WebAPI.Controllers
                 };
             });
 
-            var responseDtos = await Task.WhenAll(tasks);
+            UserDto[] responseDtos = await Task.WhenAll(tasks);
 
             return Ok(responseDtos.ToList());
         }
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<GetUserDto>> UpdateUser([FromRoute] int id, [FromBody] UpdateUserDto request)
+        public async Task<ActionResult<UserDto>> UpdateUser([FromRoute] int id, [FromBody] UpdateUserDto request)
         {
             if (id != request.Id)
             {
@@ -108,21 +110,11 @@ namespace Server.WebAPI.Controllers
 
             User existingUser = await userRepository.GetSingleAsync(id);
 
-            if (!string.IsNullOrWhiteSpace(request.Username))
-            {
-                var userWithSameUsername = await userRepository.GetByUsernameAsync(request.Username);
-                if (userWithSameUsername != null && userWithSameUsername.Id != id)
-                {
-                    throw new InvalidOperationException($"Username '{request.Username}' is already taken.");
-                }
-                existingUser.Username = request.Username;
-            }
-
             await userRepository.UpdateAsync(existingUser);
 
-            var role = await roleRepository.GetSingleAsync(existingUser.RoleId);
+            Role role = await roleRepository.GetSingleAsync(existingUser.RoleId);
 
-            GetUserDto responseDto = new()
+            UserDto responseDto = new()
             {
                 Id = existingUser.Id,
                 Username = existingUser.Username,
@@ -135,14 +127,8 @@ namespace Server.WebAPI.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
-            try
-            {
-                await userRepository.GetSingleAsync(id);
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound();
-            }
+            
+            await userRepository.GetSingleAsync(id); //verified by Global...
 
             await userRepository.DeleteAsync(id);
 

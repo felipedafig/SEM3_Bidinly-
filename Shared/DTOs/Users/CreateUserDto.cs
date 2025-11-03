@@ -12,6 +12,8 @@ namespace shared.DTOs.Users
         [StringLength(100, MinimumLength = 5)] 
         public string? Password { get; set; }//hash it
 
-        //role?
+        [Required]
+        public int RoleId { get; set; }
+        public int Id { get; set; }
     }
 }

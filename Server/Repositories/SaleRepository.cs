@@ -2,11 +2,11 @@
 
 using Microsoft.EntityFrameworkCore;
 using RepositoryInterfaces;
-using Server.Data;
-using Server.Model;
-using DbContext = Server.Data.DbContext;
+using MainServer.Data;
+using MainServer.Model;
+using DbContext = MainServer.Data.DbContext;
 
-namespace Server.Repositories
+namespace MainServer.Repositories
 {
     public class SaleRepository : ISaleRepository
     {

@@ -1,8 +1,8 @@
-using Server.Model;
+using MainServer.Model;
 
 namespace shared.DTOs.Bids
 {
-    public class GetBidDto
+    public class BidDto
     {
         public int Id { get; set; }
 
@@ -16,3 +16,4 @@ namespace shared.DTOs.Bids
         public BidStatus Status { get; set; }
     }
 }
+

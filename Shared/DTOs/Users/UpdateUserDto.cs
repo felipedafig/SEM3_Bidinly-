@@ -4,12 +4,9 @@ namespace shared.DTOs.Users
 {
     public class UpdateUserDto
     {
-        [Required]
-        public int Id { get; set; }
-
-        [StringLength(50, MinimumLength = 5)]
+         public int Id { get; set; }
         public string? Username { get; set; }
-
+        
         //Password update??
     }
 }

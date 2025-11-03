@@ -1,8 +1,8 @@
-using Server.Model;
+using MainServer.Model;
 
 namespace shared.DTOs.Properties
 {
-    public class GetPropertyDto
+    public class PropertyDto
     {
         public int Id { get; set; }
         public string? Title { get; set; }
@@ -17,3 +17,4 @@ namespace shared.DTOs.Properties
         
     }
 }
+

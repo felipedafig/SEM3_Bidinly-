@@ -1,4 +1,4 @@
-namespace Server.Model
+namespace MainServer.Model
 {
     public class Sale
     {
@@ -14,6 +14,9 @@ namespace Server.Model
         
         public int BuyerId { get; set; }
         public User? Buyer { get; set; }
+        
+        public int AgentId { get; set; }
+        public User? Agent { get; set; }
     }
 }
 
