@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using RepositoryInterfaces;
 using Server.Data;
 using Server.Model;
+using DbContext = Server.Data.DbContext;
 
 namespace Server.Repositories
 {
