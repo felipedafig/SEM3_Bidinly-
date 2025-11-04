@@ -21,7 +21,7 @@ namespace MainServer.Model
         
         public string? Description { get; set; }
         
-        public PropertyStatus Status { get; set; }
+        public string Status { get; set; } = "Available"; // e.g., "Available", "Sold"
     }
 }
 

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RepositoryInterfaces;
 using MainServer.Model;
 using shared.DTOs.Users;
@@ -75,53 +76,24 @@ namespace MainServer.WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<UserDto>>> GetManyUsers([FromQuery] string? username = null)
         {
-            IQueryable<User> query = userRepository.GetMany();
+            IQueryable<User> query = userRepository.GetMany()
+                .Include(u => u.Role); // Eagerly load Role to avoid concurrent DbContext access
 
             if (!string.IsNullOrWhiteSpace(username))
             {
                 query = query.Where(u => u.Username != null && u.Username.ToLower().Contains(username.ToLower()));
             }
 
-            List<User> filteredUsers = query.ToList();
+            List<User> filteredUsers = await query.ToListAsync();
 
-            IEnumerable<Task<UserDto>> tasks = filteredUsers.Select(async u =>
+            List<UserDto> responseDtos = filteredUsers.Select(u => new UserDto
             {
-                Role role = await roleRepository.GetSingleAsync(u.RoleId);
-                return new UserDto
-                {
-                    Id = u.Id,
-                    Username = u.Username,
-                    RoleName = role.Name
-                };
-            });
+                Id = u.Id,
+                Username = u.Username,
+                RoleName = u.Role?.Name
+            }).ToList();
 
-            UserDto[] responseDtos = await Task.WhenAll(tasks);
-
-            return Ok(responseDtos.ToList());
-        }
-
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult<UserDto>> UpdateUser([FromRoute] int id, [FromBody] UpdateUserDto request)
-        {
-            if (id != request.Id)
-            {
-                return BadRequest("Route ID does not match User ID in body.");
-            }
-
-            User existingUser = await userRepository.GetSingleAsync(id);
-
-            await userRepository.UpdateAsync(existingUser);
-
-            Role role = await roleRepository.GetSingleAsync(existingUser.RoleId);
-
-            UserDto responseDto = new()
-            {
-                Id = existingUser.Id,
-                Username = existingUser.Username,
-                RoleName = role.Name
-            };
-
-            return Ok(responseDto);
+            return Ok(responseDtos);
         }
 
         [HttpDelete("{id:int}")]

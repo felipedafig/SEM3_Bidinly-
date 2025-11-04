@@ -20,6 +20,9 @@ namespace MainServer.Data
         {
             base.OnModelCreating(modelBuilder);
             
+            // Note: Status columns are stored as VARCHAR in the database, not enum types
+            // This avoids enum type casting issues in queries
+            
             // Configure Role entity
             modelBuilder.Entity<Role>(entity =>
             {
@@ -62,7 +65,10 @@ namespace MainServer.Data
                 entity.Property(e => e.Bathrooms).HasColumnName("Bathrooms");
                 entity.Property(e => e.SizeInSquareFeet).HasColumnName("SizeInSquareFeet");
                 entity.Property(e => e.Description).HasColumnName("Description").HasMaxLength(5000);
-                entity.Property(e => e.Status).HasColumnName("Status").HasColumnType("property_status").HasDefaultValue(PropertyStatus.Available);
+                entity.Property(e => e.Status)
+                    .HasColumnName("Status")
+                    .HasColumnType("varchar(50)")
+                    .HasDefaultValue("Available");
                 
                 entity.HasOne(e => e.Agent)
                       .WithMany()
@@ -81,7 +87,10 @@ namespace MainServer.Data
                 entity.Property(e => e.PropertyId).HasColumnName("PropertyId");
                 entity.Property(e => e.Amount).HasColumnName("Amount").HasColumnType("decimal(18,2)");
                 entity.Property(e => e.ExpiryDate).HasColumnName("ExpiryDate").HasColumnType("timestamptz");
-                entity.Property(e => e.Status).HasColumnName("Status").HasColumnType("bid_status").HasDefaultValue(BidStatus.Pending);
+                entity.Property(e => e.Status)
+                    .HasColumnName("Status")
+                    .HasColumnType("varchar(50)")
+                    .HasDefaultValue("Pending");
                 
                 entity.HasOne(e => e.Buyer)
                       .WithMany()

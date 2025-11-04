@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using RepositoryInterfaces;
 using MainServer.Data;
+using MainServer.Model;
 using MainServer.Repositories;
 using MainServer.WebAPI.Middlewares;
 

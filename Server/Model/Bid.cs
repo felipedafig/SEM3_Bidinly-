@@ -14,7 +14,7 @@ namespace MainServer.Model
         
         public DateTime ExpiryDate { get; set; }
         
-        public BidStatus Status { get; set; }
+        public string Status { get; set; } = "Pending"; // e.g., "Pending", "Accepted", "Rejected", "Expired"
     }
 }
 

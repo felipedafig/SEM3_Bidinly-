@@ -1,5 +1,3 @@
-using MainServer.Model;
-
 namespace shared.DTOs.Bids
 {
     public class BidDto
@@ -13,7 +11,7 @@ namespace shared.DTOs.Bids
 
         public DateTime ExpiryDate { get; set; } 
 
-        public BidStatus Status { get; set; }
+        public string? Status { get; set; } // e.g., "Pending", "Accepted", "Rejected", "Expired"
     }
 }
 

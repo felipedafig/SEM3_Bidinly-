@@ -1,41 +1,307 @@
 @WebAPI_HostAddress = http://localhost:5141
 
-### 1. GET - Get All Roles
-GET {{WebAPI_HostAddress}}/roles
+###############################################
+# ROLES CONTROLLER
+###############################################
 
-###
-
-### 2. GET - Get Single Role
+### 1. GET - Get Single Role (by ID)
 GET {{WebAPI_HostAddress}}/roles/1
 
 ###
 
-### 3. POST - Create Role
-POST {{WebAPI_HostAddress}}/roles
-Content-Type: application/json
-
-{
-    "Name": "Buyer"
-}
+### 2. GET - Get Single Role (Non-existent ID)
+GET {{WebAPI_HostAddress}}/roles/999
 
 ###
 
-### 4. POST - Create Another Role
-POST {{WebAPI_HostAddress}}/roles
-Content-Type: application/json
+###############################################
+# USERS CONTROLLER
+###############################################
 
-{
-    "Name": "Buyer"
-}
-
-###
-
-### 5. POST - Create User
+### 3. POST - Create User (Agent)
 POST {{WebAPI_HostAddress}}/users
 Content-Type: application/json
 
 {
-    "Username": "Felps",
-    "Password": "12345",
+    "Username": "Felipex",
+    "Password": "password123",
+    "RoleId": 1
+}
+
+###
+
+### 4. POST - Create User (Buyer)
+POST {{WebAPI_HostAddress}}/users
+Content-Type: application/json
+
+{
+    "Username": "felipe",
+    "Password": "password456",
     "RoleId": 2
 }
+
+###
+
+### 5. POST - Create User (Duplicate Username - Should Fail)
+POST {{WebAPI_HostAddress}}/users
+Content-Type: application/json
+
+{
+    "Username": "felipet",
+    "Password": "password789",
+    "RoleId": 1
+}
+
+###
+
+### 6. POST - Create User (Invalid RoleId - Should Fail)
+POST {{WebAPI_HostAddress}}/users
+Content-Type: application/json
+
+{
+    "Username": "new_user",
+    "Password": "password123",
+    "RoleId": 99
+}
+
+###
+
+### 7. GET - Get Single User (by ID)
+GET {{WebAPI_HostAddress}}/users/4
+
+###
+
+### 8. GET - Get Single User (Non-existent ID)
+GET {{WebAPI_HostAddress}}/users/999
+
+###
+
+### 9. GET - Get Many Users (All)
+GET {{WebAPI_HostAddress}}/users
+
+###
+
+### 10. GET - Get Many Users (Filter by Username)
+GET {{WebAPI_HostAddress}}/users?username=felipex
+
+###
+
+### 11. GET - Get Many Users (Filter by Username - Partial Match)
+GET {{WebAPI_HostAddress}}/users?username=Feli
+
+###
+
+### 15. DELETE - Delete User
+DELETE {{WebAPI_HostAddress}}/users/3
+
+###
+
+### 16. DELETE - Delete User (Non-existent ID - Should Fail)
+DELETE {{WebAPI_HostAddress}}/users/999
+
+###
+
+###############################################
+# PROPERTIES CONTROLLER
+###############################################
+
+### 17. POST - Create Property
+POST {{WebAPI_HostAddress}}/properties
+Content-Type: application/json
+
+{
+    "AgentId": 7,
+    "Title": "Luxury Downtown Apartment",
+    "Address": "123 Main Street, City Center",
+    "StartingPrice": 450000.00,
+    "Bedrooms": 2,
+    "Bathrooms": 2,
+    "SizeInSquareFeet": 1200.50,
+    "Description": "Beautiful apartment with stunning city views"
+}
+
+###
+
+### 18. POST - Create Property (Invalid AgentId - Should Fail)
+POST {{WebAPI_HostAddress}}/properties
+Content-Type: application/json
+
+{
+    "AgentId": 999,
+    "Title": "Invalid Property",
+    "Address": "Nowhere Street",
+    "StartingPrice": 100000.00,
+    "Bedrooms": 1,
+    "Bathrooms": 1,
+    "SizeInSquareFeet": 500.00,
+    "Description": "This should fail"
+}
+
+###
+
+### 19. GET - Get Single Property (by ID)
+GET {{WebAPI_HostAddress}}/properties/9
+
+###
+
+### 20. GET - Get Single Property (Non-existent ID)
+GET {{WebAPI_HostAddress}}/properties/999
+
+###
+
+### 21. GET - Get Many Properties (All)
+GET {{WebAPI_HostAddress}}/properties
+
+###
+
+### 22. GET - Get Many Properties (Filter by Title)
+GET {{WebAPI_HostAddress}}/properties?title=Luxury
+
+###
+
+### 23. GET - Get Many Properties (Filter by Status - Available)
+GET {{WebAPI_HostAddress}}/properties?status=Available
+
+###
+
+### 24. GET - Get Many Properties (Filter by Status - Sold)
+GET {{WebAPI_HostAddress}}/properties?status=Sold
+
+###
+
+### 25. GET - Get Many Properties (Filter by Title and Status)
+GET {{WebAPI_HostAddress}}/properties?title=Downtown&status=Available
+
+###
+
+### 26. PUT - Update Property (Full Update)
+PUT {{WebAPI_HostAddress}}/properties/1
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "AgentId": 1,
+    "Title": "Updated Luxury Downtown Apartment",
+    "Address": "123 Main Street, City Center, Updated",
+    "StartingPrice": 475000.00,
+    "Bedrooms": 3,
+    "Bathrooms": 2,
+    "SizeInSquareFeet": 1400.00,
+    "Description": "Updated description with more details"
+}
+
+###
+
+### 27. PUT - Update Property (Partial Update - Title Only)
+PUT {{WebAPI_HostAddress}}/properties/1
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "AgentId": 1,
+    "Title": "Partially Updated Title"
+}
+
+###
+
+### 28. PUT - Update Property (Partial Update - Price Only)
+PUT {{WebAPI_HostAddress}}/properties/1
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "AgentId": 1,
+    "StartingPrice": 500000.00
+}
+
+###
+
+### 29. PUT - Update Property (Wrong AgentId - Should Fail)
+PUT {{WebAPI_HostAddress}}/properties/1
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "AgentId": 2,
+    "Title": "Unauthorized Update Attempt"
+}
+
+###
+
+### 30. PUT - Update Property (Mismatched IDs - Should Fail)
+PUT {{WebAPI_HostAddress}}/properties/1
+Content-Type: application/json
+
+{
+    "Id": 2,
+    "AgentId": 1,
+    "Title": "Mismatched ID"
+}
+
+###
+
+### 31. PUT - Update Property (Non-existent ID - Should Fail)
+PUT {{WebAPI_HostAddress}}/properties/999
+Content-Type: application/json
+
+{
+    "Id": 999,
+    "AgentId": 1,
+    "Title": "Non-existent Property"
+}
+
+###
+
+### 32. DELETE - Delete Property
+DELETE {{WebAPI_HostAddress}}/properties/1
+
+###
+
+### 33. DELETE - Delete Property (Non-existent ID - Should Fail)
+DELETE {{WebAPI_HostAddress}}/properties/999
+
+###
+
+###############################################
+# SALES CONTROLLER
+###############################################
+
+### 34. GET - Get Many Sales (All)
+GET {{WebAPI_HostAddress}}/sales
+
+###
+
+### 35. GET - Get Many Sales (Filter by PropertyId)
+GET {{WebAPI_HostAddress}}/sales?propertyId=1
+
+###
+
+### 36. GET - Get Many Sales (Filter by BuyerId)
+GET {{WebAPI_HostAddress}}/sales?buyerId=2
+
+###
+
+### 37. GET - Get Many Sales (Filter by AgentId)
+GET {{WebAPI_HostAddress}}/sales?agentId=1
+
+###
+
+### 38. GET - Get Many Sales (Filter by PropertyId and BuyerId)
+GET {{WebAPI_HostAddress}}/sales?propertyId=1&buyerId=2
+
+###
+
+### 39. GET - Get Many Sales (Filter by All Parameters)
+GET {{WebAPI_HostAddress}}/sales?propertyId=1&buyerId=2&agentId=1
+
+###
+
+### 40. GET - Get Many Sales (Non-existent PropertyId)
+GET {{WebAPI_HostAddress}}/sales?propertyId=999
+
+###
+
+###############################################
+# BIDS CONTROLLER
+# Note: Not implemented yet
+###############################################

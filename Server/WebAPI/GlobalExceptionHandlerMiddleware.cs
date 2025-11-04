@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace MainServer.WebAPI.Middlewares
 {
@@ -24,6 +25,13 @@ namespace MainServer.WebAPI.Middlewares
             {
                 context.Response.StatusCode = 409;
                 await context.Response.WriteAsync(ex.Message);
+            }
+            catch (DbUpdateException ex)
+            {
+                context.Response.StatusCode = 400;
+                // Get the inner exception message which contains the actual database error
+                string errorMessage = ex.InnerException?.Message ?? ex.Message;
+                await context.Response.WriteAsync(errorMessage);
             }
             catch (Exception ex)
             {

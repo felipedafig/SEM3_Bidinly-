@@ -35,7 +35,7 @@ namespace MainServer.WebAPI.Controllers
         // }
 
         // [HttpGet]
-        // public async Task<ActionResult<List<BidDto>>> GetManyBids([FromQuery] int? propertyId = null, [FromQuery] int? buyerId = null, [FromQuery] BidStatus? status = null)
+        // public async Task<ActionResult<List<BidDto>>> GetManyBids([FromQuery] int? propertyId = null, [FromQuery] int? buyerId = null, [FromQuery] string? status = null)
         // {
            
         // }

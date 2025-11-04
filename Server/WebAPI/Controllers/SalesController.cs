@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RepositoryInterfaces;
 using MainServer.Model;
 using shared.DTOs.Sales;
@@ -29,7 +30,11 @@ namespace MainServer.WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<SaleDto>>> GetManySales([FromQuery] int? propertyId = null, [FromQuery] int? buyerId = null, [FromQuery] int? agentId = null)
         {
-            IQueryable<Sale> query = saleRepository.GetMany();
+            IQueryable<Sale> query = saleRepository.GetMany()
+                .Include(s => s.Property)
+                .Include(s => s.WinningBid)
+                .Include(s => s.Buyer)
+                .Include(s => s.Agent); // Eagerly load all related entities to avoid concurrent DbContext access
 
             if (propertyId.HasValue)
             {
@@ -46,30 +51,21 @@ namespace MainServer.WebAPI.Controllers
                 query = query.Where(s => s.AgentId == agentId.Value);
             }
 
-            List<Sale> filteredSales = query.ToList();
+            List<Sale> filteredSales = await query.ToListAsync();
 
-            IEnumerable<Task<SaleDto>> tasks = filteredSales.Select(async s =>
+            List<SaleDto> responseDtos = filteredSales.Select(s => new SaleDto
             {
-                Bid bid = await bidRepository.GetSingleAsync(s.BidId);
-                Property property = await propertyRepository.GetSingleAsync(s.PropertyId);
-                User buyer = await userRepository.GetSingleAsync(s.BuyerId);
-                User agent = await userRepository.GetSingleAsync(s.AgentId);
-                return new SaleDto
-                {
-                    Id = s.Id,
-                    PropertyId = s.PropertyId,
-                    PropertyTitle = property.Title,
-                    BuyerUsername = buyer.Username,
-                    AgentUsername = agent.Username,
-                    FinalAmount = bid.Amount,
-                    TimeOfSale = s.TimeOfSale,
-                    WinningBidId = s.BidId
-                };
-            });
+                Id = s.Id,
+                PropertyId = s.PropertyId,
+                PropertyTitle = s.Property?.Title,
+                BuyerUsername = s.Buyer?.Username,
+                AgentUsername = s.Agent?.Username,
+                FinalAmount = s.WinningBid?.Amount ?? 0,
+                TimeOfSale = s.TimeOfSale,
+                WinningBidId = s.BidId
+            }).ToList();
 
-            SaleDto[] responseDtos = await Task.WhenAll(tasks); //doesnt complete until all dtos async taks are done
-
-            return Ok(responseDtos.ToList());
+            return Ok(responseDtos);
         }
 
     }

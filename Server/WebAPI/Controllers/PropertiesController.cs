@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RepositoryInterfaces;
 using MainServer.Model;
 using shared.DTOs.Properties;
@@ -35,7 +36,7 @@ namespace MainServer.WebAPI.Controllers
                 Bathrooms = request.Bathrooms,
                 SizeInSquareFeet = request.SizeInSquareFeet,
                 Description = request.Description,
-                Status = PropertyStatus.Available
+                Status = "Available"
             };
 
             Property created = await propertyRepository.AddAsync(property);
@@ -83,43 +84,38 @@ namespace MainServer.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<PropertyDto>>> GetManyProperties([FromQuery] string? title = null, [FromQuery] PropertyStatus? status = null)
+        public async Task<ActionResult<List<PropertyDto>>> GetManyProperties([FromQuery] string? title = null, [FromQuery] string? status = null)
         {
-            IQueryable<Property> query = propertyRepository.GetMany();
+            IQueryable<Property> query = propertyRepository.GetMany()
+                .Include(p => p.Agent); // Eagerly load Agent to avoid concurrent DbContext access
 
             if (!string.IsNullOrWhiteSpace(title))
             {
                 query = query.Where(p => p.Title != null && p.Title.ToLower().Contains(title.ToLower()));
             }
 
-            if (status.HasValue)
+            if (!string.IsNullOrWhiteSpace(status))
             {
-                query = query.Where(p => p.Status == status.Value);
+                query = query.Where(p => p.Status == status);
             }
 
-            List<Property> filteredProperties = query.ToList();
+            List<Property> filteredProperties = await query.ToListAsync();
 
-            IEnumerable<Task<PropertyDto>> tasks = filteredProperties.Select(async p =>
+            List<PropertyDto> responseDtos = filteredProperties.Select(p => new PropertyDto
             {
-                User agent = await userRepository.GetSingleAsync(p.AgentId);
-                return new PropertyDto
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                    Address = p.Address,
-                    StartingPrice = p.StartingPrice,
-                    Bedrooms = p.Bedrooms,
-                    Bathrooms = p.Bathrooms,
-                    SizeInSquareFeet = p.SizeInSquareFeet,
-                    Description = p.Description,
-                    Status = p.Status,
-                    AgentName = agent.Username
-                };
-            });
+                Id = p.Id,
+                Title = p.Title,
+                Address = p.Address,
+                StartingPrice = p.StartingPrice,
+                Bedrooms = p.Bedrooms,
+                Bathrooms = p.Bathrooms,
+                SizeInSquareFeet = p.SizeInSquareFeet,
+                Description = p.Description,
+                Status = p.Status,
+                AgentName = p.Agent?.Username
+            }).ToList();
 
-            PropertyDto[] responseDtos = await Task.WhenAll(tasks);
-
-            return Ok(responseDtos.ToList());
+            return Ok(responseDtos);
         }
 
         [HttpPut("{id:int}")]

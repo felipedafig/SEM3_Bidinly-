@@ -1,5 +1,3 @@
-using MainServer.Model;
-
 namespace shared.DTOs.Properties
 {
     public class PropertyDto
@@ -13,7 +11,7 @@ namespace shared.DTOs.Properties
         public int Bathrooms { get; set; }
         public double SizeInSquareFeet { get; set; }
         public string? Description { get; set; }
-        public PropertyStatus Status { get; set; }
+        public string? Status { get; set; } // e.g., "Available", "Sold"
         
     }
 }
