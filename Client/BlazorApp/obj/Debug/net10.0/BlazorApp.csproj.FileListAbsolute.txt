@@ -1,2 +1,0 @@
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\BlazorApp.exe
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\BlazorApp.dll
