@@ -676,6 +676,9 @@
       "DTOs/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DTOs.dll": {}
         },

@@ -19,17 +19,14 @@ namespace shared.DTOs.Properties
         public decimal StartingPrice { get; set; }
 
         [Required]
-        [Range(0, 20)] //positive integer
         public int Bedrooms { get; set; }
 
         [Required]
-        [Range(0, 20)] //positive integer
         public int Bathrooms { get; set; }
 
         [Required]
         public double SizeInSquareFeet { get; set; }
 
-        [StringLength(5000)]
         public string? Description { get; set; }
 
     }

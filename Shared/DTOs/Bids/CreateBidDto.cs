@@ -13,6 +13,9 @@ namespace Shared.DTOs.Bids
         [Required]
         public decimal Amount { get; set; }
 
-        // bid_id, expiry_date, and status are omitted as they are server-generated/managed.
+        [Required]
+        public DateTime ExpiryDate { get; set; }
+
+        // bid_id and status are omitted as they are server-generated/managed.
     }
 }

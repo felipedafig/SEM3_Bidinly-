@@ -1,7 +1,103 @@
 ﻿@page "/"
+@using shared.DTOs.Properties
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Bidinly - Bid to win your Dream Property</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="home-background">
+    <img src="/assets/Home-Background.png" alt="Modern Property" />
+</div>
 
-Welcome to your new app.
+<div class="white-section">
+    <div class="content-container">
+        <div class="search-bar-container">
+            <input type="text" class="search-bar" @bind="searchQuery" @bind:event="oninput" placeholder="Search by title..." />
+        </div>
+        
+        @if (isLoading)
+        {
+            <div class="loading">
+                <p>Loading properties...</p>
+            </div>
+        }
+        else if (filteredProperties.Any())
+        {
+            @foreach (var property in filteredProperties)
+            {
+                <a href="/property/@property.Id" class="property-card-link">
+                    <div class="property-card">
+                        <div class="card-image-placeholder"></div>
+                        <div class="card-details">
+                            <h3 class="card-title">@property.Title</h3>
+                            @if (!string.IsNullOrWhiteSpace(property.Address))
+                            {
+                                <p class="card-address">@property.Address</p>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(property.Description))
+                            {
+                                <p class="card-description">@property.Description</p>
+                            }
+                            <div class="card-info">
+                                <span class="info-item">Price: $@property.StartingPrice.ToString("N0")</span>
+                                <span class="info-item">Bedrooms: @property.Bedrooms</span>
+                                <span class="info-item">Bathrooms: @property.Bathrooms</span>
+                                <span class="info-item">Size: @property.SizeInSquareFeet.ToString("N0") sq ft</span>
+                            </div>
+                            @if (!string.IsNullOrWhiteSpace(property.Status))
+                            {
+                                <p class="card-status">Status: @property.Status</p>
+                            }
+                        </div>
+                    </div>
+                </a>
+            }
+        }
+        else
+        {
+            <div class="no-results">
+                <p>No properties found matching "@searchQuery"</p>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private string searchQuery = string.Empty;
+    private List<PropertyDto> properties = new();
+    private bool isLoading = true;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProperties();
+    }
+    
+    private async Task LoadProperties()
+    {
+        try
+        {
+            isLoading = true;
+            var response = await Http.GetFromJsonAsync<List<PropertyDto>>("properties");
+            properties = response ?? new List<PropertyDto>();
+        }
+        catch (Exception ex)
+        {
+            // Handle error - in production, you'd want proper error handling
+            Console.WriteLine($"Error loading properties: {ex.Message}");
+            properties = new List<PropertyDto>();
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+    
+    private IEnumerable<PropertyDto> filteredProperties => 
+        string.IsNullOrWhiteSpace(searchQuery) 
+            ? properties 
+            : properties.Where(p => p.Title != null && p.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase));
+}

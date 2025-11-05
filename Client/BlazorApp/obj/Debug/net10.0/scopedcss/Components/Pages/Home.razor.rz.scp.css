@@ -1,0 +1,160 @@
+.home-background[b-7gt2111kuu] {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+    .home-background img[b-7gt2111kuu] {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+.white-section[b-7gt2111kuu] {
+    width: 100%;
+    min-height: 100vh;
+    background: white;
+    padding: 4rem 2rem;
+}
+
+.content-container[b-7gt2111kuu] {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.search-bar-container[b-7gt2111kuu] {
+    margin-bottom: 2rem;
+}
+
+.search-bar[b-7gt2111kuu] {
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem 1.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+    .search-bar:focus[b-7gt2111kuu] {
+        border-color: #4FC3F7;
+    }
+
+    .search-bar[b-7gt2111kuu]::placeholder {
+        color: #999;
+        font-weight: 700;
+    }
+
+.no-results[b-7gt2111kuu] {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.property-card-link[b-7gt2111kuu] {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.property-card[b-7gt2111kuu] {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    user-select: none;
+}
+
+    .property-card-link:hover .property-card[b-7gt2111kuu] {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .property-card-link:active .property-card[b-7gt2111kuu] {
+        transform: translateY(0);
+    }
+
+.card-image-placeholder[b-7gt2111kuu] {
+    width: 200px;
+    height: 200px;
+    background: #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    flex-shrink: 0;
+}
+
+.card-details[b-7gt2111kuu] {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card-title[b-7gt2111kuu] {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card-description[b-7gt2111kuu] {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card-address[b-7gt2111kuu] {
+    font-size: 1rem;
+    color: #888;
+    margin: 0.5rem 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card-info[b-7gt2111kuu] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.info-item[b-7gt2111kuu] {
+    font-size: 0.9rem;
+    color: #555;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card-status[b-7gt2111kuu] {
+    font-size: 0.9rem;
+    color: #4FC3F7;
+    margin-top: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.loading[b-7gt2111kuu] {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+

@@ -11,6 +11,29 @@
         "buildMultiTargeting": {
           "buildMultiTargeting/Microsoft.AspNetCore.App.Internal.Assets.targets": {}
         }
+      },
+      "DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTOs.dll": {}
+        }
+      },
+      "Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Model.dll": {}
+        }
       }
     }
   },
@@ -37,10 +60,21 @@
         "microsoft.aspnetcore.app.internal.assets.10.0.0-preview.7.25380.108.nupkg.sha512",
         "microsoft.aspnetcore.app.internal.assets.nuspec"
       ]
+    },
+    "DTOs/1.0.0": {
+      "type": "project",
+      "path": "../../Shared/DTOs/DTOs.csproj",
+      "msbuildProject": "../../Shared/DTOs/DTOs.csproj"
+    },
+    "Model/1.0.0": {
+      "type": "project",
+      "path": "../../MainServer/Model/Model.csproj",
+      "msbuildProject": "../../MainServer/Model/Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "DTOs >= 1.0.0",
       "Microsoft.AspNetCore.App.Internal.Assets >= 10.0.0-preview.7.25380.108"
     ]
   },
@@ -68,7 +102,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj": {
+              "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
