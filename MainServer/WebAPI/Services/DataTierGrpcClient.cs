@@ -11,8 +11,10 @@ namespace MainServer.WebAPI.Services
 
         public DataTierGrpcClient(IConfiguration configuration)
         {
+            // Get Data Tier Server address from configuration
             var dataTierAddress = configuration["DataTier:Address"] ?? "http://localhost:9093";
             
+            // Configure HTTP/2 for gRPC
             var httpHandler = new HttpClientHandler();
             
             channel = GrpcChannel.ForAddress(dataTierAddress, new GrpcChannelOptions

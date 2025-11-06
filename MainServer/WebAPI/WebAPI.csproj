@@ -14,6 +14,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
+    <!-- Grpc -->
+    <PackageReference Include="Grpc.Net.Client" Version="2.64.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.27.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.65.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +29,11 @@
     <ProjectReference Include="..\Model\Model.csproj" />
     <ProjectReference Include="..\Repositories\Repositories.csproj" />
     <ProjectReference Include="..\RepositoryInterfaces\RepositoryInterfaces.csproj" />
+  </ItemGroup>
+
+  <!-- generate C# code from protobuf file -->
+  <ItemGroup>
+    <Protobuf Include="Protos/datatier.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>

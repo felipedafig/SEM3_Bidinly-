@@ -4,6 +4,9 @@ using RepositoryInterfaces;
 using MainServer.Data;
 using MainServer.Model;
 using MainServer.Repositories;
+using MainServer.WebAPI.Protos;
+using MainServer.WebAPI.Services;
+
 using MainServer.WebAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,15 +17,18 @@ builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<MainServer.Data.DbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+// builder.Services.AddDbContext<MainServer.Data.DbContext>(options =>
+//     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//EF Core
-builder.Services.AddScoped<IBidRepository, BidRepository>();
-builder.Services.AddScoped<IPropertyRepository, PropertyRepository>();
-builder.Services.AddScoped<ISaleRepository, SaleRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+// //EF Core
+// builder.Services.AddScoped<IBidRepository, BidRepository>();
+// builder.Services.AddScoped<IPropertyRepository, PropertyRepository>();
+// builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+// builder.Services.AddScoped<IUserRepository, UserRepository>();
+// builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+
+// gRPC Client as Singleton
+builder.Services.AddSingleton<DataTierGrpcClient>();
 
 var app = builder.Build();
 
