@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "SecondaryServer.Protos";
+
+package bidding;
+
+service BiddingService {
+  rpc Ping (PingRequest) returns (PingResponse);
+  rpc PlaceBid (PlaceBidRequest) returns (PlaceBidResponse);
+}
+
+message PingRequest {
+  string message = 1;
+}
+
+message PingResponse {
+  string message = 1;
+}
+
+message PlaceBidRequest {
+  int32 propertyId = 1;
+  int32 buyerId = 2;
+  double amount = 3;
+  int64 expiryDateSeconds = 4;  // Unix timestamp in seconds
+}
+
+message PlaceBidResponse {
+  int32 bidId = 1;
+  string status = 2;
+}
+
+
+
