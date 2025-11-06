@@ -1,0 +1,16 @@
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\bin\Debug\net10.0\RepositoryInterfaces.deps.json
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\bin\Debug\net10.0\RepositoryInterfaces.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\bin\Debug\net10.0\RepositoryInterfaces.pdb
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\bin\Debug\net10.0\Model.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\bin\Debug\net10.0\Model.pdb
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\RepositoryInterfaces.csproj.AssemblyReference.cache
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\RepositoryInterfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\RepositoryInterfaces.AssemblyInfoInputs.cache
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\RepositoryInterfaces.AssemblyInfo.cs
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\RepositoryInterfaces.csproj.CoreCompileInputs.cache
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\RepositoryInterfaces.sourcelink.json
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\Reposito.DE8D9392.Up2Date
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\RepositoryInterfaces.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\refint\RepositoryInterfaces.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\RepositoryInterfaces.pdb
+C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\RepositoryInterfaces\obj\Debug\net10.0\ref\RepositoryInterfaces.dll
