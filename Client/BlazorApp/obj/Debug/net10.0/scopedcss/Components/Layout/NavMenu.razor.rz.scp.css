@@ -1,0 +1,107 @@
+.navbar-header[b-g8o6n169oq] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: transparent;
+    padding: 1rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.navbar-container[b-g8o6n169oq] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.navbar-brand[b-g8o6n169oq] {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    position: relative;
+}
+
+.logo[b-g8o6n169oq] {
+    height: 15px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.brand-text[b-g8o6n169oq] {
+    color: white;
+    font-size: 1.3rem;
+    /* font-weight: 1000; */
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+}
+
+.navbar-nav[b-g8o6n169oq] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link[b-g8o6n169oq] {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    transition: opacity 0.2s;
+}
+
+    .nav-link:hover[b-g8o6n169oq] {
+        opacity: 0.8;
+    }
+
+    .nav-link.active[b-g8o6n169oq] {
+        font-weight: 700;
+    }
+
+.btn-contact[b-g8o6n169oq] {
+    background-color: #4FC3F7;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+    .btn-contact:hover[b-g8o6n169oq] {
+        background-color: #29B6F6;
+    }
+
+@media (max-width: 768px) {
+    .navbar-header[b-g8o6n169oq] {
+        padding: 1rem;
+    }
+
+    .navbar-nav[b-g8o6n169oq] {
+        gap: 1rem;
+        flex-direction: row;
+    }
+
+    .nav-link[b-g8o6n169oq] {
+        font-size: 0.9rem;
+    }
+
+    .btn-contact[b-g8o6n169oq] {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .brand-text[b-g8o6n169oq] {
+        font-size: 1.2rem;
+    }
+}

@@ -28,19 +28,22 @@
 }
 
 .logo {
-    height: 40px;
+    height: 15px;
     width: auto;
+    margin-right: 10px;
 }
 
 .brand-text {
     color: white;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    /* font-weight: 1000; */
     font-family: 'Montserrat', sans-serif;
+    font-style: italic;
 }
 
 .navbar-nav {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 2rem;
 }
@@ -86,6 +89,7 @@
 
     .navbar-nav {
         gap: 1rem;
+        flex-direction: row;
     }
 
     .nav-link {

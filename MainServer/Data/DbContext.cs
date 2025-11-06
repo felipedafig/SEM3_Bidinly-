@@ -20,10 +20,6 @@ namespace MainServer.Data
         {
             base.OnModelCreating(modelBuilder);
             
-            // Note: Status columns are stored as VARCHAR in the database, not enum types
-            // This avoids enum type casting issues in queries
-            
-            // Configure Role entity
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("Role");
@@ -32,7 +28,6 @@ namespace MainServer.Data
                 entity.Property(e => e.Name).HasColumnName("Name").HasMaxLength(50).IsRequired();
             });
 
-            // Configure User entity
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("User");
@@ -51,7 +46,6 @@ namespace MainServer.Data
                       .OnDelete(DeleteBehavior.Restrict);
             });
 
-            // Configure Property entity
             modelBuilder.Entity<Property>(entity =>
             {
                 entity.ToTable("Property");
@@ -77,7 +71,6 @@ namespace MainServer.Data
                       .OnDelete(DeleteBehavior.Restrict);
             });
 
-            // Configure Bid entity
             modelBuilder.Entity<Bid>(entity =>
             {
                 entity.ToTable("Bid");
@@ -105,7 +98,6 @@ namespace MainServer.Data
                       .OnDelete(DeleteBehavior.Restrict);
             });
 
-            // Configure Sale entity
             modelBuilder.Entity<Sale>(entity =>
             {
                 entity.ToTable("Sale");
