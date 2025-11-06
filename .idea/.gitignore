@@ -1,0 +1,48 @@
+# -----------------------------
+# General Operating System Files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Visual Studio / IDE Files
+# -----------------------------
+# User-specific files
+*.suo
+*.user
+*.userprefs
+# ReSharper and other IDE caches
+*.resharper
+.idea/
+.vs/
+/shelf/
+/workspace.xml
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
+
+# -----------------------------
+# .NET / C# Build Artifacts
+# -----------------------------
+# Binaries and intermediate files
+[Bb]in/
+[Oo]bj/
+
+# Packages and NuGet related files
+[Pp]ackages/
+*.nupkg
+*.snupkg
+# Restore cache file
+project.assets.json
+
+# Compiled files
+*.dll
+*.exe
+*.pdb
+*.mdb
+
+# Log files
+*.log
+
+# Test results
+TestResults/
