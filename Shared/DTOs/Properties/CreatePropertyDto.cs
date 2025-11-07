@@ -10,7 +10,7 @@ namespace shared.DTOs.Properties
 
         [Required]
         [StringLength(2000, MinimumLength = 1)]
-        public string Title { get; set; }
+        public required string Title { get; set; }
         
         [Required]
         public string? Address { get; set; }
