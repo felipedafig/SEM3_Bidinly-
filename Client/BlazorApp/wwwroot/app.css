@@ -10,8 +10,22 @@ html, body {
     overflow-y: auto;
 }
 
-a, .btn-link {
+a:not(.nav-link), .btn-link {
     color: #006bb7;
+}
+
+/* Override Bootstrap nav-link styles for navbar */
+.navbar-header .nav-link,
+.navbar-header .navbar-nav .nav-link,
+.navbar-header .navbar-nav a {
+    color: white !important;
+}
+
+/* Hover state for navbar links */
+.navbar-header .nav-link:hover,
+.navbar-header .navbar-nav .nav-link:hover,
+.navbar-header .navbar-nav a:hover {
+    color: black !important;
 }
 
 .btn-primary {

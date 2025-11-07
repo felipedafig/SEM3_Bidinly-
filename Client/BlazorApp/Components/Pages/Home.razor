@@ -7,69 +7,58 @@
 @inject NavigationManager Navigation
 @rendermode InteractiveServer
 
-<PageTitle>Bidinly - Bid to win your Dream Property</PageTitle>
+<PageTitle>Bidinly</PageTitle>
 
 <div class="home-background">
     <img src="/assets/images/Home-Background.png" alt="Modern Property" />
+    
+    <div class="hero-content">
+        <h1 class="hero-title">Bid to win your Dream Property...</h1>
+        <div class="hero-search-container">
+            <input type="text" class="hero-search-bar" placeholder="Find a property..." />
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
 </div>
 
-<div class="white-section">
-    <div class="content-container">
-        <div class="search-bar-container">
-            <input type="text" class="search-bar" @bind="searchQuery" @bind:event="oninput" placeholder="Search by title..." />
+<div class="filter-search-section">
+    <div class="filter-search-container">
+        <div class="filter-field">
+            <label class="filter-label">City</label>
+            <input type="text" class="filter-input" placeholder="where?" @bind="filterCity" />
         </div>
-        
-        @if (isLoading)
-        {
-            <div class="loading">
-                <p>Loading properties...</p>
-            </div>
-        }
-        else if (filteredProperties.Any())
-        {
-            @foreach (var property in filteredProperties)
-            {
-                <a href="/property/@property.Id" class="property-card-link">
-                    <div class="property-card">
-                        <div class="card-image-placeholder"></div>
-                        <div class="card-details">
-                            <h3 class="card-title">@property.Title</h3>
-                            @if (!string.IsNullOrWhiteSpace(property.Address))
-                            {
-                                <p class="card-address">@property.Address</p>
-                            }
-                            @if (!string.IsNullOrWhiteSpace(property.Description))
-                            {
-                                <p class="card-description">@property.Description</p>
-                            }
-                            <div class="card-info">
-                                <span class="info-item">Price: $@property.StartingPrice.ToString("N0")</span>
-                                <span class="info-item">Bedrooms: @property.Bedrooms</span>
-                                <span class="info-item">Bathrooms: @property.Bathrooms</span>
-                                <span class="info-item">Size: @property.SizeInSquareFeet.ToString("N0") sq ft</span>
-                            </div>
-                            @if (!string.IsNullOrWhiteSpace(property.Status))
-                            {
-                                <p class="card-status">Status: @property.Status</p>
-                            }
-                        </div>
-                    </div>
-                </a>
-            }
-        }
-        else
-        {
-            <div class="no-results">
-                <p>No properties found matching "@searchQuery"</p>
-            </div>
-        }
+        <div class="filter-separator"></div>
+        <div class="filter-field">
+            <label class="filter-label">Bedrooms</label>
+            <input type="number" class="filter-input" placeholder="how many?" min="0" value="@filterBedrooms" @oninput="OnBedroomsInput" />
+        </div>
+        <div class="filter-separator"></div>
+        <div class="filter-field">
+            <label class="filter-label">Bathrooms</label>
+            <input type="number" class="filter-input" placeholder="how many?" min="0" value="@filterBathrooms" @oninput="OnBathroomsInput" />
+        </div>
+        <div class="filter-separator"></div>
+        <div class="filter-field">
+            <label class="filter-label">Min. square meters</label>
+            <input type="number" class="filter-input" placeholder="how big?" min="0" value="@filterMinSquareMeters" @oninput="OnMinSquareMetersInput" />
+        </div>
+        <button class="filter-search-button" @onclick="ApplyFilters">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
     </div>
 </div>
 
 @code {
     private string searchQuery = string.Empty;
+    private string filterCity = string.Empty;
+    private int? filterBedrooms;
+    private int? filterBathrooms;
+    private int? filterMinSquareMeters;
     private List<PropertyDto> properties = new();
-    private bool isLoading = true;
     
     protected override async Task OnInitializedAsync()
     {
@@ -80,7 +69,6 @@
     {
         try
         {
-            isLoading = true;
             var response = await Http.GetFromJsonAsync<List<PropertyDto>>("properties");
             properties = response ?? new List<PropertyDto>();
         }
@@ -90,14 +78,67 @@
             Console.WriteLine($"Error loading properties: {ex.Message}");
             properties = new List<PropertyDto>();
         }
-        finally
-        {
-            isLoading = false;
-        }
     }
     
     private IEnumerable<PropertyDto> filteredProperties => 
         string.IsNullOrWhiteSpace(searchQuery) 
             ? properties 
             : properties.Where(p => p.Title != null && p.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase));
+    
+    private void ApplyFilters()
+    {
+        // Filter logic will be implemented here
+        // For now, this is a placeholder
+    }
+    
+    private void OnBedroomsInput(ChangeEventArgs e)
+    {
+        var value = e.Value?.ToString();
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            filterBedrooms = null;
+        }
+        else if (int.TryParse(value, out int intValue) && intValue >= 0)
+        {
+            filterBedrooms = intValue;
+        }
+        else
+        {
+            filterBedrooms = null;
+        }
+    }
+    
+    private void OnBathroomsInput(ChangeEventArgs e)
+    {
+        var value = e.Value?.ToString();
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            filterBathrooms = null;
+        }
+        else if (int.TryParse(value, out int intValue) && intValue >= 0)
+        {
+            filterBathrooms = intValue;
+        }
+        else
+        {
+            filterBathrooms = null;
+        }
+    }
+    
+    private void OnMinSquareMetersInput(ChangeEventArgs e)
+    {
+        var value = e.Value?.ToString();
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            filterMinSquareMeters = null;
+        }
+        else if (int.TryParse(value, out int intValue) && intValue >= 0)
+        {
+            filterMinSquareMeters = intValue;
+        }
+        else
+        {
+            filterMinSquareMeters = null;
+        }
+    }
 }

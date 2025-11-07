@@ -15,8 +15,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
 }
 
 .navbar-brand[b-g8o6n169oq] {
@@ -35,7 +35,7 @@
 
 .brand-text[b-g8o6n169oq] {
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     /* font-weight: 1000; */
     font-family: 'Montserrat', sans-serif;
     font-style: italic;
@@ -46,22 +46,40 @@
     flex-direction: row;
     align-items: center;
     gap: 2rem;
+    margin-right: 2.2rem;
 }
 
-.nav-link[b-g8o6n169oq] {
-    color: white;
-    text-decoration: none;
+.navbar-header .navbar-nav a[b-g8o6n169oq],
+.navbar-header .navbar-nav .nav-link[b-g8o6n169oq],
+.navbar-header a.nav-link[b-g8o6n169oq],
+.navbar-nav a[b-g8o6n169oq],
+.navbar-nav .nav-link[b-g8o6n169oq],
+a.nav-link[b-g8o6n169oq] {
+    color: white !important;
+    text-decoration: none !important;
     font-size: 1rem;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
-    transition: opacity 0.2s;
+    transition: color 0.2s, opacity 0.2s;
 }
 
-    .nav-link:hover[b-g8o6n169oq] {
-        opacity: 0.8;
+    .navbar-header .navbar-nav a:hover[b-g8o6n169oq],
+    .navbar-header .navbar-nav .nav-link:hover[b-g8o6n169oq],
+    .navbar-header a.nav-link:hover[b-g8o6n169oq],
+    .navbar-nav a:hover[b-g8o6n169oq],
+    .navbar-nav .nav-link:hover[b-g8o6n169oq],
+    a.nav-link:hover[b-g8o6n169oq] {
+        color: black !important;
+        opacity: 1;
     }
 
-    .nav-link.active[b-g8o6n169oq] {
+    .navbar-header .navbar-nav a.active[b-g8o6n169oq],
+    .navbar-header .navbar-nav .nav-link.active[b-g8o6n169oq],
+    .navbar-header a.nav-link.active[b-g8o6n169oq],
+    .navbar-nav a.active[b-g8o6n169oq],
+    .navbar-nav .nav-link.active[b-g8o6n169oq],
+    a.nav-link.active[b-g8o6n169oq] {
+        color: white !important;
         font-weight: 700;
     }
 
@@ -78,22 +96,85 @@
     transition: background-color 0.2s;
 }
 
-    .btn-contact:hover[b-g8o6n169oq] {
-        background-color: #29B6F6;
-    }
 
+@media (min-width: 1921px) {
+    .navbar-container[b-g8o6n169oq] {
+        max-width: 100%;
+        margin: 0 2rem;
+    }
+    
+    .navbar-header[b-g8o6n169oq] {
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* For screens between 1400px and 1920px */
+@media (min-width: 1400px) and (max-width: 1920px) {
+    .navbar-container[b-g8o6n169oq] {
+        max-width: 100%;
+        margin: 0 1.5rem;
+    }
+    
+    .navbar-header[b-g8o6n169oq] {
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* For screens between 1200px and 1400px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .navbar-container[b-g8o6n169oq] {
+        max-width: 100%;
+        margin: 0 1.5rem;
+    }
+    
+    .navbar-header[b-g8o6n169oq] {
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* For screens between 768px and 1199px (tablet and small desktop) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .navbar-container[b-g8o6n169oq] {
+        max-width: 100%;
+        margin: 0 1rem;
+    }
+    
+    .navbar-header[b-g8o6n169oq] {
+        padding: 1rem 1.5rem;
+    }
+    
+    .navbar-nav[b-g8o6n169oq] {
+        gap: 1.5rem;
+    }
+}
+
+/* For mobile screens (smaller than 768px) */
 @media (max-width: 768px) {
+    .navbar-container[b-g8o6n169oq] {
+        margin: 0 0.5rem;
+    }
+    
     .navbar-header[b-g8o6n169oq] {
         padding: 1rem;
     }
 
     .navbar-nav[b-g8o6n169oq] {
         gap: 1rem;
-        flex-direction: row;
     }
 
+    .navbar-header .navbar-nav a[b-g8o6n169oq],
+    .navbar-header .navbar-nav .nav-link[b-g8o6n169oq],
+    .navbar-header a.nav-link[b-g8o6n169oq],
     .nav-link[b-g8o6n169oq] {
         font-size: 0.9rem;
+        color: white !important;
+    }
+    
+    .navbar-header .navbar-nav a:hover[b-g8o6n169oq],
+    .navbar-header .navbar-nav .nav-link:hover[b-g8o6n169oq],
+    .navbar-header a.nav-link:hover[b-g8o6n169oq],
+    .nav-link:hover[b-g8o6n169oq] {
+        color: black !important;
     }
 
     .btn-contact[b-g8o6n169oq] {
@@ -104,4 +185,10 @@
     .brand-text[b-g8o6n169oq] {
         font-size: 1.2rem;
     }
+}
+
+/* Ensure hover state works - highest specificity */
+.navbar-header .navbar-container .navbar-nav a:hover[b-g8o6n169oq],
+.navbar-header .navbar-container .navbar-nav .nav-link:hover[b-g8o6n169oq] {
+    color: black !important;
 }
