@@ -1,4 +1,4 @@
-package com.sem3.datatier.model;
+package via.pro3.datatierserver.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

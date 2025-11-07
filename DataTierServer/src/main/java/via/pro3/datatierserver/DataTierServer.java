@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DataTierServerApplication {
+public class DataTierServer {
 
     public static void main(String[] args) {
-        SpringApplication.run(DataTierServerApplication.class, args);
+        SpringApplication.run(DataTierServer.class, args);
     }
 
 }

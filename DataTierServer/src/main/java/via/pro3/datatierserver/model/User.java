@@ -1,9 +1,8 @@
-package com.sem3.datatier.model;
+package via.pro3.datatierserver.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import Model.*;
 
 @Entity
 @Table(name = "User")

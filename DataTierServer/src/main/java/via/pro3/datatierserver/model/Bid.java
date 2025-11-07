@@ -1,4 +1,4 @@
-package com.sem3.datatier.model;
+package via.pro3.datatierserver.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -45,7 +45,6 @@ public class Bid {
     @Size(max = 50)
     private String status = "Pending";
 
-    // Constructors
     public Bid() {
     }
 
@@ -57,7 +56,6 @@ public class Bid {
         this.status = "Pending";
     }
 
-    // Getters and Setters
     public Integer getId() {
         return id;
     }
