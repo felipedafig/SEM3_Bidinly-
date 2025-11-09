@@ -17,27 +17,17 @@
     <div class="bids-container">
         <div class="filter-search-section">
             <div class="filter-search-container">
-                <div class="filter-field">
+                <div class="filter-field filter-field-id">
                     <label class="filter-label">Id</label>
                     <input type="number" class="filter-input" placeholder="id?" min="0" @bind="filterId" @oninput="OnIdInput" />
                 </div>
                 <div class="filter-separator"></div>
-                <div class="filter-field">
+                <div class="filter-field filter-field-property">
                     <label class="filter-label">Property Name</label>
                     <input type="text" class="filter-input" placeholder="title?" @bind="filterPropertyName" />
                 </div>
                 <div class="filter-separator"></div>
-                <div class="filter-field">
-                    <label class="filter-label">Amount</label>
-                    <input type="number" class="filter-input" placeholder="how much?" min="0" @bind="filterAmount" @oninput="OnAmountInput" />
-                </div>
-                <div class="filter-separator"></div>
-                <div class="filter-field">
-                    <label class="filter-label">Expiry Date</label>
-                    <input type="date" class="filter-input" @bind="filterExpiryDate" />
-                </div>
-                <div class="filter-separator"></div>
-                <div class="filter-field">
+                <div class="filter-field filter-field-status">
                     <label class="filter-label">Status</label>
                     <div class="status-checkboxes">
                         <label class="status-checkbox-label">
@@ -87,10 +77,7 @@
                     </th>
                     <th>
                         <div class="table-header-cell">
-                            <svg class="header-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2V22M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>Amount</span>
+                            <span>Amount (DKK)</span>
                         </div>
                     </th>
                     <th>
@@ -137,7 +124,7 @@
                         <tr>
                             <td>@bid.Id</td>
                             <td>@(bid.PropertyTitle ?? "N/A")</td>
-                            <td>$@bid.Amount.ToString("N2")</td>
+                            <td>@bid.Amount.ToString("N2") kr</td>
                             <td>@bid.ExpiryDate.ToString("dd/MM/yyyy")</td>
                             <td>
                                 <span class="status-badge status-@(bid.Status?.ToLower() ?? "pending")">
@@ -176,8 +163,6 @@
     
     private int? filterId;
     private string filterPropertyName = string.Empty;
-    private decimal? filterAmount;
-    private DateTime? filterExpiryDate;
     private HashSet<string> filterStatus = new HashSet<string>();
     
     protected override async Task OnInitializedAsync()
@@ -223,23 +208,6 @@
         }
     }
     
-    private void OnAmountInput(ChangeEventArgs e)
-    {
-        var value = e.Value?.ToString();
-        if (string.IsNullOrWhiteSpace(value))
-        {
-            filterAmount = null;
-        }
-        else if (decimal.TryParse(value, out decimal decimalValue) && decimalValue >= 0)
-        {
-            filterAmount = decimalValue;
-        }
-        else
-        {
-            filterAmount = null;
-        }
-    }
-    
     private void OnStatusChange(string status, ChangeEventArgs e)
     {
         if (e.Value is bool checkedValue)
@@ -260,8 +228,6 @@
         filteredBids = bids.Where(bid =>
             (filterId == null || bid.Id == filterId.Value) &&
             (string.IsNullOrWhiteSpace(filterPropertyName) || (bid.PropertyTitle != null && bid.PropertyTitle.Contains(filterPropertyName, StringComparison.OrdinalIgnoreCase))) &&
-            (filterAmount == null || bid.Amount >= filterAmount.Value) &&
-            (filterExpiryDate == null || bid.ExpiryDate.Date == filterExpiryDate.Value.Date) &&
             (filterStatus.Count == 0 || (bid.Status != null && filterStatus.Contains(bid.Status, StringComparer.OrdinalIgnoreCase)))
         ).ToList();
     }

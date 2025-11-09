@@ -17,12 +17,12 @@
     <div class="bids-container">
         <div class="filter-search-section">
             <div class="filter-search-container">
-                <div class="filter-field">
+                <div class="filter-field filter-field-id">
                     <label class="filter-label">Id</label>
                     <input type="number" class="filter-input" placeholder="id?" min="0" @bind="filterId" @oninput="OnIdInput" />
                 </div>
                 <div class="filter-separator"></div>
-                <div class="filter-field">
+                <div class="filter-field filter-field-property">
                     <label class="filter-label">Property Name</label>
                     <input type="text" class="filter-input" placeholder="title?" @bind="filterPropertyName" />
                 </div>
@@ -41,11 +41,7 @@
                     <label class="filter-label">Bid Id</label>
                     <input type="number" class="filter-input" placeholder="bid id?" min="0" @bind="filterBidId" @oninput="OnBidIdInput" />
                 </div>
-                <div class="filter-separator"></div>
-                <div class="filter-field">
-                    <label class="filter-label">Date</label>
-                    <input type="date" class="filter-input" @bind="filterDate" />
-                </div>
+                
                 <button class="filter-search-button" @onclick="ApplyFilters">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
