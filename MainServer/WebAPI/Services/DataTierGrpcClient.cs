@@ -13,12 +13,11 @@ namespace MainServer.WebAPI.Services
         public DataTierGrpcClient(IConfiguration configuration, ILogger<DataTierGrpcClient> logger)
         {
             this.logger = logger;
-            // Get Data Tier Server address from configuration
+
             var dataTierAddress = configuration["DataTier:Address"] ?? "http://localhost:9093";
             
             logger.LogInformation("Initializing DataTierGrpcClient with address: {Address}", dataTierAddress);
             
-            // Configure HTTP/2 for gRPC
             var httpHandler = new HttpClientHandler();
             
             channel = GrpcChannel.ForAddress(dataTierAddress, new GrpcChannelOptions
@@ -33,23 +32,6 @@ namespace MainServer.WebAPI.Services
         }
 
         // Bid operations
-        public async Task<BidResponse> CreateBidAsync(CreateBidRequest request)
-        {
-            try
-            {
-                return await client.CreateBidAsync(request);
-            }
-            catch (Grpc.Core.RpcException ex)
-            {
-                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}");
-            }
-        }
-
-        public async Task<BidResponse> GetBidAsync(int id)
-        {
-            var request = new GetBidRequest { Id = id };
-            return await client.GetBidAsync(request);
-        }
 
         public async Task<GetBidsResponse> GetBidsAsync(int? propertyId = null, int? buyerId = null, string? status = null)
         {
@@ -82,10 +64,6 @@ namespace MainServer.WebAPI.Services
             }
         }
 
-        public async Task<BidResponse> UpdateBidAsync(UpdateBidRequest request)
-        {
-            return await client.UpdateBidAsync(request);
-        }
 
         public async Task<bool> DeleteBidAsync(int id)
         {
@@ -94,12 +72,7 @@ namespace MainServer.WebAPI.Services
             return response.Success;
         }
 
-        // Property operations (similar pattern)
-        public async Task<PropertyResponse> CreatePropertyAsync(CreatePropertyRequest request)
-        {
-            return await client.CreatePropertyAsync(request);
-        }
-
+        // Property operations 
         public async Task<PropertyResponse> GetPropertyAsync(int id)
         {
             var request = new GetPropertyRequest { Id = id };
@@ -122,6 +95,8 @@ namespace MainServer.WebAPI.Services
             return await client.GetUserAsync(request);
         }
 
-        // Add other property methods similarly...
+        // Sale operations
+
+        // Role operations
     }
 }

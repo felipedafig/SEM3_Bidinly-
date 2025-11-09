@@ -6,57 +6,56 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "Property")
+@Table(name = "\"Property\"")
 public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "\"Id\"")
     private Integer id;
 
-    @Column(name = "AgentId", nullable = false)
+    @Column(name = "\"AgentId\"", nullable = false)
     @NotNull
     private Integer agentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "AgentId", insertable = false, updatable = false,
+    @JoinColumn(name = "\"AgentId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_agent"))
     private User agent;
 
-    @Column(name = "Title", length = 2000, nullable = false)
+    @Column(name = "\"Title\"", length = 2000, nullable = false)
     @NotNull
     @Size(max = 2000)
     private String title;
 
-    @Column(name = "Address", length = 500)
+    @Column(name = "\"Address\"", length = 500)
     @Size(max = 500)
     private String address;
 
-    @Column(name = "StartingPrice", precision = 18, scale = 2, nullable = false)
+    @Column(name = "\"StartingPrice\"", precision = 18, scale = 2, nullable = false)
     @NotNull
     private BigDecimal startingPrice;
 
-    @Column(name = "Bedrooms", nullable = false)
+    @Column(name = "\"Bedrooms\"", nullable = false)
     @NotNull
     private Integer bedrooms;
 
-    @Column(name = "Bathrooms", nullable = false)
+    @Column(name = "\"Bathrooms\"", nullable = false)
     @NotNull
     private Integer bathrooms;
 
-    @Column(name = "SizeInSquareFeet", nullable = false)
+    @Column(name = "\"SizeInSquareFeet\"", nullable = false)
     @NotNull
     private Double sizeInSquareFeet;
 
-    @Column(name = "Description", length = 5000)
+    @Column(name = "\"Description\"", length = 5000)
     @Size(max = 5000)
     private String description;
 
-    @Column(name = "Status", length = 50)
+    @Column(name = "\"Status\"", length = 50)
     @Size(max = 50)
     private String status = "Available";
 
-    // Constructors
     public Property() {
     }
 
@@ -71,7 +70,6 @@ public class Property {
         this.status = "Available";
     }
 
-    // Getters and Setters
     public Integer getId() {
         return id;
     }

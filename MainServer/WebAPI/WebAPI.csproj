@@ -25,10 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\DTOs\DTOs.csproj" />
-    <ProjectReference Include="..\Data\Data.csproj" />
-    <ProjectReference Include="..\Model\Model.csproj" />
-    <ProjectReference Include="..\Repositories\Repositories.csproj" />
-    <ProjectReference Include="..\RepositoryInterfaces\RepositoryInterfaces.csproj" />
   </ItemGroup>
 
   <!-- generate C# code from protobuf file -->

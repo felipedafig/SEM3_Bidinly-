@@ -5,51 +5,51 @@ import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
 
 @Entity
-@Table(name = "Sale")
+@Table(name = "\"Sale\"")
 public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "\"Id\"")
     private Integer id;
 
-    @Column(name = "TimeOfSale", nullable = false)
+    @Column(name = "\"TimeOfSale\"", nullable = false)
     @NotNull
     private Instant timeOfSale;
 
-    @Column(name = "PropertyId", nullable = false)
+    @Column(name = "\"PropertyId\"", nullable = false)
     @NotNull
     private Integer propertyId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PropertyId", insertable = false, updatable = false,
+    @JoinColumn(name = "\"PropertyId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_sold_property"))
     private Property property;
 
-    @Column(name = "BidId", nullable = false)
+    @Column(name = "\"BidId\"", nullable = false)
     @NotNull
     private Integer bidId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "BidId", insertable = false, updatable = false,
+    @JoinColumn(name = "\"BidId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_winning_bid"))
     private Bid winningBid;
 
-    @Column(name = "BuyerId", nullable = false)
+    @Column(name = "\"BuyerId\"", nullable = false)
     @NotNull
     private Integer buyerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "BuyerId", insertable = false, updatable = false,
+    @JoinColumn(name = "\"BuyerId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_selling_buyer"))
     private User buyer;
 
-    @Column(name = "AgentId", nullable = false)
+    @Column(name = "\"AgentId\"", nullable = false)
     @NotNull
     private Integer agentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "AgentId", insertable = false, updatable = false,
+    @JoinColumn(name = "\"AgentId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_selling_agent"))
     private User agent;
 
@@ -66,7 +66,6 @@ public class Sale {
         this.agentId = agentId;
     }
 
-    // Getters and Setters
     public Integer getId() {
         return id;
     }

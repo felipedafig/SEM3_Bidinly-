@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MainServer\Model\Model.csproj" />
   </ItemGroup>
 
 </Project>

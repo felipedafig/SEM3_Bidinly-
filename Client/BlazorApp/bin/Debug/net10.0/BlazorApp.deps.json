@@ -15,19 +15,8 @@
         }
       },
       "DTOs/1.0.0": {
-        "dependencies": {
-          "Model": "1.0.0"
-        },
         "runtime": {
           "DTOs.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "Model/1.0.0": {
-        "runtime": {
-          "Model.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -42,11 +31,6 @@
       "sha512": ""
     },
     "DTOs/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Model/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

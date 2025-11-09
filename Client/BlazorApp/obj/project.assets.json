@@ -15,24 +15,11 @@
       "DTOs/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
-        "dependencies": {
-          "Model": "1.0.0"
-        },
         "compile": {
           "bin/placeholder/DTOs.dll": {}
         },
         "runtime": {
           "bin/placeholder/DTOs.dll": {}
-        }
-      },
-      "Model/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "compile": {
-          "bin/placeholder/Model.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Model.dll": {}
         }
       }
     }
@@ -65,11 +52,6 @@
       "type": "project",
       "path": "../../Shared/DTOs/DTOs.csproj",
       "msbuildProject": "../../Shared/DTOs/DTOs.csproj"
-    },
-    "Model/1.0.0": {
-      "type": "project",
-      "path": "../../MainServer/Model/Model.csproj",
-      "msbuildProject": "../../MainServer/Model/Model.csproj"
     }
   },
   "projectFileDependencyGroups": {

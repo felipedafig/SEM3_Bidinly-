@@ -109,16 +109,8 @@ C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\ru\Microsof
 C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\Data.dll
 C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\DTOs.dll
-C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\Model.dll
-C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\Repositories.dll
-C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\RepositoryInterfaces.dll
 C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\DTOs.pdb
-C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\Data.pdb
-C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\Model.pdb
-C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\Repositories.pdb
-C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\bin\Debug\net10.0\RepositoryInterfaces.pdb
 C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Git_VIACode\SEM3\SEM3_Bidinly\MainServer\WebAPI\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json

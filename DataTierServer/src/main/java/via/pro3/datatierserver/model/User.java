@@ -10,25 +10,25 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "\"Id\"")
     private Integer id;
 
-    @Column(name = "Username", length = 50, nullable = false, unique = true)
+    @Column(name = "\"Username\"", length = 50, nullable = false, unique = true)
     @NotNull
     @Size(max = 50)
     private String username;
 
-    @Column(name = "Password", length = 100, nullable = false)
+    @Column(name = "\"Password\"", length = 100, nullable = false)
     @NotNull
     @Size(max = 100)
     private String password;
 
-    @Column(name = "RoleId", nullable = false)
+    @Column(name = "\"RoleId\"", nullable = false)
     @NotNull
     private Integer roleId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "RoleId", insertable = false, updatable = false,
+    @JoinColumn(name = "\"RoleId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_role"))
     private Role role;
 
@@ -42,7 +42,6 @@ public class User {
         this.roleId = roleId;
     }
 
-    // Getters and Setters
     public Integer getId() {
         return id;
     }

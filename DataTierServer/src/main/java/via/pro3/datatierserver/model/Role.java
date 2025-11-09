@@ -5,20 +5,19 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "Role")
+@Table(name = "\"Role\"")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "\"Id\"")
     private Integer id;
 
-    @Column(name = "Name", length = 50, nullable = false)
+    @Column(name = "\"Name\"", length = 50, nullable = false)
     @NotNull
     @Size(max = 50)
     private String name;
 
-    // Constructors
     public Role() {
     }
 
@@ -26,7 +25,6 @@ public class Role {
         this.name = name;
     }
 
-    // Getters and Setters
     public Integer getId() {
         return id;
     }
