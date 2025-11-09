@@ -40,6 +40,81 @@
     margin-left: 0.5rem;
 }
 
+.project-info-section[b-7gt2111kuu] {
+    position: absolute;
+    bottom: 0%;
+    right: 5%;
+    z-index: 10;
+    max-width: 554px;
+    width: auto;
+    background: transparent;
+}
+
+.project-info-container[b-7gt2111kuu] {
+    width: 100%;
+    text-align: center;
+    margin-left: 2rem;
+}
+
+.project-title[b-7gt2111kuu] {
+    margin: 0 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.title-line-1[b-7gt2111kuu] {
+    color: rgb(30, 130, 400);
+    font-size: 2rem;
+    font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.title-line-2[b-7gt2111kuu] {
+    color: rgb(100, 80, 250);
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.project-description[b-7gt2111kuu] {
+    color: #666;
+    font-size: 0.90rem;
+    line-height: 1.4rem;
+    margin: 0 0 0.9rem 0;
+    text-align: center;
+    font-weight: 300;
+}
+
+.git-repo-button[b-7gt2111kuu] {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: white;
+    color: rgb(30, 130, 400);
+    border: 2px solid rgb(30, 130, 400);
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-left: 20rem;
+}
+
+.git-repo-button:hover[b-7gt2111kuu] {
+    background-color: rgb(30, 130, 400);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.git-repo-button:active[b-7gt2111kuu] {
+    transform: translateY(0);
+}
+
 .hero-search-container[b-7gt2111kuu] {
     position: relative;
     width: 100%;
@@ -311,6 +386,24 @@
 }
 
 @media (max-width: 767px) {
+    .project-info-section[b-7gt2111kuu] {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        max-width: 100%;
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+    
+    .title-line-1[b-7gt2111kuu],
+    .title-line-2[b-7gt2111kuu] {
+        font-size: 1.5rem;
+    }
+    
+    .project-description[b-7gt2111kuu] {
+        font-size: 0.9rem;
+    }
+    
     .filter-search-section[b-7gt2111kuu] {
         padding: 1rem 0;
     }
