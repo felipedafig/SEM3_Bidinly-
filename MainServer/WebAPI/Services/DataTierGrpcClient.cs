@@ -8,11 +8,15 @@ namespace MainServer.WebAPI.Services
     {
         private readonly DataTierService.DataTierServiceClient client;
         private readonly GrpcChannel channel;
+        private readonly ILogger<DataTierGrpcClient> logger;
 
-        public DataTierGrpcClient(IConfiguration configuration)
+        public DataTierGrpcClient(IConfiguration configuration, ILogger<DataTierGrpcClient> logger)
         {
+            this.logger = logger;
             // Get Data Tier Server address from configuration
             var dataTierAddress = configuration["DataTier:Address"] ?? "http://localhost:9093";
+            
+            logger.LogInformation("Initializing DataTierGrpcClient with address: {Address}", dataTierAddress);
             
             // Configure HTTP/2 for gRPC
             var httpHandler = new HttpClientHandler();
@@ -25,6 +29,7 @@ namespace MainServer.WebAPI.Services
             });
             
             client = new DataTierService.DataTierServiceClient(channel);
+            logger.LogInformation("DataTierGrpcClient initialized successfully");
         }
 
         // Bid operations
@@ -48,12 +53,33 @@ namespace MainServer.WebAPI.Services
 
         public async Task<GetBidsResponse> GetBidsAsync(int? propertyId = null, int? buyerId = null, string? status = null)
         {
-            var request = new GetBidsRequest();
-            if (propertyId.HasValue) request.PropertyId = propertyId.Value;
-            if (buyerId.HasValue) request.BuyerId = buyerId.Value;
-            if (!string.IsNullOrEmpty(status)) request.Status = status;
-            
-            return await client.GetBidsAsync(request);
+            try
+            {
+                logger.LogInformation("GetBidsAsync called - propertyId: {PropertyId}, buyerId: {BuyerId}, status: {Status}", 
+                    propertyId, buyerId, status);
+                
+                var request = new GetBidsRequest();
+                if (propertyId.HasValue) request.PropertyId = propertyId.Value;
+                if (buyerId.HasValue) request.BuyerId = buyerId.Value;
+                if (!string.IsNullOrEmpty(status)) request.Status = status;
+                
+                logger.LogInformation("Sending GetBids request to DataTierServer...");
+                var response = await client.GetBidsAsync(request);
+                logger.LogInformation("GetBids response received with {Count} bids", response.Bids.Count);
+                
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                logger.LogError(ex, "gRPC error in GetBidsAsync: Status={StatusCode}, Detail={Detail}", 
+                    ex.StatusCode, ex.Status.Detail);
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Unexpected error in GetBidsAsync: {Message}", ex.Message);
+                throw;
+            }
         }
 
         public async Task<BidResponse> UpdateBidAsync(UpdateBidRequest request)
@@ -87,6 +113,13 @@ namespace MainServer.WebAPI.Services
             if (!string.IsNullOrEmpty(status)) request.Status = status;
             
             return await client.GetPropertiesAsync(request);
+        }
+
+        // User operations
+        public async Task<UserResponse> GetUserAsync(int id)
+        {
+            var request = new GetUserRequest { Id = id };
+            return await client.GetUserAsync(request);
         }
 
         // Add other property methods similarly...

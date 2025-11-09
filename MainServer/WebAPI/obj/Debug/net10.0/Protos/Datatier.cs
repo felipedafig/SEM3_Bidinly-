@@ -4886,7 +4886,7 @@ namespace MainServer.WebAPI.Protos {
   }
 
   /// <summary>
-  /// User messages (similar pattern)
+  /// User messages 
   /// </summary>
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CreateUserRequest : pb::IMessage<CreateUserRequest>

@@ -7,41 +7,41 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
-@Table(name = "Bid")
+@Table(name = "\"Bid\"")
 public class Bid {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "\"Id\"")
     private Integer id;
 
-    @Column(name = "BuyerId", nullable = false)
+    @Column(name = "\"BuyerId\"", nullable = false)
     @NotNull
     private Integer buyerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "BuyerId", insertable = false, updatable = false,
+    @JoinColumn(name = "\"BuyerId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_buyer"))
     private User buyer;
 
-    @Column(name = "PropertyId", nullable = false)
+    @Column(name = "\"PropertyId\"", nullable = false)
     @NotNull
     private Integer propertyId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PropertyId", insertable = false, updatable = false,
+    @JoinColumn(name = "\"PropertyId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_property"))
     private Property property;
 
-    @Column(name = "Amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "\"Amount\"", precision = 18, scale = 2, nullable = false)
     @NotNull
     private BigDecimal amount;
 
-    @Column(name = "ExpiryDate", nullable = false)
+    @Column(name = "\"ExpiryDate\"", nullable = false)
     @NotNull
     private Instant expiryDate;
 
-    @Column(name = "Status", length = 50)
+    @Column(name = "\"Status\"", length = 50)
     @Size(max = 50)
     private String status = "Pending";
 

@@ -8,9 +8,6 @@
 using grpc = global::Grpc.Core;
 
 namespace MainServer.WebAPI.Protos {
-  /// <summary>
-  /// Data Tier Service - handles all database operations
-  /// </summary>
   public static partial class DataTierService
   {
     static readonly string __ServiceName = "datatier.DataTierService";

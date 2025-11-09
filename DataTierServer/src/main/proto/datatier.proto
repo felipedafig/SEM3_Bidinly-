@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package datatier;
 
-option csharp_namespace = "MainServer.WebAPI.Protos";
+option java_package = "via.pro3.datatierserver.grpc";
+option java_outer_classname = "DataTierProto";
 
 service DataTierService {
   // Bid operations
@@ -171,3 +172,4 @@ message GetUsersResponse {
 message DeleteUserResponse {
   bool success = 1;
 }
+

@@ -4,10 +4,8 @@ using RepositoryInterfaces;
 using MainServer.Data;
 using MainServer.Model;
 using MainServer.Repositories;
-using MainServer.WebAPI.Protos;
-using MainServer.WebAPI.Services;
-
 using MainServer.WebAPI.Middlewares;
+using MainServer.WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

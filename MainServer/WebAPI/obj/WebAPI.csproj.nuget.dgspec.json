@@ -1425,7 +1425,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.65.0, )"
+              "version": "[2.64.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",

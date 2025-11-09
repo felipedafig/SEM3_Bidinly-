@@ -60,7 +60,7 @@
           }
         }
       },
-      "Grpc.Tools/2.65.0": {
+      "Grpc.Tools/2.64.0": {
         "type": "package",
         "build": {
           "build/Grpc.Tools.props": {},
@@ -894,10 +894,10 @@
         "packageIcon.png"
       ]
     },
-    "Grpc.Tools/2.65.0": {
-      "sha512": "2HX7+tPCIXwx1nsyj2h0i703D8SM2CMTUqdjDHAsU3HmKKksMJ7K6x31Rhg9yLJsW76OJItyoD9fk7W3HP/Wgw==",
+    "Grpc.Tools/2.64.0": {
+      "sha512": "W5RrhDFHUhioASktxfuDs5fTjWUxwegljZAig9zFL8nWNskeyQA6OXN2choWKYxGrljer25VqCJCMbWz7XHvqg==",
       "type": "package",
-      "path": "grpc.tools/2.65.0",
+      "path": "grpc.tools/2.64.0",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -926,7 +926,7 @@
         "build/native/include/google/protobuf/timestamp.proto",
         "build/native/include/google/protobuf/type.proto",
         "build/native/include/google/protobuf/wrappers.proto",
-        "grpc.tools.2.65.0.nupkg.sha512",
+        "grpc.tools.2.64.0.nupkg.sha512",
         "grpc.tools.nuspec",
         "packageIcon.png",
         "tools/linux_arm64/grpc_csharp_plugin",
@@ -2344,7 +2344,7 @@
       "Data >= 1.0.0",
       "Google.Protobuf >= 3.27.0",
       "Grpc.Net.Client >= 2.64.0",
-      "Grpc.Tools >= 2.65.0",
+      "Grpc.Tools >= 2.64.0",
       "Microsoft.AspNetCore.OpenApi >= 10.0.0-preview.7.25380.108",
       "Microsoft.EntityFrameworkCore >= 9.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.0",
@@ -2425,7 +2425,7 @@
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.65.0, )"
+            "version": "[2.64.0, )"
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
