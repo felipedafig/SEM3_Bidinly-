@@ -36,10 +36,13 @@ namespace MainServer.WebAPI.Controllers
             {
                 try
                 {
-                    return new { Id = id, Property = await dataTierClient.GetPropertyAsync(id) };
+                    var property = await dataTierClient.GetPropertyAsync(id);
+                    logger.LogInformation("Successfully fetched property id: {Id}, title: {Title}", id, property?.Title);
+                    return new { Id = id, Property = property };
                 }
-                catch
+                catch (Exception ex)
                 {
+                    logger.LogWarning(ex, "Failed to fetch property id: {Id}, error: {Message}", id, ex.Message);
                     return new { Id = id, Property = (PropertyResponse?)null };
                 }
             });
@@ -48,10 +51,13 @@ namespace MainServer.WebAPI.Controllers
             {
                 try
                 {
-                    return new { Id = id, User = await dataTierClient.GetUserAsync(id) };
+                    var user = await dataTierClient.GetUserAsync(id);
+                    logger.LogInformation("Successfully fetched user id: {Id}, username: {Username}", id, user?.Username);
+                    return new { Id = id, User = user };
                 }
-                catch
+                catch (Exception ex)
                 {
+                    logger.LogWarning(ex, "Failed to fetch user id: {Id}, error: {Message}", id, ex.Message);
                     return new { Id = id, User = (UserResponse?)null };
                 }
             });

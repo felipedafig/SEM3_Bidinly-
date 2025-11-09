@@ -75,8 +75,25 @@ namespace MainServer.WebAPI.Services
         // Property operations 
         public async Task<PropertyResponse> GetPropertyAsync(int id)
         {
-            var request = new GetPropertyRequest { Id = id };
-            return await client.GetPropertyAsync(request);
+            try
+            {
+                logger.LogInformation("GetPropertyAsync called - id: {Id}", id);
+                var request = new GetPropertyRequest { Id = id };
+                var response = await client.GetPropertyAsync(request);
+                logger.LogInformation("GetPropertyAsync returned property with id: {Id}, title: {Title}", response.Id, response.Title);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                logger.LogError(ex, "gRPC error in GetPropertyAsync: Status={StatusCode}, Detail={Detail}", 
+                    ex.StatusCode, ex.Status.Detail);
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Unexpected error in GetPropertyAsync: {Message}", ex.Message);
+                throw;
+            }
         }
 
         public async Task<GetPropertiesResponse> GetPropertiesAsync(int? agentId = null, string? status = null)
@@ -91,8 +108,25 @@ namespace MainServer.WebAPI.Services
         // User operations
         public async Task<UserResponse> GetUserAsync(int id)
         {
-            var request = new GetUserRequest { Id = id };
-            return await client.GetUserAsync(request);
+            try
+            {
+                logger.LogInformation("GetUserAsync called - id: {Id}", id);
+                var request = new GetUserRequest { Id = id };
+                var response = await client.GetUserAsync(request);
+                logger.LogInformation("GetUserAsync returned user with id: {Id}, username: {Username}", response.Id, response.Username);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                logger.LogError(ex, "gRPC error in GetUserAsync: Status={StatusCode}, Detail={Detail}", 
+                    ex.StatusCode, ex.Status.Detail);
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Unexpected error in GetUserAsync: {Message}", ex.Message);
+                throw;
+            }
         }
 
         // Sale operations
