@@ -1,13 +1,23 @@
 package via.pro3.datatierserver.repositories;
 
 import via.pro3.datatierserver.model.Property;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.Optional;
 
-public interface IPropertyRepository {
-    Property add(Property property);
-    Property update(Property property);
-    void delete(int id);
-    Optional<Property> getSingle(int id);
-    List<Property> getMany();
+@Repository
+public interface IPropertyRepository extends JpaRepository<Property, Integer> {
+    // Spring Data JPA automatically provides:
+    // - save(Property) for add/update
+    // - findById(Integer) for getSingle
+    // - findAll() for getMany
+    // - deleteById(Integer) for delete
+    // - delete(Property) for delete by entity
+    // - count(), existsById(), etc.
+    
+    // Default method that delegates to Spring Data JPA's findById()
+    default Optional<Property> getSingle(Integer id) {
+        return findById(id);
+    }
 }

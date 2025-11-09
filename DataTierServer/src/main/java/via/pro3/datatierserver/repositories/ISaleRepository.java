@@ -1,13 +1,16 @@
 package via.pro3.datatierserver.repositories;
 
 import via.pro3.datatierserver.model.Sale;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ISaleRepository {
-    Sale add(Sale sale);
-    Sale update(Sale sale);
-    void delete(int id);
-    Optional<Sale> getSingle(int id);
-    List<Sale> getMany();
+@Repository
+public interface ISaleRepository extends JpaRepository<Sale, Integer> {
+    // Spring Data JPA automatically provides:
+    // - save(Sale) for add/update
+    // - findById(Integer) for getSingle
+    // - findAll() for getMany
+    // - deleteById(Integer) for delete
+    // - delete(Sale) for delete by entity
+    // - count(), existsById(), etc.
 }

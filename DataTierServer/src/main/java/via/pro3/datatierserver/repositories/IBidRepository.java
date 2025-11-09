@@ -1,13 +1,23 @@
 package via.pro3.datatierserver.repositories;
 
 import via.pro3.datatierserver.model.Bid;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IBidRepository {
-    Bid add(Bid bid);
-    Bid update(Bid bid);
-    void delete(int id);
-    Optional<Bid> getSingle(int id);
-    List<Bid> getMany();
+import java.util.List;
+
+@Repository
+public interface IBidRepository extends JpaRepository<Bid, Integer> {
+    // Spring Data JPA automatically provides:
+    // - save(Bid) for add/update
+    // - findById(Integer) for getSingle
+    // - findAll() for getMany
+    // - deleteById(Integer) for delete
+    // - delete(Bid) for delete by entity
+    // - count(), existsById(), etc.
+    
+    // Default method that delegates to Spring Data JPA's findAll()
+    default List<Bid> getMany() {
+        return findAll();
+    }
 }

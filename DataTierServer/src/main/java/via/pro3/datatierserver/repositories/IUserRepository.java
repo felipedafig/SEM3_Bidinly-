@@ -1,14 +1,26 @@
 package via.pro3.datatierserver.repositories;
 
 import via.pro3.datatierserver.model.User;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.Optional;
 
-public interface IUserRepository {
-    User add(User user);
-    User update(User user);
-    void delete(int id);
-    Optional<User> getSingle(int id);
-    List<User> getMany();
-    Optional<User> getByUsername(String username);
+@Repository
+public interface IUserRepository extends JpaRepository<User, Integer> {
+    // Spring Data JPA automatically provides:
+    // - save(User) for add/update
+    // - findById(Integer) for getSingle
+    // - findAll() for getMany
+    // - deleteById(Integer) for delete
+    // - delete(User) for delete by entity
+    // - count(), existsById(), etc.
+    
+    // Default method that delegates to Spring Data JPA's findById()
+    default Optional<User> getSingle(Integer id) {
+        return findById(id);
+    }
+    
+    // Custom query method - Spring Data JPA will automatically implement this
+    Optional<User> findByUsername(String username);
 }
