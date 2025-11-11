@@ -1,0 +1,84 @@
+# -----------------------------
+# General Operating System Files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Visual Studio / IDE Files
+# -----------------------------
+# User-specific files
+*.suo
+*.user
+*.userprefs
+# ReSharper and other IDE caches
+*.resharper
+.idea/
+.vs/
+/shelf/
+/workspace.xml
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
+
+# -----------------------------
+# .NET / C# Build Artifacts
+# -----------------------------
+# Binaries and intermediate files
+[Bb]in/
+[Oo]bj/
+
+# Packages and NuGet related files
+[Pp]ackages/
+*.nupkg
+*.snupkg
+# Restore cache file
+project.assets.json
+
+# Compiled files
+*.dll
+*.exe
+*.pdb
+*.mdb
+
+# Log files
+*.log
+
+# Test results
+TestResults/
+
+# -----------------------------
+# Java / Maven Build Artifacts
+# -----------------------------
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
