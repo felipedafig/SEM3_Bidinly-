@@ -47,6 +47,9 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
             
             logger.info("Found {} bids in database", bids.size());
             
+            // Check and update expired bids
+            updateExpiredBids(bids);
+            
             List<DataTierProto.BidResponse> bidResponses = bids.stream()
                 .map(this::convertToBidResponse)
                 .collect(Collectors.toList());
@@ -65,6 +68,81 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
                 .withDescription("Error retrieving bids: " + e.getMessage())
                 .asRuntimeException());
         }
+    }
+    
+    @Override
+    public void getBid(DataTierProto.GetBidRequest request, StreamObserver<DataTierProto.BidResponse> responseObserver) {
+        try {
+            logger.info("GetBid called - id: {}", request.getId());
+            
+            Optional<Bid> bidOpt = bidRepository.getSingle(request.getId());
+            
+            if (bidOpt.isEmpty()) {
+                logger.warn("Bid with id {} not found", request.getId());
+                responseObserver.onError(io.grpc.Status.NOT_FOUND
+                    .withDescription("Bid with id " + request.getId() + " not found")
+                    .asRuntimeException());
+                return;
+            }
+            
+            Bid bid = bidOpt.get();
+            
+            // Check and update expired bid
+            updateExpiredBid(bid);
+            
+            DataTierProto.BidResponse response = convertToBidResponse(bid);
+            
+            logger.info("Sending BidResponse for bid id: {}", bid.getId());
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+            
+        } catch (Exception e) {
+            logger.error("Error in getBid: {}", e.getMessage(), e);
+            responseObserver.onError(io.grpc.Status.INTERNAL
+                .withDescription("Error retrieving bid: " + e.getMessage())
+                .asRuntimeException());
+        }
+    }
+    
+    /**
+     * Checks bids for expiry and updates their status to "Expired" if they have passed their expiry date
+     * and are still in "Pending" status. Updates are persisted to the database.
+     */
+    private void updateExpiredBids(List<Bid> bids) {
+        int updatedCount = 0;
+        
+        for (Bid bid : bids) {
+            if (updateExpiredBid(bid)) {
+                updatedCount++;
+            }
+        }
+        
+        if (updatedCount > 0) {
+            logger.info("Updated {} expired bid(s) to Expired status", updatedCount);
+        }
+    }
+    
+    /**
+     * Checks a single bid for expiry and updates its status to "Expired" if it has passed its expiry date
+     * and is still in "Pending" status. Updates are persisted to the database.
+     * @return true if the bid was updated, false otherwise
+     */
+    private boolean updateExpiredBid(Bid bid) {
+        Instant now = Instant.now();
+        
+        if (bid.getExpiryDate() != null 
+            && bid.getExpiryDate().isBefore(now) 
+            && "Pending".equals(bid.getStatus())) {
+            
+            logger.info("Bid {} has expired (expiry: {}), updating status to Expired", 
+                bid.getId(), bid.getExpiryDate());
+            
+            bid.setStatus("Expired");
+            bidRepository.save(bid);
+            return true;
+        }
+        
+        return false;
     }
     
     private DataTierProto.BidResponse convertToBidResponse(Bid bid) {

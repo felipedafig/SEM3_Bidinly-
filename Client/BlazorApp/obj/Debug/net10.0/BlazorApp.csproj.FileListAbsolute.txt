@@ -23,8 +23,12 @@ C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\rjsmcshtml.d
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Layout\ReconnectModal.razor.rz.scp.css
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\Bids.razor.rz.scp.css
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\Sales.razor.rz.scp.css
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\bundle\BlazorApp.styles.css
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\projectbundle\BlazorApp.bundle.scp.css
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\hh92lrx13d-{0}-bt0x8tkqgg-bt0x8tkqgg.gz
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\v7vyzcc6qh-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\m5e6rnmcep-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\o0q64zz2g2-{0}-erw9l3u2r3-erw9l3u2r3.gz
@@ -72,6 +76,8 @@ C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\i
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\hsa0fwp5ls-{0}-13ja33weya-13ja33weya.gz
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\0txged01c1-{0}-cyt5sts332-cyt5sts332.gz
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\e2p7e3doxt-{0}-wos4yuj1st-wos4yuj1st.gz
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\8v4adbxxmx-{0}-zg4g5xedi5-zg4g5xedi5.gz
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\rrzzv9ip5o-{0}-zg4g5xedi5-zg4g5xedi5.gz
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\staticwebassets.build.json
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\staticwebassets.development.json
@@ -82,9 +88,3 @@ C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\refint\Blazo
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\BlazorApp.pdb
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\BlazorApp.genruntimeconfig.cache
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\ref\BlazorApp.dll
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\Bids.razor.rz.scp.css
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\Sales.razor.rz.scp.css
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\hh92lrx13d-{0}-bt0x8tkqgg-bt0x8tkqgg.gz
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\8v4adbxxmx-{0}-lyv8ibepaq-lyv8ibepaq.gz
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\rrzzv9ip5o-{0}-lyv8ibepaq-lyv8ibepaq.gz

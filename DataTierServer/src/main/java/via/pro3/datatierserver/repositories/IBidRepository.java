@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IBidRepository extends JpaRepository<Bid, Integer> {
@@ -19,5 +20,10 @@ public interface IBidRepository extends JpaRepository<Bid, Integer> {
     // Default method that delegates to Spring Data JPA's findAll()
     default List<Bid> getMany() {
         return findAll();
+    }
+    
+    // Default method that delegates to Spring Data JPA's findById()
+    default Optional<Bid> getSingle(Integer id) {
+        return findById(id);
     }
 }
