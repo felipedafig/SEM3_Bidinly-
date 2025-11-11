@@ -10,12 +10,10 @@ namespace MainServer.WebAPI.Controllers
     public class BidsController : ControllerBase
     {
         private readonly DataTierGrpcClient dataTierClient;
-        private readonly ILogger<BidsController> logger;
 
-        public BidsController(DataTierGrpcClient dataTierClient, ILogger<BidsController> logger)
+        public BidsController(DataTierGrpcClient dataTierClient)
         {
             this.dataTierClient = dataTierClient;
-            this.logger = logger;
         }
 
         [HttpGet]
@@ -23,11 +21,7 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                logger.LogInformation("GetManyBids called - retrieving all bids");
-
                 GetBidsResponse response = await dataTierClient.GetBidsAsync();
-                
-                logger.LogInformation("GetBidsAsync returned {Count} bids", response.Bids.Count);
 
             var uniquePropertyIds = response.Bids.Select(b => b.PropertyId).Distinct().ToList();
             var uniqueBuyerIds = response.Bids.Select(b => b.BuyerId).Distinct().ToList();
@@ -37,12 +31,10 @@ namespace MainServer.WebAPI.Controllers
                 try
                 {
                     var property = await dataTierClient.GetPropertyAsync(id);
-                    logger.LogInformation("Successfully fetched property id: {Id}, title: {Title}", id, property?.Title);
-                    return new { Id = id, Property = property };
+                    return new { Id = id, Property = (PropertyResponse?)property };
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    logger.LogWarning(ex, "Failed to fetch property id: {Id}, error: {Message}", id, ex.Message);
                     return new { Id = id, Property = (PropertyResponse?)null };
                 }
             });
@@ -52,12 +44,10 @@ namespace MainServer.WebAPI.Controllers
                 try
                 {
                     var user = await dataTierClient.GetUserAsync(id);
-                    logger.LogInformation("Successfully fetched user id: {Id}, username: {Username}", id, user?.Username);
-                    return new { Id = id, User = user };
+                    return new { Id = id, User = (UserResponse?)user };
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    logger.LogWarning(ex, "Failed to fetch user id: {Id}, error: {Message}", id, ex.Message);
                     return new { Id = id, User = (UserResponse?)null };
                 }
             });
@@ -83,12 +73,10 @@ namespace MainServer.WebAPI.Controllers
                 };
             }).ToList();
 
-                logger.LogInformation("Successfully mapped {Count} bids to DTOs", responseDtos.Count);
                 return Ok(responseDtos);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "Error in GetManyBids: {Message}", ex.Message);
                 throw; 
             }
         }

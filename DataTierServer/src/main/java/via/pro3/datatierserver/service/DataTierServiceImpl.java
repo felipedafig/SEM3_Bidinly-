@@ -2,8 +2,6 @@ package via.pro3.datatierserver.service;
 
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import via.pro3.datatierserver.grpc.DataTierProto;
 import via.pro3.datatierserver.grpc.DataTierServiceGrpc;
@@ -24,8 +22,6 @@ import java.util.stream.Collectors;
 @GrpcService
 public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImplBase {
     
-    private static final Logger logger = LoggerFactory.getLogger(DataTierServiceImpl.class);
-    
     @Autowired
     private IBidRepository bidRepository;
     
@@ -41,11 +37,7 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
     @Override
     public void getBids(DataTierProto.GetBidsRequest request, StreamObserver<DataTierProto.GetBidsResponse> responseObserver) {
         try {
-            logger.info("GetBids called - retrieving all bids");
-            
             List<Bid> bids = bidRepository.getMany();
-            
-            logger.info("Found {} bids in database", bids.size());
             
             // Check and update expired bids
             updateExpiredBids(bids);
@@ -58,12 +50,10 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
                 .addAllBids(bidResponses)
                 .build();
             
-            logger.info("Sending GetBidsResponse with {} bids", response.getBidsCount());
             responseObserver.onNext(response);
             responseObserver.onCompleted();
             
         } catch (Exception e) {
-            logger.error("Error in getBids: {}", e.getMessage(), e);
             responseObserver.onError(io.grpc.Status.INTERNAL
                 .withDescription("Error retrieving bids: " + e.getMessage())
                 .asRuntimeException());
@@ -73,12 +63,9 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
     @Override
     public void getBid(DataTierProto.GetBidRequest request, StreamObserver<DataTierProto.BidResponse> responseObserver) {
         try {
-            logger.info("GetBid called - id: {}", request.getId());
-            
             Optional<Bid> bidOpt = bidRepository.getSingle(request.getId());
             
             if (bidOpt.isEmpty()) {
-                logger.warn("Bid with id {} not found", request.getId());
                 responseObserver.onError(io.grpc.Status.NOT_FOUND
                     .withDescription("Bid with id " + request.getId() + " not found")
                     .asRuntimeException());
@@ -92,50 +79,28 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
             
             DataTierProto.BidResponse response = convertToBidResponse(bid);
             
-            logger.info("Sending BidResponse for bid id: {}", bid.getId());
             responseObserver.onNext(response);
             responseObserver.onCompleted();
             
         } catch (Exception e) {
-            logger.error("Error in getBid: {}", e.getMessage(), e);
             responseObserver.onError(io.grpc.Status.INTERNAL
                 .withDescription("Error retrieving bid: " + e.getMessage())
                 .asRuntimeException());
         }
     }
     
-    /**
-     * Checks bids for expiry and updates their status to "Expired" if they have passed their expiry date
-     * and are still in "Pending" status. Updates are persisted to the database.
-     */
     private void updateExpiredBids(List<Bid> bids) {
-        int updatedCount = 0;
-        
         for (Bid bid : bids) {
-            if (updateExpiredBid(bid)) {
-                updatedCount++;
-            }
-        }
-        
-        if (updatedCount > 0) {
-            logger.info("Updated {} expired bid(s) to Expired status", updatedCount);
+            updateExpiredBid(bid);
         }
     }
     
-    /**
-     * Checks a single bid for expiry and updates its status to "Expired" if it has passed its expiry date
-     * and is still in "Pending" status. Updates are persisted to the database.
-     * @return true if the bid was updated, false otherwise
-     */
     private boolean updateExpiredBid(Bid bid) {
         Instant now = Instant.now();
         
         if (bid.getExpiryDate() != null 
             && bid.getExpiryDate().isBefore(now) 
             && "Pending".equals(bid.getStatus())) {
-            
-            logger.info("Bid {} has expired (expiry: {}), updating status to Expired", 
-                bid.getId(), bid.getExpiryDate());
             
             bid.setStatus("Expired");
             bidRepository.save(bid);
@@ -163,12 +128,9 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
     @Override
     public void getProperty(DataTierProto.GetPropertyRequest request, StreamObserver<DataTierProto.PropertyResponse> responseObserver) {
         try {
-            logger.info("GetProperty called - id: {}", request.getId());
-            
             Optional<Property> propertyOpt = propertyRepository.getSingle(request.getId());
             
             if (propertyOpt.isEmpty()) {
-                logger.warn("Property with id {} not found", request.getId());
                 responseObserver.onError(io.grpc.Status.NOT_FOUND
                     .withDescription("Property with id " + request.getId() + " not found")
                     .asRuntimeException());
@@ -178,12 +140,10 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
             Property property = propertyOpt.get();
             DataTierProto.PropertyResponse response = convertToPropertyResponse(property);
             
-            logger.info("Sending PropertyResponse for property id: {}", property.getId());
             responseObserver.onNext(response);
             responseObserver.onCompleted();
             
         } catch (Exception e) {
-            logger.error("Error in getProperty: {}", e.getMessage(), e);
             responseObserver.onError(io.grpc.Status.INTERNAL
                 .withDescription("Error retrieving property: " + e.getMessage())
                 .asRuntimeException());
@@ -208,12 +168,9 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
     @Override
     public void getUser(DataTierProto.GetUserRequest request, StreamObserver<DataTierProto.UserResponse> responseObserver) {
         try {
-            logger.info("GetUser called - id: {}", request.getId());
-            
             Optional<User> userOpt = userRepository.getSingle(request.getId());
             
             if (userOpt.isEmpty()) {
-                logger.warn("User with id {} not found", request.getId());
                 responseObserver.onError(io.grpc.Status.NOT_FOUND
                     .withDescription("User with id " + request.getId() + " not found")
                     .asRuntimeException());
@@ -223,12 +180,10 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
             User user = userOpt.get();
             DataTierProto.UserResponse response = convertToUserResponse(user);
             
-            logger.info("Sending UserResponse for user id: {}", user.getId());
             responseObserver.onNext(response);
             responseObserver.onCompleted();
             
         } catch (Exception e) {
-            logger.error("Error in getUser: {}", e.getMessage(), e);
             responseObserver.onError(io.grpc.Status.INTERNAL
                 .withDescription("Error retrieving user: " + e.getMessage())
                 .asRuntimeException());
@@ -246,11 +201,7 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
     @Override
     public void getSales(DataTierProto.GetSalesRequest request, StreamObserver<DataTierProto.GetSalesResponse> responseObserver) {
         try {
-            logger.info("GetSales called - retrieving all sales");
-            
             List<Sale> sales = saleRepository.findAll();
-            
-            logger.info("Found {} sales in database", sales.size());
             
             List<DataTierProto.SaleResponse> saleResponses = sales.stream()
                 .map(this::convertToSaleResponse)
@@ -260,12 +211,10 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
                 .addAllSales(saleResponses)
                 .build();
             
-            logger.info("Sending GetSalesResponse with {} sales", response.getSalesCount());
             responseObserver.onNext(response);
             responseObserver.onCompleted();
             
         } catch (Exception e) {
-            logger.error("Error in getSales: {}", e.getMessage(), e);
             responseObserver.onError(io.grpc.Status.INTERNAL
                 .withDescription("Error retrieving sales: " + e.getMessage())
                 .asRuntimeException());

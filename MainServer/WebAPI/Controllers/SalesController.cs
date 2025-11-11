@@ -11,12 +11,10 @@ namespace MainServer.WebAPI.Controllers
     public class SalesController : ControllerBase
     {
         private readonly DataTierGrpcClient dataTierClient;
-        private readonly ILogger<SalesController> logger;
 
-        public SalesController(DataTierGrpcClient dataTierClient, ILogger<SalesController> logger)
+        public SalesController(DataTierGrpcClient dataTierClient)
         {
             this.dataTierClient = dataTierClient;
-            this.logger = logger;
         }
 
         [HttpGet]
@@ -24,11 +22,7 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                logger.LogInformation("GetManySales called - retrieving all sales");
-
                 GetSalesResponse response = await dataTierClient.GetSalesAsync();
-                
-                logger.LogInformation("GetSalesAsync returned {Count} sales", response.Sales.Count);
 
                 var uniquePropertyIds = response.Sales.Select(s => s.PropertyId).Distinct().ToList();
                 var uniqueBuyerIds = response.Sales.Select(s => s.BuyerId).Distinct().ToList();
@@ -40,12 +34,10 @@ namespace MainServer.WebAPI.Controllers
                     try
                     {
                         var property = await dataTierClient.GetPropertyAsync(id);
-                        logger.LogInformation("Successfully fetched property id: {Id}, title: {Title}", id, property?.Title);
-                        return new { Id = id, Property = property };
+                        return new { Id = id, Property = (PropertyResponse?)property };
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        logger.LogWarning(ex, "Failed to fetch property id: {Id}, error: {Message}", id, ex.Message);
                         return new { Id = id, Property = (PropertyResponse?)null };
                     }
                 });
@@ -55,12 +47,10 @@ namespace MainServer.WebAPI.Controllers
                     try
                     {
                         var user = await dataTierClient.GetUserAsync(id);
-                        logger.LogInformation("Successfully fetched buyer id: {Id}, username: {Username}", id, user?.Username);
-                        return new { Id = id, User = user };
+                        return new { Id = id, User = (UserResponse?)user };
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        logger.LogWarning(ex, "Failed to fetch buyer id: {Id}, error: {Message}", id, ex.Message);
                         return new { Id = id, User = (UserResponse?)null };
                     }
                 });
@@ -70,12 +60,10 @@ namespace MainServer.WebAPI.Controllers
                     try
                     {
                         var user = await dataTierClient.GetUserAsync(id);
-                        logger.LogInformation("Successfully fetched agent id: {Id}, username: {Username}", id, user?.Username);
-                        return new { Id = id, User = user };
+                        return new { Id = id, User = (UserResponse?)user };
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        logger.LogWarning(ex, "Failed to fetch agent id: {Id}, error: {Message}", id, ex.Message);
                         return new { Id = id, User = (UserResponse?)null };
                     }
                 });
@@ -85,12 +73,10 @@ namespace MainServer.WebAPI.Controllers
                     try
                     {
                         var bid = await dataTierClient.GetBidAsync(id);
-                        logger.LogInformation("Successfully fetched bid id: {Id}, amount: {Amount}", id, bid?.Amount);
-                        return new { Id = id, Bid = bid };
+                        return new { Id = id, Bid = (BidResponse?)bid };
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        logger.LogWarning(ex, "Failed to fetch bid id: {Id}, error: {Message}", id, ex.Message);
                         return new { Id = id, Bid = (BidResponse?)null };
                     }
                 });
@@ -124,12 +110,10 @@ namespace MainServer.WebAPI.Controllers
                     };
                 }).ToList();
 
-                logger.LogInformation("Successfully mapped {Count} sales to DTOs", responseDtos.Count);
                 return Ok(responseDtos);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.LogError(ex, "Error in GetManySales: {Message}", ex.Message);
                 throw;
             }
         }
