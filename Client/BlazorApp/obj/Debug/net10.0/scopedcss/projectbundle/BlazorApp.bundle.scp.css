@@ -842,10 +842,10 @@ a.nav-link[b-g8o6n169oq] {
 
 .project-info-section[b-7gt2111kuu] {
     position: absolute;
-    bottom: 0%;
-    right: 5%;
+    bottom: 2%;
+    right: 8%;
     z-index: 10;
-    max-width: 554px;
+    max-width: 460px;
     width: auto;
     background: transparent;
 }
@@ -867,7 +867,8 @@ a.nav-link[b-g8o6n169oq] {
 .title-line-1[b-7gt2111kuu] {
     color: rgb(30, 130, 400);
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 500;
+    font-family: 'Montserrat';
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -875,33 +876,36 @@ a.nav-link[b-g8o6n169oq] {
 .title-line-2[b-7gt2111kuu] {
     color: rgb(100, 80, 250);
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 500;
+    font-family: 'Montserrat';
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .project-description[b-7gt2111kuu] {
-    color: #666;
+    color: black;
     font-size: 0.90rem;
     line-height: 1.4rem;
-    margin: 0 0 0.9rem 0;
+    margin: 0 0 0.6rem 0;
     text-align: center;
     font-weight: 300;
+    font-family: 'Montserrat';
 }
 
 .git-repo-button[b-7gt2111kuu] {
     display: inline-block;
-    padding: 0.75rem 2rem;
+    padding: 0.55rem 1.3rem;
     background-color: white;
     color: rgb(30, 130, 400);
     border: 2px solid rgb(30, 130, 400);
     border-radius: 25px;
     text-decoration: none;
     font-size: 0.95rem;
-    font-weight: 400;
+    font-weight: 501;
     transition: all 0.3s ease;
     cursor: pointer;
-    margin-left: 20rem;
+    margin-left: 16.5rem;
+    font-family: 'Montserrat';
 }
 
 .git-repo-button:hover[b-7gt2111kuu] {
@@ -1187,8 +1191,8 @@ a.nav-link[b-g8o6n169oq] {
 
 @media (min-width: 768px) and (max-width: 1400px) {
     .project-info-section[b-7gt2111kuu] {
-        max-width: 420px;
-        right: 3%;
+        max-width: 395px;
+        right: 5%;
         bottom: 0%;
     }
     
@@ -1219,7 +1223,7 @@ a.nav-link[b-g8o6n169oq] {
     .git-repo-button[b-7gt2111kuu] {
         font-size: 0.75rem;
         padding: 0.5rem 1rem;
-        margin-left: 12.9rem;
+        margin-left: 14.3rem;
         margin-bottom: 0.4rem;
         margin-top: 0.5rem;
     }

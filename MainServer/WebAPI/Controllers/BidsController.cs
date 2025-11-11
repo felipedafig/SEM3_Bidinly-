@@ -25,7 +25,7 @@ namespace MainServer.WebAPI.Controllers
             {
                 logger.LogInformation("GetManyBids called - retrieving all bids");
 
-                GetBidsResponse response = await dataTierClient.GetBidsAsync(null, null, null);
+                GetBidsResponse response = await dataTierClient.GetBidsAsync();
                 
                 logger.LogInformation("GetBidsAsync returned {Count} bids", response.Bids.Count);
 

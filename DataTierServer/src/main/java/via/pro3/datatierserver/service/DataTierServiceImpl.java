@@ -9,9 +9,11 @@ import via.pro3.datatierserver.grpc.DataTierProto;
 import via.pro3.datatierserver.grpc.DataTierServiceGrpc;
 import via.pro3.datatierserver.model.Bid;
 import via.pro3.datatierserver.model.Property;
+import via.pro3.datatierserver.model.Sale;
 import via.pro3.datatierserver.model.User;
 import via.pro3.datatierserver.repositories.IBidRepository;
 import via.pro3.datatierserver.repositories.IPropertyRepository;
+import via.pro3.datatierserver.repositories.ISaleRepository;
 import via.pro3.datatierserver.repositories.IUserRepository;
 
 import java.time.Instant;
@@ -33,10 +35,13 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
     @Autowired
     private IUserRepository userRepository;
     
+    @Autowired
+    private ISaleRepository saleRepository;
+    
     @Override
     public void getBids(DataTierProto.GetBidsRequest request, StreamObserver<DataTierProto.GetBidsResponse> responseObserver) {
         try {
-            logger.info("GetBids called - retrieving all bids (no filtering)");
+            logger.info("GetBids called - retrieving all bids");
             
             List<Bid> bids = bidRepository.getMany();
             
@@ -157,6 +162,50 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
             .setId(user.getId() != null ? user.getId() : 0)
             .setUsername(user.getUsername() != null ? user.getUsername() : "")
             .setRoleId(user.getRoleId() != null ? user.getRoleId() : 0)
+            .build();
+    }
+    
+    @Override
+    public void getSales(DataTierProto.GetSalesRequest request, StreamObserver<DataTierProto.GetSalesResponse> responseObserver) {
+        try {
+            logger.info("GetSales called - retrieving all sales");
+            
+            List<Sale> sales = saleRepository.findAll();
+            
+            logger.info("Found {} sales in database", sales.size());
+            
+            List<DataTierProto.SaleResponse> saleResponses = sales.stream()
+                .map(this::convertToSaleResponse)
+                .collect(Collectors.toList());
+            
+            DataTierProto.GetSalesResponse response = DataTierProto.GetSalesResponse.newBuilder()
+                .addAllSales(saleResponses)
+                .build();
+            
+            logger.info("Sending GetSalesResponse with {} sales", response.getSalesCount());
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+            
+        } catch (Exception e) {
+            logger.error("Error in getSales: {}", e.getMessage(), e);
+            responseObserver.onError(io.grpc.Status.INTERNAL
+                .withDescription("Error retrieving sales: " + e.getMessage())
+                .asRuntimeException());
+        }
+    }
+    
+    private DataTierProto.SaleResponse convertToSaleResponse(Sale sale) {
+        long timeOfSaleSeconds = sale.getTimeOfSale() != null 
+            ? sale.getTimeOfSale().getEpochSecond() 
+            : 0;
+        
+        return DataTierProto.SaleResponse.newBuilder()
+            .setId(sale.getId() != null ? sale.getId() : 0)
+            .setTimeOfSaleSeconds(timeOfSaleSeconds)
+            .setPropertyId(sale.getPropertyId() != null ? sale.getPropertyId() : 0)
+            .setBidId(sale.getBidId() != null ? sale.getBidId() : 0)
+            .setBuyerId(sale.getBuyerId() != null ? sale.getBuyerId() : 0)
+            .setAgentId(sale.getAgentId() != null ? sale.getAgentId() : 0)
             .build();
     }
     

@@ -93,6 +93,22 @@ namespace MainServer.WebAPI.Protos {
     static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteUserRequest> __Marshaller_datatier_DeleteUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteUserRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteUserResponse> __Marshaller_datatier_DeleteUserResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteUserResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.CreateSaleRequest> __Marshaller_datatier_CreateSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.CreateSaleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.SaleResponse> __Marshaller_datatier_SaleResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.SaleResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetSaleRequest> __Marshaller_datatier_GetSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetSaleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetSalesRequest> __Marshaller_datatier_GetSalesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetSalesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetSalesResponse> __Marshaller_datatier_GetSalesResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetSalesResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UpdateSaleRequest> __Marshaller_datatier_UpdateSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UpdateSaleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteSaleRequest> __Marshaller_datatier_DeleteSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteSaleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteSaleResponse> __Marshaller_datatier_DeleteSaleResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteSaleResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreateBidRequest, global::MainServer.WebAPI.Protos.BidResponse> __Method_CreateBid = new grpc::Method<global::MainServer.WebAPI.Protos.CreateBidRequest, global::MainServer.WebAPI.Protos.BidResponse>(
@@ -213,6 +229,46 @@ namespace MainServer.WebAPI.Protos {
         "DeleteUser",
         __Marshaller_datatier_DeleteUserRequest,
         __Marshaller_datatier_DeleteUserResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse> __Method_CreateSale = new grpc::Method<global::MainServer.WebAPI.Protos.CreateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreateSale",
+        __Marshaller_datatier_CreateSaleRequest,
+        __Marshaller_datatier_SaleResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse> __Method_GetSale = new grpc::Method<global::MainServer.WebAPI.Protos.GetSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSale",
+        __Marshaller_datatier_GetSaleRequest,
+        __Marshaller_datatier_SaleResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetSalesRequest, global::MainServer.WebAPI.Protos.GetSalesResponse> __Method_GetSales = new grpc::Method<global::MainServer.WebAPI.Protos.GetSalesRequest, global::MainServer.WebAPI.Protos.GetSalesResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSales",
+        __Marshaller_datatier_GetSalesRequest,
+        __Marshaller_datatier_GetSalesResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.UpdateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse> __Method_UpdateSale = new grpc::Method<global::MainServer.WebAPI.Protos.UpdateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateSale",
+        __Marshaller_datatier_UpdateSaleRequest,
+        __Marshaller_datatier_SaleResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.DeleteSaleRequest, global::MainServer.WebAPI.Protos.DeleteSaleResponse> __Method_DeleteSale = new grpc::Method<global::MainServer.WebAPI.Protos.DeleteSaleRequest, global::MainServer.WebAPI.Protos.DeleteSaleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteSale",
+        __Marshaller_datatier_DeleteSaleRequest,
+        __Marshaller_datatier_DeleteSaleResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -630,6 +686,134 @@ namespace MainServer.WebAPI.Protos {
       public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.DeleteUserResponse> DeleteUserAsync(global::MainServer.WebAPI.Protos.DeleteUserRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteUser, null, options, request);
+      }
+      /// <summary>
+      /// Sale operations
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.SaleResponse CreateSale(global::MainServer.WebAPI.Protos.CreateSaleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreateSale(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Sale operations
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.SaleResponse CreateSale(global::MainServer.WebAPI.Protos.CreateSaleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CreateSale, null, options, request);
+      }
+      /// <summary>
+      /// Sale operations
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.SaleResponse> CreateSaleAsync(global::MainServer.WebAPI.Protos.CreateSaleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreateSaleAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Sale operations
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.SaleResponse> CreateSaleAsync(global::MainServer.WebAPI.Protos.CreateSaleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CreateSale, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.SaleResponse GetSale(global::MainServer.WebAPI.Protos.GetSaleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetSale(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.SaleResponse GetSale(global::MainServer.WebAPI.Protos.GetSaleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetSale, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.SaleResponse> GetSaleAsync(global::MainServer.WebAPI.Protos.GetSaleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetSaleAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.SaleResponse> GetSaleAsync(global::MainServer.WebAPI.Protos.GetSaleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetSale, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.GetSalesResponse GetSales(global::MainServer.WebAPI.Protos.GetSalesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetSales(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.GetSalesResponse GetSales(global::MainServer.WebAPI.Protos.GetSalesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetSales, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.GetSalesResponse> GetSalesAsync(global::MainServer.WebAPI.Protos.GetSalesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetSalesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.GetSalesResponse> GetSalesAsync(global::MainServer.WebAPI.Protos.GetSalesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetSales, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.SaleResponse UpdateSale(global::MainServer.WebAPI.Protos.UpdateSaleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateSale(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.SaleResponse UpdateSale(global::MainServer.WebAPI.Protos.UpdateSaleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateSale, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.SaleResponse> UpdateSaleAsync(global::MainServer.WebAPI.Protos.UpdateSaleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateSaleAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.SaleResponse> UpdateSaleAsync(global::MainServer.WebAPI.Protos.UpdateSaleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateSale, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.DeleteSaleResponse DeleteSale(global::MainServer.WebAPI.Protos.DeleteSaleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteSale(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.DeleteSaleResponse DeleteSale(global::MainServer.WebAPI.Protos.DeleteSaleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteSale, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.DeleteSaleResponse> DeleteSaleAsync(global::MainServer.WebAPI.Protos.DeleteSaleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteSaleAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.DeleteSaleResponse> DeleteSaleAsync(global::MainServer.WebAPI.Protos.DeleteSaleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteSale, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]

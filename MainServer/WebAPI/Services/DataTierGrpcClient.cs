@@ -33,17 +33,13 @@ namespace MainServer.WebAPI.Services
 
         // Bid operations
 
-        public async Task<GetBidsResponse> GetBidsAsync(int? propertyId = null, int? buyerId = null, string? status = null)
+        public async Task<GetBidsResponse> GetBidsAsync()
         {
             try
             {
-                logger.LogInformation("GetBidsAsync called - propertyId: {PropertyId}, buyerId: {BuyerId}, status: {Status}", 
-                    propertyId, buyerId, status);
+                logger.LogInformation("GetBidsAsync called - retrieving all bids");
                 
                 var request = new GetBidsRequest();
-                if (propertyId.HasValue) request.PropertyId = propertyId.Value;
-                if (buyerId.HasValue) request.BuyerId = buyerId.Value;
-                if (!string.IsNullOrEmpty(status)) request.Status = status;
                 
                 logger.LogInformation("Sending GetBids request to DataTierServer...");
                 var response = await client.GetBidsAsync(request);
@@ -64,6 +60,29 @@ namespace MainServer.WebAPI.Services
             }
         }
 
+
+        public async Task<BidResponse> GetBidAsync(int id)
+        {
+            try
+            {
+                logger.LogInformation("GetBidAsync called - id: {Id}", id);
+                var request = new GetBidRequest { Id = id };
+                var response = await client.GetBidAsync(request);
+                logger.LogInformation("GetBidAsync returned bid with id: {Id}, amount: {Amount}", response.Id, response.Amount);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                logger.LogError(ex, "gRPC error in GetBidAsync: Status={StatusCode}, Detail={Detail}", 
+                    ex.StatusCode, ex.Status.Detail);
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Unexpected error in GetBidAsync: {Message}", ex.Message);
+                throw;
+            }
+        }
 
         public async Task<bool> DeleteBidAsync(int id)
         {
@@ -118,7 +137,7 @@ namespace MainServer.WebAPI.Services
             }
             catch (Grpc.Core.RpcException ex)
             {
-                logger.LogError(ex, "gRPC error in GetUserAsync: Status={StatusCode}, Detail={Detail}", 
+                logger.LogError(ex, "gRPC error in GetUserAsync: Status={StatusCode}, Detail={Detail}",
                     ex.StatusCode, ex.Status.Detail);
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
             }
@@ -130,6 +149,32 @@ namespace MainServer.WebAPI.Services
         }
 
         // Sale operations
+        public async Task<GetSalesResponse> GetSalesAsync()
+        {
+            try
+            {
+                logger.LogInformation("GetSalesAsync called - retrieving all sales");
+                
+                var request = new GetSalesRequest();
+                
+                logger.LogInformation("Sending GetSales request to DataTierServer...");
+                var response = await client.GetSalesAsync(request);
+                logger.LogInformation("GetSales response received with {Count} sales", response.Sales.Count);
+                
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                logger.LogError(ex, "gRPC error in GetSalesAsync: Status={StatusCode}, Detail={Detail}", 
+                    ex.StatusCode, ex.Status.Detail);
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Unexpected error in GetSalesAsync: {Message}", ex.Message);
+                throw;
+            }
+        }
 
         // Role operations
     }

@@ -26,6 +26,13 @@ service DataTierService {
   rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
   rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
   rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+  
+  // Sale operations
+  rpc CreateSale (CreateSaleRequest) returns (SaleResponse);
+  rpc GetSale (GetSaleRequest) returns (SaleResponse);
+  rpc GetSales (GetSalesRequest) returns (GetSalesResponse);
+  rpc UpdateSale (UpdateSaleRequest) returns (SaleResponse);
+  rpc DeleteSale (DeleteSaleRequest) returns (DeleteSaleResponse);
 }
 
 // Bid messages
@@ -170,6 +177,55 @@ message GetUsersResponse {
 }
 
 message DeleteUserResponse {
+  bool success = 1;
+}
+
+// Sale messages
+message CreateSaleRequest {
+  int64 timeOfSaleSeconds = 1; // Unix timestamp
+  int32 propertyId = 2;
+  int32 bidId = 3;
+  int32 buyerId = 4;
+  int32 agentId = 5;
+}
+
+message GetSaleRequest {
+  int32 id = 1;
+}
+
+message GetSalesRequest {
+  optional int32 propertyId = 1;
+  optional int32 buyerId = 2;
+  optional int32 agentId = 3;
+}
+
+message UpdateSaleRequest {
+  int32 id = 1;
+  optional int64 timeOfSaleSeconds = 2;
+  optional int32 propertyId = 3;
+  optional int32 bidId = 4;
+  optional int32 buyerId = 5;
+  optional int32 agentId = 6;
+}
+
+message DeleteSaleRequest {
+  int32 id = 1;
+}
+
+message SaleResponse {
+  int32 id = 1;
+  int64 timeOfSaleSeconds = 2; // Unix timestamp
+  int32 propertyId = 3;
+  int32 bidId = 4;
+  int32 buyerId = 5;
+  int32 agentId = 6;
+}
+
+message GetSalesResponse {
+  repeated SaleResponse sales = 1;
+}
+
+message DeleteSaleResponse {
   bool success = 1;
 }
 

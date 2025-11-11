@@ -74,31 +74,55 @@ namespace MainServer.WebAPI.Protos {
             "GAEgASgFEhAKCHVzZXJuYW1lGAIgASgJEg4KBnJvbGVJZBgDIAEoBSI5ChBH",
             "ZXRVc2Vyc1Jlc3BvbnNlEiUKBXVzZXJzGAEgAygLMhYuZGF0YXRpZXIuVXNl",
             "clJlc3BvbnNlIiUKEkRlbGV0ZVVzZXJSZXNwb25zZRIPCgdzdWNjZXNzGAEg",
-            "ASgIMq4ICg9EYXRhVGllclNlcnZpY2USPgoJQ3JlYXRlQmlkEhouZGF0YXRp",
-            "ZXIuQ3JlYXRlQmlkUmVxdWVzdBoVLmRhdGF0aWVyLkJpZFJlc3BvbnNlEjgK",
-            "BkdldEJpZBIXLmRhdGF0aWVyLkdldEJpZFJlcXVlc3QaFS5kYXRhdGllci5C",
-            "aWRSZXNwb25zZRI+CgdHZXRCaWRzEhguZGF0YXRpZXIuR2V0Qmlkc1JlcXVl",
-            "c3QaGS5kYXRhdGllci5HZXRCaWRzUmVzcG9uc2USPgoJVXBkYXRlQmlkEhou",
-            "ZGF0YXRpZXIuVXBkYXRlQmlkUmVxdWVzdBoVLmRhdGF0aWVyLkJpZFJlc3Bv",
-            "bnNlEkQKCURlbGV0ZUJpZBIaLmRhdGF0aWVyLkRlbGV0ZUJpZFJlcXVlc3Qa",
-            "Gy5kYXRhdGllci5EZWxldGVCaWRSZXNwb25zZRJNCg5DcmVhdGVQcm9wZXJ0",
-            "eRIfLmRhdGF0aWVyLkNyZWF0ZVByb3BlcnR5UmVxdWVzdBoaLmRhdGF0aWVy",
-            "LlByb3BlcnR5UmVzcG9uc2USRwoLR2V0UHJvcGVydHkSHC5kYXRhdGllci5H",
-            "ZXRQcm9wZXJ0eVJlcXVlc3QaGi5kYXRhdGllci5Qcm9wZXJ0eVJlc3BvbnNl",
-            "ElAKDUdldFByb3BlcnRpZXMSHi5kYXRhdGllci5HZXRQcm9wZXJ0aWVzUmVx",
-            "dWVzdBofLmRhdGF0aWVyLkdldFByb3BlcnRpZXNSZXNwb25zZRJNCg5VcGRh",
-            "dGVQcm9wZXJ0eRIfLmRhdGF0aWVyLlVwZGF0ZVByb3BlcnR5UmVxdWVzdBoa",
-            "LmRhdGF0aWVyLlByb3BlcnR5UmVzcG9uc2USUwoORGVsZXRlUHJvcGVydHkS",
-            "Hy5kYXRhdGllci5EZWxldGVQcm9wZXJ0eVJlcXVlc3QaIC5kYXRhdGllci5E",
-            "ZWxldGVQcm9wZXJ0eVJlc3BvbnNlEkEKCkNyZWF0ZVVzZXISGy5kYXRhdGll",
-            "ci5DcmVhdGVVc2VyUmVxdWVzdBoWLmRhdGF0aWVyLlVzZXJSZXNwb25zZRI7",
-            "CgdHZXRVc2VyEhguZGF0YXRpZXIuR2V0VXNlclJlcXVlc3QaFi5kYXRhdGll",
-            "ci5Vc2VyUmVzcG9uc2USQQoIR2V0VXNlcnMSGS5kYXRhdGllci5HZXRVc2Vy",
-            "c1JlcXVlc3QaGi5kYXRhdGllci5HZXRVc2Vyc1Jlc3BvbnNlEkEKClVwZGF0",
-            "ZVVzZXISGy5kYXRhdGllci5VcGRhdGVVc2VyUmVxdWVzdBoWLmRhdGF0aWVy",
-            "LlVzZXJSZXNwb25zZRJHCgpEZWxldGVVc2VyEhsuZGF0YXRpZXIuRGVsZXRl",
-            "VXNlclJlcXVlc3QaHC5kYXRhdGllci5EZWxldGVVc2VyUmVzcG9uc2VCG6oC",
-            "GE1haW5TZXJ2ZXIuV2ViQVBJLlByb3Rvc2IGcHJvdG8z"));
+            "ASgIInMKEUNyZWF0ZVNhbGVSZXF1ZXN0EhkKEXRpbWVPZlNhbGVTZWNvbmRz",
+            "GAEgASgDEhIKCnByb3BlcnR5SWQYAiABKAUSDQoFYmlkSWQYAyABKAUSDwoH",
+            "YnV5ZXJJZBgEIAEoBRIPCgdhZ2VudElkGAUgASgFIhwKDkdldFNhbGVSZXF1",
+            "ZXN0EgoKAmlkGAEgASgFIn0KD0dldFNhbGVzUmVxdWVzdBIXCgpwcm9wZXJ0",
+            "eUlkGAEgASgFSACIAQESFAoHYnV5ZXJJZBgCIAEoBUgBiAEBEhQKB2FnZW50",
+            "SWQYAyABKAVIAogBAUINCgtfcHJvcGVydHlJZEIKCghfYnV5ZXJJZEIKCghf",
+            "YWdlbnRJZCLfAQoRVXBkYXRlU2FsZVJlcXVlc3QSCgoCaWQYASABKAUSHgoR",
+            "dGltZU9mU2FsZVNlY29uZHMYAiABKANIAIgBARIXCgpwcm9wZXJ0eUlkGAMg",
+            "ASgFSAGIAQESEgoFYmlkSWQYBCABKAVIAogBARIUCgdidXllcklkGAUgASgF",
+            "SAOIAQESFAoHYWdlbnRJZBgGIAEoBUgEiAEBQhQKEl90aW1lT2ZTYWxlU2Vj",
+            "b25kc0INCgtfcHJvcGVydHlJZEIICgZfYmlkSWRCCgoIX2J1eWVySWRCCgoI",
+            "X2FnZW50SWQiHwoRRGVsZXRlU2FsZVJlcXVlc3QSCgoCaWQYASABKAUiegoM",
+            "U2FsZVJlc3BvbnNlEgoKAmlkGAEgASgFEhkKEXRpbWVPZlNhbGVTZWNvbmRz",
+            "GAIgASgDEhIKCnByb3BlcnR5SWQYAyABKAUSDQoFYmlkSWQYBCABKAUSDwoH",
+            "YnV5ZXJJZBgFIAEoBRIPCgdhZ2VudElkGAYgASgFIjkKEEdldFNhbGVzUmVz",
+            "cG9uc2USJQoFc2FsZXMYASADKAsyFi5kYXRhdGllci5TYWxlUmVzcG9uc2Ui",
+            "JQoSRGVsZXRlU2FsZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgy/QoKD0Rh",
+            "dGFUaWVyU2VydmljZRI+CglDcmVhdGVCaWQSGi5kYXRhdGllci5DcmVhdGVC",
+            "aWRSZXF1ZXN0GhUuZGF0YXRpZXIuQmlkUmVzcG9uc2USOAoGR2V0QmlkEhcu",
+            "ZGF0YXRpZXIuR2V0QmlkUmVxdWVzdBoVLmRhdGF0aWVyLkJpZFJlc3BvbnNl",
+            "Ej4KB0dldEJpZHMSGC5kYXRhdGllci5HZXRCaWRzUmVxdWVzdBoZLmRhdGF0",
+            "aWVyLkdldEJpZHNSZXNwb25zZRI+CglVcGRhdGVCaWQSGi5kYXRhdGllci5V",
+            "cGRhdGVCaWRSZXF1ZXN0GhUuZGF0YXRpZXIuQmlkUmVzcG9uc2USRAoJRGVs",
+            "ZXRlQmlkEhouZGF0YXRpZXIuRGVsZXRlQmlkUmVxdWVzdBobLmRhdGF0aWVy",
+            "LkRlbGV0ZUJpZFJlc3BvbnNlEk0KDkNyZWF0ZVByb3BlcnR5Eh8uZGF0YXRp",
+            "ZXIuQ3JlYXRlUHJvcGVydHlSZXF1ZXN0GhouZGF0YXRpZXIuUHJvcGVydHlS",
+            "ZXNwb25zZRJHCgtHZXRQcm9wZXJ0eRIcLmRhdGF0aWVyLkdldFByb3BlcnR5",
+            "UmVxdWVzdBoaLmRhdGF0aWVyLlByb3BlcnR5UmVzcG9uc2USUAoNR2V0UHJv",
+            "cGVydGllcxIeLmRhdGF0aWVyLkdldFByb3BlcnRpZXNSZXF1ZXN0Gh8uZGF0",
+            "YXRpZXIuR2V0UHJvcGVydGllc1Jlc3BvbnNlEk0KDlVwZGF0ZVByb3BlcnR5",
+            "Eh8uZGF0YXRpZXIuVXBkYXRlUHJvcGVydHlSZXF1ZXN0GhouZGF0YXRpZXIu",
+            "UHJvcGVydHlSZXNwb25zZRJTCg5EZWxldGVQcm9wZXJ0eRIfLmRhdGF0aWVy",
+            "LkRlbGV0ZVByb3BlcnR5UmVxdWVzdBogLmRhdGF0aWVyLkRlbGV0ZVByb3Bl",
+            "cnR5UmVzcG9uc2USQQoKQ3JlYXRlVXNlchIbLmRhdGF0aWVyLkNyZWF0ZVVz",
+            "ZXJSZXF1ZXN0GhYuZGF0YXRpZXIuVXNlclJlc3BvbnNlEjsKB0dldFVzZXIS",
+            "GC5kYXRhdGllci5HZXRVc2VyUmVxdWVzdBoWLmRhdGF0aWVyLlVzZXJSZXNw",
+            "b25zZRJBCghHZXRVc2VycxIZLmRhdGF0aWVyLkdldFVzZXJzUmVxdWVzdBoa",
+            "LmRhdGF0aWVyLkdldFVzZXJzUmVzcG9uc2USQQoKVXBkYXRlVXNlchIbLmRh",
+            "dGF0aWVyLlVwZGF0ZVVzZXJSZXF1ZXN0GhYuZGF0YXRpZXIuVXNlclJlc3Bv",
+            "bnNlEkcKCkRlbGV0ZVVzZXISGy5kYXRhdGllci5EZWxldGVVc2VyUmVxdWVz",
+            "dBocLmRhdGF0aWVyLkRlbGV0ZVVzZXJSZXNwb25zZRJBCgpDcmVhdGVTYWxl",
+            "EhsuZGF0YXRpZXIuQ3JlYXRlU2FsZVJlcXVlc3QaFi5kYXRhdGllci5TYWxl",
+            "UmVzcG9uc2USOwoHR2V0U2FsZRIYLmRhdGF0aWVyLkdldFNhbGVSZXF1ZXN0",
+            "GhYuZGF0YXRpZXIuU2FsZVJlc3BvbnNlEkEKCEdldFNhbGVzEhkuZGF0YXRp",
+            "ZXIuR2V0U2FsZXNSZXF1ZXN0GhouZGF0YXRpZXIuR2V0U2FsZXNSZXNwb25z",
+            "ZRJBCgpVcGRhdGVTYWxlEhsuZGF0YXRpZXIuVXBkYXRlU2FsZVJlcXVlc3Qa",
+            "Fi5kYXRhdGllci5TYWxlUmVzcG9uc2USRwoKRGVsZXRlU2FsZRIbLmRhdGF0",
+            "aWVyLkRlbGV0ZVNhbGVSZXF1ZXN0GhwuZGF0YXRpZXIuRGVsZXRlU2FsZVJl",
+            "c3BvbnNlQhuqAhhNYWluU2VydmVyLldlYkFQSS5Qcm90b3NiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -125,7 +149,15 @@ namespace MainServer.WebAPI.Protos {
             new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.DeleteUserRequest), global::MainServer.WebAPI.Protos.DeleteUserRequest.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.UserResponse), global::MainServer.WebAPI.Protos.UserResponse.Parser, new[]{ "Id", "Username", "RoleId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.GetUsersResponse), global::MainServer.WebAPI.Protos.GetUsersResponse.Parser, new[]{ "Users" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.DeleteUserResponse), global::MainServer.WebAPI.Protos.DeleteUserResponse.Parser, new[]{ "Success" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.DeleteUserResponse), global::MainServer.WebAPI.Protos.DeleteUserResponse.Parser, new[]{ "Success" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.CreateSaleRequest), global::MainServer.WebAPI.Protos.CreateSaleRequest.Parser, new[]{ "TimeOfSaleSeconds", "PropertyId", "BidId", "BuyerId", "AgentId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.GetSaleRequest), global::MainServer.WebAPI.Protos.GetSaleRequest.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.GetSalesRequest), global::MainServer.WebAPI.Protos.GetSalesRequest.Parser, new[]{ "PropertyId", "BuyerId", "AgentId" }, new[]{ "PropertyId", "BuyerId", "AgentId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.UpdateSaleRequest), global::MainServer.WebAPI.Protos.UpdateSaleRequest.Parser, new[]{ "Id", "TimeOfSaleSeconds", "PropertyId", "BidId", "BuyerId", "AgentId" }, new[]{ "TimeOfSaleSeconds", "PropertyId", "BidId", "BuyerId", "AgentId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.DeleteSaleRequest), global::MainServer.WebAPI.Protos.DeleteSaleRequest.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.SaleResponse), global::MainServer.WebAPI.Protos.SaleResponse.Parser, new[]{ "Id", "TimeOfSaleSeconds", "PropertyId", "BidId", "BuyerId", "AgentId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.GetSalesResponse), global::MainServer.WebAPI.Protos.GetSalesResponse.Parser, new[]{ "Sales" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.DeleteSaleResponse), global::MainServer.WebAPI.Protos.DeleteSaleResponse.Parser, new[]{ "Success" }, null, null, null, null)
           }));
     }
     #endregion
@@ -6667,6 +6699,2240 @@ namespace MainServer.WebAPI.Protos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void MergeFrom(DeleteUserResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Success != false) {
+        Success = other.Success;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Success = input.ReadBool();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Success = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// Sale messages
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class CreateSaleRequest : pb::IMessage<CreateSaleRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CreateSaleRequest> _parser = new pb::MessageParser<CreateSaleRequest>(() => new CreateSaleRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CreateSaleRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[24]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CreateSaleRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CreateSaleRequest(CreateSaleRequest other) : this() {
+      timeOfSaleSeconds_ = other.timeOfSaleSeconds_;
+      propertyId_ = other.propertyId_;
+      bidId_ = other.bidId_;
+      buyerId_ = other.buyerId_;
+      agentId_ = other.agentId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CreateSaleRequest Clone() {
+      return new CreateSaleRequest(this);
+    }
+
+    /// <summary>Field number for the "timeOfSaleSeconds" field.</summary>
+    public const int TimeOfSaleSecondsFieldNumber = 1;
+    private long timeOfSaleSeconds_;
+    /// <summary>
+    /// Unix timestamp
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long TimeOfSaleSeconds {
+      get { return timeOfSaleSeconds_; }
+      set {
+        timeOfSaleSeconds_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "propertyId" field.</summary>
+    public const int PropertyIdFieldNumber = 2;
+    private int propertyId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PropertyId {
+      get { return propertyId_; }
+      set {
+        propertyId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "bidId" field.</summary>
+    public const int BidIdFieldNumber = 3;
+    private int bidId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int BidId {
+      get { return bidId_; }
+      set {
+        bidId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "buyerId" field.</summary>
+    public const int BuyerIdFieldNumber = 4;
+    private int buyerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int BuyerId {
+      get { return buyerId_; }
+      set {
+        buyerId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "agentId" field.</summary>
+    public const int AgentIdFieldNumber = 5;
+    private int agentId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int AgentId {
+      get { return agentId_; }
+      set {
+        agentId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CreateSaleRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CreateSaleRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (TimeOfSaleSeconds != other.TimeOfSaleSeconds) return false;
+      if (PropertyId != other.PropertyId) return false;
+      if (BidId != other.BidId) return false;
+      if (BuyerId != other.BuyerId) return false;
+      if (AgentId != other.AgentId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (TimeOfSaleSeconds != 0L) hash ^= TimeOfSaleSeconds.GetHashCode();
+      if (PropertyId != 0) hash ^= PropertyId.GetHashCode();
+      if (BidId != 0) hash ^= BidId.GetHashCode();
+      if (BuyerId != 0) hash ^= BuyerId.GetHashCode();
+      if (AgentId != 0) hash ^= AgentId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (TimeOfSaleSeconds != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(TimeOfSaleSeconds);
+      }
+      if (PropertyId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(PropertyId);
+      }
+      if (BidId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(BidId);
+      }
+      if (BuyerId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(BuyerId);
+      }
+      if (AgentId != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(AgentId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (TimeOfSaleSeconds != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(TimeOfSaleSeconds);
+      }
+      if (PropertyId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(PropertyId);
+      }
+      if (BidId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(BidId);
+      }
+      if (BuyerId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(BuyerId);
+      }
+      if (AgentId != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(AgentId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (TimeOfSaleSeconds != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(TimeOfSaleSeconds);
+      }
+      if (PropertyId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PropertyId);
+      }
+      if (BidId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BidId);
+      }
+      if (BuyerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuyerId);
+      }
+      if (AgentId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AgentId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CreateSaleRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.TimeOfSaleSeconds != 0L) {
+        TimeOfSaleSeconds = other.TimeOfSaleSeconds;
+      }
+      if (other.PropertyId != 0) {
+        PropertyId = other.PropertyId;
+      }
+      if (other.BidId != 0) {
+        BidId = other.BidId;
+      }
+      if (other.BuyerId != 0) {
+        BuyerId = other.BuyerId;
+      }
+      if (other.AgentId != 0) {
+        AgentId = other.AgentId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            TimeOfSaleSeconds = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            PropertyId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            BidId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            BuyerId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            AgentId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            TimeOfSaleSeconds = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            PropertyId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            BidId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            BuyerId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            AgentId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GetSaleRequest : pb::IMessage<GetSaleRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetSaleRequest> _parser = new pb::MessageParser<GetSaleRequest>(() => new GetSaleRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetSaleRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[25]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetSaleRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetSaleRequest(GetSaleRequest other) : this() {
+      id_ = other.id_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetSaleRequest Clone() {
+      return new GetSaleRequest(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetSaleRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetSaleRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetSaleRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GetSalesRequest : pb::IMessage<GetSalesRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetSalesRequest> _parser = new pb::MessageParser<GetSalesRequest>(() => new GetSalesRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetSalesRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[26]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetSalesRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetSalesRequest(GetSalesRequest other) : this() {
+      _hasBits0 = other._hasBits0;
+      propertyId_ = other.propertyId_;
+      buyerId_ = other.buyerId_;
+      agentId_ = other.agentId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetSalesRequest Clone() {
+      return new GetSalesRequest(this);
+    }
+
+    /// <summary>Field number for the "propertyId" field.</summary>
+    public const int PropertyIdFieldNumber = 1;
+    private readonly static int PropertyIdDefaultValue = 0;
+
+    private int propertyId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PropertyId {
+      get { if ((_hasBits0 & 1) != 0) { return propertyId_; } else { return PropertyIdDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        propertyId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "propertyId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPropertyId {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "propertyId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPropertyId() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "buyerId" field.</summary>
+    public const int BuyerIdFieldNumber = 2;
+    private readonly static int BuyerIdDefaultValue = 0;
+
+    private int buyerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int BuyerId {
+      get { if ((_hasBits0 & 2) != 0) { return buyerId_; } else { return BuyerIdDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        buyerId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "buyerId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBuyerId {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "buyerId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBuyerId() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "agentId" field.</summary>
+    public const int AgentIdFieldNumber = 3;
+    private readonly static int AgentIdDefaultValue = 0;
+
+    private int agentId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int AgentId {
+      get { if ((_hasBits0 & 4) != 0) { return agentId_; } else { return AgentIdDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        agentId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "agentId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAgentId {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "agentId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAgentId() {
+      _hasBits0 &= ~4;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetSalesRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetSalesRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (PropertyId != other.PropertyId) return false;
+      if (BuyerId != other.BuyerId) return false;
+      if (AgentId != other.AgentId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasPropertyId) hash ^= PropertyId.GetHashCode();
+      if (HasBuyerId) hash ^= BuyerId.GetHashCode();
+      if (HasAgentId) hash ^= AgentId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasPropertyId) {
+        output.WriteRawTag(8);
+        output.WriteInt32(PropertyId);
+      }
+      if (HasBuyerId) {
+        output.WriteRawTag(16);
+        output.WriteInt32(BuyerId);
+      }
+      if (HasAgentId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(AgentId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasPropertyId) {
+        output.WriteRawTag(8);
+        output.WriteInt32(PropertyId);
+      }
+      if (HasBuyerId) {
+        output.WriteRawTag(16);
+        output.WriteInt32(BuyerId);
+      }
+      if (HasAgentId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(AgentId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasPropertyId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PropertyId);
+      }
+      if (HasBuyerId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuyerId);
+      }
+      if (HasAgentId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AgentId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetSalesRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasPropertyId) {
+        PropertyId = other.PropertyId;
+      }
+      if (other.HasBuyerId) {
+        BuyerId = other.BuyerId;
+      }
+      if (other.HasAgentId) {
+        AgentId = other.AgentId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            PropertyId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            BuyerId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            AgentId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            PropertyId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            BuyerId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            AgentId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class UpdateSaleRequest : pb::IMessage<UpdateSaleRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<UpdateSaleRequest> _parser = new pb::MessageParser<UpdateSaleRequest>(() => new UpdateSaleRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<UpdateSaleRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[27]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public UpdateSaleRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public UpdateSaleRequest(UpdateSaleRequest other) : this() {
+      _hasBits0 = other._hasBits0;
+      id_ = other.id_;
+      timeOfSaleSeconds_ = other.timeOfSaleSeconds_;
+      propertyId_ = other.propertyId_;
+      bidId_ = other.bidId_;
+      buyerId_ = other.buyerId_;
+      agentId_ = other.agentId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public UpdateSaleRequest Clone() {
+      return new UpdateSaleRequest(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "timeOfSaleSeconds" field.</summary>
+    public const int TimeOfSaleSecondsFieldNumber = 2;
+    private readonly static long TimeOfSaleSecondsDefaultValue = 0L;
+
+    private long timeOfSaleSeconds_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long TimeOfSaleSeconds {
+      get { if ((_hasBits0 & 1) != 0) { return timeOfSaleSeconds_; } else { return TimeOfSaleSecondsDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        timeOfSaleSeconds_ = value;
+      }
+    }
+    /// <summary>Gets whether the "timeOfSaleSeconds" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTimeOfSaleSeconds {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "timeOfSaleSeconds" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTimeOfSaleSeconds() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "propertyId" field.</summary>
+    public const int PropertyIdFieldNumber = 3;
+    private readonly static int PropertyIdDefaultValue = 0;
+
+    private int propertyId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PropertyId {
+      get { if ((_hasBits0 & 2) != 0) { return propertyId_; } else { return PropertyIdDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        propertyId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "propertyId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPropertyId {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "propertyId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPropertyId() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "bidId" field.</summary>
+    public const int BidIdFieldNumber = 4;
+    private readonly static int BidIdDefaultValue = 0;
+
+    private int bidId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int BidId {
+      get { if ((_hasBits0 & 4) != 0) { return bidId_; } else { return BidIdDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        bidId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "bidId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBidId {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "bidId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBidId() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "buyerId" field.</summary>
+    public const int BuyerIdFieldNumber = 5;
+    private readonly static int BuyerIdDefaultValue = 0;
+
+    private int buyerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int BuyerId {
+      get { if ((_hasBits0 & 8) != 0) { return buyerId_; } else { return BuyerIdDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        buyerId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "buyerId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBuyerId {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "buyerId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBuyerId() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "agentId" field.</summary>
+    public const int AgentIdFieldNumber = 6;
+    private readonly static int AgentIdDefaultValue = 0;
+
+    private int agentId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int AgentId {
+      get { if ((_hasBits0 & 16) != 0) { return agentId_; } else { return AgentIdDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        agentId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "agentId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAgentId {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "agentId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAgentId() {
+      _hasBits0 &= ~16;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as UpdateSaleRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(UpdateSaleRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (TimeOfSaleSeconds != other.TimeOfSaleSeconds) return false;
+      if (PropertyId != other.PropertyId) return false;
+      if (BidId != other.BidId) return false;
+      if (BuyerId != other.BuyerId) return false;
+      if (AgentId != other.AgentId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (HasTimeOfSaleSeconds) hash ^= TimeOfSaleSeconds.GetHashCode();
+      if (HasPropertyId) hash ^= PropertyId.GetHashCode();
+      if (HasBidId) hash ^= BidId.GetHashCode();
+      if (HasBuyerId) hash ^= BuyerId.GetHashCode();
+      if (HasAgentId) hash ^= AgentId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (HasTimeOfSaleSeconds) {
+        output.WriteRawTag(16);
+        output.WriteInt64(TimeOfSaleSeconds);
+      }
+      if (HasPropertyId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PropertyId);
+      }
+      if (HasBidId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(BidId);
+      }
+      if (HasBuyerId) {
+        output.WriteRawTag(40);
+        output.WriteInt32(BuyerId);
+      }
+      if (HasAgentId) {
+        output.WriteRawTag(48);
+        output.WriteInt32(AgentId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (HasTimeOfSaleSeconds) {
+        output.WriteRawTag(16);
+        output.WriteInt64(TimeOfSaleSeconds);
+      }
+      if (HasPropertyId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PropertyId);
+      }
+      if (HasBidId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(BidId);
+      }
+      if (HasBuyerId) {
+        output.WriteRawTag(40);
+        output.WriteInt32(BuyerId);
+      }
+      if (HasAgentId) {
+        output.WriteRawTag(48);
+        output.WriteInt32(AgentId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (HasTimeOfSaleSeconds) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(TimeOfSaleSeconds);
+      }
+      if (HasPropertyId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PropertyId);
+      }
+      if (HasBidId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BidId);
+      }
+      if (HasBuyerId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuyerId);
+      }
+      if (HasAgentId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AgentId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(UpdateSaleRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.HasTimeOfSaleSeconds) {
+        TimeOfSaleSeconds = other.TimeOfSaleSeconds;
+      }
+      if (other.HasPropertyId) {
+        PropertyId = other.PropertyId;
+      }
+      if (other.HasBidId) {
+        BidId = other.BidId;
+      }
+      if (other.HasBuyerId) {
+        BuyerId = other.BuyerId;
+      }
+      if (other.HasAgentId) {
+        AgentId = other.AgentId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            TimeOfSaleSeconds = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            PropertyId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            BidId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            BuyerId = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            AgentId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            TimeOfSaleSeconds = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            PropertyId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            BidId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            BuyerId = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            AgentId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class DeleteSaleRequest : pb::IMessage<DeleteSaleRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<DeleteSaleRequest> _parser = new pb::MessageParser<DeleteSaleRequest>(() => new DeleteSaleRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<DeleteSaleRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[28]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DeleteSaleRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DeleteSaleRequest(DeleteSaleRequest other) : this() {
+      id_ = other.id_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DeleteSaleRequest Clone() {
+      return new DeleteSaleRequest(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as DeleteSaleRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(DeleteSaleRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(DeleteSaleRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SaleResponse : pb::IMessage<SaleResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SaleResponse> _parser = new pb::MessageParser<SaleResponse>(() => new SaleResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SaleResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[29]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SaleResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SaleResponse(SaleResponse other) : this() {
+      id_ = other.id_;
+      timeOfSaleSeconds_ = other.timeOfSaleSeconds_;
+      propertyId_ = other.propertyId_;
+      bidId_ = other.bidId_;
+      buyerId_ = other.buyerId_;
+      agentId_ = other.agentId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SaleResponse Clone() {
+      return new SaleResponse(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "timeOfSaleSeconds" field.</summary>
+    public const int TimeOfSaleSecondsFieldNumber = 2;
+    private long timeOfSaleSeconds_;
+    /// <summary>
+    /// Unix timestamp
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long TimeOfSaleSeconds {
+      get { return timeOfSaleSeconds_; }
+      set {
+        timeOfSaleSeconds_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "propertyId" field.</summary>
+    public const int PropertyIdFieldNumber = 3;
+    private int propertyId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PropertyId {
+      get { return propertyId_; }
+      set {
+        propertyId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "bidId" field.</summary>
+    public const int BidIdFieldNumber = 4;
+    private int bidId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int BidId {
+      get { return bidId_; }
+      set {
+        bidId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "buyerId" field.</summary>
+    public const int BuyerIdFieldNumber = 5;
+    private int buyerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int BuyerId {
+      get { return buyerId_; }
+      set {
+        buyerId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "agentId" field.</summary>
+    public const int AgentIdFieldNumber = 6;
+    private int agentId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int AgentId {
+      get { return agentId_; }
+      set {
+        agentId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SaleResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SaleResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (TimeOfSaleSeconds != other.TimeOfSaleSeconds) return false;
+      if (PropertyId != other.PropertyId) return false;
+      if (BidId != other.BidId) return false;
+      if (BuyerId != other.BuyerId) return false;
+      if (AgentId != other.AgentId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0) hash ^= Id.GetHashCode();
+      if (TimeOfSaleSeconds != 0L) hash ^= TimeOfSaleSeconds.GetHashCode();
+      if (PropertyId != 0) hash ^= PropertyId.GetHashCode();
+      if (BidId != 0) hash ^= BidId.GetHashCode();
+      if (BuyerId != 0) hash ^= BuyerId.GetHashCode();
+      if (AgentId != 0) hash ^= AgentId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (TimeOfSaleSeconds != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(TimeOfSaleSeconds);
+      }
+      if (PropertyId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PropertyId);
+      }
+      if (BidId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(BidId);
+      }
+      if (BuyerId != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(BuyerId);
+      }
+      if (AgentId != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(AgentId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Id != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Id);
+      }
+      if (TimeOfSaleSeconds != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(TimeOfSaleSeconds);
+      }
+      if (PropertyId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(PropertyId);
+      }
+      if (BidId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(BidId);
+      }
+      if (BuyerId != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(BuyerId);
+      }
+      if (AgentId != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(AgentId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      }
+      if (TimeOfSaleSeconds != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(TimeOfSaleSeconds);
+      }
+      if (PropertyId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PropertyId);
+      }
+      if (BidId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BidId);
+      }
+      if (BuyerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuyerId);
+      }
+      if (AgentId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AgentId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SaleResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
+      }
+      if (other.TimeOfSaleSeconds != 0L) {
+        TimeOfSaleSeconds = other.TimeOfSaleSeconds;
+      }
+      if (other.PropertyId != 0) {
+        PropertyId = other.PropertyId;
+      }
+      if (other.BidId != 0) {
+        BidId = other.BidId;
+      }
+      if (other.BuyerId != 0) {
+        BuyerId = other.BuyerId;
+      }
+      if (other.AgentId != 0) {
+        AgentId = other.AgentId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            TimeOfSaleSeconds = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            PropertyId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            BidId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            BuyerId = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            AgentId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Id = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            TimeOfSaleSeconds = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            PropertyId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            BidId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            BuyerId = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            AgentId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GetSalesResponse : pb::IMessage<GetSalesResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetSalesResponse> _parser = new pb::MessageParser<GetSalesResponse>(() => new GetSalesResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetSalesResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[30]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetSalesResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetSalesResponse(GetSalesResponse other) : this() {
+      sales_ = other.sales_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetSalesResponse Clone() {
+      return new GetSalesResponse(this);
+    }
+
+    /// <summary>Field number for the "sales" field.</summary>
+    public const int SalesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::MainServer.WebAPI.Protos.SaleResponse> _repeated_sales_codec
+        = pb::FieldCodec.ForMessage(10, global::MainServer.WebAPI.Protos.SaleResponse.Parser);
+    private readonly pbc::RepeatedField<global::MainServer.WebAPI.Protos.SaleResponse> sales_ = new pbc::RepeatedField<global::MainServer.WebAPI.Protos.SaleResponse>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::MainServer.WebAPI.Protos.SaleResponse> Sales {
+      get { return sales_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetSalesResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetSalesResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!sales_.Equals(other.sales_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= sales_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      sales_.WriteTo(output, _repeated_sales_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      sales_.WriteTo(ref output, _repeated_sales_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += sales_.CalculateSize(_repeated_sales_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetSalesResponse other) {
+      if (other == null) {
+        return;
+      }
+      sales_.Add(other.sales_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            sales_.AddEntriesFrom(input, _repeated_sales_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            sales_.AddEntriesFrom(ref input, _repeated_sales_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class DeleteSaleResponse : pb::IMessage<DeleteSaleResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<DeleteSaleResponse> _parser = new pb::MessageParser<DeleteSaleResponse>(() => new DeleteSaleResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<DeleteSaleResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[31]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DeleteSaleResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DeleteSaleResponse(DeleteSaleResponse other) : this() {
+      success_ = other.success_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public DeleteSaleResponse Clone() {
+      return new DeleteSaleResponse(this);
+    }
+
+    /// <summary>Field number for the "success" field.</summary>
+    public const int SuccessFieldNumber = 1;
+    private bool success_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Success {
+      get { return success_; }
+      set {
+        success_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as DeleteSaleResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(DeleteSaleResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Success != other.Success) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Success != false) hash ^= Success.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Success != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Success);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Success != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Success);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Success != false) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(DeleteSaleResponse other) {
       if (other == null) {
         return;
       }
