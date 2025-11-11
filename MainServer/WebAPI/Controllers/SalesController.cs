@@ -36,7 +36,7 @@ namespace MainServer.WebAPI.Controllers
                         var property = await dataTierClient.GetPropertyAsync(id);
                         return new { Id = id, Property = (PropertyResponse?)property };
                     }
-                    catch (Exception)
+                    catch
                     {
                         return new { Id = id, Property = (PropertyResponse?)null };
                     }
@@ -49,7 +49,7 @@ namespace MainServer.WebAPI.Controllers
                         var user = await dataTierClient.GetUserAsync(id);
                         return new { Id = id, User = (UserResponse?)user };
                     }
-                    catch (Exception)
+                    catch
                     {
                         return new { Id = id, User = (UserResponse?)null };
                     }
@@ -62,7 +62,7 @@ namespace MainServer.WebAPI.Controllers
                         var user = await dataTierClient.GetUserAsync(id);
                         return new { Id = id, User = (UserResponse?)user };
                     }
-                    catch (Exception)
+                    catch
                     {
                         return new { Id = id, User = (UserResponse?)null };
                     }
@@ -75,7 +75,7 @@ namespace MainServer.WebAPI.Controllers
                         var bid = await dataTierClient.GetBidAsync(id);
                         return new { Id = id, Bid = (BidResponse?)bid };
                     }
-                    catch (Exception)
+                    catch
                     {
                         return new { Id = id, Bid = (BidResponse?)null };
                     }
@@ -105,14 +105,14 @@ namespace MainServer.WebAPI.Controllers
                         AgentUsername = agentLookup.GetValueOrDefault(saleResponse.AgentId)?.Username,
                         WinningBidId = saleResponse.BidId,
                         FinalAmount = bidLookup.GetValueOrDefault(saleResponse.BidId) != null 
-                            ? (decimal)bidLookup[saleResponse.BidId].Amount 
+                            ? (decimal)bidLookup.GetValueOrDefault(saleResponse.BidId)!.Amount 
                             : 0
                     };
                 }).ToList();
 
                 return Ok(responseDtos);
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }

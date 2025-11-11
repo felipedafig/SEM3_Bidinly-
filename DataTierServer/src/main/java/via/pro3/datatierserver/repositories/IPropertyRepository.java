@@ -4,6 +4,7 @@ import via.pro3.datatierserver.model.Property;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,7 +17,10 @@ public interface IPropertyRepository extends JpaRepository<Property, Integer> {
     // - delete(Property) for delete by entity
     // - count(), existsById(), etc.
     
-    // Default method that delegates to Spring Data JPA's findById()
+    default List<Property> getMany() {
+        return findAll();
+    }
+    
     default Optional<Property> getSingle(Integer id) {
         return findById(id);
     }

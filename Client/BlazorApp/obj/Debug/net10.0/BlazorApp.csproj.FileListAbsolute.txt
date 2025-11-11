@@ -86,5 +86,6 @@ C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\refint\Blazo
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\BlazorApp.pdb
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\BlazorApp.genruntimeconfig.cache
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\ref\BlazorApp.dll
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\8v4adbxxmx-{0}-lyv8ibepaq-lyv8ibepaq.gz
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\rrzzv9ip5o-{0}-lyv8ibepaq-lyv8ibepaq.gz
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\PropertyDetail.razor.rz.scp.css
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\8v4adbxxmx-{0}-js4lln2qr2-js4lln2qr2.gz
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\rrzzv9ip5o-{0}-js4lln2qr2-js4lln2qr2.gz

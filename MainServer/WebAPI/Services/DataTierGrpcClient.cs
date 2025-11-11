@@ -39,7 +39,7 @@ namespace MainServer.WebAPI.Services
             {
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -58,7 +58,31 @@ namespace MainServer.WebAPI.Services
             {
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
             }
-            catch (Exception)
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<BidResponse> CreateBidAsync(int buyerId, int propertyId, double amount, long expiryDateSeconds)
+        {
+            try
+            {
+                var request = new CreateBidRequest
+                {
+                    BuyerId = buyerId,
+                    PropertyId = propertyId,
+                    Amount = amount,
+                    ExpiryDateSeconds = expiryDateSeconds
+                };
+                var response = await client.CreateBidAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
             {
                 throw;
             }
@@ -84,7 +108,7 @@ namespace MainServer.WebAPI.Services
             {
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -112,7 +136,7 @@ namespace MainServer.WebAPI.Services
             {
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -131,7 +155,7 @@ namespace MainServer.WebAPI.Services
             {
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
