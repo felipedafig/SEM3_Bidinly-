@@ -150,6 +150,29 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
         }
     }
     
+    @Override
+    public void getProperties(DataTierProto.GetPropertiesRequest request, StreamObserver<DataTierProto.GetPropertiesResponse> responseObserver) {
+        try {
+            List<Property> properties = propertyRepository.getMany();
+            
+            List<DataTierProto.PropertyResponse> propertyResponses = properties.stream()
+                .map(this::convertToPropertyResponse)
+                .collect(Collectors.toList());
+            
+            DataTierProto.GetPropertiesResponse response = DataTierProto.GetPropertiesResponse.newBuilder()
+                .addAllProperties(propertyResponses)
+                .build();
+            
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+            
+        } catch (Exception e) {
+            responseObserver.onError(io.grpc.Status.INTERNAL
+                .withDescription("Error retrieving properties: " + e.getMessage())
+                .asRuntimeException());
+        }
+    }
+    
     private DataTierProto.PropertyResponse convertToPropertyResponse(Property property) {
         return DataTierProto.PropertyResponse.newBuilder()
             .setId(property.getId() != null ? property.getId() : 0)

@@ -90,8 +90,9 @@
 }
 
 .filter-field-status[b-8wvn8csdn9] {
-    flex: 1;
-    min-width: 300px;
+    color: #999;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .filter-label[b-8wvn8csdn9] {
