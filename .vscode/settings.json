@@ -1,4 +1,3 @@
 {
-    "dotnet.defaultSolution": "BlazorApp.sln",
-    "java.compile.nullAnalysis.mode": "automatic"
+    "dotnet.defaultSolution": "BlazorApp.sln"
 }

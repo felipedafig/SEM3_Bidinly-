@@ -152,6 +152,7 @@
     private string filterAgentName = string.Empty;
     private string filterBuyerName = string.Empty;
     private int? filterBidId;
+    private DateTime? filterDate;
     
     protected override async Task OnInitializedAsync()
     {
@@ -220,7 +221,8 @@
             (string.IsNullOrWhiteSpace(filterPropertyName) || (sale.PropertyTitle != null && sale.PropertyTitle.Contains(filterPropertyName, StringComparison.OrdinalIgnoreCase))) &&
             (string.IsNullOrWhiteSpace(filterAgentName) || (sale.AgentUsername != null && sale.AgentUsername.Contains(filterAgentName, StringComparison.OrdinalIgnoreCase))) &&
             (string.IsNullOrWhiteSpace(filterBuyerName) || (sale.BuyerUsername != null && sale.BuyerUsername.Contains(filterBuyerName, StringComparison.OrdinalIgnoreCase))) &&
-            (filterBidId == null || sale.WinningBidId == filterBidId.Value)
+            (filterBidId == null || sale.WinningBidId == filterBidId.Value) &&
+            (filterDate == null || sale.TimeOfSale.Date == filterDate.Value.Date)
         ).ToList();
     }
 }
