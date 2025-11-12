@@ -251,7 +251,8 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
            
             User newUser = new User();
             newUser.setUsername(request.getUsername());
-            newUser.setPassword(request.getPassword()); 
+            newUser.setPassword(request.getPassword());
+            newUser.setRoleId(request.getRoleId());
             
             User savedUser = userRepository.save(newUser);
             
