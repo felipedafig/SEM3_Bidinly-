@@ -23,8 +23,8 @@ POST {{WebAPI_HostAddress}}/users
 Content-Type: application/json
 
 {
-    "Username": "Felipex",
-    "Password": "password123",
+    "Username": "agent_Marta",
+    "Password": "12345",
     "RoleId": 1
 }
 

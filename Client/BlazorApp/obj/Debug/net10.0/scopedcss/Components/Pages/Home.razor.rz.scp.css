@@ -1,4 +1,5 @@
 
+/* my monitor view */
 .home-background[b-7gt2111kuu] {
     position: relative;
     width: 100%;
@@ -42,10 +43,10 @@
 
 .project-info-section[b-7gt2111kuu] {
     position: absolute;
-    bottom: 0%;
-    right: 5%;
+    bottom: 3%;
+    right: 10%;
     z-index: 10;
-    max-width: 554px;
+    max-width: 468px;
     width: auto;
     background: transparent;
 }
@@ -101,7 +102,7 @@
     font-weight: 400;
     transition: all 0.3s ease;
     cursor: pointer;
-    margin-left: 20rem;
+    margin-left: 15rem;
 }
 
 .git-repo-button:hover[b-7gt2111kuu] {
@@ -245,8 +246,6 @@
 
 
 
-
-
 .properties-section[b-7gt2111kuu] {
     width: 100%;
     background-color: white;
@@ -368,11 +367,78 @@
     }
 }
 
+/* T490s laptop (1920x1080) */
 @media (min-width: 1400px) and (max-width: 1920px) {
     .content-container[b-7gt2111kuu] {
         max-width: 1200px;
         padding: 0 2rem;
     }
+
+    .project-info-section[b-7gt2111kuu] {
+        position: absolute;
+        bottom: 0%;
+        right: 7%;
+        z-index: 10;
+        max-width: 460px;
+        width: auto;
+        background: transparent;
+    }
+
+    .project-info-container[b-7gt2111kuu] {
+        width: 100%;
+        text-align: center;
+        margin-left: 2rem;
+    }
+    
+    .project-title[b-7gt2111kuu] {
+        margin: 0 0 1rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .title-line-1[b-7gt2111kuu] {
+        color: rgb(30, 130, 400);
+        font-size: 1.6rem;
+        font-weight: 400;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    .title-line-2[b-7gt2111kuu] {
+        color: rgb(100, 80, 250);
+        font-size: 1rem;
+        font-weight: 400;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    .project-description[b-7gt2111kuu] {
+        color: #666;
+        font-size: 0.85rem;
+        line-height: 1.4rem;
+        margin: 0 0 0.5rem 0;
+        text-align: center;
+        font-weight: 300;
+    }
+    
+    .git-repo-button[b-7gt2111kuu] {
+        display: inline-block;
+        padding: 0.60rem 1.2rem;
+        background-color: white;
+        color: rgb(30, 130, 400);
+        border: 2px solid rgb(30, 130, 400);
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 400;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin-left: 15rem;
+    }
+    
+    
 }
 
 @media (min-width: 1200px) and (max-width: 1399px) {

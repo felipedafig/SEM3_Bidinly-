@@ -142,6 +142,29 @@ namespace MainServer.WebAPI.Services
             }
         }
 
+        public async Task<UserResponse> CreateUserAsync(string username, string password, int roleId)
+        {
+            try
+            {
+                var request = new CreateUserRequest
+                {
+                    Username = username,
+                    Password = password,
+                    RoleId = roleId
+                };
+                var response = await client.CreateUserAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         // Sale operations
         public async Task<GetSalesResponse> GetSalesAsync()
         {
