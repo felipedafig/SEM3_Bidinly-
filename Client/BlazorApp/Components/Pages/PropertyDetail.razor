@@ -69,7 +69,7 @@ else
                 <div class="property-detail-sidebar">
                     <div class="property-detail-price">
                         <h3>Starting Price</h3>
-                        <p class="price-amount">$@property.StartingPrice.ToString("N0")</p>
+                        <p class="price-amount">@property.StartingPrice.ToString("N0") Kr</p>
                         <button class="bid-button" @onclick="ShowBidForm">Bid</button>
                     </div>
                     
@@ -111,7 +111,7 @@ else
             </div>
             <div class="bid-modal-body">
                 <div class="bid-form-group">
-                    <label for="bid-amount">Amount ($)</label>
+                    <label for="bid-amount">Amount (Kr)</label>
                     <input type="number" 
                            id="bid-amount" 
                            class="bid-form-input" 

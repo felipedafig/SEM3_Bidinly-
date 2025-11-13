@@ -93,7 +93,7 @@
                             <span class="info-item">@property.Bedrooms Bedrooms</span>
                             <span class="info-item">@property.Bathrooms Bathrooms</span>
                             <span class="info-item">@property.SizeInSquareFeet.ToString("F0") sq ft</span>
-                            <span class="info-item">$@property.StartingPrice.ToString("N0")</span>
+                            <span class="info-item">@property.StartingPrice.ToString("N0") Kr</span>
                         </div>
                         @if (!string.IsNullOrWhiteSpace(property.Status))
                         {
@@ -144,6 +144,8 @@
         get
         {
             var filtered = properties.AsEnumerable();
+            
+            filtered = filtered.Where(p => p.Status == "Available");
             
             if (!string.IsNullOrWhiteSpace(filterCity))
             {
