@@ -1,10 +1,13 @@
 @page "/property/{PropertyId:int}"
+@layout MainLayoutAuthenticated
 @using shared.DTOs.Properties
 @using Shared.DTOs.Bids
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Authorization
 @inject HttpClient Http
 @inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthProvider
 @rendermode InteractiveServer
 
 <PageTitle>Property Details - Bidinly</PageTitle>
@@ -20,14 +23,14 @@ else if (property == null)
     <div class="property-detail-error">
         <h2>Property Not Found</h2>
         <p>The property you're looking for doesn't exist or has been removed.</p>
-        <button class="back-button" @onclick="GoBack">← Back</button>
+        <button class="back-button" @onclick="async () => await GoBack()">← Back</button>
     </div>
 }
 else
 {
     <div class="property-detail-section">
         <div class="property-detail-container">
-            <button class="back-button" @onclick="GoBack">← Back</button>
+            <button class="back-button" @onclick="async () => await GoBack()">← Back</button>
             
             <div class="property-detail-header">
                 <h1 class="property-detail-title">@property.Title</h1>
@@ -171,9 +174,20 @@ else
         }
     }
     
-    private void GoBack()
+    private async Task GoBack()
     {
-        Navigation.NavigateTo("/");
+        // Check if user is authenticated to determine where to navigate
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var isAuthenticated = authState.User?.Identity?.IsAuthenticated ?? false;
+        
+        if (isAuthenticated)
+        {
+            Navigation.NavigateTo("/dashboard");
+        }
+        else
+        {
+            Navigation.NavigateTo("/");
+        }
     }
     
     private void ShowBidForm()

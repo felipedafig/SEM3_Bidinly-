@@ -11,7 +11,7 @@
         <nav class="navbar-nav">
             <AuthorizeView>
                 <Authorized>
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Home</NavLink>
+                    <NavLink class="nav-link" href="dashboard" Match="NavLinkMatch.All">Home</NavLink>
                     <NavLink class="nav-link" href="bids">Bids</NavLink>
                     <NavLink class="nav-link" href="sales">Sales</NavLink>
                     <button class="nav-link nav-button" @onclick="HandleLogout">Logout</button>
@@ -19,7 +19,7 @@
                 <NotAuthorized>
                     <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Home</NavLink>
                     <NavLink class="nav-link" href="login">Login</NavLink>
-                    <NavLink class="nav-link" href="signup">Sign Up</NavLink>
+                    <button class="nav-link nav-button" @onclick="() => { }">Sign Up</button>
                 </NotAuthorized>
             </AuthorizeView>
         </nav>

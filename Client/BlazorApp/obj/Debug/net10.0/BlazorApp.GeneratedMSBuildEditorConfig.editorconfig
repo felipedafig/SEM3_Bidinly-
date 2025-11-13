@@ -26,6 +26,10 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/MainLayoutAuthenticated.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dEF1dGhlbnRpY2F0ZWQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,6 +62,10 @@ build_metadata.AdditionalFiles.CssScope = b-qgsvw684bo
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-g8o6n169oq
 
+[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/NavMenuAuthenticated.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudUF1dGhlbnRpY2F0ZWQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-w1gvshf51o
+
 [C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/ReconnectModal.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcUmVjb25uZWN0TW9kYWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-pphnjiao61
@@ -65,6 +73,10 @@ build_metadata.AdditionalFiles.CssScope = b-pphnjiao61
 [C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Bids.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCaWRzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-8wvn8csdn9
+
+[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEYXNoYm9hcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-ix3zhoijqt
 
 [C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
