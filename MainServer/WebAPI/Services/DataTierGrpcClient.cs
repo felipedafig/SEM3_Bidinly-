@@ -185,5 +185,28 @@ namespace MainServer.WebAPI.Services
         }
 
         // Role operations
+
+
+        public async Task<LoginResponse> AuthenticateUserAsync(string username, string password)
+        {
+            try
+            {
+                var request = new MainServer.WebAPI.Protos.LoginRequest
+                {
+                    Username = username,
+                    Password = password
+                };
+                var response = await client.AuthenticateUserAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

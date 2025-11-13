@@ -32,6 +32,9 @@ service DataTierService {
   rpc GetSales (GetSalesRequest) returns (GetSalesResponse);
   rpc UpdateSale (UpdateSaleRequest) returns (SaleResponse);
   rpc DeleteSale (DeleteSaleRequest) returns (DeleteSaleResponse);
+
+  // Login operations
+  rpc AuthenticateUser (LoginRequest) returns (LoginResponse);
 }
 
 // Bid messages
@@ -227,3 +230,17 @@ message GetSalesResponse {
 message DeleteSaleResponse {
   bool success = 1;
 }
+
+// Login messages
+message LoginRequest{
+
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  int32 id = 1;
+  string username = 2;
+  int32 roleId = 3;
+}
+

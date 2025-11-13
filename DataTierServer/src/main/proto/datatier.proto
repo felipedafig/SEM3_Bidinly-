@@ -12,27 +12,30 @@ service DataTierService {
   rpc GetBids (GetBidsRequest) returns (GetBidsResponse);
   rpc UpdateBid (UpdateBidRequest) returns (BidResponse);
   rpc DeleteBid (DeleteBidRequest) returns (DeleteBidResponse);
-  
+
   // Property operations
   rpc CreateProperty (CreatePropertyRequest) returns (PropertyResponse);
   rpc GetProperty (GetPropertyRequest) returns (PropertyResponse);
   rpc GetProperties (GetPropertiesRequest) returns (GetPropertiesResponse);
   rpc UpdateProperty (UpdatePropertyRequest) returns (PropertyResponse);
   rpc DeleteProperty (DeletePropertyRequest) returns (DeletePropertyResponse);
-  
+
   // User operations
   rpc CreateUser (CreateUserRequest) returns (UserResponse);
   rpc GetUser (GetUserRequest) returns (UserResponse);
   rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
   rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
   rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
-  
+
   // Sale operations
   rpc CreateSale (CreateSaleRequest) returns (SaleResponse);
   rpc GetSale (GetSaleRequest) returns (SaleResponse);
   rpc GetSales (GetSalesRequest) returns (GetSalesResponse);
   rpc UpdateSale (UpdateSaleRequest) returns (SaleResponse);
   rpc DeleteSale (DeleteSaleRequest) returns (DeleteSaleResponse);
+
+  // Login operations
+  rpc AuthenticateUser (LoginRequest) returns (LoginResponse);
 }
 
 // Bid messages
@@ -140,7 +143,7 @@ message DeletePropertyResponse {
   bool success = 1;
 }
 
-// User messages 
+// User messages
 message CreateUserRequest {
   string username = 1;
   string password = 2;
@@ -227,5 +230,18 @@ message GetSalesResponse {
 
 message DeleteSaleResponse {
   bool success = 1;
+}
+
+// Login messages
+message LoginRequest{
+
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  int32 id = 1;
+  string username = 2;
+  int32 roleId = 3;
 }
 

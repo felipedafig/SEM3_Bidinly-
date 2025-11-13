@@ -109,6 +109,10 @@ namespace MainServer.WebAPI.Protos {
     static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteSaleRequest> __Marshaller_datatier_DeleteSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteSaleRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteSaleResponse> __Marshaller_datatier_DeleteSaleResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteSaleResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.LoginRequest> __Marshaller_datatier_LoginRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.LoginRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.LoginResponse> __Marshaller_datatier_LoginResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.LoginResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreateBidRequest, global::MainServer.WebAPI.Protos.BidResponse> __Method_CreateBid = new grpc::Method<global::MainServer.WebAPI.Protos.CreateBidRequest, global::MainServer.WebAPI.Protos.BidResponse>(
@@ -269,6 +273,14 @@ namespace MainServer.WebAPI.Protos {
         "DeleteSale",
         __Marshaller_datatier_DeleteSaleRequest,
         __Marshaller_datatier_DeleteSaleResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.LoginRequest, global::MainServer.WebAPI.Protos.LoginResponse> __Method_AuthenticateUser = new grpc::Method<global::MainServer.WebAPI.Protos.LoginRequest, global::MainServer.WebAPI.Protos.LoginResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AuthenticateUser",
+        __Marshaller_datatier_LoginRequest,
+        __Marshaller_datatier_LoginResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -814,6 +826,54 @@ namespace MainServer.WebAPI.Protos {
       public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.DeleteSaleResponse> DeleteSaleAsync(global::MainServer.WebAPI.Protos.DeleteSaleRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteSale, null, options, request);
+      }
+      /// <summary>
+      /// Login operations
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.LoginResponse AuthenticateUser(global::MainServer.WebAPI.Protos.LoginRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AuthenticateUser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Login operations
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::MainServer.WebAPI.Protos.LoginResponse AuthenticateUser(global::MainServer.WebAPI.Protos.LoginRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AuthenticateUser, null, options, request);
+      }
+      /// <summary>
+      /// Login operations
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.LoginResponse> AuthenticateUserAsync(global::MainServer.WebAPI.Protos.LoginRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AuthenticateUserAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Login operations
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.LoginResponse> AuthenticateUserAsync(global::MainServer.WebAPI.Protos.LoginRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AuthenticateUser, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
