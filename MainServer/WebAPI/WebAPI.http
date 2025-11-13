@@ -305,3 +305,17 @@ GET {{WebAPI_HostAddress}}/sales?propertyId=999
 # BIDS CONTROLLER
 # Note: Not implemented yet
 ###############################################
+
+######## AUTHENTICATION ########
+
+POST {{WebAPI_HostAddress}}/auth/login
+Content-Type: application/json
+
+{
+    "Username": "agent_Felipe",
+    "Password": "12345"
+}
+
+###
+
+

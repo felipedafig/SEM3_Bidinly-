@@ -205,9 +205,8 @@ else
         
         try
         {
-            // TODO: Get current user ID from authentication context
-            // For now, using a placeholder buyer ID
-            int buyerId = 1; // This should come from authentication
+           
+            int buyerId = 1; 
             
             var createBidDto = new CreateBidDto
             {
@@ -222,11 +221,11 @@ else
             if (response.IsSuccessStatusCode)
             {
                 CloseBidForm();
-                // Optionally show success message or navigate
+               
             }
             else
             {
-                // Handle error - show error message
+               
                 Console.WriteLine($"Error creating bid: {response.StatusCode}");
             }
         }
