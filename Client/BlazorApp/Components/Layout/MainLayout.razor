@@ -1,9 +1,10 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
 
 <div class="page">
     <NavMenu />
 
-    <main>
+    <main @key="@Navigation.ToBaseRelativePath(Navigation.Uri)">
         @Body
     </main>
 </div>

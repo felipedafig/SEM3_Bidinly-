@@ -7,7 +7,8 @@ public class AuthProvider : AuthenticationStateProvider
 {
     private readonly HttpClient httpClient;
     private readonly IJSRuntime jsRuntime;
-    private ClaimsPrincipal currentClaimsPrincipal;
+
+    private ClaimsPrincipal? currentClaimsPrincipal;
 
     public AuthProvider(HttpClient httpClient, IJSRuntime jsRuntime)
     {
@@ -15,9 +16,9 @@ public class AuthProvider : AuthenticationStateProvider
         this.jsRuntime = jsRuntime;
     }
 
-    public override async Task<AuthenticationState> GetAuthenticationStateAsync() 
-    { 
-        return new AuthenticationState(currentClaimsPrincipal ?? new ()); 
+    public override Task<AuthenticationState> GetAuthenticationStateAsync() //not async
+    {
+        return Task.FromResult(new AuthenticationState(currentClaimsPrincipal ?? new ClaimsPrincipal()));
     }
 
     public async Task Login(string username, string password)
@@ -35,7 +36,7 @@ public class AuthProvider : AuthenticationStateProvider
 
         List<Claim> claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Name, user.Username ?? string.Empty),
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
         };
 
@@ -45,9 +46,10 @@ public class AuthProvider : AuthenticationStateProvider
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(currentClaimsPrincipal)));
     }
 
-    public void Logout()
-{
-    currentClaimsPrincipal = new();
-    NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(currentClaimsPrincipal)));
-}
+    public Task Logout()
+    {
+        currentClaimsPrincipal = null;
+        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(new ClaimsPrincipal())));
+        return Task.CompletedTask;
+    }
 }

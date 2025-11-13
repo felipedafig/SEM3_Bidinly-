@@ -1,14 +1,37 @@
-﻿<header class="navbar-header">
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<header class="navbar-header">
     <div class="navbar-container">
         <div class="navbar-brand">
             <img src="/assets/icons/Bidinly-Logo.png" alt="Bidinly" class="logo" />
             <span class="brand-text">Bidinly</span>
         </div>
         <nav class="navbar-nav">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Home</NavLink>
-            <NavLink class="nav-link" href="bids">Bids</NavLink>
-            <NavLink class="nav-link" href="sales">Sales</NavLink>
+            <AuthorizeView>
+                <Authorized>
+                    <NavLink class="nav-link" href="dashboard" Match="NavLinkMatch.All">Home</NavLink>
+                    <NavLink class="nav-link" href="bids">Bids</NavLink>
+                    <NavLink class="nav-link" href="sales">Sales</NavLink>
+                    <button class="nav-link nav-button" @onclick="HandleLogout">Logout</button>
+                </Authorized>
+                <NotAuthorized>
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Home</NavLink>
+                    <NavLink class="nav-link" href="login">Login</NavLink>
+                    <button class="nav-link nav-button" @onclick="() => { }">Sign Up</button>
+                </NotAuthorized>
+            </AuthorizeView>
         </nav>
     </div>
 </header>
+
+@code {
+    private async Task HandleLogout()
+    {
+        var authProvider = (AuthProvider)AuthProvider;
+        await authProvider.Logout();
+        Navigation.NavigateTo("/", forceLoad: false);
+    }
+}
 
