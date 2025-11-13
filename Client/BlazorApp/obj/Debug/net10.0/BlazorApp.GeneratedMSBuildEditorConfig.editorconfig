@@ -26,10 +26,6 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/PropertyDetailLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcUHJvcGVydHlEZXRhaWxMYXlvdXQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
