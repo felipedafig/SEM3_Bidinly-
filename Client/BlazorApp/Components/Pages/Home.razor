@@ -3,8 +3,10 @@
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
 @inject HttpClient Http
 @inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
 
 <PageTitle>Bidinly</PageTitle>
@@ -15,10 +17,12 @@
     <div class="hero-content">
         <h1 class="hero-title">Bid to win your Dream Property...</h1>
         <div class="hero-search-container">
-            <input type="text" class="hero-search-bar" placeholder="Find a property..." />
-            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <input type="text" class="hero-search-bar" placeholder="Find a property..." @bind="searchQuery" @onkeydown="HandleSearchKeyDown" />
+            <button class="hero-search-button" @onclick="PerformSearch" type="button">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
     </div>
     
@@ -67,7 +71,7 @@
     </div>
 </div>
 
-<div class="properties-section">
+<div class="properties-section" id="properties-section">
     <div class="properties-container">
         @if (filteredProperties.Any())
         {
@@ -147,6 +151,13 @@
             
             filtered = filtered.Where(p => p.Status == "Available");
             
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                filtered = filtered.Where(p => 
+                    !string.IsNullOrWhiteSpace(p.Title) && 
+                    p.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase));
+            }
+            
             if (!string.IsNullOrWhiteSpace(filterCity))
             {
                 filtered = filtered.Where(p => 
@@ -177,6 +188,30 @@
     private void ApplyFilters()
     {
         StateHasChanged();
+    }
+    
+    private async Task PerformSearch()
+    {
+        StateHasChanged();
+        
+        await Task.Delay(100);
+        
+        await JSRuntime.InvokeVoidAsync("eval", @"
+            (function() {
+                var element = document.getElementById('properties-section');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            })();
+        ");
+    }
+    
+    private async Task HandleSearchKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await PerformSearch();
+        }
     }
     
     private void NavigateToProperty(int propertyId)

@@ -136,11 +136,31 @@
     outline: none;
 }
 
-.search-icon[b-7gt2111kuu] {
+.hero-search-button[b-7gt2111kuu] {
     position: absolute;
-    right: 1rem;
+    right: 0.5rem;
     top: 50%;
     transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.hero-search-button:hover[b-7gt2111kuu] {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.hero-search-button:active[b-7gt2111kuu] {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.search-icon[b-7gt2111kuu] {
     color: #666;
     pointer-events: none;
 }
