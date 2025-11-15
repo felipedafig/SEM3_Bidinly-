@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
@@ -14,29 +15,25 @@ builder.Services.AddScoped(sp => new HttpClient
 
 builder.Services.AddScoped<AuthenticationStateProvider, AuthProvider>();
 
-// Minimal authentication services required for [Authorize] attribute in .NET 10
-// This satisfies the IAuthenticationService requirement without interfering
-// Blazor still uses your AuthProvider for actual authentication via AuthorizeRouteView
+// Minimal authentication services required for [Authorize] attribute
 builder.Services.AddAuthentication("AlwaysAllow")
     .AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions, AlwaysAllowAuthenticationHandler>("AlwaysAllow", options => { });
-builder.Services.AddAuthorization(options =>
-{
-    // Allow all requests at HTTP level - Blazor handles authorization via AuthorizeRouteView
-    options.FallbackPolicy = new Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder()
-        .RequireAssertion(_ => true)
-        .Build();
-});
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
     app.UseHsts();
 }
+
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForErrors: true);
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseAntiforgery();
 
