@@ -1,5 +1,6 @@
 @page "/login"
 @namespace BlazorApp.Components.Pages
+@using BlazorApp.Auth
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Web
@@ -208,8 +209,15 @@
             errorMessage = string.Empty;
             StateHasChanged();
 
-            var authProvider = (AuthProvider)AuthProvider;
-            await authProvider.Login(username, password);
+            if (AuthProvider is AuthProvider authProvider)
+            {
+                await authProvider.Login(username, password);
+            }
+            else
+            {
+                errorMessage = "Authentication provider not available";
+                return;
+            }
 
             // Navigate to dashboard for logged-in users
             Navigation.NavigateTo("/dashboard", forceLoad: false);
