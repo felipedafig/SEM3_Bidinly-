@@ -318,4 +318,14 @@ Content-Type: application/json
 
 ###
 
+### GET - Get Role by ID agent
+GET {{WebAPI_HostAddress}}/roles/2
+
+###
+
+### GET - Get Role by ID buyer
+GET {{WebAPI_HostAddress}}/roles/1
+
+###
+
 

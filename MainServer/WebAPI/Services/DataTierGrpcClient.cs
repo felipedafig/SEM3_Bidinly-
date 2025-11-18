@@ -187,9 +187,20 @@ namespace MainServer.WebAPI.Services
         // Role operations
         public async Task<GetRoleResponse> GetRoleAsync(int roleId)
         {
-            GetRoleRequest request = new GetRoleRequest { RoleId = roleId };
-            GetRoleResponse response = await client.GetRoleAsync(request);
-            return response;
+            try
+            {
+                GetRoleRequest request = new GetRoleRequest { RoleId = roleId };
+                GetRoleResponse response = await client.GetRoleAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         // Login operations
