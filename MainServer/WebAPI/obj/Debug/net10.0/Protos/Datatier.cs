@@ -90,41 +90,44 @@ namespace MainServer.WebAPI.Protos {
             "GAIgASgDEhIKCnByb3BlcnR5SWQYAyABKAUSDQoFYmlkSWQYBCABKAUSDwoH",
             "YnV5ZXJJZBgFIAEoBRIPCgdhZ2VudElkGAYgASgFIjkKEEdldFNhbGVzUmVz",
             "cG9uc2USJQoFc2FsZXMYASADKAsyFi5kYXRhdGllci5TYWxlUmVzcG9uc2Ui",
-            "JQoSRGVsZXRlU2FsZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiMgoMTG9n",
-            "aW5SZXF1ZXN0EhAKCHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJ",
-            "Ij0KDUxvZ2luUmVzcG9uc2USCgoCaWQYASABKAUSEAoIdXNlcm5hbWUYAiAB",
-            "KAkSDgoGcm9sZUlkGAMgASgFMsILCg9EYXRhVGllclNlcnZpY2USPgoJQ3Jl",
-            "YXRlQmlkEhouZGF0YXRpZXIuQ3JlYXRlQmlkUmVxdWVzdBoVLmRhdGF0aWVy",
-            "LkJpZFJlc3BvbnNlEjgKBkdldEJpZBIXLmRhdGF0aWVyLkdldEJpZFJlcXVl",
-            "c3QaFS5kYXRhdGllci5CaWRSZXNwb25zZRI+CgdHZXRCaWRzEhguZGF0YXRp",
-            "ZXIuR2V0Qmlkc1JlcXVlc3QaGS5kYXRhdGllci5HZXRCaWRzUmVzcG9uc2US",
-            "PgoJVXBkYXRlQmlkEhouZGF0YXRpZXIuVXBkYXRlQmlkUmVxdWVzdBoVLmRh",
-            "dGF0aWVyLkJpZFJlc3BvbnNlEkQKCURlbGV0ZUJpZBIaLmRhdGF0aWVyLkRl",
-            "bGV0ZUJpZFJlcXVlc3QaGy5kYXRhdGllci5EZWxldGVCaWRSZXNwb25zZRJN",
-            "Cg5DcmVhdGVQcm9wZXJ0eRIfLmRhdGF0aWVyLkNyZWF0ZVByb3BlcnR5UmVx",
-            "dWVzdBoaLmRhdGF0aWVyLlByb3BlcnR5UmVzcG9uc2USRwoLR2V0UHJvcGVy",
-            "dHkSHC5kYXRhdGllci5HZXRQcm9wZXJ0eVJlcXVlc3QaGi5kYXRhdGllci5Q",
-            "cm9wZXJ0eVJlc3BvbnNlElAKDUdldFByb3BlcnRpZXMSHi5kYXRhdGllci5H",
-            "ZXRQcm9wZXJ0aWVzUmVxdWVzdBofLmRhdGF0aWVyLkdldFByb3BlcnRpZXNS",
-            "ZXNwb25zZRJNCg5VcGRhdGVQcm9wZXJ0eRIfLmRhdGF0aWVyLlVwZGF0ZVBy",
-            "b3BlcnR5UmVxdWVzdBoaLmRhdGF0aWVyLlByb3BlcnR5UmVzcG9uc2USUwoO",
-            "RGVsZXRlUHJvcGVydHkSHy5kYXRhdGllci5EZWxldGVQcm9wZXJ0eVJlcXVl",
-            "c3QaIC5kYXRhdGllci5EZWxldGVQcm9wZXJ0eVJlc3BvbnNlEkEKCkNyZWF0",
-            "ZVVzZXISGy5kYXRhdGllci5DcmVhdGVVc2VyUmVxdWVzdBoWLmRhdGF0aWVy",
-            "LlVzZXJSZXNwb25zZRI7CgdHZXRVc2VyEhguZGF0YXRpZXIuR2V0VXNlclJl",
-            "cXVlc3QaFi5kYXRhdGllci5Vc2VyUmVzcG9uc2USQQoIR2V0VXNlcnMSGS5k",
-            "YXRhdGllci5HZXRVc2Vyc1JlcXVlc3QaGi5kYXRhdGllci5HZXRVc2Vyc1Jl",
-            "c3BvbnNlEkEKClVwZGF0ZVVzZXISGy5kYXRhdGllci5VcGRhdGVVc2VyUmVx",
-            "dWVzdBoWLmRhdGF0aWVyLlVzZXJSZXNwb25zZRJHCgpEZWxldGVVc2VyEhsu",
-            "ZGF0YXRpZXIuRGVsZXRlVXNlclJlcXVlc3QaHC5kYXRhdGllci5EZWxldGVV",
-            "c2VyUmVzcG9uc2USQQoKQ3JlYXRlU2FsZRIbLmRhdGF0aWVyLkNyZWF0ZVNh",
-            "bGVSZXF1ZXN0GhYuZGF0YXRpZXIuU2FsZVJlc3BvbnNlEjsKB0dldFNhbGUS",
-            "GC5kYXRhdGllci5HZXRTYWxlUmVxdWVzdBoWLmRhdGF0aWVyLlNhbGVSZXNw",
-            "b25zZRJBCghHZXRTYWxlcxIZLmRhdGF0aWVyLkdldFNhbGVzUmVxdWVzdBoa",
-            "LmRhdGF0aWVyLkdldFNhbGVzUmVzcG9uc2USQQoKVXBkYXRlU2FsZRIbLmRh",
-            "dGF0aWVyLlVwZGF0ZVNhbGVSZXF1ZXN0GhYuZGF0YXRpZXIuU2FsZVJlc3Bv",
-            "bnNlEkcKCkRlbGV0ZVNhbGUSGy5kYXRhdGllci5EZWxldGVTYWxlUmVxdWVz",
-            "dBocLmRhdGF0aWVyLkRlbGV0ZVNhbGVSZXNwb25zZRJDChBBdXRoZW50aWNh",
+            "JQoSRGVsZXRlU2FsZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiIAoOR2V0",
+            "Um9sZVJlcXVlc3QSDgoGcm9sZUlkGAEgASgFIiMKD0dldFJvbGVSZXNwb25z",
+            "ZRIQCghyb2xlTmFtZRgBIAEoCSIyCgxMb2dpblJlcXVlc3QSEAoIdXNlcm5h",
+            "bWUYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiPQoNTG9naW5SZXNwb25zZRIK",
+            "CgJpZBgBIAEoBRIQCgh1c2VybmFtZRgCIAEoCRIOCgZyb2xlSWQYAyABKAUy",
+            "ggwKD0RhdGFUaWVyU2VydmljZRI+CglDcmVhdGVCaWQSGi5kYXRhdGllci5D",
+            "cmVhdGVCaWRSZXF1ZXN0GhUuZGF0YXRpZXIuQmlkUmVzcG9uc2USOAoGR2V0",
+            "QmlkEhcuZGF0YXRpZXIuR2V0QmlkUmVxdWVzdBoVLmRhdGF0aWVyLkJpZFJl",
+            "c3BvbnNlEj4KB0dldEJpZHMSGC5kYXRhdGllci5HZXRCaWRzUmVxdWVzdBoZ",
+            "LmRhdGF0aWVyLkdldEJpZHNSZXNwb25zZRI+CglVcGRhdGVCaWQSGi5kYXRh",
+            "dGllci5VcGRhdGVCaWRSZXF1ZXN0GhUuZGF0YXRpZXIuQmlkUmVzcG9uc2US",
+            "RAoJRGVsZXRlQmlkEhouZGF0YXRpZXIuRGVsZXRlQmlkUmVxdWVzdBobLmRh",
+            "dGF0aWVyLkRlbGV0ZUJpZFJlc3BvbnNlEk0KDkNyZWF0ZVByb3BlcnR5Eh8u",
+            "ZGF0YXRpZXIuQ3JlYXRlUHJvcGVydHlSZXF1ZXN0GhouZGF0YXRpZXIuUHJv",
+            "cGVydHlSZXNwb25zZRJHCgtHZXRQcm9wZXJ0eRIcLmRhdGF0aWVyLkdldFBy",
+            "b3BlcnR5UmVxdWVzdBoaLmRhdGF0aWVyLlByb3BlcnR5UmVzcG9uc2USUAoN",
+            "R2V0UHJvcGVydGllcxIeLmRhdGF0aWVyLkdldFByb3BlcnRpZXNSZXF1ZXN0",
+            "Gh8uZGF0YXRpZXIuR2V0UHJvcGVydGllc1Jlc3BvbnNlEk0KDlVwZGF0ZVBy",
+            "b3BlcnR5Eh8uZGF0YXRpZXIuVXBkYXRlUHJvcGVydHlSZXF1ZXN0GhouZGF0",
+            "YXRpZXIuUHJvcGVydHlSZXNwb25zZRJTCg5EZWxldGVQcm9wZXJ0eRIfLmRh",
+            "dGF0aWVyLkRlbGV0ZVByb3BlcnR5UmVxdWVzdBogLmRhdGF0aWVyLkRlbGV0",
+            "ZVByb3BlcnR5UmVzcG9uc2USQQoKQ3JlYXRlVXNlchIbLmRhdGF0aWVyLkNy",
+            "ZWF0ZVVzZXJSZXF1ZXN0GhYuZGF0YXRpZXIuVXNlclJlc3BvbnNlEjsKB0dl",
+            "dFVzZXISGC5kYXRhdGllci5HZXRVc2VyUmVxdWVzdBoWLmRhdGF0aWVyLlVz",
+            "ZXJSZXNwb25zZRJBCghHZXRVc2VycxIZLmRhdGF0aWVyLkdldFVzZXJzUmVx",
+            "dWVzdBoaLmRhdGF0aWVyLkdldFVzZXJzUmVzcG9uc2USQQoKVXBkYXRlVXNl",
+            "chIbLmRhdGF0aWVyLlVwZGF0ZVVzZXJSZXF1ZXN0GhYuZGF0YXRpZXIuVXNl",
+            "clJlc3BvbnNlEkcKCkRlbGV0ZVVzZXISGy5kYXRhdGllci5EZWxldGVVc2Vy",
+            "UmVxdWVzdBocLmRhdGF0aWVyLkRlbGV0ZVVzZXJSZXNwb25zZRJBCgpDcmVh",
+            "dGVTYWxlEhsuZGF0YXRpZXIuQ3JlYXRlU2FsZVJlcXVlc3QaFi5kYXRhdGll",
+            "ci5TYWxlUmVzcG9uc2USOwoHR2V0U2FsZRIYLmRhdGF0aWVyLkdldFNhbGVS",
+            "ZXF1ZXN0GhYuZGF0YXRpZXIuU2FsZVJlc3BvbnNlEkEKCEdldFNhbGVzEhku",
+            "ZGF0YXRpZXIuR2V0U2FsZXNSZXF1ZXN0GhouZGF0YXRpZXIuR2V0U2FsZXNS",
+            "ZXNwb25zZRJBCgpVcGRhdGVTYWxlEhsuZGF0YXRpZXIuVXBkYXRlU2FsZVJl",
+            "cXVlc3QaFi5kYXRhdGllci5TYWxlUmVzcG9uc2USRwoKRGVsZXRlU2FsZRIb",
+            "LmRhdGF0aWVyLkRlbGV0ZVNhbGVSZXF1ZXN0GhwuZGF0YXRpZXIuRGVsZXRl",
+            "U2FsZVJlc3BvbnNlEj4KB0dldFJvbGUSGC5kYXRhdGllci5HZXRSb2xlUmVx",
+            "dWVzdBoZLmRhdGF0aWVyLkdldFJvbGVSZXNwb25zZRJDChBBdXRoZW50aWNh",
             "dGVVc2VyEhYuZGF0YXRpZXIuTG9naW5SZXF1ZXN0GhcuZGF0YXRpZXIuTG9n",
             "aW5SZXNwb25zZUIbqgIYTWFpblNlcnZlci5XZWJBUEkuUHJvdG9zYgZwcm90",
             "bzM="));
@@ -163,6 +166,8 @@ namespace MainServer.WebAPI.Protos {
             new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.SaleResponse), global::MainServer.WebAPI.Protos.SaleResponse.Parser, new[]{ "Id", "TimeOfSaleSeconds", "PropertyId", "BidId", "BuyerId", "AgentId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.GetSalesResponse), global::MainServer.WebAPI.Protos.GetSalesResponse.Parser, new[]{ "Sales" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.DeleteSaleResponse), global::MainServer.WebAPI.Protos.DeleteSaleResponse.Parser, new[]{ "Success" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.GetRoleRequest), global::MainServer.WebAPI.Protos.GetRoleRequest.Parser, new[]{ "RoleId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.GetRoleResponse), global::MainServer.WebAPI.Protos.GetRoleResponse.Parser, new[]{ "RoleName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.LoginRequest), global::MainServer.WebAPI.Protos.LoginRequest.Parser, new[]{ "Username", "Password" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::MainServer.WebAPI.Protos.LoginResponse), global::MainServer.WebAPI.Protos.LoginResponse.Parser, new[]{ "Id", "Username", "RoleId" }, null, null, null, null)
           }));
@@ -8992,6 +8997,389 @@ namespace MainServer.WebAPI.Protos {
   }
 
   /// <summary>
+  /// Role messages 
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GetRoleRequest : pb::IMessage<GetRoleRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetRoleRequest> _parser = new pb::MessageParser<GetRoleRequest>(() => new GetRoleRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetRoleRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[32]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetRoleRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetRoleRequest(GetRoleRequest other) : this() {
+      roleId_ = other.roleId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetRoleRequest Clone() {
+      return new GetRoleRequest(this);
+    }
+
+    /// <summary>Field number for the "roleId" field.</summary>
+    public const int RoleIdFieldNumber = 1;
+    private int roleId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RoleId {
+      get { return roleId_; }
+      set {
+        roleId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetRoleRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetRoleRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (RoleId != other.RoleId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (RoleId != 0) hash ^= RoleId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (RoleId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(RoleId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RoleId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(RoleId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (RoleId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoleId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetRoleRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.RoleId != 0) {
+        RoleId = other.RoleId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            RoleId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            RoleId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GetRoleResponse : pb::IMessage<GetRoleResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GetRoleResponse> _parser = new pb::MessageParser<GetRoleResponse>(() => new GetRoleResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GetRoleResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[33]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetRoleResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetRoleResponse(GetRoleResponse other) : this() {
+      roleName_ = other.roleName_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GetRoleResponse Clone() {
+      return new GetRoleResponse(this);
+    }
+
+    /// <summary>Field number for the "roleName" field.</summary>
+    public const int RoleNameFieldNumber = 1;
+    private string roleName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RoleName {
+      get { return roleName_; }
+      set {
+        roleName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GetRoleResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GetRoleResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (RoleName != other.RoleName) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (RoleName.Length != 0) hash ^= RoleName.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (RoleName.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(RoleName);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RoleName.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(RoleName);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (RoleName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RoleName);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GetRoleResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.RoleName.Length != 0) {
+        RoleName = other.RoleName;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            RoleName = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            RoleName = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
   /// Login messages
   /// </summary>
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
@@ -9009,7 +9397,7 @@ namespace MainServer.WebAPI.Protos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[32]; }
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[34]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9236,7 +9624,7 @@ namespace MainServer.WebAPI.Protos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[33]; }
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.MessageTypes[35]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

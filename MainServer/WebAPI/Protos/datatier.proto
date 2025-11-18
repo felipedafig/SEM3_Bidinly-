@@ -33,6 +33,9 @@ service DataTierService {
   rpc UpdateSale (UpdateSaleRequest) returns (SaleResponse);
   rpc DeleteSale (DeleteSaleRequest) returns (DeleteSaleResponse);
 
+  // Role operations
+  rpc GetRole (GetRoleRequest) returns (GetRoleResponse);
+
   // Login operations
   rpc AuthenticateUser (LoginRequest) returns (LoginResponse);
 }
@@ -229,6 +232,17 @@ message GetSalesResponse {
 
 message DeleteSaleResponse {
   bool success = 1;
+}
+
+// Role messages 
+message GetRoleRequest{
+
+  int32 roleId = 1;
+}
+
+message GetRoleResponse{
+
+  string roleName = 1;
 }
 
 // Login messages

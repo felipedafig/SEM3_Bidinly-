@@ -83,6 +83,13 @@ a.nav-link {
         font-weight: 700;
     }
 
+.nav-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
 .btn-contact {
     background-color: #4FC3F7;
     color: white;
@@ -187,106 +194,9 @@ a.nav-link {
     }
 }
 
+/* Ensure hover state works - highest specificity */
 .navbar-header .navbar-container .navbar-nav a:hover,
 .navbar-header .navbar-container .navbar-nav .nav-link:hover {
     color: black !important;
-}
-
-.user-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.user-dropdown-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: transparent;
-    border: none;
-    color: white !important;
-    font-size: 1rem;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    transition: color 0.2s;
-    white-space: nowrap;
-}
-
-.user-dropdown-toggle:hover {
-    color: black !important;
-}
-
-.user-text {
-    color: inherit;
-}
-
-.dropdown-arrow {
-    color: currentColor;
-    transition: transform 0.2s;
-    margin-left: 0.25rem;
-}
-
-.dropdown-arrow-open {
-    transform: rotate(180deg);
-}
-
-.user-dropdown-toggle:hover .dropdown-arrow {
-    color: currentColor;
-}
-
-.user-dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 0.5rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 150px;
-    z-index: 1001;
-    overflow: hidden;
-}
-
-.dropdown-item {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 1rem;
-    text-align: left;
-    background: white;
-    border: none;
-    color: #333;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.dropdown-item:hover {
-    background-color: #f5f5f5;
-}
-
-/* Mobile responsive styles for dropdown */
-@media (max-width: 768px) {
-    .user-dropdown-toggle {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
-    }
-
-    .user-text {
-        max-width: 120px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .user-dropdown-menu {
-        min-width: 120px;
-    }
-
-    .dropdown-item {
-        font-size: 0.9rem;
-        padding: 0.6rem 0.8rem;
-    }
 }
 

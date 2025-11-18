@@ -185,7 +185,14 @@ namespace MainServer.WebAPI.Services
         }
 
         // Role operations
+        public async Task<GetRoleResponse> GetRoleAsync(int roleId)
+        {
+            GetRoleRequest request = new GetRoleRequest { RoleId = roleId };
+            GetRoleResponse response = await client.GetRoleAsync(request);
+            return response;
+        }
 
+        // Login operations
 
         public async Task<LoginResponse> AuthenticateUserAsync(string username, string password)
         {

@@ -6,7 +6,6 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject AuthenticationStateProvider AuthProvider
 @inject NavigationManager Navigation
-@* @rendermode InteractiveServer *@
 
 <PageTitle>Login - Bidinly</PageTitle>
 
@@ -81,7 +80,6 @@
         {
             isLoading = true;
             errorMessage = string.Empty;
-            @* StateHasChanged(); *@
 
             if (AuthProvider is AuthProvider authProvider)
             {
@@ -93,8 +91,8 @@
                 return;
             }
 
-            // Navigate to buyer-dashboard for logged-in users (will be updated to check role)
-            Navigation.NavigateTo("/buyer-dashboard");
+            // Navigate to dashboard for logged-in users (will be updated to check role)
+            Navigation.NavigateTo("/dashboard");
         }
         catch (Exception ex)
         {
@@ -103,7 +101,6 @@
         finally
         {
             isLoading = false;
-            @* StateHasChanged(); *@
         }
     }
 

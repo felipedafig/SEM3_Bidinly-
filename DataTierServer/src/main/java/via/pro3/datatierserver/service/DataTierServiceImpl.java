@@ -7,6 +7,7 @@ import via.pro3.datatierserver.grpc.DataTierProto;
 import via.pro3.datatierserver.grpc.DataTierServiceGrpc;
 import via.pro3.datatierserver.model.Bid;
 import via.pro3.datatierserver.model.Property;
+import via.pro3.datatierserver.model.Role;
 import via.pro3.datatierserver.model.Sale;
 import via.pro3.datatierserver.model.User;
 import via.pro3.datatierserver.repositories.IBidRepository;
@@ -358,6 +359,33 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
             responseObserver.onError(io.grpc.Status.INTERNAL
                     .withDescription("Error authenticating user: " + e.getMessage())
                     .asRuntimeException());
+        }
+    }
+
+    @Override
+    public void getRole(DataTierProto.GetRoleRequest request, StreamObserver<DataTierProto.GetRoleResponse> responseObserver) {
+        try {
+            Optional<Role> roleOpt = roleRepository.getSingle(request.getRoleId());
+            
+            if (roleOpt.isEmpty()) {
+                responseObserver.onError(io.grpc.Status.NOT_FOUND
+                    .withDescription("Role with id " + request.getRoleId() + " not found")
+                    .asRuntimeException());
+                return;
+            }
+            
+            Role role = roleOpt.get();
+            DataTierProto.GetRoleResponse response = DataTierProto.GetRoleResponse.newBuilder()
+                .setRoleName(role.getName() != null ? role.getName() : "")
+                .build();
+            
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+            
+        } catch (Exception e) {
+            responseObserver.onError(io.grpc.Status.INTERNAL
+                .withDescription("Error retrieving role: " + e.getMessage())
+                .asRuntimeException());
         }
     }
 }
