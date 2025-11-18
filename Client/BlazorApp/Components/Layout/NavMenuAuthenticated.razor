@@ -10,17 +10,42 @@
             <span class="brand-text">Bidinly</span>
         </div>
         <nav class="navbar-nav">
-            <NavLink class="nav-link" href="/dashboard" Match="NavLinkMatch.All">Home</NavLink>
+            <NavLink class="nav-link" href="/buyer-dashboard" Match="NavLinkMatch.All">Home</NavLink>
             <NavLink class="nav-link" href="bids">Bids</NavLink>
             <NavLink class="nav-link" href="sales">Sales</NavLink>
-            <button class="nav-link nav-button" @onclick="HandleLogout">Logout</button>
+            <AuthorizeView>
+                <Authorized>
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-toggle" @onclick="ToggleDropdown">
+                            <span class="user-text">Logged in as @context.User.Identity?.Name</span>
+                            <svg class="dropdown-arrow @(isDropdownOpen ? "dropdown-arrow-open" : "")" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L1 4H11L6 9Z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        @if (isDropdownOpen)
+                        {
+                            <div class="user-dropdown-menu">
+                                <button class="dropdown-item" @onclick="HandleLogout">Logout</button>
+                            </div>
+                        }
+                    </div>
+                </Authorized>
+            </AuthorizeView>
         </nav>
     </div>
 </header>
 
 @code {
+    private bool isDropdownOpen = false;
+
+    private void ToggleDropdown()
+    {
+        isDropdownOpen = !isDropdownOpen;
+    }
+
     private async Task HandleLogout()
     {
+        isDropdownOpen = false;
         var authProvider = (AuthProvider)AuthProvider;
         await authProvider.Logout();
         Navigation.NavigateTo("/", forceLoad: false);

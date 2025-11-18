@@ -1,4 +1,4 @@
-@page "/dashboard"
+@page "/buyer-dashboard"
 @layout Layout.MainLayoutAuthenticated
 @using shared.DTOs.Properties
 @using System.Net.Http.Json
@@ -10,12 +10,10 @@
 @using System.Linq
 
 @attribute [Authorize]
-
 @inject HttpClient Http
 @inject NavigationManager Navigation
 @inject IJSRuntime JSRuntime
 @inject AuthenticationStateProvider AuthProvider
-@* @rendermode InteractiveServer *@
 
 <PageTitle>Bidinly</PageTitle>
 
@@ -181,11 +179,11 @@
         {
             try
             {
-                await JSRuntime.InvokeVoidAsync("console.log", "[Dashboard] OnAfterRenderAsync - first render");
+                await JSRuntime.InvokeVoidAsync("console.log", "[BuyerDashboard] OnAfterRenderAsync - first render");
                 
                 if (State == null)
                 {
-                    await JSRuntime.InvokeVoidAsync("console.error", "[Dashboard] State cascading parameter is NULL!");
+                    await JSRuntime.InvokeVoidAsync("console.error", "[BuyerDashboard] State cascading parameter is NULL!");
                     return;
                 }
                 
@@ -195,21 +193,21 @@
                 var name = user.Identity?.Name ?? "null";
                 var authType = user.Identity?.AuthenticationType ?? "null";
                 
-                await JSRuntime.InvokeVoidAsync("console.log", $"[Dashboard] Auth State - IsAuthenticated: {isAuth}, Name: {name}, AuthType: {authType}");
-                await JSRuntime.InvokeVoidAsync("console.log", $"[Dashboard] Claims count: {user.Claims.Count()}");
+                await JSRuntime.InvokeVoidAsync("console.log", $"[BuyerDashboard] Auth State - IsAuthenticated: {isAuth}, Name: {name}, AuthType: {authType}");
+                await JSRuntime.InvokeVoidAsync("console.log", $"[BuyerDashboard] Claims count: {user.Claims.Count()}");
                 
                 if (user.Identity == null || !user.Identity.IsAuthenticated)
                 {
-                    await JSRuntime.InvokeVoidAsync("console.error", "[Dashboard] User is NOT authenticated - this should not happen if [Authorize] worked!");
+                    await JSRuntime.InvokeVoidAsync("console.error", "[BuyerDashboard] User is NOT authenticated - this should not happen if [Authorize] worked!");
                 }
                 else
                 {
-                    await JSRuntime.InvokeVoidAsync("console.log", $"[Dashboard] User IS authenticated - Name: {userName}, ID: {userId}");
+                    await JSRuntime.InvokeVoidAsync("console.log", $"[BuyerDashboard] User IS authenticated - Name: {userName}, ID: {userId}");
                 }
             }
             catch (Exception ex)
             {
-                await JSRuntime.InvokeVoidAsync("console.error", $"[Dashboard] Error in OnAfterRenderAsync: {ex.Message}");
+                await JSRuntime.InvokeVoidAsync("console.error", $"[BuyerDashboard] Error in OnAfterRenderAsync: {ex.Message}");
             }
         }
     }

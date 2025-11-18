@@ -1,0 +1,44 @@
+    .signup-section {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .signup-container {
+        background: white;
+        padding: 3rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .signup-container h1 {
+        color: #333;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    .signup-message {
+        color: #666;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        color: #006bb7;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s;
+    }
+
+    .back-link:hover {
+        color: #005a9e;
+    }
