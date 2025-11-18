@@ -5,13 +5,25 @@
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.JSInterop
+
+@* @attribute [Authorize] *@
 @inject HttpClient Http
 @inject NavigationManager Navigation
 @inject IJSRuntime JSRuntime
 @inject AuthenticationStateProvider AuthProvider
-@rendermode InteractiveServer
+@* @rendermode InteractiveServer *@
 
 <PageTitle>Bidinly</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+    <h1>Welcome back to Bidinly!</h1>
+    </Authorized>
+    <NotAuthorized>
+        <h1 class="home-welcome-title">Welcome to Bidinly</h1>
+        <p class="home-welcome-subtitle">Your gateway to bidding on your dream property</p>
+    </NotAuthorized>
+</AuthorizeView>
 
 <div class="home-background">
     <img src="/assets/images/Home-Background.png" alt="Modern Property" />
@@ -129,13 +141,6 @@
     
     protected override async Task OnInitializedAsync()
     {
-        await CheckAuthenticationState();
-        
-        if (isLoggedIn)
-        {
-            Navigation.NavigateTo("/dashboard", forceLoad: false);
-            return;
-        }
         
         await LoadProperties();
     }

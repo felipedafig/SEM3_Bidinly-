@@ -13,12 +13,10 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri("http://localhost:5141/")
 });
 
+builder.Services.AddAuthentication();
+
 builder.Services.AddScoped<AuthenticationStateProvider, AuthProvider>();
 
-// Minimal authentication services required for [Authorize] attribute
-builder.Services.AddAuthentication("AlwaysAllow")
-    .AddScheme<Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions, AlwaysAllowAuthenticationHandler>("AlwaysAllow", options => { });
-builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -32,6 +30,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForErrors: true);
 
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 app.UseStaticFiles();
 

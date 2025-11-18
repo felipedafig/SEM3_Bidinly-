@@ -9,6 +9,8 @@ namespace BlazorApp.Auth;
 
 public class AuthProvider : AuthenticationStateProvider
 {
+
+    private string userAsJson = string.Empty;
     private readonly HttpClient httpClient;
     private readonly IJSRuntime jsRuntime;
 
@@ -30,6 +32,7 @@ public class AuthProvider : AuthenticationStateProvider
             "auth/login",
             new LoginRequestDTO { Username = userName, Password = password });
         string content = await response.Content.ReadAsStringAsync();
+        userAsJson = content;
         
         if (!response.IsSuccessStatusCode)
         {
@@ -100,7 +103,6 @@ public class AuthProvider : AuthenticationStateProvider
         }
         catch { }
 
-        string userAsJson = "";
         try
         {
             userAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
@@ -154,6 +156,7 @@ public class AuthProvider : AuthenticationStateProvider
         catch { }
 
         return new AuthenticationState(claimsPrincipal);
+        
     }
 
     public async Task Logout()

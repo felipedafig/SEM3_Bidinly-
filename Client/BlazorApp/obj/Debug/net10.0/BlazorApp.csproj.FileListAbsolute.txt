@@ -7,6 +7,14 @@ C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\BlazorApp.de
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\BlazorApp.runtimeconfig.json
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\BlazorApp.dll
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\BlazorApp.pdb
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\DTOs.dll
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\bin\Debug\net10.0\DTOs.pdb
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\BlazorApp.csproj.AssemblyReference.cache

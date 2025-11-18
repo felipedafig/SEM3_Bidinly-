@@ -6,7 +6,7 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject AuthenticationStateProvider AuthProvider
 @inject NavigationManager Navigation
-@rendermode InteractiveServer
+@* @rendermode InteractiveServer *@
 
 <PageTitle>Login - Bidinly</PageTitle>
 
@@ -49,7 +49,7 @@
             
             <div class="login-form-actions">
                 <button class="login-button-cancel" @onclick="HandleCancel">Cancel</button>
-                <button class="login-button-confirm" @onclick="HandleLogin" disabled="@(isLoading || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))">
+                <button class="login-button-confirm" @onclick="async () => await HandleLogin()" disabled="@(isLoading || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))">
                     @if (isLoading)
                     {
                         <span>Logging in...</span>
@@ -207,7 +207,7 @@
         {
             isLoading = true;
             errorMessage = string.Empty;
-            StateHasChanged();
+            @* StateHasChanged(); *@
 
             if (AuthProvider is AuthProvider authProvider)
             {
@@ -220,7 +220,7 @@
             }
 
             // Navigate to dashboard for logged-in users
-            Navigation.NavigateTo("/dashboard", forceLoad: false);
+            Navigation.NavigateTo("/dashboard");
         }
         catch (Exception ex)
         {
@@ -229,7 +229,7 @@
         finally
         {
             isLoading = false;
-            StateHasChanged();
+            @* StateHasChanged(); *@
         }
     }
 
