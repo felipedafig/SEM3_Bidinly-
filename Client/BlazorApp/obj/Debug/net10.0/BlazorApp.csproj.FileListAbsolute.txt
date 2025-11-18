@@ -98,7 +98,6 @@ C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\ref\BlazorAp
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\BuyerDashboard.razor.rz.scp.css
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\Login.razor.rz.scp.css
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Pages\SignUp.razor.rz.scp.css
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Layout\MainLayoutAuthenticated.razor.rz.scp.css
 C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\scopedcss\Components\Layout\NavMenuAuthenticated.razor.rz.scp.css
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\8v4adbxxmx-{0}-ejj4pi2i34-ejj4pi2i34.gz
-C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\rrzzv9ip5o-{0}-ejj4pi2i34-ejj4pi2i34.gz
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\8v4adbxxmx-{0}-e1dxwbjt92-e1dxwbjt92.gz
+C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\obj\Debug\net10.0\compressed\rrzzv9ip5o-{0}-e1dxwbjt92-e1dxwbjt92.gz
