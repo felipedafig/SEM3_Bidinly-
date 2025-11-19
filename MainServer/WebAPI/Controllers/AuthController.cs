@@ -29,11 +29,25 @@ namespace MainServer.WebAPI.Controllers
             {
                 var response = await dataTierClient.AuthenticateUserAsync(request.Username, request.Password);
 
+                string? roleName = null;
+                if (response.RoleId > 0)
+                {
+                    try
+                    {
+                        var roleResponse = await dataTierClient.GetRoleAsync(response.RoleId);
+                        roleName = roleResponse.RoleName;
+                    }
+                    catch
+                    {
+                        // If role lookup fails, roleName remains null
+                    }
+                }
+
                 var responseDto = new UserDto
                 {
                     Id = response.Id,
                     Username = response.Username,
-                    RoleName = null // Role name lookup can be added later if needed (roleId: {response.RoleId})
+                    RoleName = roleName
                 };
 
                 return Ok(responseDto);

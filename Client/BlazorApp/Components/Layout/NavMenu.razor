@@ -1,7 +1,9 @@
 ﻿@using BlazorApp.Auth
 @using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 @inject AuthenticationStateProvider AuthProvider
 @inject NavigationManager Navigation
+@implements IDisposable
 
 <header class="navbar-header">
     <div class="navbar-container">
@@ -11,16 +13,29 @@
         </div>
         <nav class="navbar-nav">
             <AuthorizeView>
-                <Authorized>
+                <Authorized Context="authContext">
                     <NavLink class="nav-link" href="dashboard" Match="NavLinkMatch.All">Home</NavLink>
                     <NavLink class="nav-link" href="bids">Bids</NavLink>
                     <NavLink class="nav-link" href="sales">Sales</NavLink>
-                    <button class="nav-link nav-button" @onclick="HandleLogout">Logout</button>
+                    <div class="user-dropdown @(isDropdownOpen ? "show" : "")">
+                        <button class="user-dropdown-toggle nav-link nav-button" @onclick="ToggleDropdown" @onclick:stopPropagation="true">
+                            Hi @authContext.User.Identity?.Name
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        @if (isDropdownOpen)
+                        {
+                            <div class="dropdown-backdrop" @onclick="CloseDropdown"></div>
+                        }
+                        <div class="user-dropdown-menu @(isDropdownOpen ? "show" : "")" @onclick:stopPropagation="true">
+                            <div class="dropdown-header">@authContext.User.Identity?.Name</div>
+                            <button class="dropdown-item" @onclick="HandleLogout">Logout</button>
+                        </div>
+                    </div>
                 </Authorized>
                 <NotAuthorized>
                     <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Home</NavLink>
                     <NavLink class="nav-link" href="login">Login</NavLink>
-                    <button class="nav-link nav-button" @onclick="() => { }">Sign Up</button>
+                    <NavLink class="nav-link" href="signup">Sign Up</NavLink>
                 </NotAuthorized>
             </AuthorizeView>
         </nav>
@@ -28,11 +43,42 @@
 </header>
 
 @code {
+    private bool isDropdownOpen = false;
+
+    protected override void OnInitialized()
+    {
+        Navigation.LocationChanged += OnLocationChanged;
+    }
+
+    private void ToggleDropdown()
+    {
+        isDropdownOpen = !isDropdownOpen;
+        StateHasChanged();
+    }
+
+    private void CloseDropdown()
+    {
+        isDropdownOpen = false;
+        StateHasChanged();
+    }
+
     private async Task HandleLogout()
     {
+        isDropdownOpen = false;
         var authProvider = (AuthProvider)AuthProvider;
         await authProvider.Logout();
         Navigation.NavigateTo("/", forceLoad: false);
+    }
+
+    private void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        isDropdownOpen = false;
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
     }
 }
 

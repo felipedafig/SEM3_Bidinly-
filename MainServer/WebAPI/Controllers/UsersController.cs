@@ -16,6 +16,50 @@ namespace MainServer.WebAPI.Controllers
             this.dataTierClient = dataTierClient;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserDto>> GetUser(int id)
+        {
+            try
+            {
+                var userResponse = await dataTierClient.GetUserAsync(id);
+
+                string? roleName = null;
+                if (userResponse.RoleId > 0)
+                {
+                    try
+                    {
+                        var roleResponse = await dataTierClient.GetRoleAsync(userResponse.RoleId);
+                        roleName = roleResponse.RoleName;
+                    }
+                    catch
+                    {
+                        // If role lookup fails, roleName remains null
+                    }
+                }
+
+                var userDto = new UserDto
+                {
+                    Id = userResponse.Id,
+                    Username = userResponse.Username,
+                    RoleName = roleName
+                };
+
+                return Ok(userDto);
+            }
+            catch (Exception ex) when (ex.InnerException is Grpc.Core.RpcException rpcEx && rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
+            {
+                return NotFound(new { message = $"User with id {id} not found" });
+            }
+            catch (Exception ex) when (ex.Message.Contains("NOT_FOUND") || ex.Message.Contains("not found"))
+            {
+                return NotFound(new { message = $"User with id {id} not found" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser([FromBody] CreateUserDto createUserDto)
         {
@@ -37,11 +81,25 @@ namespace MainServer.WebAPI.Controllers
                     createUserDto.RoleId
                 );
 
+                string? roleName = null;
+                if (userResponse.RoleId > 0)
+                {
+                    try
+                    {
+                        var roleResponse = await dataTierClient.GetRoleAsync(userResponse.RoleId);
+                        roleName = roleResponse.RoleName;
+                    }
+                    catch
+                    {
+                        // If role lookup fails, roleName remains null
+                    }
+                }
+
                 UserDto userDto = new UserDto
                 {
                     Id = userResponse.Id,
                     Username = userResponse.Username,
-                    RoleName = null // Role name lookup can be added later if needed
+                    RoleName = roleName
                 };
 
                 return Created($"/users/{userDto.Id}", userDto);

@@ -1,16 +1,8 @@
 ﻿@inherits LayoutComponentBase
-@using Microsoft.AspNetCore.Components.Authorization
 @inject NavigationManager Navigation
 
 <div class="page">
-    <AuthorizeView>
-        <Authorized>
-            <NavMenuAuthenticated />
-        </Authorized>
-        <NotAuthorized>
-            <NavMenu />
-        </NotAuthorized>
-    </AuthorizeView>
+    <NavMenu />
 
     <main @key="@Navigation.ToBaseRelativePath(Navigation.Uri)">
         @Body

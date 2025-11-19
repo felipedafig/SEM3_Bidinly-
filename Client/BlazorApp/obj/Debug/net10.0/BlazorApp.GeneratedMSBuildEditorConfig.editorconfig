@@ -54,10 +54,6 @@ build_metadata.AdditionalFiles.CssScope = b-qgsvw684bo
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-g8o6n169oq
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/NavMenuAuthenticated.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudUF1dGhlbnRpY2F0ZWQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-w1gvshf51o
-
 [C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/ReconnectModal.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcUmVjb25uZWN0TW9kYWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-pphnjiao61

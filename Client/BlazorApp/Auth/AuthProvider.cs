@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using Shared.DTOs.Auth;
 using shared.DTOs.Users;
+using Shared.DTOs.Roles;
 
 namespace BlazorApp.Auth;
 
@@ -18,6 +19,46 @@ public class AuthProvider : AuthenticationStateProvider
     {
         this.httpClient = httpClient;
         this.jsRuntime = jsRuntime;
+    }
+
+    private async Task<ClaimsPrincipal> CreateClaimsPrincipalAsync(UserDto userDto) //helper
+    {
+        string? roleName = userDto.RoleName;
+        
+        // If RoleName is missing, fetch it by calling users/{id} endpoint
+        // This endpoint internally calls the roles controller to get the role name
+        if (string.IsNullOrEmpty(roleName) && userDto.Id > 0)
+        {
+            try
+            {
+                var response = await httpClient.GetAsync($"users/{userDto.Id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var updatedUserDto = JsonSerializer.Deserialize<UserDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    if (updatedUserDto != null && !string.IsNullOrEmpty(updatedUserDto.RoleName))
+                    {
+                        roleName = updatedUserDto.RoleName;
+                        // Update the userDto with the fetched role name
+                        userDto.RoleName = roleName;
+                    }
+                }
+            }
+            catch
+            {
+                // If fetching fails, roleName remains null/empty
+            }
+        }
+
+        List<Claim> claims = new List<Claim>()
+        {
+            new Claim(ClaimTypes.Name, userDto.Username),
+            new Claim("Id", userDto.Id.ToString()),
+            new Claim("RoleName", roleName ?? "")
+        };
+
+        ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth");
+        return new ClaimsPrincipal(identity);
     }
 
     public async Task Login(string userName, string password)
@@ -54,12 +95,11 @@ public class AuthProvider : AuthenticationStateProvider
 
         try
         {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] User deserialized - Id: {userDto.Id}, Username: {userDto.Username}");
+            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] User deserialized - Id: {userDto.Id}, Username: {userDto.Username}, RoleName: {userDto.RoleName ?? "null"}");
         }
         catch { }
 
-        string serialisedData = JsonSerializer.Serialize(userDto);
-        await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
+        await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", content);
 
         try
         {
@@ -67,22 +107,11 @@ public class AuthProvider : AuthenticationStateProvider
         }
         catch { }
 
-        List<Claim> claims = new List<Claim>()
-        {
-            new Claim(ClaimTypes.Name, userDto.Username),
-            new Claim("Id", userDto.Id.ToString()),
-            // Add more claims here with your own claim type as a string, e.g.:
-            // new Claim("DateOfBirth", userDto.DateOfBirth.ToString("yyyy-MM-dd"))
-            // new Claim("Role", userDto.Role)
-            // new Claim("Email", userDto.Email)
-        };
-
-        ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth");
-        ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+        ClaimsPrincipal claimsPrincipal = await CreateClaimsPrincipalAsync(userDto);
 
         try
         {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] ClaimsPrincipal created - IsAuthenticated: {claimsPrincipal.Identity?.IsAuthenticated}, Name: {claimsPrincipal.Identity?.Name}");
+            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] ClaimsPrincipal created - IsAuthenticated: {claimsPrincipal.Identity?.IsAuthenticated}, Name: {claimsPrincipal.Identity?.Name}, RoleName: {userDto.RoleName ?? "null"}");
         }
         catch { }
 
@@ -137,21 +166,15 @@ public class AuthProvider : AuthenticationStateProvider
         
         try
         {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] User deserialized from sessionStorage - Id: {userDto.Id}, Username: {userDto.Username}");
+            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] User deserialized from sessionStorage - Id: {userDto.Id}, Username: {userDto.Username}, RoleName: {userDto.RoleName ?? "null"}");
         }
         catch { }
 
-        List<Claim> claims = new List<Claim>()
-        {
-            new Claim(ClaimTypes.Name, userDto.Username),
-            new Claim("Id", userDto.Id.ToString()),
-        };
-        ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth");
-        ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+        ClaimsPrincipal claimsPrincipal = await CreateClaimsPrincipalAsync(userDto);
 
         try
         {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] Returning authenticated state - IsAuthenticated: {claimsPrincipal.Identity?.IsAuthenticated}, Name: {claimsPrincipal.Identity?.Name}");
+            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] Returning authenticated state - IsAuthenticated: {claimsPrincipal.Identity?.IsAuthenticated}, Name: {claimsPrincipal.Identity?.Name}, RoleName: {userDto.RoleName ?? "null"}");
         }
         catch { }
 
