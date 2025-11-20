@@ -248,7 +248,7 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
                     .asRuntimeException());
                 return;
             }
-            
+
             User newUser = new User();
             newUser.setUsername(request.getUsername());
             newUser.setPassword(request.getPassword());
