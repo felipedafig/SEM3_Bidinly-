@@ -2,41 +2,47 @@
 @namespace BlazorApp.Components.Pages
 @rendermode InteractiveServer
 @using System.ComponentModel.DataAnnotations
+@using System.Net.Http.Json
 
 @inject NavigationManager Navigation
 @inject HttpClient Http
 
 <PageTitle>Sign Up - Bidinly</PageTitle>
 
-<div class="signup-page">
-    <div class="signup-card">
-        <div class="signup-header">
+<div class="login-page">
+    <div class="login-container">
+        <div class="login-header">
             <h1>Sign Up</h1>
             <p>Create your credentials to get started</p>
         </div>
 
-        <EditForm Model="@signUpModel" OnValidSubmit="HandleSignUp" class="signup-form">
+        <EditForm Model="@signUpModel" OnValidSubmit="HandleSignUp" class="login-form-container">
             <DataAnnotationsValidator />
             <ValidationSummary />
 
-            <div class="form-field">
+            @if (!string.IsNullOrWhiteSpace(errorMessage))
+            {
+                <div class="login-error">@errorMessage</div>
+            }
+
+            <div class="login-form-group">
                 <label for="username">Username</label>
                 <InputText id="username"
-                           class="input-control"
+                           class="login-form-input"
                            placeholder="Enter your username"
                            @bind-Value="signUpModel.Username" />
             </div>
 
-            <div class="form-field">
+            <div class="login-form-group">
                 <label for="password">Password</label>
                 <InputText id="password"
                            type="password"
-                           class="input-control"
+                           class="login-form-input"
                            placeholder="Enter your password"
                            @bind-Value="signUpModel.Password" />
             </div>
 
-            <div class="form-field role-toggle">
+            <div class="login-form-group role-toggle">
                 <label>Account type</label>
                 <div class="role-options">
                     <button type="button"
@@ -69,16 +75,27 @@
 @code {
     private readonly SignUpModel signUpModel = new();
     private bool isSubmitting;
+    private string? errorMessage;
 
     private async Task HandleSignUp()
     {
         isSubmitting = true;
+        errorMessage = null;
         try
         {
+            var response = await Http.PostAsJsonAsync("users", signUpModel);
+            if (response.IsSuccessStatusCode)
+            {
+                Navigation.NavigateTo("/login");
+                return;
+            }
 
-            @* Http.PostAsJsonAsync("api/users", signUpModel); *@
-        
-            Navigation.NavigateTo("/login");
+            var problem = await response.Content.ReadFromJsonAsync<ApiError>();
+            errorMessage = problem?.Message ?? "Unable to create account. Please try again.";
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Unable to create account: {ex.Message}";
         }
         finally
         {
@@ -112,4 +129,10 @@
         [Required]
         public int RoleId { get; set; } = 2;
     }
+
+    private sealed class ApiError
+    {
+        public string? Message { get; set; }
+    }
 }
+

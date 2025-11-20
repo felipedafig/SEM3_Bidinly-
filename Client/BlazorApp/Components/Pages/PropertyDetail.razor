@@ -6,6 +6,7 @@
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Authorization
 
+@attribute [Authorize]
 @inject HttpClient Http
 @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthProvider
@@ -177,7 +178,6 @@ else
     
     private async Task GoBack()
     {
-        // Check if user is authenticated to determine where to navigate
         var authState = await AuthProvider.GetAuthenticationStateAsync();
         var isAuthenticated = authState.User?.Identity?.IsAuthenticated ?? false;
         
