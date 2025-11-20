@@ -17,7 +17,6 @@ public interface ISaleRepository extends JpaRepository<Sale, Integer> {
     // - delete(Sale) for delete by entity
     // - count(), existsById(), etc.
 
-    // Default method that delegates to Spring Data JPA's findAll()
     default List<Sale> getMany() {
         return findAll();
     }

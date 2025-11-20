@@ -17,12 +17,10 @@ public interface IBidRepository extends JpaRepository<Bid, Integer> {
     // - delete(Bid) for delete by entity
     // - count(), existsById(), etc.
     
-    // Default method that delegates to Spring Data JPA's findAll()
     default List<Bid> getMany() {
         return findAll();
     }
     
-    // Default method that delegates to Spring Data JPA's findById()
     default Optional<Bid> getSingle(Integer id) {
         return findById(id);
     }

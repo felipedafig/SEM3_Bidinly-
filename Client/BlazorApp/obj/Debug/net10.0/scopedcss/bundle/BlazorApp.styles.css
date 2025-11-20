@@ -2686,47 +2686,141 @@ a.nav-link[b-g8o6n169oq] {
 }
 
 /* /Components/Pages/SignUp.razor.rz.scp.css */
-    .signup-section[b-j569fatkmf] {
-        width: 100%;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
+.signup-page[b-j569fatkmf] {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: linear-gradient(130deg, #6d72ff 0%, #8f5be8 100%);
+}
 
-    .signup-container[b-j569fatkmf] {
-        background: white;
-        padding: 3rem;
-        border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        max-width: 500px;
-        width: 100%;
-        text-align: center;
-    }
+.signup-card[b-j569fatkmf] {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 30px 70px rgba(77, 91, 255, 0.3);
+    padding: 2.75rem 2.5rem;
+}
 
-    .signup-container h1[b-j569fatkmf] {
-        color: #333;
-        margin-bottom: 1rem;
-        font-size: 2rem;
-    }
+.signup-header[b-j569fatkmf] {
+    text-align: center;
+    margin-bottom: 2rem;
+}
 
-    .signup-message[b-j569fatkmf] {
-        color: #666;
-        margin-bottom: 1rem;
-        font-size: 1.1rem;
-    }
+.signup-header h1[b-j569fatkmf] {
+    font-size: 2.2rem;
+    margin-bottom: 0.35rem;
+    color: #1f1f27;
+}
 
-    .back-link[b-j569fatkmf] {
-        display: inline-block;
-        margin-top: 2rem;
-        color: #006bb7;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.2s;
-    }
+.signup-header p[b-j569fatkmf] {
+    color: #6b6f82;
+    font-size: 1rem;
+}
 
-    .back-link:hover[b-j569fatkmf] {
-        color: #005a9e;
-    }
+.signup-form[b-j569fatkmf] {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-field[b-j569fatkmf] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-field label[b-j569fatkmf] {
+    font-weight: 600;
+    color: #2f3342;
+}
+
+.input-control[b-j569fatkmf] {
+    padding: 0.85rem 1rem;
+    border: 1px solid #d9dde8;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #2f3342;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-control:focus[b-j569fatkmf] {
+    outline: none;
+    border-color: #6d72ff;
+    box-shadow: 0 0 0 3px rgba(109, 114, 255, 0.2);
+}
+
+.role-switch[b-j569fatkmf] {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.role-option[b-j569fatkmf] {
+    flex: 1;
+    padding: 0.85rem 0;
+    border-radius: 14px;
+    border: 1px solid #d9dde8;
+    background: #f7f8fb;
+    font-weight: 600;
+    color: #4a4f63;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.role-option:hover[b-j569fatkmf] {
+    border-color: #6d72ff;
+}
+
+.role-option.active[b-j569fatkmf] {
+    background: linear-gradient(130deg, #6d72ff, #8f5be8);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 15px 25px rgba(111, 96, 255, 0.35);
+}
+
+.form-actions[b-j569fatkmf] {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.btn-cancel[b-j569fatkmf],
+.btn-primary[b-j569fatkmf] {
+    flex: 1;
+    border-radius: 14px;
+    padding: 0.95rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.btn-cancel[b-j569fatkmf] {
+    background: #f4f5f7;
+    color: #4b4f64;
+}
+
+.btn-cancel:hover[b-j569fatkmf] {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(79, 76, 90, 0.1);
+}
+
+.btn-primary[b-j569fatkmf] {
+    background: linear-gradient(130deg, #6ddcff, #6d72ff);
+    color: #fff;
+    box-shadow: 0 15px 35px rgba(109, 114, 255, 0.35);
+}
+
+.btn-primary:disabled[b-j569fatkmf] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-primary:not(:disabled):hover[b-j569fatkmf] {
+    transform: translateY(-1px);
+}

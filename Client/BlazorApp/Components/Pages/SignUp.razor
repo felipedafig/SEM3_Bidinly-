@@ -1,17 +1,115 @@
 @page "/signup"
 @namespace BlazorApp.Components.Pages
 @rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations
+
+@inject NavigationManager Navigation
+@inject HttpClient Http
 
 <PageTitle>Sign Up - Bidinly</PageTitle>
 
-<div class="signup-section">
-    <div class="signup-container">
-        <h1>Sign Up</h1>
-        <p class="signup-message">Sign up functionality coming soon!</p>
-        <p>For now, please contact an administrator to create an account.</p>
-        <NavLink class="back-link" href="/">← Back to Home</NavLink>
+<div class="signup-page">
+    <div class="signup-card">
+        <div class="signup-header">
+            <h1>Sign Up</h1>
+            <p>Create your credentials to get started</p>
+        </div>
+
+        <EditForm Model="@signUpModel" OnValidSubmit="HandleSignUp" class="signup-form">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-field">
+                <label for="username">Username</label>
+                <InputText id="username"
+                           class="input-control"
+                           placeholder="Enter your username"
+                           @bind-Value="signUpModel.Username" />
+            </div>
+
+            <div class="form-field">
+                <label for="password">Password</label>
+                <InputText id="password"
+                           type="password"
+                           class="input-control"
+                           placeholder="Enter your password"
+                           @bind-Value="signUpModel.Password" />
+            </div>
+
+            <div class="form-field role-toggle">
+                <label>Account type</label>
+                <div class="role-options">
+                    <button type="button"
+                            class="@GetRoleButtonClass(1)"
+                            @onclick="@(() => SetRole(1))">
+                        <span class="role-circle"></span>
+                        <span>Agent</span>
+                    </button>
+                    <button type="button"
+                            class="@GetRoleButtonClass(2)"
+                            @onclick="@(() => SetRole(2))">
+                        <span class="role-circle"></span>
+                        <span>Buyer</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="login-form-actions">
+                <button type="button" class="login-button-cancel" @onclick="HandleCancel">
+                    Cancel
+                </button>
+                <button type="submit" class="login-button-confirm" disabled="@isSubmitting">
+                    @(isSubmitting ? "Submitting..." : "Create Account")
+                </button>
+            </div>
+        </EditForm>
     </div>
 </div>
 
+@code {
+    private readonly SignUpModel signUpModel = new();
+    private bool isSubmitting;
 
+    private async Task HandleSignUp()
+    {
+        isSubmitting = true;
+        try
+        {
 
+            @* Http.PostAsJsonAsync("api/users", signUpModel); *@
+        
+            Navigation.NavigateTo("/login");
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+
+    private void SetRole(int roleId)
+    {
+        signUpModel.RoleId = roleId;
+    }
+
+    private string GetRoleButtonClass(int roleId) =>
+        $"role-option{(signUpModel.RoleId == roleId ? " active" : string.Empty)}";
+
+    private void HandleCancel()
+    {
+        Navigation.NavigateTo("/", forceLoad: false);
+    }
+
+    private sealed class SignUpModel
+    {
+        [Required]
+        [StringLength(50, MinimumLength = 3)]
+        public string Username { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(100, MinimumLength = 3)]
+        public string Password { get; set; } = string.Empty;
+
+        [Required]
+        public int RoleId { get; set; } = 2;
+    }
+}

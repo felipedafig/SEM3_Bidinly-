@@ -152,16 +152,13 @@ namespace MainServer.WebAPI.Services
                     Password = password,
                     RoleId = roleId
                 };
-                var response = await client.CreateUserAsync(request);
+                
+                UserResponse response = await client.CreateUserAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)
             {
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
-            }
-            catch
-            {
-                throw;
             }
         }
 
@@ -204,7 +201,6 @@ namespace MainServer.WebAPI.Services
         }
 
         // Login operations
-
         public async Task<LoginResponse> AuthenticateUserAsync(string username, string password)
         {
             try

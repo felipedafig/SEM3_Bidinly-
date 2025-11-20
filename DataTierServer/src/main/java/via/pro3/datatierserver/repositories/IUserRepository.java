@@ -16,11 +16,9 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     // - delete(User) for delete by entity
     // - count(), existsById(), etc.
     
-    // Default method that delegates to Spring Data JPA's findById()
     default Optional<User> getSingle(Integer id) {
         return findById(id);
     }
     
-    // Custom query method - Spring Data JPA will automatically implement this
     Optional<User> findByUsername(String username);
 }

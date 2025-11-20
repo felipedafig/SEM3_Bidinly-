@@ -84,15 +84,10 @@ namespace MainServer.WebAPI.Controllers
                 string? roleName = null;
                 if (userResponse.RoleId > 0)
                 {
-                    try
-                    {
-                        var roleResponse = await dataTierClient.GetRoleAsync(userResponse.RoleId);
+                   
+                        GetRoleResponse roleResponse = await dataTierClient.GetRoleAsync(userResponse.RoleId);
                         roleName = roleResponse.RoleName;
-                    }
-                    catch
-                    {
-                        // If role lookup fails, roleName remains null
-                    }
+                    
                 }
 
                 UserDto userDto = new UserDto
