@@ -52,7 +52,7 @@ public class AuthProvider : AuthenticationStateProvider
 
         List<Claim> claims = new List<Claim>()
         {
-            new Claim(ClaimTypes.Name, userDto.Username),
+            new Claim(ClaimTypes.Name, userDto.Username ?? string.Empty),
             new Claim("Id", userDto.Id.ToString()),
             new Claim("RoleName", roleName ?? "")
         };
@@ -99,7 +99,7 @@ public class AuthProvider : AuthenticationStateProvider
         }
         catch { }
 
-        await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", content);
+        await jsRuntime.InvokeVoidAsync("authStorage.saveUser", content);
 
         try
         {
@@ -134,7 +134,8 @@ public class AuthProvider : AuthenticationStateProvider
 
         try
         {
-            userAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
+            string? storedUser = await jsRuntime.InvokeAsync<string?>("authStorage.getUser");
+            userAsJson = storedUser ?? string.Empty;
         }
         catch (InvalidOperationException e)
         {
@@ -162,7 +163,8 @@ public class AuthProvider : AuthenticationStateProvider
         }
         catch { }
 
-        UserDto userDto = JsonSerializer.Deserialize<UserDto>(userAsJson)!;
+        UserDto userDto = JsonSerializer.Deserialize<UserDto>(userAsJson,
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         
         try
         {
@@ -190,7 +192,7 @@ public class AuthProvider : AuthenticationStateProvider
         }
         catch { }
 
-        await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
+        await jsRuntime.InvokeVoidAsync("authStorage.clearUser");
         
         try
         {
