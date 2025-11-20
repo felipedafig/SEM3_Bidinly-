@@ -14,7 +14,15 @@
         <nav class="navbar-nav">
             <AuthorizeView>
                 <Authorized Context="authContext">
-                    <NavLink class="nav-link" href="dashboard" Match="NavLinkMatch.All">Home</NavLink>
+                    @{
+                        var roleName = authContext.User.FindFirst("RoleName")?.Value;
+                        var dashboardRoute = string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase) 
+                            ? "buyer-dashboard" 
+                            : string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase) 
+                                ? "agent-dashboard" 
+                                : "buyer-dashboard";
+                    }
+                    <NavLink class="nav-link" href="@dashboardRoute" Match="NavLinkMatch.All">Home</NavLink>
                     <NavLink class="nav-link" href="bids">Bids</NavLink>
                     <NavLink class="nav-link" href="sales">Sales</NavLink>
                     <div class="user-dropdown @(isDropdownOpen ? "show" : "")">
