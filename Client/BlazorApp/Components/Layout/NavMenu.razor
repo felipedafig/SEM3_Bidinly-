@@ -21,9 +21,17 @@
                             : string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase) 
                                 ? "agent-dashboard" 
                                 : "buyer-dashboard";
+                        var isAgent = string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase);
                     }
                     <NavLink class="nav-link" href="@dashboardRoute" Match="NavLinkMatch.All">Home</NavLink>
-                    <NavLink class="nav-link" href="bids">Bids</NavLink>
+                    @if (isAgent)
+                    {
+                        <NavLink class="nav-link" href="my-properties">Properties</NavLink>
+                    }
+                    else
+                    {
+                        <NavLink class="nav-link" href="bids">Bids</NavLink>
+                    }
                     <NavLink class="nav-link" href="sales">Sales</NavLink>
                     <div class="user-dropdown @(isDropdownOpen ? "show" : "")">
                         <button class="user-dropdown-toggle nav-link nav-button" @onclick="ToggleDropdown" @onclick:stopPropagation="true">
