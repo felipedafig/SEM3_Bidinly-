@@ -12,7 +12,7 @@ builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
 builder.Services.AddOpenApi();
 
 // gRPC Client as Singleton
-builder.Services.AddSingleton<DataTierGrpcClient>();
+builder.Services.AddSingleton<DataTierGrpcClient>(); // comment
 
 var app = builder.Build();
 
