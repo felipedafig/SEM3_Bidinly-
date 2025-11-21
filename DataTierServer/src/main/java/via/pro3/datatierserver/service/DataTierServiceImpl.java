@@ -161,6 +161,8 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
             List<DataTierProto.PropertyResponse> propertyResponses = properties.stream()
                 .map(this::convertToPropertyResponse)
                 .collect(Collectors.toList());
+
+            //kjkj
             
             DataTierProto.GetPropertiesResponse response = DataTierProto.GetPropertiesResponse.newBuilder()
                 .addAllProperties(propertyResponses)
