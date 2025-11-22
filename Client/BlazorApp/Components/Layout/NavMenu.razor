@@ -20,19 +20,29 @@
                             ? "buyer-dashboard" 
                             : string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase) 
                                 ? "agent-dashboard" 
-                                : "buyer-dashboard";
+                                : string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase)
+                                    ? "admin-dashboard"
+                                    : "buyer-dashboard";
                         var isAgent = string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase);
+                        var isAdmin = string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase);
                     }
-                    <NavLink class="nav-link" href="@dashboardRoute" Match="NavLinkMatch.All">Home</NavLink>
-                    @if (isAgent)
+                    @if (isAdmin)
                     {
-                        <NavLink class="nav-link" href="my-properties">Properties</NavLink>
+                        <NavLink class="nav-link" href="requests">Requests</NavLink>
                     }
                     else
                     {
-                        <NavLink class="nav-link" href="bids">Bids</NavLink>
+                        <NavLink class="nav-link" href="@dashboardRoute" Match="NavLinkMatch.All">Home</NavLink>
+                        @if (isAgent)
+                        {
+                            <NavLink class="nav-link" href="my-properties">Properties</NavLink>
+                        }
+                        else
+                        {
+                            <NavLink class="nav-link" href="bids">Bids</NavLink>
+                        }
+                        <NavLink class="nav-link" href="sales">Sales</NavLink>
                     }
-                    <NavLink class="nav-link" href="sales">Sales</NavLink>
                     <div class="user-dropdown @(isDropdownOpen ? "show" : "")">
                         <button class="user-dropdown-toggle nav-link nav-button" @onclick="ToggleDropdown" @onclick:stopPropagation="true">
                             Hi @authContext.User.Identity?.Name

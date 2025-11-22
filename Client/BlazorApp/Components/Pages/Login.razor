@@ -97,6 +97,10 @@
                 {
                     Navigation.NavigateTo("/agent-dashboard");
                 }
+                else if (string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    Navigation.NavigateTo("/admin-dashboard");
+                }
                 else
                 {
                     Navigation.NavigateTo("/buyer-dashboard");
