@@ -16,6 +16,20 @@
 <div class="home-background">
     <img src="/assets/images/Home-Background.png" alt="Modern Property" />
     
+    <div class="welcome-section">
+        <AuthorizeView>
+            <Authorized Context="authContext">
+                @{
+                    var roleName = authContext.User.FindFirst("RoleName")?.Value ?? "Buyer";
+                }
+                <div class="welcome-container">
+                    <img src="/assets/icons/buyerIcon.png" alt="Buyer Icon" class="welcome-icon" />
+                    <h2 class="welcome-text">Welcome @roleName!</h2>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+    </div>
+    
     <div class="hero-content">
         <h1 class="hero-title">Bid to win your Dream Property...</h1>
         <div class="hero-search-container">

@@ -499,6 +499,37 @@ a.nav-link[b-g8o6n169oq] {
     }
 }
 /* /Components/Pages/AdminDashboard.razor.rz.scp.css */
+/* Welcome Section */
+.welcome-section[b-8av0gs3w3m] {
+    position: absolute;
+    bottom: 4rem;
+    left: 74rem;
+    z-index: 10;
+}
+
+.welcome-container[b-8av0gs3w3m] {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.welcome-icon[b-8av0gs3w3m] {
+    width: 80px !important;
+    height: auto !important;
+    max-width: 80px !important;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.welcome-text[b-8av0gs3w3m] {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 /* my monitor view */
 .home-background[b-8av0gs3w3m] {
     position: relative;
@@ -517,6 +548,12 @@ a.nav-link[b-g8o6n169oq] {
     object-fit: contain;
     object-position: center;
     display: block;
+}
+
+.home-background .welcome-icon[b-8av0gs3w3m] {
+    width: 80px !important;
+    height: auto !important;
+    max-width: 80px !important;
 }
 
 .hero-content[b-8av0gs3w3m] {
@@ -789,10 +826,28 @@ a.nav-link[b-g8o6n169oq] {
     }
 }
 
-@media (min-width: 1400px) and (max-width: 1920px) {
+/* Media query for HP L2245WG monitor (larger screens) */
+@media (min-width: 1600px) and (max-width: 1920px) {
     .properties-container[b-8av0gs3w3m] {
         max-width: 1200px;
         padding: 0 2rem;
+    }
+    
+    .welcome-section[b-8av0gs3w3m] {
+        left: 77rem;
+        bottom: 6rem;
+    }
+}
+
+/* Media query for ThinkPad T490s laptop (smaller screens) */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .properties-container[b-8av0gs3w3m] {
+        max-width: 1200px;
+        padding: 0 2rem;
+    }
+    
+    .welcome-section[b-8av0gs3w3m] {
+        left: 58rem;
     }
 }
 
@@ -800,6 +855,31 @@ a.nav-link[b-g8o6n169oq] {
     .properties-container[b-8av0gs3w3m] {
         max-width: 1100px;
         padding: 0 2rem;
+    }
+    
+    .welcome-section[b-8av0gs3w3m] {
+        left: 45rem;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1399px) {
+    .properties-container[b-8av0gs3w3m] {
+        max-width: 1100px;
+        padding: 0 2rem;
+    }
+    
+    .welcome-section[b-8av0gs3w3m] {
+        left: 35rem;
+        bottom: 6rem;
+    }
+    
+    .welcome-text[b-8av0gs3w3m] {
+        font-size: 1.6rem;
+    }
+    
+    .welcome-icon[b-8av0gs3w3m] {
+        width: 60px !important;
+        max-width: 60px !important;
     }
 }
 
@@ -832,6 +912,20 @@ a.nav-link[b-g8o6n169oq] {
     .filter-separator[b-8av0gs3w3m] {
         display: none;
     }
+    
+    .welcome-section[b-8av0gs3w3m] {
+        left: 2rem;
+        bottom: 4rem;
+    }
+    
+    .welcome-text[b-8av0gs3w3m] {
+        font-size: 1.4rem;
+    }
+    
+    .welcome-icon[b-8av0gs3w3m] {
+        width: 50px !important;
+        max-width: 50px !important;
+    }
 }
 
 @media (max-width: 767px) {
@@ -862,9 +956,54 @@ a.nav-link[b-g8o6n169oq] {
         margin-left: 0;
         margin-top: 0.5rem;
     }
+    
+    .welcome-section[b-8av0gs3w3m] {
+        left: 1rem;
+        bottom: 2rem;
+    }
+    
+    .welcome-text[b-8av0gs3w3m] {
+        font-size: 1.2rem;
+    }
+    
+    .welcome-icon[b-8av0gs3w3m] {
+        width: 40px !important;
+        max-width: 40px !important;
+    }
 }
 
 /* /Components/Pages/AgentDashboard.razor.rz.scp.css */
+/* Welcome Section */
+.welcome-section[b-7jfy8yhhul] {
+    position: absolute;
+    bottom: 4rem;
+    left: 74rem;
+    z-index: 10;
+}
+
+.welcome-container[b-7jfy8yhhul] {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.welcome-icon[b-7jfy8yhhul] {
+    width: 80px !important;
+    height: auto !important;
+    max-width: 80px !important;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.welcome-text[b-7jfy8yhhul] {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 /* my monitor view */
 .home-background[b-7jfy8yhhul] {
     position: relative;
@@ -883,6 +1022,12 @@ a.nav-link[b-g8o6n169oq] {
     object-fit: contain;
     object-position: center;
     display: block;
+}
+
+.home-background .welcome-icon[b-7jfy8yhhul] {
+    width: 80px !important;
+    height: auto !important;
+    max-width: 80px !important;
 }
 
 .hero-content[b-7jfy8yhhul] {
@@ -1155,17 +1300,55 @@ a.nav-link[b-g8o6n169oq] {
     }
 }
 
-@media (min-width: 1400px) and (max-width: 1920px) {
+/* Media query for HP L2245WG monitor (larger screens) */
+@media (min-width: 1600px) and (max-width: 1920px) {
     .properties-container[b-7jfy8yhhul] {
         max-width: 1200px;
         padding: 0 2rem;
     }
+    
+    .welcome-section[b-7jfy8yhhul] {
+        left: 77rem;
+        bottom: 6rem;
+    }
 }
 
-@media (min-width: 1200px) and (max-width: 1399px) {
+/* Media query for ThinkPad T490s laptop (smaller screens) */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .properties-container[b-7jfy8yhhul] {
+        max-width: 1200px;
+        padding: 0 2rem;
+    }
+    
+    .welcome-section[b-7jfy8yhhul] {
+        left: 58rem;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1399px) {
     .properties-container[b-7jfy8yhhul] {
         max-width: 1100px;
         padding: 0 2rem;
+    }
+    
+    .welcome-section[b-7jfy8yhhul] {
+        left: 35rem;
+        bottom: 6rem;
+    }
+    
+    .welcome-text[b-7jfy8yhhul] {
+        font-size: 1.6rem;
+    }
+    
+    .welcome-icon[b-7jfy8yhhul] {
+        width: 60px !important;
+        max-width: 60px !important;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .welcome-section[b-7jfy8yhhul] {
+        left: 45rem;
     }
 }
 
@@ -1198,6 +1381,20 @@ a.nav-link[b-g8o6n169oq] {
     .filter-separator[b-7jfy8yhhul] {
         display: none;
     }
+    
+    .welcome-section[b-7jfy8yhhul] {
+        left: 2rem;
+        bottom: 4rem;
+    }
+    
+    .welcome-text[b-7jfy8yhhul] {
+        font-size: 1.4rem;
+    }
+    
+    .welcome-icon[b-7jfy8yhhul] {
+        width: 50px !important;
+        max-width: 50px !important;
+    }
 }
 
 @media (max-width: 767px) {
@@ -1227,6 +1424,20 @@ a.nav-link[b-g8o6n169oq] {
         border-radius: 25px;
         margin-left: 0;
         margin-top: 0.5rem;
+    }
+    
+    .welcome-section[b-7jfy8yhhul] {
+        left: 1rem;
+        bottom: 2rem;
+    }
+    
+    .welcome-text[b-7jfy8yhhul] {
+        font-size: 1.2rem;
+    }
+    
+    .welcome-icon[b-7jfy8yhhul] {
+        width: 40px !important;
+        max-width: 40px !important;
     }
 }
 
@@ -1636,6 +1847,37 @@ a.nav-link[b-g8o6n169oq] {
 }
 
 /* /Components/Pages/BuyerDashboard.razor.rz.scp.css */
+/* Welcome Section */
+.welcome-section[b-kclkyojskv] {
+    position: absolute;
+    bottom: 4rem;
+    left: 74rem;
+    z-index: 10;
+}
+
+.welcome-container[b-kclkyojskv] {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.welcome-icon[b-kclkyojskv] {
+    width: 80px !important;
+    height: auto !important;
+    max-width: 80px !important;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.welcome-text[b-kclkyojskv] {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 /* my monitor view */
 .home-background[b-kclkyojskv] {
     position: relative;
@@ -1654,6 +1896,12 @@ a.nav-link[b-g8o6n169oq] {
     object-fit: contain;
     object-position: center;
     display: block;
+}
+
+.home-background .welcome-icon[b-kclkyojskv] {
+    width: 80px !important;
+    height: auto !important;
+    max-width: 80px !important;
 }
 
 .hero-content[b-kclkyojskv] {
@@ -1926,10 +2174,28 @@ a.nav-link[b-g8o6n169oq] {
     }
 }
 
-@media (min-width: 1400px) and (max-width: 1920px) {
+/* Media query for HP L2245WG monitor (larger screens) */
+@media (min-width: 1600px) and (max-width: 1920px) {
     .properties-container[b-kclkyojskv] {
         max-width: 1200px;
         padding: 0 2rem;
+    }
+    
+    .welcome-section[b-kclkyojskv] {
+        left: 77rem;
+        bottom: 6rem;
+    }
+}
+
+/* Media query for ThinkPad T490s laptop (smaller screens) */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .properties-container[b-kclkyojskv] {
+        max-width: 1200px;
+        padding: 0 2rem;
+    }
+    
+    .welcome-section[b-kclkyojskv] {
+        left: 58rem;
     }
 }
 
@@ -1937,6 +2203,31 @@ a.nav-link[b-g8o6n169oq] {
     .properties-container[b-kclkyojskv] {
         max-width: 1100px;
         padding: 0 2rem;
+    }
+    
+    .welcome-section[b-kclkyojskv] {
+        left: 45rem;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1399px) {
+    .properties-container[b-kclkyojskv] {
+        max-width: 1100px;
+        padding: 0 2rem;
+    }
+    
+    .welcome-section[b-kclkyojskv] {
+        left: 35rem;
+        bottom: 6rem;
+    }
+    
+    .welcome-text[b-kclkyojskv] {
+        font-size: 1.6rem;
+    }
+    
+    .welcome-icon[b-kclkyojskv] {
+        width: 60px !important;
+        max-width: 60px !important;
     }
 }
 
@@ -1969,6 +2260,20 @@ a.nav-link[b-g8o6n169oq] {
     .filter-separator[b-kclkyojskv] {
         display: none;
     }
+    
+    .welcome-section[b-kclkyojskv] {
+        left: 2rem;
+        bottom: 4rem;
+    }
+    
+    .welcome-text[b-kclkyojskv] {
+        font-size: 1.4rem;
+    }
+    
+    .welcome-icon[b-kclkyojskv] {
+        width: 50px !important;
+        max-width: 50px !important;
+    }
 }
 
 @media (max-width: 767px) {
@@ -1998,6 +2303,20 @@ a.nav-link[b-g8o6n169oq] {
         border-radius: 25px;
         margin-left: 0;
         margin-top: 0.5rem;
+    }
+    
+    .welcome-section[b-kclkyojskv] {
+        left: 1rem;
+        bottom: 2rem;
+    }
+    
+    .welcome-text[b-kclkyojskv] {
+        font-size: 1.2rem;
+    }
+    
+    .welcome-icon[b-kclkyojskv] {
+        width: 40px !important;
+        max-width: 40px !important;
     }
 }
 /* /Components/Pages/Home.razor.rz.scp.css */
