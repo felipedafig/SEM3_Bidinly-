@@ -182,7 +182,7 @@ namespace MainServer.WebAPI.Services
         }
 
         // Role operations
-        public async Task<GetRoleResponse> GetRoleAsync(int roleId) // ajlks
+        public async Task<GetRoleResponse> GetRoleAsync(int roleId)
         {
             try
             {
