@@ -374,11 +374,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Client\\BlazorApp\\BlazorApp.csproj",
+      "projectUniqueName": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Client\\BlazorApp\\BlazorApp.csproj",
       "projectName": "BlazorApp",
-      "projectPath": "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Client\\BlazorApp\\BlazorApp.csproj",
+      "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Client\\BlazorApp\\BlazorApp.csproj",
       "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-      "outputPath": "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Client\\BlazorApp\\obj\\",
+      "outputPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Client\\BlazorApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -393,8 +393,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj": {
-              "projectPath": "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj"
+            "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj": {
+              "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj"
             }
           }
         }

@@ -271,18 +271,15 @@ else
                 var createdBid = await response.Content.ReadFromJsonAsync<BidDto>();
                 successMessage = $"Bid created successfully! Amount: {bidAmount:N0} Kr";
                 
-                // Close modal after a short delay to show success message
                 await Task.Delay(1500);
                 CloseBidForm();
-                
-                // Optionally refresh property data or navigate
+               
             }
             else
             {
                 var errorContent = await response.Content.ReadAsStringAsync();
                 errorMessage = $"Failed to create bid: {response.StatusCode}";
                 
-                // Try to parse error message from response
                 try
                 {
                     var errorObj = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(errorContent);
@@ -293,7 +290,6 @@ else
                 }
                 catch
                 {
-                    // If parsing fails, use default error message
                     if (!string.IsNullOrWhiteSpace(errorContent) && errorContent.Length < 200)
                     {
                         errorMessage = $"Error: {errorContent}";
