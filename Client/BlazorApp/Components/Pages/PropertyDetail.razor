@@ -4,7 +4,6 @@
 @using Shared.DTOs.Bids
 @using shared.DTOs.Bids
 @using System.Net.Http.Json
-@using System.Security.Claims
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Authorization
 
@@ -254,15 +253,8 @@ else
         
         try
         {
-            var authState = await AuthProvider.GetAuthenticationStateAsync();
-            var userIdClaim = authState.User?.FindFirst("Id");
-            
-            if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int buyerId))
-            {
-                errorMessage = "Unable to determine user ID. Please log in again.";
-                isSubmittingBid = false;
-                return;
-            }
+           
+            int buyerId = 1; 
             
             var createBidDto = new CreateBidDto
             {
