@@ -1,0 +1,2 @@
+obj\Debug\net10.0\Protos/Property.cs \
+obj\Debug\net10.0\Protos/PropertyGrpc.cs: Protos/property.proto
