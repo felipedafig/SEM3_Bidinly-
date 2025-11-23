@@ -28,7 +28,7 @@ class DataTierServiceImplTest {
     private IPropertyRepository propertyRepository;
 
     @Mock
-    trhr IUserRepository userRepository;
+    private IUserRepository userRepository;
 
     @Mock
     private StreamObserver<DataTierProto.PropertyResponse> responseObserver;
