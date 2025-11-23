@@ -16,6 +16,7 @@ import via.pro3.datatierserver.repositories.IRoleRepository;
 import via.pro3.datatierserver.repositories.ISaleRepository;
 import via.pro3.datatierserver.repositories.IUserRepository;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +40,31 @@ public class DataTierServiceImpl extends DataTierServiceGrpc.DataTierServiceImpl
     @Autowired
     private ISaleRepository saleRepository;
     
+
+    @Override
+    public void createBid(DataTierProto.CreateBidRequest request, StreamObserver<DataTierProto.BidResponse> responseObserver) {
+        try {
+            Bid newBid = new Bid();
+            newBid.setBuyerId(request.getBuyerId());
+            newBid.setPropertyId(request.getPropertyId());
+            newBid.setAmount(BigDecimal.valueOf(request.getAmount()));
+            newBid.setExpiryDate(Instant.ofEpochSecond(request.getExpiryDateSeconds()));
+            newBid.setStatus("Pending");
+            
+            Bid savedBid = bidRepository.save(newBid);
+            
+            DataTierProto.BidResponse response = convertToBidResponse(savedBid);
+            
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+            
+        } catch (Exception e) {
+            responseObserver.onError(io.grpc.Status.INTERNAL
+                .withDescription("Error creating bid: " + e.getMessage())
+                .asRuntimeException());
+        }
+    }
+
     @Override
     public void getBids(DataTierProto.GetBidsRequest request, StreamObserver<DataTierProto.GetBidsResponse> responseObserver) {
         try {

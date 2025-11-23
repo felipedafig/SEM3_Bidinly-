@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj": {}
+    "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj": {}
   },
   "projects": {
-    "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj": {
+    "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
+        "projectUniqueName": "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
         "projectName": "DTOs",
-        "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
+        "projectPath": "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\obj\\",
+        "outputPath": "c:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"

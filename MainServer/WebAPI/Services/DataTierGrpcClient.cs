@@ -68,14 +68,14 @@ namespace MainServer.WebAPI.Services
         {
             try
             {
-                var request = new CreateBidRequest
+                CreateBidRequest request = new CreateBidRequest
                 {
                     BuyerId = buyerId,
                     PropertyId = propertyId,
                     Amount = amount,
                     ExpiryDateSeconds = expiryDateSeconds
                 };
-                var response = await client.CreateBidAsync(request);
+                BidResponse response = await client.CreateBidAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)

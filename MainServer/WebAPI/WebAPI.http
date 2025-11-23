@@ -306,6 +306,23 @@ GET {{WebAPI_HostAddress}}/sales?propertyId=999
 # Note: Not implemented yet
 ###############################################
 
+### 1.
+POST {{WebAPI_HostAddress}}/bids
+Content-Type: application/json
+
+{
+    
+    "BuyerId": 2,
+    "PropertyId": 9,
+    "Amount": 4600000.00,
+    "ExpiryDate": "2025-12-31T23:59:59Z"
+
+}
+
+###
+
+
+
 ######## AUTHENTICATION ########
 
 POST {{WebAPI_HostAddress}}/auth/login

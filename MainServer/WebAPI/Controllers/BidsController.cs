@@ -96,21 +96,16 @@ namespace MainServer.WebAPI.Controllers
                     expiryDateSeconds
                 );
 
-                // Get property and user for enrichment
+
                 PropertyResponse? property = null;
                 UserResponse? user = null;
                 
-                try
-                {
-                    property = await dataTierClient.GetPropertyAsync(bidResponse.PropertyId);
-                }
-                catch { }
                 
-                try
-                {
+                    property = await dataTierClient.GetPropertyAsync(bidResponse.PropertyId);
+                
                     user = await dataTierClient.GetUserAsync(bidResponse.BuyerId);
-                }
-                catch { }
+
+               
 
                 DateTime expiryDate = DateTimeOffset.FromUnixTimeSeconds(bidResponse.ExpiryDateSeconds).DateTime;
 
