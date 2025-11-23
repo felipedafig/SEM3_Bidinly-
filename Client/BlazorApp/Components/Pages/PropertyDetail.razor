@@ -2,6 +2,7 @@
 @layout NoLayout
 @using shared.DTOs.Properties
 @using Shared.DTOs.Bids
+@using shared.DTOs.Bids
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Authorization
@@ -136,8 +137,29 @@ else
                 </div>
             </div>
             <div class="bid-modal-footer">
-                <button class="bid-button-cancel" @onclick="CloseBidForm">Cancel</button>
-                <button class="bid-button-confirm" @onclick="SubmitBid" disabled="@(!IsBidFormValid())">Confirm</button>
+                @if (!string.IsNullOrWhiteSpace(errorMessage))
+                {
+                    <div class="bid-error-message" style="color: red; margin-bottom: 10px; padding: 8px; background-color: #ffe6e6; border-radius: 4px;">
+                        @errorMessage
+                    </div>
+                }
+                @if (!string.IsNullOrWhiteSpace(successMessage))
+                {
+                    <div class="bid-success-message" style="color: green; margin-bottom: 10px; padding: 8px; background-color: #e6ffe6; border-radius: 4px;">
+                        @successMessage
+                    </div>
+                }
+                <button class="bid-button-cancel" @onclick="CloseBidForm" disabled="@isSubmittingBid">Cancel</button>
+                <button class="bid-button-confirm" @onclick="SubmitBid" disabled="@(!IsBidFormValid() || isSubmittingBid)">
+                    @if (isSubmittingBid)
+                    {
+                        <text>Submitting...</text>
+                    }
+                    else
+                    {
+                        <text>Confirm</text>
+                    }
+                </button>
             </div>
         </div>
     </div>
@@ -152,6 +174,9 @@ else
     private bool showBidModal = false;
     private decimal bidAmount;
     private DateTime bidExpiryDate = DateTime.Now.AddDays(7);
+    private bool isSubmittingBid = false;
+    private string? errorMessage;
+    private string? successMessage;
     
     protected override async Task OnInitializedAsync()
     {
@@ -195,6 +220,8 @@ else
     {
         bidAmount = property?.StartingPrice ?? 0;
         bidExpiryDate = DateTime.Now.AddDays(7);
+        errorMessage = null;
+        successMessage = null;
         showBidModal = true;
     }
     
@@ -203,6 +230,9 @@ else
         showBidModal = false;
         bidAmount = 0;
         bidExpiryDate = DateTime.Now.AddDays(7);
+        errorMessage = null;
+        successMessage = null;
+        isSubmittingBid = false;
     }
     
     private bool IsBidFormValid()
@@ -212,10 +242,14 @@ else
     
     private async Task SubmitBid()
     {
-        if (!IsBidFormValid() || property == null)
+        if (!IsBidFormValid() || property == null || isSubmittingBid)
         {
             return;
         }
+        
+        isSubmittingBid = true;
+        errorMessage = null;
+        successMessage = null;
         
         try
         {
@@ -234,18 +268,54 @@ else
             
             if (response.IsSuccessStatusCode)
             {
+                var createdBid = await response.Content.ReadFromJsonAsync<BidDto>();
+                successMessage = $"Bid created successfully! Amount: {bidAmount:N0} Kr";
+                
+                // Close modal after a short delay to show success message
+                await Task.Delay(1500);
                 CloseBidForm();
-               
+                
+                // Optionally refresh property data or navigate
             }
             else
             {
-               
-                Console.WriteLine($"Error creating bid: {response.StatusCode}");
+                var errorContent = await response.Content.ReadAsStringAsync();
+                errorMessage = $"Failed to create bid: {response.StatusCode}";
+                
+                // Try to parse error message from response
+                try
+                {
+                    var errorObj = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(errorContent);
+                    if (errorObj.TryGetProperty("message", out var messageElement))
+                    {
+                        errorMessage = $"Error: {messageElement.GetString()}";
+                    }
+                }
+                catch
+                {
+                    // If parsing fails, use default error message
+                    if (!string.IsNullOrWhiteSpace(errorContent) && errorContent.Length < 200)
+                    {
+                        errorMessage = $"Error: {errorContent}";
+                    }
+                }
+                
+                Console.WriteLine($"Error creating bid: {response.StatusCode} - {errorContent}");
             }
+        }
+        catch (HttpRequestException ex)
+        {
+            errorMessage = $"Network error: Unable to connect to the server. Please make sure the API server is running.";
+            Console.WriteLine($"HTTP error creating bid: {ex.Message}");
         }
         catch (Exception ex)
         {
+            errorMessage = $"An error occurred: {ex.Message}";
             Console.WriteLine($"Error creating bid: {ex.Message}");
+        }
+        finally
+        {
+            isSubmittingBid = false;
         }
     }
 }
