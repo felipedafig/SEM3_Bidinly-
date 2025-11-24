@@ -1,211 +1,73 @@
 using System.Security.Claims;
 using System.Text.Json;
+using BlazorApp.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Shared.DTOs.Auth;
-using shared.DTOs.Users;
-using Shared.DTOs.Roles;
+using Shared.DTOs.Users;
 
 namespace BlazorApp.Auth;
 
 public class AuthProvider : AuthenticationStateProvider
 {
-
-    private string userAsJson = string.Empty;
-    private readonly HttpClient httpClient;
+    
     private readonly IJSRuntime jsRuntime;
+    private readonly HttpAuthService authService;
+    private string userAsJson = string.Empty;
 
-    public AuthProvider(HttpClient httpClient, IJSRuntime jsRuntime)
+    public AuthProvider(HttpAuthService authService, IJSRuntime jsRuntime)
     {
-        this.httpClient = httpClient;
+        this.authService = authService;
         this.jsRuntime = jsRuntime;
     }
 
-    private async Task<ClaimsPrincipal> CreateClaimsPrincipalAsync(UserDto userDto) //helper
+    private Task<ClaimsPrincipal> CreateClaimsPrincipalAsync(UserDto userDto)
     {
-        string? roleName = userDto.RoleName;
-        
-        // If RoleName is missing, fetch it by calling users/{id} endpoint
-        // This endpoint internally calls the roles controller to get the role name
-        if (string.IsNullOrEmpty(roleName) && userDto.Id > 0)
+        var claims = new List<Claim>
         {
-            try
-            {
-                var response = await httpClient.GetAsync($"users/{userDto.Id}");
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var updatedUserDto = JsonSerializer.Deserialize<UserDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                    if (updatedUserDto != null && !string.IsNullOrEmpty(updatedUserDto.RoleName))
-                    {
-                        roleName = updatedUserDto.RoleName;
-                        // Update the userDto with the fetched role name
-                        userDto.RoleName = roleName;
-                    }
-                }
-            }
-            catch
-            {
-                // If fetching fails, roleName remains null/empty
-            }
-        }
-
-        List<Claim> claims = new List<Claim>()
-        {
-            new Claim(ClaimTypes.Name, userDto.Username ?? string.Empty),
+            new Claim(ClaimTypes.Name, userDto.Username ?? ""),
             new Claim("Id", userDto.Id.ToString()),
-            new Claim("RoleName", roleName ?? "")
+            new Claim("RoleName", userDto.RoleName ?? "")
         };
 
-        ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth");
-        return new ClaimsPrincipal(identity);
+        var identity = new ClaimsIdentity(claims, "apiauth");
+        return Task.FromResult(new ClaimsPrincipal(identity));
     }
 
-    public async Task Login(string userName, string password)
+    public async Task Login(string username, string password)
     {
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] Login called for user: {userName}");
-        }
-        catch { }
+        UserDto userDto = await authService.LoginAsync(username, password);
+        userAsJson = JsonSerializer.Serialize(userDto);
 
-        HttpResponseMessage response = await httpClient.PostAsJsonAsync(
-            "auth/login",
-            new LoginRequestDTO { Username = userName, Password = password });
-        string content = await response.Content.ReadAsStringAsync();
-        userAsJson = content;
+        // save in browser
+        await jsRuntime.InvokeVoidAsync("authStorage.saveUser", userAsJson);
         
-        if (!response.IsSuccessStatusCode)
-        {
-            try
-            {
-                await jsRuntime.InvokeVoidAsync("console.error", $"[AuthProvider] Login failed - Status: {response.StatusCode}, Response: {content}");
-            }
-            catch { }
-            throw new Exception(content);
-        }
+        ClaimsPrincipal cp = await CreateClaimsPrincipalAsync(userDto);
 
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] Login API call successful - Status: {response.StatusCode}");
-        }
-        catch { }
-
-        UserDto userDto = JsonSerializer.Deserialize<UserDto>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
-
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] User deserialized - Id: {userDto.Id}, Username: {userDto.Username}, RoleName: {userDto.RoleName ?? "null"}");
-        }
-        catch { }
-
-        await jsRuntime.InvokeVoidAsync("authStorage.saveUser", content);
-
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", "[AuthProvider] User saved to sessionStorage");
-        }
-        catch { }
-
-        ClaimsPrincipal claimsPrincipal = await CreateClaimsPrincipalAsync(userDto);
-
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] ClaimsPrincipal created - IsAuthenticated: {claimsPrincipal.Identity?.IsAuthenticated}, Name: {claimsPrincipal.Identity?.Name}, RoleName: {userDto.RoleName ?? "null"}");
-        }
-        catch { }
-
-        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claimsPrincipal)));
-
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", "[AuthProvider] AuthenticationStateChanged notified");
-        }
-        catch { }
+        //notify blazor
+        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(cp)));
     }
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", "[AuthProvider] GetAuthenticationStateAsync called");
-        }
-        catch { }
+        string? stored = await jsRuntime.InvokeAsync<string?>("authStorage.getUser");
+        userAsJson = stored ?? string.Empty;
 
-        try
-        {
-            string? storedUser = await jsRuntime.InvokeAsync<string?>("authStorage.getUser");
-            userAsJson = storedUser ?? string.Empty;
-        }
-        catch (InvalidOperationException e)
-        {
-            try
-            {
-                await jsRuntime.InvokeVoidAsync("console.warn", $"[AuthProvider] InvalidOperationException getting sessionStorage: {e.Message}");
-            }
-            catch { }
-            return new AuthenticationState(new());
-        }
-        
         if (string.IsNullOrEmpty(userAsJson))
-        {
-            try
-            {
-                await jsRuntime.InvokeVoidAsync("console.log", "[AuthProvider] No user found in sessionStorage - returning unauthenticated state");
-            }
-            catch { }
-            return new AuthenticationState(new());
-        }
+            return new AuthenticationState(new ClaimsPrincipal());
 
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] User found in sessionStorage - Length: {userAsJson.Length}");
-        }
-        catch { }
+        UserDto userDto = JsonSerializer.Deserialize<UserDto>(userAsJson)!;
+        ClaimsPrincipal cp = await CreateClaimsPrincipalAsync(userDto);
 
-        UserDto userDto = JsonSerializer.Deserialize<UserDto>(userAsJson,
-            new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
-        
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] User deserialized from sessionStorage - Id: {userDto.Id}, Username: {userDto.Username}, RoleName: {userDto.RoleName ?? "null"}");
-        }
-        catch { }
-
-        ClaimsPrincipal claimsPrincipal = await CreateClaimsPrincipalAsync(userDto);
-
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", $"[AuthProvider] Returning authenticated state - IsAuthenticated: {claimsPrincipal.Identity?.IsAuthenticated}, Name: {claimsPrincipal.Identity?.Name}, RoleName: {userDto.RoleName ?? "null"}");
-        }
-        catch { }
-
-        return new AuthenticationState(claimsPrincipal);
-        
+        return new AuthenticationState(cp);
     }
 
     public async Task Logout()
     {
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", "[AuthProvider] Logout called");
-        }
-        catch { }
-
         await jsRuntime.InvokeVoidAsync("authStorage.clearUser");
-        
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", "[AuthProvider] User cleared from sessionStorage");
-        }
-        catch { }
 
-        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(new())));
-
-        try
-        {
-            await jsRuntime.InvokeVoidAsync("console.log", "[AuthProvider] AuthenticationStateChanged notified (logged out)");
-        }
-        catch { }
+        NotifyAuthenticationStateChanged(
+            Task.FromResult(new AuthenticationState(new ClaimsPrincipal()))
+        );
     }
+    
 }
