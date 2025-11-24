@@ -29,5 +29,7 @@ namespace shared.DTOs.Properties
 
         public string? Description { get; set; }
 
+        public string? ImageUrl { get; set; }
+
     }
 }

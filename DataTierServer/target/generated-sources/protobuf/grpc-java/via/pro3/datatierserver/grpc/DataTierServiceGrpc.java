@@ -170,161 +170,6 @@ public final class DataTierServiceGrpc {
     return getDeleteBidMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getCreatePropertyMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "CreateProperty",
-      requestType = via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest.class,
-      responseType = via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getCreatePropertyMethod() {
-    io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest, via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getCreatePropertyMethod;
-    if ((getCreatePropertyMethod = DataTierServiceGrpc.getCreatePropertyMethod) == null) {
-      synchronized (DataTierServiceGrpc.class) {
-        if ((getCreatePropertyMethod = DataTierServiceGrpc.getCreatePropertyMethod) == null) {
-          DataTierServiceGrpc.getCreatePropertyMethod = getCreatePropertyMethod =
-              io.grpc.MethodDescriptor.<via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest, via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CreateProperty"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new DataTierServiceMethodDescriptorSupplier("CreateProperty"))
-              .build();
-        }
-      }
-    }
-    return getCreatePropertyMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getGetPropertyMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "GetProperty",
-      requestType = via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest.class,
-      responseType = via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getGetPropertyMethod() {
-    io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest, via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getGetPropertyMethod;
-    if ((getGetPropertyMethod = DataTierServiceGrpc.getGetPropertyMethod) == null) {
-      synchronized (DataTierServiceGrpc.class) {
-        if ((getGetPropertyMethod = DataTierServiceGrpc.getGetPropertyMethod) == null) {
-          DataTierServiceGrpc.getGetPropertyMethod = getGetPropertyMethod =
-              io.grpc.MethodDescriptor.<via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest, via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetProperty"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new DataTierServiceMethodDescriptorSupplier("GetProperty"))
-              .build();
-        }
-      }
-    }
-    return getGetPropertyMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse> getGetPropertiesMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "GetProperties",
-      requestType = via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest.class,
-      responseType = via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse> getGetPropertiesMethod() {
-    io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest, via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse> getGetPropertiesMethod;
-    if ((getGetPropertiesMethod = DataTierServiceGrpc.getGetPropertiesMethod) == null) {
-      synchronized (DataTierServiceGrpc.class) {
-        if ((getGetPropertiesMethod = DataTierServiceGrpc.getGetPropertiesMethod) == null) {
-          DataTierServiceGrpc.getGetPropertiesMethod = getGetPropertiesMethod =
-              io.grpc.MethodDescriptor.<via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest, via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetProperties"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new DataTierServiceMethodDescriptorSupplier("GetProperties"))
-              .build();
-        }
-      }
-    }
-    return getGetPropertiesMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getUpdatePropertyMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "UpdateProperty",
-      requestType = via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest.class,
-      responseType = via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getUpdatePropertyMethod() {
-    io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest, via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getUpdatePropertyMethod;
-    if ((getUpdatePropertyMethod = DataTierServiceGrpc.getUpdatePropertyMethod) == null) {
-      synchronized (DataTierServiceGrpc.class) {
-        if ((getUpdatePropertyMethod = DataTierServiceGrpc.getUpdatePropertyMethod) == null) {
-          DataTierServiceGrpc.getUpdatePropertyMethod = getUpdatePropertyMethod =
-              io.grpc.MethodDescriptor.<via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest, via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateProperty"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new DataTierServiceMethodDescriptorSupplier("UpdateProperty"))
-              .build();
-        }
-      }
-    }
-    return getUpdatePropertyMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse> getDeletePropertyMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "DeleteProperty",
-      requestType = via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest.class,
-      responseType = via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest,
-      via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse> getDeletePropertyMethod() {
-    io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest, via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse> getDeletePropertyMethod;
-    if ((getDeletePropertyMethod = DataTierServiceGrpc.getDeletePropertyMethod) == null) {
-      synchronized (DataTierServiceGrpc.class) {
-        if ((getDeletePropertyMethod = DataTierServiceGrpc.getDeletePropertyMethod) == null) {
-          DataTierServiceGrpc.getDeletePropertyMethod = getDeletePropertyMethod =
-              io.grpc.MethodDescriptor.<via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest, via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeleteProperty"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new DataTierServiceMethodDescriptorSupplier("DeleteProperty"))
-              .build();
-        }
-      }
-    }
-    return getDeletePropertyMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<via.pro3.datatierserver.grpc.DataTierProto.CreateUserRequest,
       via.pro3.datatierserver.grpc.DataTierProto.UserResponse> getCreateUserMethod;
 
@@ -785,44 +630,6 @@ public final class DataTierServiceGrpc {
 
     /**
      * <pre>
-     * Property operations
-     * </pre>
-     */
-    default void createProperty(via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreatePropertyMethod(), responseObserver);
-    }
-
-    /**
-     */
-    default void getProperty(via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetPropertyMethod(), responseObserver);
-    }
-
-    /**
-     */
-    default void getProperties(via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetPropertiesMethod(), responseObserver);
-    }
-
-    /**
-     */
-    default void updateProperty(via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdatePropertyMethod(), responseObserver);
-    }
-
-    /**
-     */
-    default void deleteProperty(via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeletePropertyMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
      * User operations
      * </pre>
      */
@@ -990,49 +797,6 @@ public final class DataTierServiceGrpc {
 
     /**
      * <pre>
-     * Property operations
-     * </pre>
-     */
-    public void createProperty(via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getCreatePropertyMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void getProperty(via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getGetPropertyMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void getProperties(via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getGetPropertiesMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void updateProperty(via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getUpdatePropertyMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void deleteProperty(via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest request,
-        io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getDeletePropertyMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
      * User operations
      * </pre>
      */
@@ -1196,44 +960,6 @@ public final class DataTierServiceGrpc {
 
     /**
      * <pre>
-     * Property operations
-     * </pre>
-     */
-    public via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse createProperty(via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getCreatePropertyMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse getProperty(via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getGetPropertyMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse getProperties(via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getGetPropertiesMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse updateProperty(via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getUpdatePropertyMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse deleteProperty(via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getDeletePropertyMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
      * User operations
      * </pre>
      */
@@ -1390,49 +1116,6 @@ public final class DataTierServiceGrpc {
 
     /**
      * <pre>
-     * Property operations
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> createProperty(
-        via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getCreatePropertyMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> getProperty(
-        via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getGetPropertyMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse> getProperties(
-        via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getGetPropertiesMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse> updateProperty(
-        via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getUpdatePropertyMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse> deleteProperty(
-        via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getDeletePropertyMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
      * User operations
      * </pre>
      */
@@ -1545,23 +1228,18 @@ public final class DataTierServiceGrpc {
   private static final int METHODID_GET_BIDS = 2;
   private static final int METHODID_UPDATE_BID = 3;
   private static final int METHODID_DELETE_BID = 4;
-  private static final int METHODID_CREATE_PROPERTY = 5;
-  private static final int METHODID_GET_PROPERTY = 6;
-  private static final int METHODID_GET_PROPERTIES = 7;
-  private static final int METHODID_UPDATE_PROPERTY = 8;
-  private static final int METHODID_DELETE_PROPERTY = 9;
-  private static final int METHODID_CREATE_USER = 10;
-  private static final int METHODID_GET_USER = 11;
-  private static final int METHODID_GET_USERS = 12;
-  private static final int METHODID_UPDATE_USER = 13;
-  private static final int METHODID_DELETE_USER = 14;
-  private static final int METHODID_CREATE_SALE = 15;
-  private static final int METHODID_GET_SALE = 16;
-  private static final int METHODID_GET_SALES = 17;
-  private static final int METHODID_UPDATE_SALE = 18;
-  private static final int METHODID_DELETE_SALE = 19;
-  private static final int METHODID_GET_ROLE = 20;
-  private static final int METHODID_AUTHENTICATE_USER = 21;
+  private static final int METHODID_CREATE_USER = 5;
+  private static final int METHODID_GET_USER = 6;
+  private static final int METHODID_GET_USERS = 7;
+  private static final int METHODID_UPDATE_USER = 8;
+  private static final int METHODID_DELETE_USER = 9;
+  private static final int METHODID_CREATE_SALE = 10;
+  private static final int METHODID_GET_SALE = 11;
+  private static final int METHODID_GET_SALES = 12;
+  private static final int METHODID_UPDATE_SALE = 13;
+  private static final int METHODID_DELETE_SALE = 14;
+  private static final int METHODID_GET_ROLE = 15;
+  private static final int METHODID_AUTHENTICATE_USER = 16;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1599,26 +1277,6 @@ public final class DataTierServiceGrpc {
         case METHODID_DELETE_BID:
           serviceImpl.deleteBid((via.pro3.datatierserver.grpc.DataTierProto.DeleteBidRequest) request,
               (io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.DeleteBidResponse>) responseObserver);
-          break;
-        case METHODID_CREATE_PROPERTY:
-          serviceImpl.createProperty((via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest) request,
-              (io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse>) responseObserver);
-          break;
-        case METHODID_GET_PROPERTY:
-          serviceImpl.getProperty((via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest) request,
-              (io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse>) responseObserver);
-          break;
-        case METHODID_GET_PROPERTIES:
-          serviceImpl.getProperties((via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest) request,
-              (io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse>) responseObserver);
-          break;
-        case METHODID_UPDATE_PROPERTY:
-          serviceImpl.updateProperty((via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest) request,
-              (io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse>) responseObserver);
-          break;
-        case METHODID_DELETE_PROPERTY:
-          serviceImpl.deleteProperty((via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest) request,
-              (io.grpc.stub.StreamObserver<via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse>) responseObserver);
           break;
         case METHODID_CREATE_USER:
           serviceImpl.createUser((via.pro3.datatierserver.grpc.DataTierProto.CreateUserRequest) request,
@@ -1721,41 +1379,6 @@ public final class DataTierServiceGrpc {
               via.pro3.datatierserver.grpc.DataTierProto.DeleteBidRequest,
               via.pro3.datatierserver.grpc.DataTierProto.DeleteBidResponse>(
                 service, METHODID_DELETE_BID)))
-        .addMethod(
-          getCreatePropertyMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              via.pro3.datatierserver.grpc.DataTierProto.CreatePropertyRequest,
-              via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse>(
-                service, METHODID_CREATE_PROPERTY)))
-        .addMethod(
-          getGetPropertyMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              via.pro3.datatierserver.grpc.DataTierProto.GetPropertyRequest,
-              via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse>(
-                service, METHODID_GET_PROPERTY)))
-        .addMethod(
-          getGetPropertiesMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesRequest,
-              via.pro3.datatierserver.grpc.DataTierProto.GetPropertiesResponse>(
-                service, METHODID_GET_PROPERTIES)))
-        .addMethod(
-          getUpdatePropertyMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              via.pro3.datatierserver.grpc.DataTierProto.UpdatePropertyRequest,
-              via.pro3.datatierserver.grpc.DataTierProto.PropertyResponse>(
-                service, METHODID_UPDATE_PROPERTY)))
-        .addMethod(
-          getDeletePropertyMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyRequest,
-              via.pro3.datatierserver.grpc.DataTierProto.DeletePropertyResponse>(
-                service, METHODID_DELETE_PROPERTY)))
         .addMethod(
           getCreateUserMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -1893,11 +1516,6 @@ public final class DataTierServiceGrpc {
               .addMethod(getGetBidsMethod())
               .addMethod(getUpdateBidMethod())
               .addMethod(getDeleteBidMethod())
-              .addMethod(getCreatePropertyMethod())
-              .addMethod(getGetPropertyMethod())
-              .addMethod(getGetPropertiesMethod())
-              .addMethod(getUpdatePropertyMethod())
-              .addMethod(getDeletePropertyMethod())
               .addMethod(getCreateUserMethod())
               .addMethod(getGetUserMethod())
               .addMethod(getGetUsersMethod())

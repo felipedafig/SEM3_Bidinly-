@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 {"documents":{"C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\*":"https://raw.githubusercontent.com/felipedafig/SEM3_Bidinly-/9cd3f3026d98b039048f37d794c17183b5b362e7/*"}}
 =======
 {"documents":{"C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\*":"https://raw.githubusercontent.com/felipedafig/SEM3_Bidinly-/3772e805eae8718231da3f77776d876db4cf6696/*"}}
 >>>>>>> 6f163fe (TDD tests dataTierGrpcClient main server for property creation)
+=======
+{"documents":{"C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\*":"https://raw.githubusercontent.com/felipedafig/SEM3_Bidinly-/2852d3a39fa1c35f79a692c9cc9f05b7eae59ddf/*"}}
+>>>>>>> c5072f3 (property api post method, update proto file and propertyServiceImpl)

@@ -15,7 +15,6 @@ public interface IBidRepository extends JpaRepository<Bid, Integer> {
     // - findAll() for getMany
     // - deleteById(Integer) for delete
     // - delete(Bid) for delete by entity
-    // - count(), existsById(), etc.
     
     default List<Bid> getMany() {
         return findAll();

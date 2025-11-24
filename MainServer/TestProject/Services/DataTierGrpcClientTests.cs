@@ -76,69 +76,6 @@ namespace TestProject.Services
         #region Request Building Tests
 
         [Fact]
-        public void GetPropertiesAsync_WithNoParameters_BuildsEmptyRequest()
-        {
-            // Arrange
-            var client = new DataTierGrpcClient(_configuration);
-
-            // Act & Assert
-            // This test verifies the method doesn't throw when building the request
-            // The actual gRPC call would require a running server
-            var request = new GetPropertiesRequest();
-            Assert.NotNull(request);
-            Assert.Equal(0, request.AgentId);
-            Assert.Equal("", request.Status);
-        }
-
-        [Fact]
-        public void GetPropertiesAsync_WithAgentId_BuildsRequestWithAgentId()
-        {
-            // Arrange
-            var client = new DataTierGrpcClient(_configuration);
-            int agentId = 5;
-
-            // Act
-            var request = new GetPropertiesRequest { AgentId = agentId };
-
-            // Assert
-            Assert.Equal(agentId, request.AgentId);
-        }
-
-        [Fact]
-        public void GetPropertiesAsync_WithStatus_BuildsRequestWithStatus()
-        {
-            // Arrange
-            var client = new DataTierGrpcClient(_configuration);
-            string status = "Available";
-
-            // Act
-            var request = new GetPropertiesRequest { Status = status };
-
-            // Assert
-            Assert.Equal(status, request.Status);
-        }
-
-        [Fact]
-        public void GetPropertiesAsync_WithBothParameters_BuildsRequestWithBoth()
-        {
-            // Arrange
-            var client = new DataTierGrpcClient(_configuration);
-            int agentId = 3;
-            string status = "Sold";
-
-            // Act
-            var request = new GetPropertiesRequest 
-            { 
-                AgentId = agentId,
-                Status = status
-            };
-
-            // Assert
-            Assert.Equal(agentId, request.AgentId);
-            Assert.Equal(status, request.Status);
-        }
-
-        [Fact]
         public void CreateBidRequest_BuildsCorrectRequest()
         {
             // Arrange
@@ -373,20 +310,6 @@ namespace TestProject.Services
             Assert.Equal(2, response.Bids.Count);
             Assert.Equal(1, response.Bids[0].Id);
             Assert.Equal(2, response.Bids[1].Id);
-        }
-
-        [Fact]
-        public void GetPropertiesResponse_CanContainMultipleProperties()
-        {
-            // Arrange & Act
-            var response = new GetPropertiesResponse();
-            response.Properties.Add(new PropertyResponse { Id = 1, Title = "Property 1" });
-            response.Properties.Add(new PropertyResponse { Id = 2, Title = "Property 2" });
-
-            // Assert
-            Assert.Equal(2, response.Properties.Count);
-            Assert.Equal("Property 1", response.Properties[0].Title);
-            Assert.Equal("Property 2", response.Properties[1].Title);
         }
 
         [Fact]

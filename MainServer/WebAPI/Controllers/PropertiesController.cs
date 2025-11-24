@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
 using PropertyDto = shared.DTOs.Properties.PropertyDto;
+using shared.DTOs.Properties;
 
 namespace MainServer.WebAPI.Controllers
 {
@@ -9,10 +10,12 @@ namespace MainServer.WebAPI.Controllers
     [Route("properties")]
     public class PropertiesController : ControllerBase
     {
+        private readonly PropertyGrpcClient propertyClient;
         private readonly DataTierGrpcClient dataTierClient;
 
-        public PropertiesController(DataTierGrpcClient dataTierClient)
+        public PropertiesController(PropertyGrpcClient propertyClient, DataTierGrpcClient dataTierClient)
         {
+            this.propertyClient = propertyClient;
             this.dataTierClient = dataTierClient;
         }
 
@@ -21,9 +24,8 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                GetPropertiesResponse response = await dataTierClient.GetPropertiesAsync(null, status);
+                GetPropertiesResponse response = await propertyClient.GetPropertiesAsync(null, status);
 
-                // Get unique agent IDs to fetch user names
                 var uniqueAgentIds = response.Properties.Select(p => p.AgentId).Distinct().ToList();
 
                 var agentTasks = uniqueAgentIds.Select(async id =>
@@ -72,9 +74,8 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                PropertyResponse propertyResponse = await dataTierClient.GetPropertyAsync(id);
+                PropertyResponse propertyResponse = await propertyClient.GetPropertyAsync(id);
 
-                // Get agent name
                 UserResponse? agentUser = null;
                 try
                 {
@@ -82,7 +83,6 @@ namespace MainServer.WebAPI.Controllers
                 }
                 catch
                 {
-                    // Agent not found, continue without agent name
                 }
 
                 PropertyDto propertyDto = new PropertyDto
@@ -104,6 +104,53 @@ namespace MainServer.WebAPI.Controllers
             catch (Grpc.Core.RpcException ex) when (ex.StatusCode == Grpc.Core.StatusCode.NotFound)
             {
                 return NotFound();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<PropertyDto>> CreateProperty([FromBody] CreatePropertyDto createPropertyDto)
+        {
+            try
+            {           
+                CreatePropertyRequest createRequest = new CreatePropertyRequest
+                {
+                    Title = createPropertyDto.Title,
+                    AgentId = createPropertyDto.AgentId,
+                    Address = createPropertyDto.Address,
+                    StartingPrice = (double)createPropertyDto.StartingPrice,
+                    Bedrooms = createPropertyDto.Bedrooms,
+                    Bathrooms = createPropertyDto.Bathrooms,
+                    SizeInSquareFeet = (int)createPropertyDto.SizeInSquareFeet,
+                    Description = createPropertyDto.Description,
+                    Status = "Available",
+                    CreationStatus = "Pending",
+                    ImageUrl = createPropertyDto.ImageUrl
+                };
+
+                PropertyResponse propertyResponse = await propertyClient.CreatePropertyAsync(createRequest);
+
+                PropertyDto createdPropertyDto = new PropertyDto
+                {
+                    Id = propertyResponse.Id,
+                    Title = propertyResponse.Title,
+                    AgentName = null,
+                    Address = propertyResponse.Address,
+                    StartingPrice = (decimal)propertyResponse.StartingPrice,
+                    Bedrooms = propertyResponse.Bedrooms,
+                    Bathrooms = propertyResponse.Bathrooms,
+                    SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                    Description = propertyResponse.Description,
+                    Status = propertyResponse.Status,
+                    CreationStatus = propertyResponse.CreationStatus,
+                    ImageUrl = propertyResponse.ImageUrl
+
+                };
+
+                return CreatedAtAction(nameof(GetSingleProperty), new { id = createdPropertyDto.Id }, createdPropertyDto);
             }
             catch
             {

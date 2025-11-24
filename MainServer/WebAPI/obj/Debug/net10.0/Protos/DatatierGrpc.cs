@@ -62,22 +62,6 @@ namespace MainServer.WebAPI.Protos {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteBidResponse> __Marshaller_datatier_DeleteBidResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteBidResponse.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.CreatePropertyRequest> __Marshaller_datatier_CreatePropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.CreatePropertyRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.PropertyResponse> __Marshaller_datatier_PropertyResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.PropertyResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetPropertyRequest> __Marshaller_datatier_GetPropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetPropertyRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetPropertiesRequest> __Marshaller_datatier_GetPropertiesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetPropertiesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetPropertiesResponse> __Marshaller_datatier_GetPropertiesResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetPropertiesResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UpdatePropertyRequest> __Marshaller_datatier_UpdatePropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UpdatePropertyRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeletePropertyRequest> __Marshaller_datatier_DeletePropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeletePropertyRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeletePropertyResponse> __Marshaller_datatier_DeletePropertyResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeletePropertyResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.CreateUserRequest> __Marshaller_datatier_CreateUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.CreateUserRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UserResponse> __Marshaller_datatier_UserResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UserResponse.Parser));
@@ -157,46 +141,6 @@ namespace MainServer.WebAPI.Protos {
         "DeleteBid",
         __Marshaller_datatier_DeleteBidRequest,
         __Marshaller_datatier_DeleteBidResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse> __Method_CreateProperty = new grpc::Method<global::MainServer.WebAPI.Protos.CreatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "CreateProperty",
-        __Marshaller_datatier_CreatePropertyRequest,
-        __Marshaller_datatier_PropertyResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetPropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse> __Method_GetProperty = new grpc::Method<global::MainServer.WebAPI.Protos.GetPropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetProperty",
-        __Marshaller_datatier_GetPropertyRequest,
-        __Marshaller_datatier_PropertyResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetPropertiesRequest, global::MainServer.WebAPI.Protos.GetPropertiesResponse> __Method_GetProperties = new grpc::Method<global::MainServer.WebAPI.Protos.GetPropertiesRequest, global::MainServer.WebAPI.Protos.GetPropertiesResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetProperties",
-        __Marshaller_datatier_GetPropertiesRequest,
-        __Marshaller_datatier_GetPropertiesResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.UpdatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse> __Method_UpdateProperty = new grpc::Method<global::MainServer.WebAPI.Protos.UpdatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "UpdateProperty",
-        __Marshaller_datatier_UpdatePropertyRequest,
-        __Marshaller_datatier_PropertyResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.DeletePropertyRequest, global::MainServer.WebAPI.Protos.DeletePropertyResponse> __Method_DeleteProperty = new grpc::Method<global::MainServer.WebAPI.Protos.DeletePropertyRequest, global::MainServer.WebAPI.Protos.DeletePropertyResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "DeleteProperty",
-        __Marshaller_datatier_DeletePropertyRequest,
-        __Marshaller_datatier_DeletePropertyResponse);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreateUserRequest, global::MainServer.WebAPI.Protos.UserResponse> __Method_CreateUser = new grpc::Method<global::MainServer.WebAPI.Protos.CreateUserRequest, global::MainServer.WebAPI.Protos.UserResponse>(
@@ -454,134 +398,6 @@ namespace MainServer.WebAPI.Protos {
       public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.DeleteBidResponse> DeleteBidAsync(global::MainServer.WebAPI.Protos.DeleteBidRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteBid, null, options, request);
-      }
-      /// <summary>
-      /// Property operations
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The response received from the server.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.PropertyResponse CreateProperty(global::MainServer.WebAPI.Protos.CreatePropertyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return CreateProperty(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      /// Property operations
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The response received from the server.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.PropertyResponse CreateProperty(global::MainServer.WebAPI.Protos.CreatePropertyRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_CreateProperty, null, options, request);
-      }
-      /// <summary>
-      /// Property operations
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The call object.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.PropertyResponse> CreatePropertyAsync(global::MainServer.WebAPI.Protos.CreatePropertyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return CreatePropertyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      /// Property operations
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The call object.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.PropertyResponse> CreatePropertyAsync(global::MainServer.WebAPI.Protos.CreatePropertyRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_CreateProperty, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.PropertyResponse GetProperty(global::MainServer.WebAPI.Protos.GetPropertyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return GetProperty(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.PropertyResponse GetProperty(global::MainServer.WebAPI.Protos.GetPropertyRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_GetProperty, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.PropertyResponse> GetPropertyAsync(global::MainServer.WebAPI.Protos.GetPropertyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return GetPropertyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.PropertyResponse> GetPropertyAsync(global::MainServer.WebAPI.Protos.GetPropertyRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_GetProperty, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.GetPropertiesResponse GetProperties(global::MainServer.WebAPI.Protos.GetPropertiesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return GetProperties(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.GetPropertiesResponse GetProperties(global::MainServer.WebAPI.Protos.GetPropertiesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_GetProperties, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.GetPropertiesResponse> GetPropertiesAsync(global::MainServer.WebAPI.Protos.GetPropertiesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return GetPropertiesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.GetPropertiesResponse> GetPropertiesAsync(global::MainServer.WebAPI.Protos.GetPropertiesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_GetProperties, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.PropertyResponse UpdateProperty(global::MainServer.WebAPI.Protos.UpdatePropertyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return UpdateProperty(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.PropertyResponse UpdateProperty(global::MainServer.WebAPI.Protos.UpdatePropertyRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_UpdateProperty, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.PropertyResponse> UpdatePropertyAsync(global::MainServer.WebAPI.Protos.UpdatePropertyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return UpdatePropertyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.PropertyResponse> UpdatePropertyAsync(global::MainServer.WebAPI.Protos.UpdatePropertyRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_UpdateProperty, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.DeletePropertyResponse DeleteProperty(global::MainServer.WebAPI.Protos.DeletePropertyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DeleteProperty(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::MainServer.WebAPI.Protos.DeletePropertyResponse DeleteProperty(global::MainServer.WebAPI.Protos.DeletePropertyRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_DeleteProperty, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.DeletePropertyResponse> DeletePropertyAsync(global::MainServer.WebAPI.Protos.DeletePropertyRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DeletePropertyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::MainServer.WebAPI.Protos.DeletePropertyResponse> DeletePropertyAsync(global::MainServer.WebAPI.Protos.DeletePropertyRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_DeleteProperty, null, options, request);
       }
       /// <summary>
       /// User operations

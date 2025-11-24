@@ -11,10 +11,12 @@ namespace MainServer.WebAPI.Controllers
     public class BidsController : ControllerBase
     {
         private readonly DataTierGrpcClient dataTierClient;
+        private readonly PropertyGrpcClient propertyClient;
 
-        public BidsController(DataTierGrpcClient dataTierClient)
+        public BidsController(DataTierGrpcClient dataTierClient, PropertyGrpcClient propertyClient)
         {
             this.dataTierClient = dataTierClient;
+            this.propertyClient = propertyClient;
         }
 
         [HttpGet]
@@ -31,7 +33,7 @@ namespace MainServer.WebAPI.Controllers
             {
                 try
                 {
-                    var property = await dataTierClient.GetPropertyAsync(id);
+                    var property = await propertyClient.GetPropertyAsync(id);
                     return new { Id = id, Property = (PropertyResponse?)property };
                 }
                 catch
@@ -101,7 +103,7 @@ namespace MainServer.WebAPI.Controllers
                 UserResponse? user = null;
                 
                 
-                    property = await dataTierClient.GetPropertyAsync(bidResponse.PropertyId);
+                    property = await propertyClient.GetPropertyAsync(bidResponse.PropertyId);
                 
                     user = await dataTierClient.GetUserAsync(bidResponse.BuyerId);
 

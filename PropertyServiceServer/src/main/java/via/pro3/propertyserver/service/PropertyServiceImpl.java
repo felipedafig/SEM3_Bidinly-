@@ -34,7 +34,9 @@ public class PropertyServiceImpl extends PropertyServiceGrpc.PropertyServiceImpl
             property.setBathrooms(request.getBathrooms());
             property.setSizeInSquareFeet((double) request.getSizeInSquareFeet());
             property.setDescription(request.hasDescription() ? request.getDescription() : null);
-            property.setStatus(request.hasStatus() ? request.getStatus() : "Available");
+            property.setStatus(request.getStatus().isBlank() ? "Available" : request.getStatus());
+            property.setCreationStatus(request.getCreationStatus().isBlank() ? "Pending" : request.getCreationStatus());
+            property.setImageUrl(request.hasImageUrl() ? request.getImageUrl() : null);
 
             Property saved = propertyRepository.save(property);
             responseObserver.onNext(toProto(saved));
@@ -69,10 +71,12 @@ public class PropertyServiceImpl extends PropertyServiceGrpc.PropertyServiceImpl
         try {
             Integer agentId = request.hasAgentId() ? request.getAgentId() : null;
             String status = request.hasStatus() ? request.getStatus() : null;
+            String creationStatus = request.hasCreationStatus() ? request.getCreationStatus() : null;
 
             List<PropertyProto.PropertyResponse> properties = propertyRepository.getMany().stream()
                 .filter(property -> agentId == null || agentId.equals(property.getAgentId()))
                 .filter(property -> status == null || status.isBlank() || status.equalsIgnoreCase(property.getStatus()))
+                .filter(property -> creationStatus == null || creationStatus.isBlank() || creationStatus.equalsIgnoreCase(property.getCreationStatus()))
                 .map(this::toProto)
                 .toList();
 
@@ -170,6 +174,12 @@ public class PropertyServiceImpl extends PropertyServiceGrpc.PropertyServiceImpl
         if (request.hasStatus()) {
             property.setStatus(request.getStatus());
         }
+        if (request.hasCreationStatus()) {
+            property.setCreationStatus(request.getCreationStatus());
+        }
+        if (request.hasImageUrl()) {
+            property.setImageUrl(request.getImageUrl());
+        }
     }
 
     private void validateCreate(PropertyProto.CreatePropertyRequest request) {
@@ -202,6 +212,8 @@ public class PropertyServiceImpl extends PropertyServiceGrpc.PropertyServiceImpl
             .setSizeInSquareFeet(property.getSizeInSquareFeet() != null ? property.getSizeInSquareFeet().intValue() : 0)
             .setDescription(property.getDescription() != null ? property.getDescription() : "")
             .setStatus(property.getStatus() != null ? property.getStatus() : "Available")
+            .setCreationStatus(property.getCreationStatus() != null ? property.getCreationStatus() : "Pending")
+            .setImageUrl(property.getImageUrl() != null ? property.getImageUrl() : "")
             .build();
     }
 }

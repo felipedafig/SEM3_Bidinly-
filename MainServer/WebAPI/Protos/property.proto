@@ -21,7 +21,10 @@ message CreatePropertyRequest {
   int32 bathrooms = 6;
   int32 sizeInSquareFeet = 7;
   optional string description = 8;
-  optional string status = 9;
+  string status = 9;
+  string creationStatus = 10;
+  optional string imageUrl = 11;
+  
 }
 
 message GetPropertyRequest {
@@ -31,6 +34,7 @@ message GetPropertyRequest {
 message GetPropertiesRequest {
   optional int32 agentId = 1;
   optional string status = 2;
+  optional string creationStatus = 3;
 }
 
 message UpdatePropertyRequest {
@@ -43,6 +47,8 @@ message UpdatePropertyRequest {
   optional int32 sizeInSquareFeet = 7;
   optional string description = 8;
   optional string status = 9;
+  optional string creationStatus = 10;
+  optional string imageUrl = 11;
 }
 
 message DeletePropertyRequest {
@@ -60,6 +66,8 @@ message PropertyResponse {
   int32 sizeInSquareFeet = 8;
   string description = 9;
   string status = 10;
+  string creationStatus = 11;
+  string imageUrl = 12;
 }
 
 message GetPropertiesResponse {

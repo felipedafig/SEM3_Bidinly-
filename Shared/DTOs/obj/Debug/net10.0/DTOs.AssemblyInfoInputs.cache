@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 d179ce3b9b65b45607d55cb36670f147dd8b15dc862268b244c4ea307ab23ea2
 =======
 8a1dded805cc92c429c69c67d28606eac1c752048cf9fd6f9ccc673ddc87d7bd
@@ -15,3 +16,6 @@ cedb1110f41c50f2e04b3194b763d9d728e48d9bb06f4618de0fd03c75e1680c
 =======
 f6ac9cf164ad5bddb25f817c5ae81987f5c3ac9070e7b9247f279708c14ef75a
 >>>>>>> 05175b8 (property service server)
+=======
+d56b4eaadd5e0cfc69043f338e556591031993f5eca0b3123cc789c5da6d83ee
+>>>>>>> c5072f3 (property api post method, update proto file and propertyServiceImpl)

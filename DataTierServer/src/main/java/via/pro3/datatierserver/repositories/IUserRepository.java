@@ -14,7 +14,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     // - findAll() for getMany
     // - deleteById(Integer) for delete
     // - delete(User) for delete by entity
-    // - count(), existsById(), etc.
     
     default Optional<User> getSingle(Integer id) {
         return findById(id);
