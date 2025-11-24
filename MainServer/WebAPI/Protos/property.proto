@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package property;
+
+option csharp_namespace = "MainServer.WebAPI.Protos";
+
+service PropertyService {
+  rpc CreateProperty (CreatePropertyRequest) returns (PropertyResponse);
+  rpc GetProperty (GetPropertyRequest) returns (PropertyResponse);
+  rpc GetProperties (GetPropertiesRequest) returns (GetPropertiesResponse);
+  rpc UpdateProperty (UpdatePropertyRequest) returns (PropertyResponse);
+  rpc DeleteProperty (DeletePropertyRequest) returns (DeletePropertyResponse);
+}
+
+message CreatePropertyRequest {
+  int32 agentId = 1;
+  string title = 2;
+  optional string address = 3;
+  double startingPrice = 4;
+  int32 bedrooms = 5;
+  int32 bathrooms = 6;
+  int32 sizeInSquareFeet = 7;
+  optional string description = 8;
+  optional string status = 9;
+}
+
+message GetPropertyRequest {
+  int32 id = 1;
+}
+
+message GetPropertiesRequest {
+  optional int32 agentId = 1;
+  optional string status = 2;
+}
+
+message UpdatePropertyRequest {
+  int32 id = 1;
+  optional string title = 2;
+  optional string address = 3;
+  optional double startingPrice = 4;
+  optional int32 bedrooms = 5;
+  optional int32 bathrooms = 6;
+  optional int32 sizeInSquareFeet = 7;
+  optional string description = 8;
+  optional string status = 9;
+}
+
+message DeletePropertyRequest {
+  int32 id = 1;
+}
+
+message PropertyResponse {
+  int32 id = 1;
+  int32 agentId = 2;
+  string title = 3;
+  string address = 4;
+  double startingPrice = 5;
+  int32 bedrooms = 6;
+  int32 bathrooms = 7;
+  int32 sizeInSquareFeet = 8;
+  string description = 9;
+  string status = 10;
+}
+
+message GetPropertiesResponse {
+  repeated PropertyResponse properties = 1;
+}
+
+message DeletePropertyResponse {
+  bool success = 1;
+}
