@@ -23,7 +23,7 @@ public class PropertyServiceImpl extends PropertyServiceGrpc.PropertyServiceImpl
     public void createProperty(PropertyProto.CreatePropertyRequest request,
                                StreamObserver<PropertyProto.PropertyResponse> responseObserver) {
         try {
-            validateCreate(request);
+             validateCreate(request);
 
             Property property = new Property();
             property.setAgentId(request.getAgentId());

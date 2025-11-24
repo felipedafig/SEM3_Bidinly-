@@ -128,7 +128,6 @@ namespace MainServer.WebAPI.Controllers
                     CreationStatus = "Pending"
                 };
 
-                // Handle optional fields
                 if (!string.IsNullOrWhiteSpace(createPropertyDto.Address))
                 {
                     createRequest.Address = createPropertyDto.Address;
