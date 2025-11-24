@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 d179ce3b9b65b45607d55cb36670f147dd8b15dc862268b244c4ea307ab23ea2
 =======
 8a1dded805cc92c429c69c67d28606eac1c752048cf9fd6f9ccc673ddc87d7bd
@@ -27,3 +28,6 @@ f255d21c0a44e88f894bf7d540311df962763b47acac00ea756799ad4a28fa88
 =======
 e9da8ed62015c065a82f7c4fbc76de4485ddaa0f674efeb72be8edb55f3a0592
 >>>>>>> 6e9c310 (propertyGrpcClient xunit tests)
+=======
+9a6c6691fe54d52ec97c090f53aa945b2ecf70733bf6f155e1af8ccc5a640dde
+>>>>>>> 64c7cd4 (UI add property works)

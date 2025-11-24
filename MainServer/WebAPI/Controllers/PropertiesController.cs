@@ -20,11 +20,11 @@ namespace MainServer.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<PropertyDto>>> GetManyProperties([FromQuery] string? status = null)
+        public async Task<ActionResult<List<PropertyDto>>> GetManyProperties([FromQuery] string? status = null, [FromQuery] int? agentId = null)
         {
             try
             {
-                GetPropertiesResponse response = await propertyClient.GetPropertiesAsync(null, status);
+                GetPropertiesResponse response = await propertyClient.GetPropertiesAsync(agentId, status);
 
                 var uniqueAgentIds = response.Properties.Select(p => p.AgentId).Distinct().ToList();
 

@@ -20,6 +20,7 @@ using System.Reflection;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99d94f93150eb0678f62f4eec00ffde1644037b1")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9724390ae088bea08d90d1d1814cc79174ccd5bc")]
@@ -42,6 +43,9 @@ using System.Reflection;
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f59c4d7f80b458d15574e965223ae644a9867032")]
 >>>>>>> 6e9c310 (propertyGrpcClient xunit tests)
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e9c31050d09a19e000e17b2bd29a5cd8bbaf3bc")]
+>>>>>>> 64c7cd4 (UI add property works)
 [assembly: System.Reflection.AssemblyProductAttribute("DTOs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DTOs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

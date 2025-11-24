@@ -13,19 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlazorApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99d94f93150eb0678f62f4eec00ffde1644037b1")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9724390ae088bea08d90d1d1814cc79174ccd5bc")]
->>>>>>> 3772e80 (dataTierServiceImpl tests fixed)
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f163feca74083347fdd422155660ab8ff63370b")]
->>>>>>> 5cf4723 (added creationStatus attribute in java property model class)
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b5e33eeec771d16a08edd035d0d6f52b2206732")]
->>>>>>> 05175b8 (property service server)
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d198b861f58ea7ea8530fb271c2067644f7ac5ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlazorApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlazorApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

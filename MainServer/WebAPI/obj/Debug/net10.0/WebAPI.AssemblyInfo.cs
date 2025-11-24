@@ -15,6 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c61ce6f7067ea82c5b0e18fbbbb71eee2d319ea")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5072f33b4d11d89214eef1b15e55a82c46e8383")]
@@ -22,6 +23,9 @@ using System.Reflection;
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f59c4d7f80b458d15574e965223ae644a9867032")]
 >>>>>>> 6e9c310 (propertyGrpcClient xunit tests)
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e9c31050d09a19e000e17b2bd29a5cd8bbaf3bc")]
+>>>>>>> 64c7cd4 (UI add property works)
 [assembly: System.Reflection.AssemblyProductAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
