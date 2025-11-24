@@ -15,6 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99d94f93150eb0678f62f4eec00ffde1644037b1")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9724390ae088bea08d90d1d1814cc79174ccd5bc")]
@@ -22,6 +23,9 @@ using System.Reflection;
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3772e805eae8718231da3f77776d876db4cf6696")]
 >>>>>>> 6f163fe (TDD tests dataTierGrpcClient main server for property creation)
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f163feca74083347fdd422155660ab8ff63370b")]
+>>>>>>> 5cf4723 (added creationStatus attribute in java property model class)
 [assembly: System.Reflection.AssemblyProductAttribute("DTOs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DTOs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

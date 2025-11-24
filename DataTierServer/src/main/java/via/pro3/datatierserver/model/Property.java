@@ -56,11 +56,15 @@ public class Property {
     @Size(max = 50)
     private String status = "Available";
 
+    @Column(name = "\"CreationStatus\"", length = 50)
+    @Size(max = 50)
+    private String creationStatus = "Pending";
+
     public Property() {
     }
 
     public Property(Integer agentId, String title, BigDecimal startingPrice,
-                    Integer bedrooms, Integer bathrooms, Double sizeInSquareFeet) {
+                    Integer bedrooms, Integer bathrooms, Double sizeInSquareFeet, String creationStatus) {
         this.agentId = agentId;
         this.title = title;
         this.startingPrice = startingPrice;
@@ -68,6 +72,7 @@ public class Property {
         this.bathrooms = bathrooms;
         this.sizeInSquareFeet = sizeInSquareFeet;
         this.status = "Available";
+        this.creationStatus = "Pending";
     }
 
     public Integer getId() {
@@ -157,4 +162,8 @@ public class Property {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getCreationStatus(){return creationStatus;}
+
+    public void setCreationStatus(String status) {this.creationStatus = status;}
 }
