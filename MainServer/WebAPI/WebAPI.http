@@ -379,7 +379,7 @@ Content-Type: application/json
 
 ###
 
-### O — One happy-path property (baseline success later)
+## O — One happy-path property (baseline success later)
 POST {{WebAPI_HostAddress}}/properties
 Content-Type: application/json
 
@@ -391,11 +391,8 @@ Content-Type: application/json
   "Bedrooms": 2,
   "Bathrooms": 2,
   "SizeInSquareFeet": 1100,
-  "Description": "Should eventually succeed once CreateProperty is implemented",
-  "Status": "Available",
+  "Description": "Should eventually succeed once CreateProperty is implemented"
 }
-
-###
 
 ### M — Many/simultaneous: second property with same agent/title (should handle duplicates)
 POST {{WebAPI_HostAddress}}/properties

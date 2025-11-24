@@ -120,16 +120,27 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Title = createPropertyDto.Title,
                     AgentId = createPropertyDto.AgentId,
-                    Address = createPropertyDto.Address,
                     StartingPrice = (double)createPropertyDto.StartingPrice,
                     Bedrooms = createPropertyDto.Bedrooms,
                     Bathrooms = createPropertyDto.Bathrooms,
                     SizeInSquareFeet = (int)createPropertyDto.SizeInSquareFeet,
-                    Description = createPropertyDto.Description,
                     Status = "Available",
-                    CreationStatus = "Pending",
-                    ImageUrl = createPropertyDto.ImageUrl
+                    CreationStatus = "Pending"
                 };
+
+                // Handle optional fields
+                if (!string.IsNullOrWhiteSpace(createPropertyDto.Address))
+                {
+                    createRequest.Address = createPropertyDto.Address;
+                }
+                if (!string.IsNullOrWhiteSpace(createPropertyDto.Description))
+                {
+                    createRequest.Description = createPropertyDto.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(createPropertyDto.ImageUrl))
+                {
+                    createRequest.ImageUrl = createPropertyDto.ImageUrl;
+                }
 
                 PropertyResponse propertyResponse = await propertyClient.CreatePropertyAsync(createRequest);
 
