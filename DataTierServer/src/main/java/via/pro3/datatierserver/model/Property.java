@@ -60,6 +60,10 @@ public class Property {
     @Size(max = 50)
     private String creationStatus = "Pending";
 
+    @Column(name = "\"ImageUrl\"", length = 1000)
+    @Size(max = 1000)
+    private String imageUrl;
+
     public Property() {
     }
 
@@ -72,7 +76,8 @@ public class Property {
         this.bathrooms = bathrooms;
         this.sizeInSquareFeet = sizeInSquareFeet;
         this.status = "Available";
-        this.creationStatus = "Pending";
+        this.creationStatus = creationStatus;
+        this.imageUrl = null;
     }
 
     public Integer getId() {
@@ -166,4 +171,12 @@ public class Property {
     public String getCreationStatus(){return creationStatus;}
 
     public void setCreationStatus(String status) {this.creationStatus = status;}
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
