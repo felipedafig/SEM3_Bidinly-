@@ -16,12 +16,4 @@ public interface IPropertyRepository extends JpaRepository<Property, Integer> {
     // - deleteById(Integer) for delete
     // - delete(Property) for delete by entity
     // - count(), existsById(), etc.
-    
-    default List<Property> getMany() {
-        return findAll();
-    }
-    
-    default Optional<Property> getSingle(Integer id) {
-        return findById(id);
-    }
 }

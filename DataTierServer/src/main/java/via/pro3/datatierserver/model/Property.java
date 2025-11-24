@@ -56,19 +56,11 @@ public class Property {
     @Size(max = 50)
     private String status = "Available";
 
-    @Column(name = "\"CreationStatus\"", length = 50)
-    @Size(max = 50)
-    private String creationStatus = "Pending";
-
-    @Column(name = "\"ImageUrl\"", length = 1000)
-    @Size(max = 1000)
-    private String imageUrl;
-
     public Property() {
     }
 
     public Property(Integer agentId, String title, BigDecimal startingPrice,
-                    Integer bedrooms, Integer bathrooms, Double sizeInSquareFeet, String creationStatus) {
+                    Integer bedrooms, Integer bathrooms, Double sizeInSquareFeet) {
         this.agentId = agentId;
         this.title = title;
         this.startingPrice = startingPrice;
@@ -76,8 +68,6 @@ public class Property {
         this.bathrooms = bathrooms;
         this.sizeInSquareFeet = sizeInSquareFeet;
         this.status = "Available";
-        this.creationStatus = creationStatus;
-        this.imageUrl = null;
     }
 
     public Integer getId() {
@@ -167,12 +157,4 @@ public class Property {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public String getCreationStatus(){return creationStatus;}
-
-    public void setCreationStatus(String status) {this.creationStatus = status;}
-
-    public String getImageUrl() {return imageUrl;}
-
-    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
 }

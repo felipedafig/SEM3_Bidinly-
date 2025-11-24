@@ -147,14 +147,14 @@ public class PropertyServiceImpl extends PropertyServiceGrpc.PropertyServiceImpl
             property.setStartingPrice(BigDecimal.valueOf(request.getStartingPrice()));
         }
         if (request.hasBedrooms()) {
-            if (request.getBedrooms() < 0) {
-                throw new IllegalArgumentException("Bedrooms cannot be negative");
+            if (request.getBedrooms() <= 0) {
+                throw new IllegalArgumentException("Bedrooms must be greater than zero");
             }
             property.setBedrooms(request.getBedrooms());
         }
         if (request.hasBathrooms()) {
-            if (request.getBathrooms() < 0) {
-                throw new IllegalArgumentException("Bathrooms cannot be negative");
+            if (request.getBathrooms() <= 0) {
+                throw new IllegalArgumentException("Bathrooms must be greater than zero");
             }
             property.setBathrooms(request.getBathrooms());
         }
@@ -176,14 +176,14 @@ public class PropertyServiceImpl extends PropertyServiceGrpc.PropertyServiceImpl
         if (request.getTitle().isBlank()) {
             throw new IllegalArgumentException("Title is required");
         }
-        if (!request.hasAddress() || request.getAddress().isBlank()) {
-            throw new IllegalArgumentException("Address is required");
-        }
         if (request.getStartingPrice() <= 0) {
             throw new IllegalArgumentException("Starting price must be positive");
         }
-        if (request.getBedrooms() < 0 || request.getBathrooms() < 0) {
-            throw new IllegalArgumentException("Bedrooms/Bathrooms cannot be negative");
+        if (request.getBedrooms() <= 0) {
+            throw new IllegalArgumentException("Bedrooms must be greater than zero");
+        }
+        if (request.getBathrooms() <= 0) {
+            throw new IllegalArgumentException("Bathrooms must be greater than zero");
         }
         if (request.getSizeInSquareFeet() <= 0) {
             throw new IllegalArgumentException("Size in square feet must be positive");
