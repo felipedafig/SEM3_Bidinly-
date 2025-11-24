@@ -5,41 +5,52 @@ package datatier;
 option java_package = "via.pro3.datatierserver.grpc";
 option java_outer_classname = "DataTierProto";
 
-service DataTierService {
+service BidService {
   // Bid operations
   rpc CreateBid (CreateBidRequest) returns (BidResponse);
   rpc GetBid (GetBidRequest) returns (BidResponse);
   rpc GetBids (GetBidsRequest) returns (GetBidsResponse);
   rpc UpdateBid (UpdateBidRequest) returns (BidResponse);
   rpc DeleteBid (DeleteBidRequest) returns (DeleteBidResponse);
-  
+}
+
+service PropertyService {
   // Property operations
   rpc CreateProperty (CreatePropertyRequest) returns (PropertyResponse);
   rpc GetProperty (GetPropertyRequest) returns (PropertyResponse);
   rpc GetProperties (GetPropertiesRequest) returns (GetPropertiesResponse);
   rpc UpdateProperty (UpdatePropertyRequest) returns (PropertyResponse);
   rpc DeleteProperty (DeletePropertyRequest) returns (DeletePropertyResponse);
-  
+}
+
+service UserService{
   // User operations
   rpc CreateUser (CreateUserRequest) returns (UserResponse);
   rpc GetUser (GetUserRequest) returns (UserResponse);
   rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
   rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
   rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+}
 
+service SaleService {
   // Sale operations
   rpc CreateSale (CreateSaleRequest) returns (SaleResponse);
   rpc GetSale (GetSaleRequest) returns (SaleResponse);
   rpc GetSales (GetSalesRequest) returns (GetSalesResponse);
   rpc UpdateSale (UpdateSaleRequest) returns (SaleResponse);
   rpc DeleteSale (DeleteSaleRequest) returns (DeleteSaleResponse);
+}
 
+service RoleService{
   // Role operations
   rpc GetRole (GetRoleRequest) returns (GetRoleResponse);
+}
 
+service AuthService{
   // Login operations
   rpc AuthenticateUser (LoginRequest) returns (LoginResponse);
 }
+
 
 // Bid messages
 message CreateBidRequest {
