@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 d179ce3b9b65b45607d55cb36670f147dd8b15dc862268b244c4ea307ab23ea2
 =======
 8a1dded805cc92c429c69c67d28606eac1c752048cf9fd6f9ccc673ddc87d7bd
@@ -11,3 +12,6 @@ cedb1110f41c50f2e04b3194b763d9d728e48d9bb06f4618de0fd03c75e1680c
 =======
 81a660111b8835632c63636d9e21ff7c729c16883f100333334b56dfc61a6580
 >>>>>>> 5cf4723 (added creationStatus attribute in java property model class)
+=======
+f6ac9cf164ad5bddb25f817c5ae81987f5c3ac9070e7b9247f279708c14ef75a
+>>>>>>> 05175b8 (property service server)

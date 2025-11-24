@@ -96,45 +96,21 @@ public final class PropertyProto {
         getDescriptionBytes();
 
     /**
-     * <code>string status = 9;</code>
+     * <code>optional string status = 9;</code>
+     * @return Whether the status field is set.
+     */
+    boolean hasStatus();
+    /**
+     * <code>optional string status = 9;</code>
      * @return The status.
      */
     java.lang.String getStatus();
     /**
-     * <code>string status = 9;</code>
+     * <code>optional string status = 9;</code>
      * @return The bytes for status.
      */
     com.google.protobuf.ByteString
         getStatusBytes();
-
-    /**
-     * <code>string creationStatus = 10;</code>
-     * @return The creationStatus.
-     */
-    java.lang.String getCreationStatus();
-    /**
-     * <code>string creationStatus = 10;</code>
-     * @return The bytes for creationStatus.
-     */
-    com.google.protobuf.ByteString
-        getCreationStatusBytes();
-
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return Whether the imageUrl field is set.
-     */
-    boolean hasImageUrl();
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return The imageUrl.
-     */
-    java.lang.String getImageUrl();
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return The bytes for imageUrl.
-     */
-    com.google.protobuf.ByteString
-        getImageUrlBytes();
   }
   /**
    * Protobuf type {@code property.CreatePropertyRequest}
@@ -153,8 +129,6 @@ public final class PropertyProto {
       address_ = "";
       description_ = "";
       status_ = "";
-      creationStatus_ = "";
-      imageUrl_ = "";
     }
 
     @java.lang.Override
@@ -370,7 +344,15 @@ public final class PropertyProto {
     @SuppressWarnings("serial")
     private volatile java.lang.Object status_ = "";
     /**
-     * <code>string status = 9;</code>
+     * <code>optional string status = 9;</code>
+     * @return Whether the status field is set.
+     */
+    @java.lang.Override
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00000004) != 0);
+    }
+    /**
+     * <code>optional string status = 9;</code>
      * @return The status.
      */
     @java.lang.Override
@@ -387,7 +369,7 @@ public final class PropertyProto {
       }
     }
     /**
-     * <code>string status = 9;</code>
+     * <code>optional string status = 9;</code>
      * @return The bytes for status.
      */
     @java.lang.Override
@@ -399,92 +381,6 @@ public final class PropertyProto {
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         status_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int CREATIONSTATUS_FIELD_NUMBER = 10;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object creationStatus_ = "";
-    /**
-     * <code>string creationStatus = 10;</code>
-     * @return The creationStatus.
-     */
-    @java.lang.Override
-    public java.lang.String getCreationStatus() {
-      java.lang.Object ref = creationStatus_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        creationStatus_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string creationStatus = 10;</code>
-     * @return The bytes for creationStatus.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getCreationStatusBytes() {
-      java.lang.Object ref = creationStatus_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        creationStatus_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int IMAGEURL_FIELD_NUMBER = 11;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object imageUrl_ = "";
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return Whether the imageUrl field is set.
-     */
-    @java.lang.Override
-    public boolean hasImageUrl() {
-      return ((bitField0_ & 0x00000004) != 0);
-    }
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return The imageUrl.
-     */
-    @java.lang.Override
-    public java.lang.String getImageUrl() {
-      java.lang.Object ref = imageUrl_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        imageUrl_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return The bytes for imageUrl.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getImageUrlBytes() {
-      java.lang.Object ref = imageUrl_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        imageUrl_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -529,14 +425,8 @@ public final class PropertyProto {
       if (((bitField0_ & 0x00000002) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 8, description_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, status_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(creationStatus_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, creationStatus_);
-      }
       if (((bitField0_ & 0x00000004) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 11, imageUrl_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, status_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -576,14 +466,8 @@ public final class PropertyProto {
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, description_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, status_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(creationStatus_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, creationStatus_);
-      }
       if (((bitField0_ & 0x00000004) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, imageUrl_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, status_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -623,14 +507,10 @@ public final class PropertyProto {
         if (!getDescription()
             .equals(other.getDescription())) return false;
       }
-      if (!getStatus()
-          .equals(other.getStatus())) return false;
-      if (!getCreationStatus()
-          .equals(other.getCreationStatus())) return false;
-      if (hasImageUrl() != other.hasImageUrl()) return false;
-      if (hasImageUrl()) {
-        if (!getImageUrl()
-            .equals(other.getImageUrl())) return false;
+      if (hasStatus() != other.hasStatus()) return false;
+      if (hasStatus()) {
+        if (!getStatus()
+            .equals(other.getStatus())) return false;
       }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
@@ -664,13 +544,9 @@ public final class PropertyProto {
         hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
         hash = (53 * hash) + getDescription().hashCode();
       }
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getStatus().hashCode();
-      hash = (37 * hash) + CREATIONSTATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getCreationStatus().hashCode();
-      if (hasImageUrl()) {
-        hash = (37 * hash) + IMAGEURL_FIELD_NUMBER;
-        hash = (53 * hash) + getImageUrl().hashCode();
+      if (hasStatus()) {
+        hash = (37 * hash) + STATUS_FIELD_NUMBER;
+        hash = (53 * hash) + getStatus().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -812,8 +688,6 @@ public final class PropertyProto {
         sizeInSquareFeet_ = 0;
         description_ = "";
         status_ = "";
-        creationStatus_ = "";
-        imageUrl_ = "";
         return this;
       }
 
@@ -876,12 +750,6 @@ public final class PropertyProto {
         }
         if (((from_bitField0_ & 0x00000100) != 0)) {
           result.status_ = status_;
-        }
-        if (((from_bitField0_ & 0x00000200) != 0)) {
-          result.creationStatus_ = creationStatus_;
-        }
-        if (((from_bitField0_ & 0x00000400) != 0)) {
-          result.imageUrl_ = imageUrl_;
           to_bitField0_ |= 0x00000004;
         }
         result.bitField0_ |= to_bitField0_;
@@ -961,19 +829,9 @@ public final class PropertyProto {
           bitField0_ |= 0x00000080;
           onChanged();
         }
-        if (!other.getStatus().isEmpty()) {
+        if (other.hasStatus()) {
           status_ = other.status_;
           bitField0_ |= 0x00000100;
-          onChanged();
-        }
-        if (!other.getCreationStatus().isEmpty()) {
-          creationStatus_ = other.creationStatus_;
-          bitField0_ |= 0x00000200;
-          onChanged();
-        }
-        if (other.hasImageUrl()) {
-          imageUrl_ = other.imageUrl_;
-          bitField0_ |= 0x00000400;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -1047,16 +905,6 @@ public final class PropertyProto {
                 bitField0_ |= 0x00000100;
                 break;
               } // case 74
-              case 82: {
-                creationStatus_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000200;
-                break;
-              } // case 82
-              case 90: {
-                imageUrl_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000400;
-                break;
-              } // case 90
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1466,7 +1314,14 @@ public final class PropertyProto {
 
       private java.lang.Object status_ = "";
       /**
-       * <code>string status = 9;</code>
+       * <code>optional string status = 9;</code>
+       * @return Whether the status field is set.
+       */
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00000100) != 0);
+      }
+      /**
+       * <code>optional string status = 9;</code>
        * @return The status.
        */
       public java.lang.String getStatus() {
@@ -1482,7 +1337,7 @@ public final class PropertyProto {
         }
       }
       /**
-       * <code>string status = 9;</code>
+       * <code>optional string status = 9;</code>
        * @return The bytes for status.
        */
       public com.google.protobuf.ByteString
@@ -1499,7 +1354,7 @@ public final class PropertyProto {
         }
       }
       /**
-       * <code>string status = 9;</code>
+       * <code>optional string status = 9;</code>
        * @param value The status to set.
        * @return This builder for chaining.
        */
@@ -1512,7 +1367,7 @@ public final class PropertyProto {
         return this;
       }
       /**
-       * <code>string status = 9;</code>
+       * <code>optional string status = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearStatus() {
@@ -1522,7 +1377,7 @@ public final class PropertyProto {
         return this;
       }
       /**
-       * <code>string status = 9;</code>
+       * <code>optional string status = 9;</code>
        * @param value The bytes for status to set.
        * @return This builder for chaining.
        */
@@ -1532,157 +1387,6 @@ public final class PropertyProto {
         checkByteStringIsUtf8(value);
         status_ = value;
         bitField0_ |= 0x00000100;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object creationStatus_ = "";
-      /**
-       * <code>string creationStatus = 10;</code>
-       * @return The creationStatus.
-       */
-      public java.lang.String getCreationStatus() {
-        java.lang.Object ref = creationStatus_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          creationStatus_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string creationStatus = 10;</code>
-       * @return The bytes for creationStatus.
-       */
-      public com.google.protobuf.ByteString
-          getCreationStatusBytes() {
-        java.lang.Object ref = creationStatus_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          creationStatus_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string creationStatus = 10;</code>
-       * @param value The creationStatus to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreationStatus(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        creationStatus_ = value;
-        bitField0_ |= 0x00000200;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string creationStatus = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCreationStatus() {
-        creationStatus_ = getDefaultInstance().getCreationStatus();
-        bitField0_ = (bitField0_ & ~0x00000200);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string creationStatus = 10;</code>
-       * @param value The bytes for creationStatus to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreationStatusBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        creationStatus_ = value;
-        bitField0_ |= 0x00000200;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object imageUrl_ = "";
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @return Whether the imageUrl field is set.
-       */
-      public boolean hasImageUrl() {
-        return ((bitField0_ & 0x00000400) != 0);
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @return The imageUrl.
-       */
-      public java.lang.String getImageUrl() {
-        java.lang.Object ref = imageUrl_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          imageUrl_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @return The bytes for imageUrl.
-       */
-      public com.google.protobuf.ByteString
-          getImageUrlBytes() {
-        java.lang.Object ref = imageUrl_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          imageUrl_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @param value The imageUrl to set.
-       * @return This builder for chaining.
-       */
-      public Builder setImageUrl(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        imageUrl_ = value;
-        bitField0_ |= 0x00000400;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearImageUrl() {
-        imageUrl_ = getDefaultInstance().getImageUrl();
-        bitField0_ = (bitField0_ & ~0x00000400);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @param value The bytes for imageUrl to set.
-       * @return This builder for chaining.
-       */
-      public Builder setImageUrlBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        imageUrl_ = value;
-        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -2257,23 +1961,6 @@ public final class PropertyProto {
      */
     com.google.protobuf.ByteString
         getStatusBytes();
-
-    /**
-     * <code>optional string creationStatus = 3;</code>
-     * @return Whether the creationStatus field is set.
-     */
-    boolean hasCreationStatus();
-    /**
-     * <code>optional string creationStatus = 3;</code>
-     * @return The creationStatus.
-     */
-    java.lang.String getCreationStatus();
-    /**
-     * <code>optional string creationStatus = 3;</code>
-     * @return The bytes for creationStatus.
-     */
-    com.google.protobuf.ByteString
-        getCreationStatusBytes();
   }
   /**
    * Protobuf type {@code property.GetPropertiesRequest}
@@ -2289,7 +1976,6 @@ public final class PropertyProto {
     }
     private GetPropertiesRequest() {
       status_ = "";
-      creationStatus_ = "";
     }
 
     @java.lang.Override
@@ -2379,53 +2065,6 @@ public final class PropertyProto {
       }
     }
 
-    public static final int CREATIONSTATUS_FIELD_NUMBER = 3;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object creationStatus_ = "";
-    /**
-     * <code>optional string creationStatus = 3;</code>
-     * @return Whether the creationStatus field is set.
-     */
-    @java.lang.Override
-    public boolean hasCreationStatus() {
-      return ((bitField0_ & 0x00000004) != 0);
-    }
-    /**
-     * <code>optional string creationStatus = 3;</code>
-     * @return The creationStatus.
-     */
-    @java.lang.Override
-    public java.lang.String getCreationStatus() {
-      java.lang.Object ref = creationStatus_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        creationStatus_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string creationStatus = 3;</code>
-     * @return The bytes for creationStatus.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getCreationStatusBytes() {
-      java.lang.Object ref = creationStatus_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        creationStatus_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2446,9 +2085,6 @@ public final class PropertyProto {
       if (((bitField0_ & 0x00000002) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, status_);
       }
-      if (((bitField0_ & 0x00000004) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, creationStatus_);
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -2464,9 +2100,6 @@ public final class PropertyProto {
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, status_);
-      }
-      if (((bitField0_ & 0x00000004) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, creationStatus_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2493,11 +2126,6 @@ public final class PropertyProto {
         if (!getStatus()
             .equals(other.getStatus())) return false;
       }
-      if (hasCreationStatus() != other.hasCreationStatus()) return false;
-      if (hasCreationStatus()) {
-        if (!getCreationStatus()
-            .equals(other.getCreationStatus())) return false;
-      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -2516,10 +2144,6 @@ public final class PropertyProto {
       if (hasStatus()) {
         hash = (37 * hash) + STATUS_FIELD_NUMBER;
         hash = (53 * hash) + getStatus().hashCode();
-      }
-      if (hasCreationStatus()) {
-        hash = (37 * hash) + CREATIONSTATUS_FIELD_NUMBER;
-        hash = (53 * hash) + getCreationStatus().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -2654,7 +2278,6 @@ public final class PropertyProto {
         bitField0_ = 0;
         agentId_ = 0;
         status_ = "";
-        creationStatus_ = "";
         return this;
       }
 
@@ -2696,10 +2319,6 @@ public final class PropertyProto {
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.status_ = status_;
           to_bitField0_ |= 0x00000002;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.creationStatus_ = creationStatus_;
-          to_bitField0_ |= 0x00000004;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -2756,11 +2375,6 @@ public final class PropertyProto {
           bitField0_ |= 0x00000002;
           onChanged();
         }
-        if (other.hasCreationStatus()) {
-          creationStatus_ = other.creationStatus_;
-          bitField0_ |= 0x00000004;
-          onChanged();
-        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -2797,11 +2411,6 @@ public final class PropertyProto {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
-              case 26: {
-                creationStatus_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2934,85 +2543,6 @@ public final class PropertyProto {
         checkByteStringIsUtf8(value);
         status_ = value;
         bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object creationStatus_ = "";
-      /**
-       * <code>optional string creationStatus = 3;</code>
-       * @return Whether the creationStatus field is set.
-       */
-      public boolean hasCreationStatus() {
-        return ((bitField0_ & 0x00000004) != 0);
-      }
-      /**
-       * <code>optional string creationStatus = 3;</code>
-       * @return The creationStatus.
-       */
-      public java.lang.String getCreationStatus() {
-        java.lang.Object ref = creationStatus_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          creationStatus_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string creationStatus = 3;</code>
-       * @return The bytes for creationStatus.
-       */
-      public com.google.protobuf.ByteString
-          getCreationStatusBytes() {
-        java.lang.Object ref = creationStatus_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          creationStatus_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string creationStatus = 3;</code>
-       * @param value The creationStatus to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreationStatus(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        creationStatus_ = value;
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string creationStatus = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCreationStatus() {
-        creationStatus_ = getDefaultInstance().getCreationStatus();
-        bitField0_ = (bitField0_ & ~0x00000004);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string creationStatus = 3;</code>
-       * @param value The bytes for creationStatus to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreationStatusBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        creationStatus_ = value;
-        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -3201,40 +2731,6 @@ public final class PropertyProto {
      */
     com.google.protobuf.ByteString
         getStatusBytes();
-
-    /**
-     * <code>optional string creationStatus = 10;</code>
-     * @return Whether the creationStatus field is set.
-     */
-    boolean hasCreationStatus();
-    /**
-     * <code>optional string creationStatus = 10;</code>
-     * @return The creationStatus.
-     */
-    java.lang.String getCreationStatus();
-    /**
-     * <code>optional string creationStatus = 10;</code>
-     * @return The bytes for creationStatus.
-     */
-    com.google.protobuf.ByteString
-        getCreationStatusBytes();
-
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return Whether the imageUrl field is set.
-     */
-    boolean hasImageUrl();
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return The imageUrl.
-     */
-    java.lang.String getImageUrl();
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return The bytes for imageUrl.
-     */
-    com.google.protobuf.ByteString
-        getImageUrlBytes();
   }
   /**
    * Protobuf type {@code property.UpdatePropertyRequest}
@@ -3253,8 +2749,6 @@ public final class PropertyProto {
       address_ = "";
       description_ = "";
       status_ = "";
-      creationStatus_ = "";
-      imageUrl_ = "";
     }
 
     @java.lang.Override
@@ -3553,100 +3047,6 @@ public final class PropertyProto {
       }
     }
 
-    public static final int CREATIONSTATUS_FIELD_NUMBER = 10;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object creationStatus_ = "";
-    /**
-     * <code>optional string creationStatus = 10;</code>
-     * @return Whether the creationStatus field is set.
-     */
-    @java.lang.Override
-    public boolean hasCreationStatus() {
-      return ((bitField0_ & 0x00000100) != 0);
-    }
-    /**
-     * <code>optional string creationStatus = 10;</code>
-     * @return The creationStatus.
-     */
-    @java.lang.Override
-    public java.lang.String getCreationStatus() {
-      java.lang.Object ref = creationStatus_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        creationStatus_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string creationStatus = 10;</code>
-     * @return The bytes for creationStatus.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getCreationStatusBytes() {
-      java.lang.Object ref = creationStatus_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        creationStatus_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int IMAGEURL_FIELD_NUMBER = 11;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object imageUrl_ = "";
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return Whether the imageUrl field is set.
-     */
-    @java.lang.Override
-    public boolean hasImageUrl() {
-      return ((bitField0_ & 0x00000200) != 0);
-    }
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return The imageUrl.
-     */
-    @java.lang.Override
-    public java.lang.String getImageUrl() {
-      java.lang.Object ref = imageUrl_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        imageUrl_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string imageUrl = 11;</code>
-     * @return The bytes for imageUrl.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getImageUrlBytes() {
-      java.lang.Object ref = imageUrl_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        imageUrl_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3688,12 +3088,6 @@ public final class PropertyProto {
       if (((bitField0_ & 0x00000080) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 9, status_);
       }
-      if (((bitField0_ & 0x00000100) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, creationStatus_);
-      }
-      if (((bitField0_ & 0x00000200) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 11, imageUrl_);
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -3734,12 +3128,6 @@ public final class PropertyProto {
       }
       if (((bitField0_ & 0x00000080) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, status_);
-      }
-      if (((bitField0_ & 0x00000100) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, creationStatus_);
-      }
-      if (((bitField0_ & 0x00000200) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, imageUrl_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -3799,16 +3187,6 @@ public final class PropertyProto {
         if (!getStatus()
             .equals(other.getStatus())) return false;
       }
-      if (hasCreationStatus() != other.hasCreationStatus()) return false;
-      if (hasCreationStatus()) {
-        if (!getCreationStatus()
-            .equals(other.getCreationStatus())) return false;
-      }
-      if (hasImageUrl() != other.hasImageUrl()) return false;
-      if (hasImageUrl()) {
-        if (!getImageUrl()
-            .equals(other.getImageUrl())) return false;
-      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -3854,14 +3232,6 @@ public final class PropertyProto {
       if (hasStatus()) {
         hash = (37 * hash) + STATUS_FIELD_NUMBER;
         hash = (53 * hash) + getStatus().hashCode();
-      }
-      if (hasCreationStatus()) {
-        hash = (37 * hash) + CREATIONSTATUS_FIELD_NUMBER;
-        hash = (53 * hash) + getCreationStatus().hashCode();
-      }
-      if (hasImageUrl()) {
-        hash = (37 * hash) + IMAGEURL_FIELD_NUMBER;
-        hash = (53 * hash) + getImageUrl().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -4003,8 +3373,6 @@ public final class PropertyProto {
         sizeInSquareFeet_ = 0;
         description_ = "";
         status_ = "";
-        creationStatus_ = "";
-        imageUrl_ = "";
         return this;
       }
 
@@ -4073,14 +3441,6 @@ public final class PropertyProto {
         if (((from_bitField0_ & 0x00000100) != 0)) {
           result.status_ = status_;
           to_bitField0_ |= 0x00000080;
-        }
-        if (((from_bitField0_ & 0x00000200) != 0)) {
-          result.creationStatus_ = creationStatus_;
-          to_bitField0_ |= 0x00000100;
-        }
-        if (((from_bitField0_ & 0x00000400) != 0)) {
-          result.imageUrl_ = imageUrl_;
-          to_bitField0_ |= 0x00000200;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -4164,16 +3524,6 @@ public final class PropertyProto {
           bitField0_ |= 0x00000100;
           onChanged();
         }
-        if (other.hasCreationStatus()) {
-          creationStatus_ = other.creationStatus_;
-          bitField0_ |= 0x00000200;
-          onChanged();
-        }
-        if (other.hasImageUrl()) {
-          imageUrl_ = other.imageUrl_;
-          bitField0_ |= 0x00000400;
-          onChanged();
-        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -4245,16 +3595,6 @@ public final class PropertyProto {
                 bitField0_ |= 0x00000100;
                 break;
               } // case 74
-              case 82: {
-                creationStatus_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000200;
-                break;
-              } // case 82
-              case 90: {
-                imageUrl_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000400;
-                break;
-              } // case 90
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -4776,164 +4116,6 @@ public final class PropertyProto {
         checkByteStringIsUtf8(value);
         status_ = value;
         bitField0_ |= 0x00000100;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object creationStatus_ = "";
-      /**
-       * <code>optional string creationStatus = 10;</code>
-       * @return Whether the creationStatus field is set.
-       */
-      public boolean hasCreationStatus() {
-        return ((bitField0_ & 0x00000200) != 0);
-      }
-      /**
-       * <code>optional string creationStatus = 10;</code>
-       * @return The creationStatus.
-       */
-      public java.lang.String getCreationStatus() {
-        java.lang.Object ref = creationStatus_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          creationStatus_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string creationStatus = 10;</code>
-       * @return The bytes for creationStatus.
-       */
-      public com.google.protobuf.ByteString
-          getCreationStatusBytes() {
-        java.lang.Object ref = creationStatus_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          creationStatus_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string creationStatus = 10;</code>
-       * @param value The creationStatus to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreationStatus(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        creationStatus_ = value;
-        bitField0_ |= 0x00000200;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string creationStatus = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCreationStatus() {
-        creationStatus_ = getDefaultInstance().getCreationStatus();
-        bitField0_ = (bitField0_ & ~0x00000200);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string creationStatus = 10;</code>
-       * @param value The bytes for creationStatus to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreationStatusBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        creationStatus_ = value;
-        bitField0_ |= 0x00000200;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object imageUrl_ = "";
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @return Whether the imageUrl field is set.
-       */
-      public boolean hasImageUrl() {
-        return ((bitField0_ & 0x00000400) != 0);
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @return The imageUrl.
-       */
-      public java.lang.String getImageUrl() {
-        java.lang.Object ref = imageUrl_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          imageUrl_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @return The bytes for imageUrl.
-       */
-      public com.google.protobuf.ByteString
-          getImageUrlBytes() {
-        java.lang.Object ref = imageUrl_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          imageUrl_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @param value The imageUrl to set.
-       * @return This builder for chaining.
-       */
-      public Builder setImageUrl(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        imageUrl_ = value;
-        bitField0_ |= 0x00000400;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearImageUrl() {
-        imageUrl_ = getDefaultInstance().getImageUrl();
-        bitField0_ = (bitField0_ & ~0x00000400);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string imageUrl = 11;</code>
-       * @param value The bytes for imageUrl to set.
-       * @return This builder for chaining.
-       */
-      public Builder setImageUrlBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        imageUrl_ = value;
-        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -5564,30 +4746,6 @@ public final class PropertyProto {
      */
     com.google.protobuf.ByteString
         getStatusBytes();
-
-    /**
-     * <code>string creationStatus = 11;</code>
-     * @return The creationStatus.
-     */
-    java.lang.String getCreationStatus();
-    /**
-     * <code>string creationStatus = 11;</code>
-     * @return The bytes for creationStatus.
-     */
-    com.google.protobuf.ByteString
-        getCreationStatusBytes();
-
-    /**
-     * <code>string imageUrl = 12;</code>
-     * @return The imageUrl.
-     */
-    java.lang.String getImageUrl();
-    /**
-     * <code>string imageUrl = 12;</code>
-     * @return The bytes for imageUrl.
-     */
-    com.google.protobuf.ByteString
-        getImageUrlBytes();
   }
   /**
    * Protobuf type {@code property.PropertyResponse}
@@ -5606,8 +4764,6 @@ public final class PropertyProto {
       address_ = "";
       description_ = "";
       status_ = "";
-      creationStatus_ = "";
-      imageUrl_ = "";
     }
 
     @java.lang.Override
@@ -5852,84 +5008,6 @@ public final class PropertyProto {
       }
     }
 
-    public static final int CREATIONSTATUS_FIELD_NUMBER = 11;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object creationStatus_ = "";
-    /**
-     * <code>string creationStatus = 11;</code>
-     * @return The creationStatus.
-     */
-    @java.lang.Override
-    public java.lang.String getCreationStatus() {
-      java.lang.Object ref = creationStatus_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        creationStatus_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string creationStatus = 11;</code>
-     * @return The bytes for creationStatus.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getCreationStatusBytes() {
-      java.lang.Object ref = creationStatus_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        creationStatus_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int IMAGEURL_FIELD_NUMBER = 12;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object imageUrl_ = "";
-    /**
-     * <code>string imageUrl = 12;</code>
-     * @return The imageUrl.
-     */
-    @java.lang.Override
-    public java.lang.String getImageUrl() {
-      java.lang.Object ref = imageUrl_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        imageUrl_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string imageUrl = 12;</code>
-     * @return The bytes for imageUrl.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getImageUrlBytes() {
-      java.lang.Object ref = imageUrl_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        imageUrl_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -5973,12 +5051,6 @@ public final class PropertyProto {
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 10, status_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(creationStatus_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 11, creationStatus_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(imageUrl_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 12, imageUrl_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -6025,12 +5097,6 @@ public final class PropertyProto {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, status_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(creationStatus_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, creationStatus_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(imageUrl_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, imageUrl_);
-      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -6067,10 +5133,6 @@ public final class PropertyProto {
           .equals(other.getDescription())) return false;
       if (!getStatus()
           .equals(other.getStatus())) return false;
-      if (!getCreationStatus()
-          .equals(other.getCreationStatus())) return false;
-      if (!getImageUrl()
-          .equals(other.getImageUrl())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -6103,10 +5165,6 @@ public final class PropertyProto {
       hash = (53 * hash) + getDescription().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + getStatus().hashCode();
-      hash = (37 * hash) + CREATIONSTATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getCreationStatus().hashCode();
-      hash = (37 * hash) + IMAGEURL_FIELD_NUMBER;
-      hash = (53 * hash) + getImageUrl().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6248,8 +5306,6 @@ public final class PropertyProto {
         sizeInSquareFeet_ = 0;
         description_ = "";
         status_ = "";
-        creationStatus_ = "";
-        imageUrl_ = "";
         return this;
       }
 
@@ -6312,12 +5368,6 @@ public final class PropertyProto {
         }
         if (((from_bitField0_ & 0x00000200) != 0)) {
           result.status_ = status_;
-        }
-        if (((from_bitField0_ & 0x00000400) != 0)) {
-          result.creationStatus_ = creationStatus_;
-        }
-        if (((from_bitField0_ & 0x00000800) != 0)) {
-          result.imageUrl_ = imageUrl_;
         }
       }
 
@@ -6403,16 +5453,6 @@ public final class PropertyProto {
           bitField0_ |= 0x00000200;
           onChanged();
         }
-        if (!other.getCreationStatus().isEmpty()) {
-          creationStatus_ = other.creationStatus_;
-          bitField0_ |= 0x00000400;
-          onChanged();
-        }
-        if (!other.getImageUrl().isEmpty()) {
-          imageUrl_ = other.imageUrl_;
-          bitField0_ |= 0x00000800;
-          onChanged();
-        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -6489,16 +5529,6 @@ public final class PropertyProto {
                 bitField0_ |= 0x00000200;
                 break;
               } // case 82
-              case 90: {
-                creationStatus_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000400;
-                break;
-              } // case 90
-              case 98: {
-                imageUrl_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000800;
-                break;
-              } // case 98
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -6992,150 +6022,6 @@ public final class PropertyProto {
         checkByteStringIsUtf8(value);
         status_ = value;
         bitField0_ |= 0x00000200;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object creationStatus_ = "";
-      /**
-       * <code>string creationStatus = 11;</code>
-       * @return The creationStatus.
-       */
-      public java.lang.String getCreationStatus() {
-        java.lang.Object ref = creationStatus_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          creationStatus_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string creationStatus = 11;</code>
-       * @return The bytes for creationStatus.
-       */
-      public com.google.protobuf.ByteString
-          getCreationStatusBytes() {
-        java.lang.Object ref = creationStatus_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          creationStatus_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string creationStatus = 11;</code>
-       * @param value The creationStatus to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreationStatus(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        creationStatus_ = value;
-        bitField0_ |= 0x00000400;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string creationStatus = 11;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCreationStatus() {
-        creationStatus_ = getDefaultInstance().getCreationStatus();
-        bitField0_ = (bitField0_ & ~0x00000400);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string creationStatus = 11;</code>
-       * @param value The bytes for creationStatus to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCreationStatusBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        creationStatus_ = value;
-        bitField0_ |= 0x00000400;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object imageUrl_ = "";
-      /**
-       * <code>string imageUrl = 12;</code>
-       * @return The imageUrl.
-       */
-      public java.lang.String getImageUrl() {
-        java.lang.Object ref = imageUrl_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          imageUrl_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string imageUrl = 12;</code>
-       * @return The bytes for imageUrl.
-       */
-      public com.google.protobuf.ByteString
-          getImageUrlBytes() {
-        java.lang.Object ref = imageUrl_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          imageUrl_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string imageUrl = 12;</code>
-       * @param value The imageUrl to set.
-       * @return This builder for chaining.
-       */
-      public Builder setImageUrl(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        imageUrl_ = value;
-        bitField0_ |= 0x00000800;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string imageUrl = 12;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearImageUrl() {
-        imageUrl_ = getDefaultInstance().getImageUrl();
-        bitField0_ = (bitField0_ & ~0x00000800);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string imageUrl = 12;</code>
-       * @param value The bytes for imageUrl to set.
-       * @return This builder for chaining.
-       */
-      public Builder setImageUrlBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        imageUrl_ = value;
-        bitField0_ |= 0x00000800;
         onChanged();
         return this;
       }
@@ -8511,51 +7397,46 @@ public final class PropertyProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016property.proto\022\010property\"\245\002\n\025CreatePro" +
+      "\n\016property.proto\022\010property\"\371\001\n\025CreatePro" +
       "pertyRequest\022\017\n\007agentId\030\001 \001(\005\022\r\n\005title\030\002" +
       " \001(\t\022\024\n\007address\030\003 \001(\tH\000\210\001\001\022\025\n\rstartingPr" +
       "ice\030\004 \001(\001\022\020\n\010bedrooms\030\005 \001(\005\022\021\n\tbathrooms" +
       "\030\006 \001(\005\022\030\n\020sizeInSquareFeet\030\007 \001(\005\022\030\n\013desc" +
-      "ription\030\010 \001(\tH\001\210\001\001\022\016\n\006status\030\t \001(\t\022\026\n\016cr" +
-      "eationStatus\030\n \001(\t\022\025\n\010imageUrl\030\013 \001(\tH\002\210\001" +
-      "\001B\n\n\010_addressB\016\n\014_descriptionB\013\n\t_imageU" +
-      "rl\" \n\022GetPropertyRequest\022\n\n\002id\030\001 \001(\005\"\210\001\n" +
-      "\024GetPropertiesRequest\022\024\n\007agentId\030\001 \001(\005H\000" +
-      "\210\001\001\022\023\n\006status\030\002 \001(\tH\001\210\001\001\022\033\n\016creationStat" +
-      "us\030\003 \001(\tH\002\210\001\001B\n\n\010_agentIdB\t\n\007_statusB\021\n\017" +
-      "_creationStatus\"\255\003\n\025UpdatePropertyReques" +
-      "t\022\n\n\002id\030\001 \001(\005\022\022\n\005title\030\002 \001(\tH\000\210\001\001\022\024\n\007add" +
-      "ress\030\003 \001(\tH\001\210\001\001\022\032\n\rstartingPrice\030\004 \001(\001H\002" +
-      "\210\001\001\022\025\n\010bedrooms\030\005 \001(\005H\003\210\001\001\022\026\n\tbathrooms\030" +
-      "\006 \001(\005H\004\210\001\001\022\035\n\020sizeInSquareFeet\030\007 \001(\005H\005\210\001" +
-      "\001\022\030\n\013description\030\010 \001(\tH\006\210\001\001\022\023\n\006status\030\t " +
-      "\001(\tH\007\210\001\001\022\033\n\016creationStatus\030\n \001(\tH\010\210\001\001\022\025\n" +
-      "\010imageUrl\030\013 \001(\tH\t\210\001\001B\010\n\006_titleB\n\n\010_addre" +
-      "ssB\020\n\016_startingPriceB\013\n\t_bedroomsB\014\n\n_ba" +
-      "throomsB\023\n\021_sizeInSquareFeetB\016\n\014_descrip" +
-      "tionB\t\n\007_statusB\021\n\017_creationStatusB\013\n\t_i" +
-      "mageUrl\"#\n\025DeletePropertyRequest\022\n\n\002id\030\001" +
-      " \001(\005\"\364\001\n\020PropertyResponse\022\n\n\002id\030\001 \001(\005\022\017\n" +
-      "\007agentId\030\002 \001(\005\022\r\n\005title\030\003 \001(\t\022\017\n\007address" +
-      "\030\004 \001(\t\022\025\n\rstartingPrice\030\005 \001(\001\022\020\n\010bedroom" +
-      "s\030\006 \001(\005\022\021\n\tbathrooms\030\007 \001(\005\022\030\n\020sizeInSqua" +
-      "reFeet\030\010 \001(\005\022\023\n\013description\030\t \001(\t\022\016\n\006sta" +
-      "tus\030\n \001(\t\022\026\n\016creationStatus\030\013 \001(\t\022\020\n\010ima" +
-      "geUrl\030\014 \001(\t\"G\n\025GetPropertiesResponse\022.\n\n" +
-      "properties\030\001 \003(\0132\032.property.PropertyResp" +
-      "onse\")\n\026DeletePropertyResponse\022\017\n\007succes" +
-      "s\030\001 \001(\0102\237\003\n\017PropertyService\022M\n\016CreatePro" +
-      "perty\022\037.property.CreatePropertyRequest\032\032" +
-      ".property.PropertyResponse\022G\n\013GetPropert" +
-      "y\022\034.property.GetPropertyRequest\032\032.proper" +
-      "ty.PropertyResponse\022P\n\rGetProperties\022\036.p" +
-      "roperty.GetPropertiesRequest\032\037.property." +
-      "GetPropertiesResponse\022M\n\016UpdateProperty\022" +
-      "\037.property.UpdatePropertyRequest\032\032.prope" +
-      "rty.PropertyResponse\022S\n\016DeleteProperty\022\037" +
-      ".property.DeletePropertyRequest\032 .proper" +
-      "ty.DeletePropertyResponseB-\n\034via.pro3.pr" +
-      "opertyserver.grpcB\rPropertyProtob\006proto3"
+      "ription\030\010 \001(\tH\001\210\001\001\022\023\n\006status\030\t \001(\tH\002\210\001\001B" +
+      "\n\n\010_addressB\016\n\014_descriptionB\t\n\007_status\" " +
+      "\n\022GetPropertyRequest\022\n\n\002id\030\001 \001(\005\"X\n\024GetP" +
+      "ropertiesRequest\022\024\n\007agentId\030\001 \001(\005H\000\210\001\001\022\023" +
+      "\n\006status\030\002 \001(\tH\001\210\001\001B\n\n\010_agentIdB\t\n\007_stat" +
+      "us\"\331\002\n\025UpdatePropertyRequest\022\n\n\002id\030\001 \001(\005" +
+      "\022\022\n\005title\030\002 \001(\tH\000\210\001\001\022\024\n\007address\030\003 \001(\tH\001\210" +
+      "\001\001\022\032\n\rstartingPrice\030\004 \001(\001H\002\210\001\001\022\025\n\010bedroo" +
+      "ms\030\005 \001(\005H\003\210\001\001\022\026\n\tbathrooms\030\006 \001(\005H\004\210\001\001\022\035\n" +
+      "\020sizeInSquareFeet\030\007 \001(\005H\005\210\001\001\022\030\n\013descript" +
+      "ion\030\010 \001(\tH\006\210\001\001\022\023\n\006status\030\t \001(\tH\007\210\001\001B\010\n\006_" +
+      "titleB\n\n\010_addressB\020\n\016_startingPriceB\013\n\t_" +
+      "bedroomsB\014\n\n_bathroomsB\023\n\021_sizeInSquareF" +
+      "eetB\016\n\014_descriptionB\t\n\007_status\"#\n\025Delete" +
+      "PropertyRequest\022\n\n\002id\030\001 \001(\005\"\312\001\n\020Property" +
+      "Response\022\n\n\002id\030\001 \001(\005\022\017\n\007agentId\030\002 \001(\005\022\r\n" +
+      "\005title\030\003 \001(\t\022\017\n\007address\030\004 \001(\t\022\025\n\rstartin" +
+      "gPrice\030\005 \001(\001\022\020\n\010bedrooms\030\006 \001(\005\022\021\n\tbathro" +
+      "oms\030\007 \001(\005\022\030\n\020sizeInSquareFeet\030\010 \001(\005\022\023\n\013d" +
+      "escription\030\t \001(\t\022\016\n\006status\030\n \001(\t\"G\n\025GetP" +
+      "ropertiesResponse\022.\n\nproperties\030\001 \003(\0132\032." +
+      "property.PropertyResponse\")\n\026DeletePrope" +
+      "rtyResponse\022\017\n\007success\030\001 \001(\0102\237\003\n\017Propert" +
+      "yService\022M\n\016CreateProperty\022\037.property.Cr" +
+      "eatePropertyRequest\032\032.property.PropertyR" +
+      "esponse\022G\n\013GetProperty\022\034.property.GetPro" +
+      "pertyRequest\032\032.property.PropertyResponse" +
+      "\022P\n\rGetProperties\022\036.property.GetProperti" +
+      "esRequest\032\037.property.GetPropertiesRespon" +
+      "se\022M\n\016UpdateProperty\022\037.property.UpdatePr" +
+      "opertyRequest\032\032.property.PropertyRespons" +
+      "e\022S\n\016DeleteProperty\022\037.property.DeletePro" +
+      "pertyRequest\032 .property.DeletePropertyRe" +
+      "sponseB-\n\034via.pro3.propertyserver.grpcB\r" +
+      "PropertyProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -8566,7 +7447,7 @@ public final class PropertyProto {
     internal_static_property_CreatePropertyRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_property_CreatePropertyRequest_descriptor,
-        new java.lang.String[] { "AgentId", "Title", "Address", "StartingPrice", "Bedrooms", "Bathrooms", "SizeInSquareFeet", "Description", "Status", "CreationStatus", "ImageUrl", });
+        new java.lang.String[] { "AgentId", "Title", "Address", "StartingPrice", "Bedrooms", "Bathrooms", "SizeInSquareFeet", "Description", "Status", });
     internal_static_property_GetPropertyRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_property_GetPropertyRequest_fieldAccessorTable = new
@@ -8578,13 +7459,13 @@ public final class PropertyProto {
     internal_static_property_GetPropertiesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_property_GetPropertiesRequest_descriptor,
-        new java.lang.String[] { "AgentId", "Status", "CreationStatus", });
+        new java.lang.String[] { "AgentId", "Status", });
     internal_static_property_UpdatePropertyRequest_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_property_UpdatePropertyRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_property_UpdatePropertyRequest_descriptor,
-        new java.lang.String[] { "Id", "Title", "Address", "StartingPrice", "Bedrooms", "Bathrooms", "SizeInSquareFeet", "Description", "Status", "CreationStatus", "ImageUrl", });
+        new java.lang.String[] { "Id", "Title", "Address", "StartingPrice", "Bedrooms", "Bathrooms", "SizeInSquareFeet", "Description", "Status", });
     internal_static_property_DeletePropertyRequest_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_property_DeletePropertyRequest_fieldAccessorTable = new
@@ -8596,7 +7477,7 @@ public final class PropertyProto {
     internal_static_property_PropertyResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_property_PropertyResponse_descriptor,
-        new java.lang.String[] { "Id", "AgentId", "Title", "Address", "StartingPrice", "Bedrooms", "Bathrooms", "SizeInSquareFeet", "Description", "Status", "CreationStatus", "ImageUrl", });
+        new java.lang.String[] { "Id", "AgentId", "Title", "Address", "StartingPrice", "Bedrooms", "Bathrooms", "SizeInSquareFeet", "Description", "Status", });
     internal_static_property_GetPropertiesResponse_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_property_GetPropertiesResponse_fieldAccessorTable = new

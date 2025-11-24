@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-11e36341b69ced7c07bd3b1fb9f1cdcbb027266a95ac4552a843c33c530f8f2b
-=======
-845cb7e4558d3c3c7920b0449a07dacf3dee7a30a5d1df96e3a4875018468110
->>>>>>> 3772e80 (dataTierServiceImpl tests fixed)
-=======
-dd7b1517a96a3f21069d8a303accf943badd2e5c1d4cc5ea860099848a2264f2
->>>>>>> 6f163fe (TDD tests dataTierGrpcClient main server for property creation)
+175299ce59621a1fbd8c6de769411160e3e7848824aee131c4884ec9aa82985d

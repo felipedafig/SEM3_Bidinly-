@@ -13,15 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99d94f93150eb0678f62f4eec00ffde1644037b1")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9724390ae088bea08d90d1d1814cc79174ccd5bc")]
->>>>>>> 3772e80 (dataTierServiceImpl tests fixed)
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3772e805eae8718231da3f77776d876db4cf6696")]
->>>>>>> 6f163fe (TDD tests dataTierGrpcClient main server for property creation)
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+833ae7834fa0a07bb35f4e7d038a21aa5d3c76ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
