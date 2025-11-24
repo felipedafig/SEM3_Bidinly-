@@ -13,6 +13,7 @@ builder.Services.AddOpenApi();
 
 // gRPC Client as Singleton
 builder.Services.AddSingleton<DataTierGrpcClient>();
+builder.Services.AddSingleton<PropertyGrpcClient>();
 
 var app = builder.Build();
 

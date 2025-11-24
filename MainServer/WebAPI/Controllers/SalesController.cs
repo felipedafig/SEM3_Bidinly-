@@ -11,10 +11,12 @@ namespace MainServer.WebAPI.Controllers
     public class SalesController : ControllerBase
     {
         private readonly DataTierGrpcClient dataTierClient;
+        private readonly PropertyGrpcClient propertyClient;
 
-        public SalesController(DataTierGrpcClient dataTierClient)
+        public SalesController(DataTierGrpcClient dataTierClient, PropertyGrpcClient propertyClient)
         {
             this.dataTierClient = dataTierClient;
+            this.propertyClient = propertyClient;
         }
 
         [HttpGet]
@@ -33,7 +35,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     try
                     {
-                        var property = await dataTierClient.GetPropertyAsync(id);
+                        var property = await propertyClient.GetPropertyAsync(id);
                         return new { Id = id, Property = (PropertyResponse?)property };
                     }
                     catch

@@ -30,6 +30,7 @@
   <!-- generate C# code from protobuf file -->
   <ItemGroup>
     <Protobuf Include="Protos/datatier.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos/property.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>

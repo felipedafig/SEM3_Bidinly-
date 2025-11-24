@@ -11,7 +11,11 @@ namespace shared.DTOs.Properties
         public int Bathrooms { get; set; }
         public double SizeInSquareFeet { get; set; }
         public string? Description { get; set; }
-        public string? Status { get; set; } // e.g., "Available", "Sold"
+        public string? Status { get; set; } // "Available", "Sold"
+
+        public string? CreationStatus { get; set; } // "Pending", "Approved", "Rejected"
+
+        public string? ImageUrl { get; set; } 
         
     }
 }

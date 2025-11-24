@@ -392,7 +392,7 @@ Content-Type: application/json
   "Bathrooms": 2,
   "SizeInSquareFeet": 1100,
   "Description": "Should eventually succeed once CreateProperty is implemented",
-  "Status": "Available"
+  "Status": "Available",
 }
 
 ###

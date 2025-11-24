@@ -15,5 +15,5 @@ public interface IPropertyRepository extends JpaRepository<Property, Integer> {
     // - findAll() for getMany
     // - deleteById(Integer) for delete
     // - delete(Property) for delete by entity
-    // - count(), existsById(), etc.
+
 }

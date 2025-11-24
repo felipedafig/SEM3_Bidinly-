@@ -15,7 +15,6 @@ public interface IRoleRepository extends JpaRepository<Role, Integer> {
     // - findAll() for getMany
     // - deleteById(Integer) for delete
     // - delete(Role) for delete by entity
-    // - count(), existsById(), etc.
 
     default Optional<Role> getSingle(Integer id) {
         return findById(id);

@@ -95,34 +95,6 @@ namespace MainServer.WebAPI.Services
             return response.Success;
         }
 
-        // Property operations 
-        public async Task<PropertyResponse> GetPropertyAsync(int id)
-        {
-            try
-            {
-                var request = new GetPropertyRequest { Id = id };
-                var response = await client.GetPropertyAsync(request);
-                return response;
-            }
-            catch (Grpc.Core.RpcException ex)
-            {
-                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public async Task<GetPropertiesResponse> GetPropertiesAsync(int? agentId = null, string? status = null)
-        {
-            var request = new GetPropertiesRequest();
-            if (agentId.HasValue) request.AgentId = agentId.Value;
-            if (!string.IsNullOrEmpty(status)) request.Status = status;
-            
-            return await client.GetPropertiesAsync(request);
-        }
-
         // User operations
         public async Task<UserResponse> GetUserAsync(int id)
         {
