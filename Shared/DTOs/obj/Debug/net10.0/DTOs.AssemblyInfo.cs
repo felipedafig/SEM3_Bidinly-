@@ -18,6 +18,7 @@ using System.Reflection;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99d94f93150eb0678f62f4eec00ffde1644037b1")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9724390ae088bea08d90d1d1814cc79174ccd5bc")]
@@ -34,6 +35,9 @@ using System.Reflection;
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2852d3a39fa1c35f79a692c9cc9f05b7eae59ddf")]
 >>>>>>> c5072f3 (property api post method, update proto file and propertyServiceImpl)
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5072f33b4d11d89214eef1b15e55a82c46e8383")]
+>>>>>>> f59c4d7 (propertyCreation api test passed http file)
 [assembly: System.Reflection.AssemblyProductAttribute("DTOs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DTOs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

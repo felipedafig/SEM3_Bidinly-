@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c61ce6f7067ea82c5b0e18fbbbb71eee2d319ea")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5072f33b4d11d89214eef1b15e55a82c46e8383")]
+>>>>>>> f59c4d7 (propertyCreation api test passed http file)
 [assembly: System.Reflection.AssemblyProductAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
