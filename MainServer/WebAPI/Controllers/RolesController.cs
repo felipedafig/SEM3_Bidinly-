@@ -10,11 +10,11 @@ namespace MainServer.WebAPI.Controllers
     public class RolesController : ControllerBase
     {
 
-        private readonly DataTierGrpcClient dataTierClient;
+        private readonly RoleGrpcClient roleClient;
 
-        public RolesController(DataTierGrpcClient dataTierClient)
+        public RolesController(RoleGrpcClient roleClient)
         {
-            this.dataTierClient = dataTierClient;
+            this.roleClient = roleClient;
         }
 
         [HttpGet("{id}")]
@@ -22,7 +22,7 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                GetRoleResponse response = await dataTierClient.GetRoleAsync(id);
+                GetRoleResponse response = await roleClient.GetRoleAsync(id);
                 
                 RoleDto roleDto = new RoleDto
                 {

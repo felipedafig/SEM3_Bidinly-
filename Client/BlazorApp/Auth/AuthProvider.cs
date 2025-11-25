@@ -38,17 +38,26 @@ public class AuthProvider : AuthenticationStateProvider
         UserDto userDto = await authService.LoginAsync(username, password);
         userAsJson = JsonSerializer.Serialize(userDto);
 
-        // save in browser
-        await jsRuntime.InvokeVoidAsync("authStorage.saveUser", userAsJson);
-        
+        // Save to browser storage ONLY if JS is available (not during prerender)
+        if (jsRuntime is IJSInProcessRuntime)
+        {
+            await jsRuntime.InvokeVoidAsync("authStorage.saveUser", userAsJson);
+        }
+
         ClaimsPrincipal cp = await CreateClaimsPrincipalAsync(userDto);
 
-        //notify blazor
-        NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(cp)));
+        NotifyAuthenticationStateChanged(
+            Task.FromResult(new AuthenticationState(cp))
+        );
     }
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
+        if (jsRuntime is not IJSInProcessRuntime)
+        {
+            return new AuthenticationState(new ClaimsPrincipal());
+        }
+
         string? stored = await jsRuntime.InvokeAsync<string?>("authStorage.getUser");
         userAsJson = stored ?? string.Empty;
 
@@ -63,7 +72,10 @@ public class AuthProvider : AuthenticationStateProvider
 
     public async Task Logout()
     {
-        await jsRuntime.InvokeVoidAsync("authStorage.clearUser");
+        if (jsRuntime is IJSInProcessRuntime)
+        {
+            await jsRuntime.InvokeVoidAsync("authStorage.clearUser");
+        }
 
         NotifyAuthenticationStateChanged(
             Task.FromResult(new AuthenticationState(new ClaimsPrincipal()))

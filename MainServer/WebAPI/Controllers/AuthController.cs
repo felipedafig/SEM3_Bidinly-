@@ -1,7 +1,6 @@
 using MainServer.WebAPI.Services;
-using MainServer.WebAPI.Protos;
 using Microsoft.AspNetCore.Mvc;
-using shared.DTOs.Users;
+using Shared.DTOs.Users;
 using Shared.DTOs.Auth;
 
 namespace MainServer.WebAPI.Controllers
@@ -10,11 +9,13 @@ namespace MainServer.WebAPI.Controllers
     [Route("auth")]
     public class AuthController : ControllerBase
     {
-        private readonly DataTierGrpcClient dataTierClient;
+        private readonly AuthGrpcClient _authClient;
+        private readonly RoleGrpcClient _roleClient;
 
-        public AuthController(DataTierGrpcClient dataTierClient)
+        public AuthController(AuthGrpcClient _authClient, RoleGrpcClient _roleClient)
         {
-            this.dataTierClient = dataTierClient;
+            this._authClient = _authClient;
+            this._roleClient = _roleClient;
         }
 
         [HttpPost("login")]
@@ -27,14 +28,14 @@ namespace MainServer.WebAPI.Controllers
 
             try
             {
-                var response = await dataTierClient.AuthenticateUserAsync(request.Username, request.Password);
+                var response = await _authClient.AuthenticateUserAsync(request.Username, request.Password);
 
                 string? roleName = null;
                 if (response.RoleId > 0)
                 {
                     try
                     {
-                        var roleResponse = await dataTierClient.GetRoleAsync(response.RoleId);
+                        var roleResponse = await _roleClient.GetRoleAsync(response.RoleId);
                         roleName = roleResponse.RoleName;
                     }
                     catch

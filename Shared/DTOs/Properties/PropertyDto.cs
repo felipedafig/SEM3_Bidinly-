@@ -1,4 +1,4 @@
-namespace shared.DTOs.Properties
+namespace Shared.DTOs.Properties
 {
     public class PropertyDto
     {

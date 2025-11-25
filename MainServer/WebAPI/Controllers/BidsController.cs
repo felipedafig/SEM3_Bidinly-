@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
-using BidDto = shared.DTOs.Bids.BidDto;
+using BidDto = Shared.DTOs.Bids.BidDto;
 using CreateBidDto = Shared.DTOs.Bids.CreateBidDto;
 
 namespace MainServer.WebAPI.Controllers
@@ -10,11 +10,15 @@ namespace MainServer.WebAPI.Controllers
     [Route("bids")]
     public class BidsController : ControllerBase
     {
-        private readonly DataTierGrpcClient dataTierClient;
+        private readonly BidGrpcClient bidClient;
+        private readonly PropertyGrpcClient propertyClient;
+        private readonly UserGrpcClient userClient;
 
-        public BidsController(DataTierGrpcClient dataTierClient)
+        public BidsController(BidGrpcClient bidClient, PropertyGrpcClient propertyClient, UserGrpcClient userClient)
         {
-            this.dataTierClient = dataTierClient;
+            this.bidClient = bidClient;
+            this.propertyClient = propertyClient;
+            this.userClient = userClient;
         }
 
         [HttpGet]
@@ -22,7 +26,7 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                GetBidsResponse response = await dataTierClient.GetBidsAsync();
+                GetBidsResponse response = await bidClient.GetBidsAsync();
 
             var uniquePropertyIds = response.Bids.Select(b => b.PropertyId).Distinct().ToList();
             var uniqueBuyerIds = response.Bids.Select(b => b.BuyerId).Distinct().ToList();
@@ -31,7 +35,7 @@ namespace MainServer.WebAPI.Controllers
             {
                 try
                 {
-                    var property = await dataTierClient.GetPropertyAsync(id);
+                    var property = await propertyClient.GetPropertyAsync(id);
                     return new { Id = id, Property = (PropertyResponse?)property };
                 }
                 catch
@@ -44,7 +48,7 @@ namespace MainServer.WebAPI.Controllers
             {
                 try
                 {
-                    var user = await dataTierClient.GetUserAsync(id);
+                    var user = await userClient.GetUserAsync(id);
                     return new { Id = id, User = (UserResponse?)user };
                 }
                 catch
@@ -89,7 +93,7 @@ namespace MainServer.WebAPI.Controllers
             {
                 long expiryDateSeconds = ((DateTimeOffset)createBidDto.ExpiryDate).ToUnixTimeSeconds();
                 
-                BidResponse bidResponse = await dataTierClient.CreateBidAsync(
+                BidResponse bidResponse = await bidClient.CreateBidAsync(
                     createBidDto.BuyerId,
                     createBidDto.PropertyId,
                     (double)createBidDto.Amount,
@@ -102,13 +106,13 @@ namespace MainServer.WebAPI.Controllers
                 
                 try
                 {
-                    property = await dataTierClient.GetPropertyAsync(bidResponse.PropertyId);
+                    property = await propertyClient.GetPropertyAsync(bidResponse.PropertyId);
                 }
                 catch { }
                 
                 try
                 {
-                    user = await dataTierClient.GetUserAsync(bidResponse.BuyerId);
+                    user = await userClient.GetUserAsync(bidResponse.BuyerId);
                 }
                 catch { }
 

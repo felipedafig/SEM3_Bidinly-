@@ -8,19 +8,19 @@
     "net10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\felip\\.nuget\\packages\\": {}
+    "/Users/martazrno/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
+      "projectUniqueName": "/Users/martazrno/SEM3_Bidinly-/Shared/DTOs/DTOs.csproj",
       "projectName": "DTOs",
-      "projectPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\DTOs.csproj",
-      "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-      "outputPath": "C:\\Git_VIACode\\SEM3\\SEM3_Bidinly\\Shared\\DTOs\\obj\\",
+      "projectPath": "/Users/martazrno/SEM3_Bidinly-/Shared/DTOs/DTOs.csproj",
+      "packagesPath": "/Users/martazrno/.nuget/packages/",
+      "outputPath": "/Users/martazrno/SEM3_Bidinly-/Shared/DTOs/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/martazrno/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100-preview.7.25380.108/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.100-preview.7.25380.108/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

@@ -1,4 +1,4 @@
-namespace shared.DTOs.Bids
+namespace Shared.DTOs.Bids
 {
     public class BidDto
     {

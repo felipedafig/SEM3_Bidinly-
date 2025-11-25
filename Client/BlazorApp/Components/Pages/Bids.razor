@@ -1,12 +1,10 @@
 @page "/bids"
 @namespace BlazorApp.Components.Pages
-@using shared.DTOs.Bids
-@using System.Net.Http.Json
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Authorization
+@using BlazorApp.Services
+@using Shared.DTOs.Bids
 
 @attribute [Authorize]
-@inject HttpClient Http
+@inject HttpBidService BidService
 @rendermode InteractiveServer
 
 <PageTitle>Bids - Bidinly</PageTitle>
@@ -178,7 +176,7 @@
         try
         {
             isLoading = true;
-            var response = await Http.GetFromJsonAsync<List<BidDto>>("bids");
+            var response = await BidService.GetAllAsync();
             bids = response ?? new List<BidDto>();
             ApplyFilters();
         }
@@ -239,12 +237,8 @@
     {
         try
         {
-            var response = await Http.DeleteAsync($"bids/{id}");
-            if (response.IsSuccessStatusCode)
-            {
-                await LoadBids();
-                ApplyFilters();
-            }
+            await BidService.DeleteAsync(id);
+            await LoadBids();
         }
         catch (Exception ex)
         {

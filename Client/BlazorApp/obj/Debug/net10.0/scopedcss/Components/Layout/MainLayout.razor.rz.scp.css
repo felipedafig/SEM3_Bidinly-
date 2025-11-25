@@ -1,4 +1,4 @@
-.page[b-qgsvw684bo] {
+.page[b-fekawvbbds] {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@
     min-height: 100vh;
 }
 
-main[b-qgsvw684bo] {
+main[b-fekawvbbds] {
     flex: 1;
     width: 100%;
     margin: 0;
@@ -19,7 +19,7 @@ main[b-qgsvw684bo] {
     overflow-y: auto;
 }
 
-#blazor-error-ui[b-qgsvw684bo] {
+#blazor-error-ui[b-fekawvbbds] {
     color-scheme: light only;
     background: lightyellow;
     bottom: 0;
@@ -33,7 +33,7 @@ main[b-qgsvw684bo] {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss[b-qgsvw684bo] {
+    #blazor-error-ui .dismiss[b-fekawvbbds] {
         cursor: pointer;
         position: absolute;
         right: 0.75rem;

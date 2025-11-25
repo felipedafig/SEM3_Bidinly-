@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
-using PropertyDto = shared.DTOs.Properties.PropertyDto;
+using PropertyDto = Shared.DTOs.Properties.PropertyDto;
 
 namespace MainServer.WebAPI.Controllers
 {
@@ -9,11 +9,13 @@ namespace MainServer.WebAPI.Controllers
     [Route("properties")]
     public class PropertiesController : ControllerBase
     {
-        private readonly DataTierGrpcClient dataTierClient;
+        private readonly PropertyGrpcClient propertyClient;
+        private readonly UserGrpcClient userClient;
 
-        public PropertiesController(DataTierGrpcClient dataTierClient)
+        public PropertiesController(PropertyGrpcClient propertyClient, UserGrpcClient userClient)
         {
-            this.dataTierClient = dataTierClient;
+            this.propertyClient = propertyClient;
+            this.userClient = userClient;
         }
 
         [HttpGet]
@@ -21,16 +23,16 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                GetPropertiesResponse response = await dataTierClient.GetPropertiesAsync(null, status);
+                GetPropertiesResponse response = await propertyClient.GetPropertiesAsync(null, status);
 
-                // Get unique agent IDs to fetch user names
+                // Get unique agent IDs to fetch usernames
                 var uniqueAgentIds = response.Properties.Select(p => p.AgentId).Distinct().ToList();
 
                 var agentTasks = uniqueAgentIds.Select(async id =>
                 {
                     try
                     {
-                        var user = await dataTierClient.GetUserAsync(id);
+                        var user = await userClient.GetUserAsync(id);
                         return new { Id = id, User = (UserResponse?)user };
                     }
                     catch
@@ -72,13 +74,13 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                PropertyResponse propertyResponse = await dataTierClient.GetPropertyAsync(id);
+                PropertyResponse propertyResponse = await propertyClient.GetPropertyAsync(id);
 
                 // Get agent name
                 UserResponse? agentUser = null;
                 try
                 {
-                    agentUser = await dataTierClient.GetUserAsync(propertyResponse.AgentId);
+                    agentUser = await userClient.GetUserAsync(propertyResponse.AgentId);
                 }
                 catch
                 {

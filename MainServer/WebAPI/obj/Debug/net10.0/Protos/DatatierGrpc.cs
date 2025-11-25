@@ -8,9 +8,9 @@
 using grpc = global::Grpc.Core;
 
 namespace MainServer.WebAPI.Protos {
-  public static partial class DataTierService
+  public static partial class BidService
   {
-    static readonly string __ServiceName = "datatier.DataTierService";
+    static readonly string __ServiceName = "datatier.BidService";
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
@@ -61,62 +61,6 @@ namespace MainServer.WebAPI.Protos {
     static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteBidRequest> __Marshaller_datatier_DeleteBidRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteBidRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteBidResponse> __Marshaller_datatier_DeleteBidResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteBidResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.CreatePropertyRequest> __Marshaller_datatier_CreatePropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.CreatePropertyRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.PropertyResponse> __Marshaller_datatier_PropertyResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.PropertyResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetPropertyRequest> __Marshaller_datatier_GetPropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetPropertyRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetPropertiesRequest> __Marshaller_datatier_GetPropertiesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetPropertiesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetPropertiesResponse> __Marshaller_datatier_GetPropertiesResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetPropertiesResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UpdatePropertyRequest> __Marshaller_datatier_UpdatePropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UpdatePropertyRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeletePropertyRequest> __Marshaller_datatier_DeletePropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeletePropertyRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeletePropertyResponse> __Marshaller_datatier_DeletePropertyResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeletePropertyResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.CreateUserRequest> __Marshaller_datatier_CreateUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.CreateUserRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UserResponse> __Marshaller_datatier_UserResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UserResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetUserRequest> __Marshaller_datatier_GetUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetUserRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetUsersRequest> __Marshaller_datatier_GetUsersRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetUsersRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetUsersResponse> __Marshaller_datatier_GetUsersResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetUsersResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UpdateUserRequest> __Marshaller_datatier_UpdateUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UpdateUserRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteUserRequest> __Marshaller_datatier_DeleteUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteUserRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteUserResponse> __Marshaller_datatier_DeleteUserResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteUserResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.CreateSaleRequest> __Marshaller_datatier_CreateSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.CreateSaleRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.SaleResponse> __Marshaller_datatier_SaleResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.SaleResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetSaleRequest> __Marshaller_datatier_GetSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetSaleRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetSalesRequest> __Marshaller_datatier_GetSalesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetSalesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetSalesResponse> __Marshaller_datatier_GetSalesResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetSalesResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UpdateSaleRequest> __Marshaller_datatier_UpdateSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UpdateSaleRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteSaleRequest> __Marshaller_datatier_DeleteSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteSaleRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteSaleResponse> __Marshaller_datatier_DeleteSaleResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteSaleResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetRoleRequest> __Marshaller_datatier_GetRoleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetRoleRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetRoleResponse> __Marshaller_datatier_GetRoleResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetRoleResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.LoginRequest> __Marshaller_datatier_LoginRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.LoginRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.LoginResponse> __Marshaller_datatier_LoginResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.LoginResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreateBidRequest, global::MainServer.WebAPI.Protos.BidResponse> __Method_CreateBid = new grpc::Method<global::MainServer.WebAPI.Protos.CreateBidRequest, global::MainServer.WebAPI.Protos.BidResponse>(
@@ -158,172 +102,36 @@ namespace MainServer.WebAPI.Protos {
         __Marshaller_datatier_DeleteBidRequest,
         __Marshaller_datatier_DeleteBidResponse);
 
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse> __Method_CreateProperty = new grpc::Method<global::MainServer.WebAPI.Protos.CreatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "CreateProperty",
-        __Marshaller_datatier_CreatePropertyRequest,
-        __Marshaller_datatier_PropertyResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetPropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse> __Method_GetProperty = new grpc::Method<global::MainServer.WebAPI.Protos.GetPropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetProperty",
-        __Marshaller_datatier_GetPropertyRequest,
-        __Marshaller_datatier_PropertyResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetPropertiesRequest, global::MainServer.WebAPI.Protos.GetPropertiesResponse> __Method_GetProperties = new grpc::Method<global::MainServer.WebAPI.Protos.GetPropertiesRequest, global::MainServer.WebAPI.Protos.GetPropertiesResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetProperties",
-        __Marshaller_datatier_GetPropertiesRequest,
-        __Marshaller_datatier_GetPropertiesResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.UpdatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse> __Method_UpdateProperty = new grpc::Method<global::MainServer.WebAPI.Protos.UpdatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "UpdateProperty",
-        __Marshaller_datatier_UpdatePropertyRequest,
-        __Marshaller_datatier_PropertyResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.DeletePropertyRequest, global::MainServer.WebAPI.Protos.DeletePropertyResponse> __Method_DeleteProperty = new grpc::Method<global::MainServer.WebAPI.Protos.DeletePropertyRequest, global::MainServer.WebAPI.Protos.DeletePropertyResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "DeleteProperty",
-        __Marshaller_datatier_DeletePropertyRequest,
-        __Marshaller_datatier_DeletePropertyResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreateUserRequest, global::MainServer.WebAPI.Protos.UserResponse> __Method_CreateUser = new grpc::Method<global::MainServer.WebAPI.Protos.CreateUserRequest, global::MainServer.WebAPI.Protos.UserResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "CreateUser",
-        __Marshaller_datatier_CreateUserRequest,
-        __Marshaller_datatier_UserResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetUserRequest, global::MainServer.WebAPI.Protos.UserResponse> __Method_GetUser = new grpc::Method<global::MainServer.WebAPI.Protos.GetUserRequest, global::MainServer.WebAPI.Protos.UserResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetUser",
-        __Marshaller_datatier_GetUserRequest,
-        __Marshaller_datatier_UserResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetUsersRequest, global::MainServer.WebAPI.Protos.GetUsersResponse> __Method_GetUsers = new grpc::Method<global::MainServer.WebAPI.Protos.GetUsersRequest, global::MainServer.WebAPI.Protos.GetUsersResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetUsers",
-        __Marshaller_datatier_GetUsersRequest,
-        __Marshaller_datatier_GetUsersResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.UpdateUserRequest, global::MainServer.WebAPI.Protos.UserResponse> __Method_UpdateUser = new grpc::Method<global::MainServer.WebAPI.Protos.UpdateUserRequest, global::MainServer.WebAPI.Protos.UserResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "UpdateUser",
-        __Marshaller_datatier_UpdateUserRequest,
-        __Marshaller_datatier_UserResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.DeleteUserRequest, global::MainServer.WebAPI.Protos.DeleteUserResponse> __Method_DeleteUser = new grpc::Method<global::MainServer.WebAPI.Protos.DeleteUserRequest, global::MainServer.WebAPI.Protos.DeleteUserResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "DeleteUser",
-        __Marshaller_datatier_DeleteUserRequest,
-        __Marshaller_datatier_DeleteUserResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse> __Method_CreateSale = new grpc::Method<global::MainServer.WebAPI.Protos.CreateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "CreateSale",
-        __Marshaller_datatier_CreateSaleRequest,
-        __Marshaller_datatier_SaleResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse> __Method_GetSale = new grpc::Method<global::MainServer.WebAPI.Protos.GetSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetSale",
-        __Marshaller_datatier_GetSaleRequest,
-        __Marshaller_datatier_SaleResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetSalesRequest, global::MainServer.WebAPI.Protos.GetSalesResponse> __Method_GetSales = new grpc::Method<global::MainServer.WebAPI.Protos.GetSalesRequest, global::MainServer.WebAPI.Protos.GetSalesResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetSales",
-        __Marshaller_datatier_GetSalesRequest,
-        __Marshaller_datatier_GetSalesResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.UpdateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse> __Method_UpdateSale = new grpc::Method<global::MainServer.WebAPI.Protos.UpdateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "UpdateSale",
-        __Marshaller_datatier_UpdateSaleRequest,
-        __Marshaller_datatier_SaleResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.DeleteSaleRequest, global::MainServer.WebAPI.Protos.DeleteSaleResponse> __Method_DeleteSale = new grpc::Method<global::MainServer.WebAPI.Protos.DeleteSaleRequest, global::MainServer.WebAPI.Protos.DeleteSaleResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "DeleteSale",
-        __Marshaller_datatier_DeleteSaleRequest,
-        __Marshaller_datatier_DeleteSaleResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetRoleRequest, global::MainServer.WebAPI.Protos.GetRoleResponse> __Method_GetRole = new grpc::Method<global::MainServer.WebAPI.Protos.GetRoleRequest, global::MainServer.WebAPI.Protos.GetRoleResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetRole",
-        __Marshaller_datatier_GetRoleRequest,
-        __Marshaller_datatier_GetRoleResponse);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::MainServer.WebAPI.Protos.LoginRequest, global::MainServer.WebAPI.Protos.LoginResponse> __Method_AuthenticateUser = new grpc::Method<global::MainServer.WebAPI.Protos.LoginRequest, global::MainServer.WebAPI.Protos.LoginResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "AuthenticateUser",
-        __Marshaller_datatier_LoginRequest,
-        __Marshaller_datatier_LoginResponse);
-
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
       get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Client for DataTierService</summary>
-    public partial class DataTierServiceClient : grpc::ClientBase<DataTierServiceClient>
+    /// <summary>Client for BidService</summary>
+    public partial class BidServiceClient : grpc::ClientBase<BidServiceClient>
     {
-      /// <summary>Creates a new client for DataTierService</summary>
+      /// <summary>Creates a new client for BidService</summary>
       /// <param name="channel">The channel to use to make remote calls.</param>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public DataTierServiceClient(grpc::ChannelBase channel) : base(channel)
+      public BidServiceClient(grpc::ChannelBase channel) : base(channel)
       {
       }
-      /// <summary>Creates a new client for DataTierService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <summary>Creates a new client for BidService that uses a custom <c>CallInvoker</c>.</summary>
       /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public DataTierServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      public BidServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
       {
       }
       /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      protected DataTierServiceClient() : base()
+      protected BidServiceClient() : base()
       {
       }
       /// <summary>Protected constructor to allow creation of configured clients.</summary>
       /// <param name="configuration">The client configuration.</param>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      protected DataTierServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      protected BidServiceClient(ClientBaseConfiguration configuration) : base(configuration)
       {
       }
 
@@ -455,6 +263,142 @@ namespace MainServer.WebAPI.Protos {
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteBid, null, options, request);
       }
+      /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected override BidServiceClient NewInstance(ClientBaseConfiguration configuration)
+      {
+        return new BidServiceClient(configuration);
+      }
+    }
+
+  }
+  public static partial class PropertyService
+  {
+    static readonly string __ServiceName = "datatier.PropertyService";
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (message is global::Google.Protobuf.IBufferMessage)
+      {
+        context.SetPayloadLength(message.CalculateSize());
+        global::Google.Protobuf.MessageExtensions.WriteTo(message, context.GetBufferWriter());
+        context.Complete();
+        return;
+      }
+      #endif
+      context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static class __Helper_MessageCache<T>
+    {
+      public static readonly bool IsBufferMessage = global::System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(global::Google.Protobuf.IBufferMessage)).IsAssignableFrom(typeof(T));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (__Helper_MessageCache<T>.IsBufferMessage)
+      {
+        return parser.ParseFrom(context.PayloadAsReadOnlySequence());
+      }
+      #endif
+      return parser.ParseFrom(context.PayloadAsNewBuffer());
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.CreatePropertyRequest> __Marshaller_datatier_CreatePropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.CreatePropertyRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.PropertyResponse> __Marshaller_datatier_PropertyResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.PropertyResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetPropertyRequest> __Marshaller_datatier_GetPropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetPropertyRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetPropertiesRequest> __Marshaller_datatier_GetPropertiesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetPropertiesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetPropertiesResponse> __Marshaller_datatier_GetPropertiesResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetPropertiesResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UpdatePropertyRequest> __Marshaller_datatier_UpdatePropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UpdatePropertyRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeletePropertyRequest> __Marshaller_datatier_DeletePropertyRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeletePropertyRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeletePropertyResponse> __Marshaller_datatier_DeletePropertyResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeletePropertyResponse.Parser));
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse> __Method_CreateProperty = new grpc::Method<global::MainServer.WebAPI.Protos.CreatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreateProperty",
+        __Marshaller_datatier_CreatePropertyRequest,
+        __Marshaller_datatier_PropertyResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetPropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse> __Method_GetProperty = new grpc::Method<global::MainServer.WebAPI.Protos.GetPropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetProperty",
+        __Marshaller_datatier_GetPropertyRequest,
+        __Marshaller_datatier_PropertyResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetPropertiesRequest, global::MainServer.WebAPI.Protos.GetPropertiesResponse> __Method_GetProperties = new grpc::Method<global::MainServer.WebAPI.Protos.GetPropertiesRequest, global::MainServer.WebAPI.Protos.GetPropertiesResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetProperties",
+        __Marshaller_datatier_GetPropertiesRequest,
+        __Marshaller_datatier_GetPropertiesResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.UpdatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse> __Method_UpdateProperty = new grpc::Method<global::MainServer.WebAPI.Protos.UpdatePropertyRequest, global::MainServer.WebAPI.Protos.PropertyResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateProperty",
+        __Marshaller_datatier_UpdatePropertyRequest,
+        __Marshaller_datatier_PropertyResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.DeletePropertyRequest, global::MainServer.WebAPI.Protos.DeletePropertyResponse> __Method_DeleteProperty = new grpc::Method<global::MainServer.WebAPI.Protos.DeletePropertyRequest, global::MainServer.WebAPI.Protos.DeletePropertyResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteProperty",
+        __Marshaller_datatier_DeletePropertyRequest,
+        __Marshaller_datatier_DeletePropertyResponse);
+
+    /// <summary>Service descriptor</summary>
+    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+    {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.Services[1]; }
+    }
+
+    /// <summary>Client for PropertyService</summary>
+    public partial class PropertyServiceClient : grpc::ClientBase<PropertyServiceClient>
+    {
+      /// <summary>Creates a new client for PropertyService</summary>
+      /// <param name="channel">The channel to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public PropertyServiceClient(grpc::ChannelBase channel) : base(channel)
+      {
+      }
+      /// <summary>Creates a new client for PropertyService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public PropertyServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      {
+      }
+      /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected PropertyServiceClient() : base()
+      {
+      }
+      /// <summary>Protected constructor to allow creation of configured clients.</summary>
+      /// <param name="configuration">The client configuration.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected PropertyServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      {
+      }
+
       /// <summary>
       /// Property operations
       /// </summary>
@@ -583,6 +527,142 @@ namespace MainServer.WebAPI.Protos {
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteProperty, null, options, request);
       }
+      /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected override PropertyServiceClient NewInstance(ClientBaseConfiguration configuration)
+      {
+        return new PropertyServiceClient(configuration);
+      }
+    }
+
+  }
+  public static partial class UserService
+  {
+    static readonly string __ServiceName = "datatier.UserService";
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (message is global::Google.Protobuf.IBufferMessage)
+      {
+        context.SetPayloadLength(message.CalculateSize());
+        global::Google.Protobuf.MessageExtensions.WriteTo(message, context.GetBufferWriter());
+        context.Complete();
+        return;
+      }
+      #endif
+      context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static class __Helper_MessageCache<T>
+    {
+      public static readonly bool IsBufferMessage = global::System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(global::Google.Protobuf.IBufferMessage)).IsAssignableFrom(typeof(T));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (__Helper_MessageCache<T>.IsBufferMessage)
+      {
+        return parser.ParseFrom(context.PayloadAsReadOnlySequence());
+      }
+      #endif
+      return parser.ParseFrom(context.PayloadAsNewBuffer());
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.CreateUserRequest> __Marshaller_datatier_CreateUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.CreateUserRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UserResponse> __Marshaller_datatier_UserResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UserResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetUserRequest> __Marshaller_datatier_GetUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetUserRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetUsersRequest> __Marshaller_datatier_GetUsersRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetUsersRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetUsersResponse> __Marshaller_datatier_GetUsersResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetUsersResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UpdateUserRequest> __Marshaller_datatier_UpdateUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UpdateUserRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteUserRequest> __Marshaller_datatier_DeleteUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteUserRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteUserResponse> __Marshaller_datatier_DeleteUserResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteUserResponse.Parser));
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreateUserRequest, global::MainServer.WebAPI.Protos.UserResponse> __Method_CreateUser = new grpc::Method<global::MainServer.WebAPI.Protos.CreateUserRequest, global::MainServer.WebAPI.Protos.UserResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreateUser",
+        __Marshaller_datatier_CreateUserRequest,
+        __Marshaller_datatier_UserResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetUserRequest, global::MainServer.WebAPI.Protos.UserResponse> __Method_GetUser = new grpc::Method<global::MainServer.WebAPI.Protos.GetUserRequest, global::MainServer.WebAPI.Protos.UserResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetUser",
+        __Marshaller_datatier_GetUserRequest,
+        __Marshaller_datatier_UserResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetUsersRequest, global::MainServer.WebAPI.Protos.GetUsersResponse> __Method_GetUsers = new grpc::Method<global::MainServer.WebAPI.Protos.GetUsersRequest, global::MainServer.WebAPI.Protos.GetUsersResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetUsers",
+        __Marshaller_datatier_GetUsersRequest,
+        __Marshaller_datatier_GetUsersResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.UpdateUserRequest, global::MainServer.WebAPI.Protos.UserResponse> __Method_UpdateUser = new grpc::Method<global::MainServer.WebAPI.Protos.UpdateUserRequest, global::MainServer.WebAPI.Protos.UserResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateUser",
+        __Marshaller_datatier_UpdateUserRequest,
+        __Marshaller_datatier_UserResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.DeleteUserRequest, global::MainServer.WebAPI.Protos.DeleteUserResponse> __Method_DeleteUser = new grpc::Method<global::MainServer.WebAPI.Protos.DeleteUserRequest, global::MainServer.WebAPI.Protos.DeleteUserResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteUser",
+        __Marshaller_datatier_DeleteUserRequest,
+        __Marshaller_datatier_DeleteUserResponse);
+
+    /// <summary>Service descriptor</summary>
+    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+    {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.Services[2]; }
+    }
+
+    /// <summary>Client for UserService</summary>
+    public partial class UserServiceClient : grpc::ClientBase<UserServiceClient>
+    {
+      /// <summary>Creates a new client for UserService</summary>
+      /// <param name="channel">The channel to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public UserServiceClient(grpc::ChannelBase channel) : base(channel)
+      {
+      }
+      /// <summary>Creates a new client for UserService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public UserServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      {
+      }
+      /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected UserServiceClient() : base()
+      {
+      }
+      /// <summary>Protected constructor to allow creation of configured clients.</summary>
+      /// <param name="configuration">The client configuration.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected UserServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      {
+      }
+
       /// <summary>
       /// User operations
       /// </summary>
@@ -711,6 +791,142 @@ namespace MainServer.WebAPI.Protos {
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteUser, null, options, request);
       }
+      /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected override UserServiceClient NewInstance(ClientBaseConfiguration configuration)
+      {
+        return new UserServiceClient(configuration);
+      }
+    }
+
+  }
+  public static partial class SaleService
+  {
+    static readonly string __ServiceName = "datatier.SaleService";
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (message is global::Google.Protobuf.IBufferMessage)
+      {
+        context.SetPayloadLength(message.CalculateSize());
+        global::Google.Protobuf.MessageExtensions.WriteTo(message, context.GetBufferWriter());
+        context.Complete();
+        return;
+      }
+      #endif
+      context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static class __Helper_MessageCache<T>
+    {
+      public static readonly bool IsBufferMessage = global::System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(global::Google.Protobuf.IBufferMessage)).IsAssignableFrom(typeof(T));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (__Helper_MessageCache<T>.IsBufferMessage)
+      {
+        return parser.ParseFrom(context.PayloadAsReadOnlySequence());
+      }
+      #endif
+      return parser.ParseFrom(context.PayloadAsNewBuffer());
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.CreateSaleRequest> __Marshaller_datatier_CreateSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.CreateSaleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.SaleResponse> __Marshaller_datatier_SaleResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.SaleResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetSaleRequest> __Marshaller_datatier_GetSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetSaleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetSalesRequest> __Marshaller_datatier_GetSalesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetSalesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetSalesResponse> __Marshaller_datatier_GetSalesResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetSalesResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.UpdateSaleRequest> __Marshaller_datatier_UpdateSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.UpdateSaleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteSaleRequest> __Marshaller_datatier_DeleteSaleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteSaleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.DeleteSaleResponse> __Marshaller_datatier_DeleteSaleResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.DeleteSaleResponse.Parser));
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.CreateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse> __Method_CreateSale = new grpc::Method<global::MainServer.WebAPI.Protos.CreateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CreateSale",
+        __Marshaller_datatier_CreateSaleRequest,
+        __Marshaller_datatier_SaleResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse> __Method_GetSale = new grpc::Method<global::MainServer.WebAPI.Protos.GetSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSale",
+        __Marshaller_datatier_GetSaleRequest,
+        __Marshaller_datatier_SaleResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetSalesRequest, global::MainServer.WebAPI.Protos.GetSalesResponse> __Method_GetSales = new grpc::Method<global::MainServer.WebAPI.Protos.GetSalesRequest, global::MainServer.WebAPI.Protos.GetSalesResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSales",
+        __Marshaller_datatier_GetSalesRequest,
+        __Marshaller_datatier_GetSalesResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.UpdateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse> __Method_UpdateSale = new grpc::Method<global::MainServer.WebAPI.Protos.UpdateSaleRequest, global::MainServer.WebAPI.Protos.SaleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateSale",
+        __Marshaller_datatier_UpdateSaleRequest,
+        __Marshaller_datatier_SaleResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.DeleteSaleRequest, global::MainServer.WebAPI.Protos.DeleteSaleResponse> __Method_DeleteSale = new grpc::Method<global::MainServer.WebAPI.Protos.DeleteSaleRequest, global::MainServer.WebAPI.Protos.DeleteSaleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteSale",
+        __Marshaller_datatier_DeleteSaleRequest,
+        __Marshaller_datatier_DeleteSaleResponse);
+
+    /// <summary>Service descriptor</summary>
+    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+    {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.Services[3]; }
+    }
+
+    /// <summary>Client for SaleService</summary>
+    public partial class SaleServiceClient : grpc::ClientBase<SaleServiceClient>
+    {
+      /// <summary>Creates a new client for SaleService</summary>
+      /// <param name="channel">The channel to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public SaleServiceClient(grpc::ChannelBase channel) : base(channel)
+      {
+      }
+      /// <summary>Creates a new client for SaleService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public SaleServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      {
+      }
+      /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected SaleServiceClient() : base()
+      {
+      }
+      /// <summary>Protected constructor to allow creation of configured clients.</summary>
+      /// <param name="configuration">The client configuration.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected SaleServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      {
+      }
+
       /// <summary>
       /// Sale operations
       /// </summary>
@@ -839,6 +1055,98 @@ namespace MainServer.WebAPI.Protos {
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteSale, null, options, request);
       }
+      /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected override SaleServiceClient NewInstance(ClientBaseConfiguration configuration)
+      {
+        return new SaleServiceClient(configuration);
+      }
+    }
+
+  }
+  public static partial class RoleService
+  {
+    static readonly string __ServiceName = "datatier.RoleService";
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (message is global::Google.Protobuf.IBufferMessage)
+      {
+        context.SetPayloadLength(message.CalculateSize());
+        global::Google.Protobuf.MessageExtensions.WriteTo(message, context.GetBufferWriter());
+        context.Complete();
+        return;
+      }
+      #endif
+      context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static class __Helper_MessageCache<T>
+    {
+      public static readonly bool IsBufferMessage = global::System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(global::Google.Protobuf.IBufferMessage)).IsAssignableFrom(typeof(T));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (__Helper_MessageCache<T>.IsBufferMessage)
+      {
+        return parser.ParseFrom(context.PayloadAsReadOnlySequence());
+      }
+      #endif
+      return parser.ParseFrom(context.PayloadAsNewBuffer());
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetRoleRequest> __Marshaller_datatier_GetRoleRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetRoleRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.GetRoleResponse> __Marshaller_datatier_GetRoleResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.GetRoleResponse.Parser));
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.GetRoleRequest, global::MainServer.WebAPI.Protos.GetRoleResponse> __Method_GetRole = new grpc::Method<global::MainServer.WebAPI.Protos.GetRoleRequest, global::MainServer.WebAPI.Protos.GetRoleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetRole",
+        __Marshaller_datatier_GetRoleRequest,
+        __Marshaller_datatier_GetRoleResponse);
+
+    /// <summary>Service descriptor</summary>
+    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+    {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.Services[4]; }
+    }
+
+    /// <summary>Client for RoleService</summary>
+    public partial class RoleServiceClient : grpc::ClientBase<RoleServiceClient>
+    {
+      /// <summary>Creates a new client for RoleService</summary>
+      /// <param name="channel">The channel to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public RoleServiceClient(grpc::ChannelBase channel) : base(channel)
+      {
+      }
+      /// <summary>Creates a new client for RoleService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public RoleServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      {
+      }
+      /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected RoleServiceClient() : base()
+      {
+      }
+      /// <summary>Protected constructor to allow creation of configured clients.</summary>
+      /// <param name="configuration">The client configuration.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected RoleServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      {
+      }
+
       /// <summary>
       /// Role operations
       /// </summary>
@@ -887,6 +1195,98 @@ namespace MainServer.WebAPI.Protos {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetRole, null, options, request);
       }
+      /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected override RoleServiceClient NewInstance(ClientBaseConfiguration configuration)
+      {
+        return new RoleServiceClient(configuration);
+      }
+    }
+
+  }
+  public static partial class AuthService
+  {
+    static readonly string __ServiceName = "datatier.AuthService";
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (message is global::Google.Protobuf.IBufferMessage)
+      {
+        context.SetPayloadLength(message.CalculateSize());
+        global::Google.Protobuf.MessageExtensions.WriteTo(message, context.GetBufferWriter());
+        context.Complete();
+        return;
+      }
+      #endif
+      context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static class __Helper_MessageCache<T>
+    {
+      public static readonly bool IsBufferMessage = global::System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(global::Google.Protobuf.IBufferMessage)).IsAssignableFrom(typeof(T));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (__Helper_MessageCache<T>.IsBufferMessage)
+      {
+        return parser.ParseFrom(context.PayloadAsReadOnlySequence());
+      }
+      #endif
+      return parser.ParseFrom(context.PayloadAsNewBuffer());
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.LoginRequest> __Marshaller_datatier_LoginRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.LoginRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::MainServer.WebAPI.Protos.LoginResponse> __Marshaller_datatier_LoginResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::MainServer.WebAPI.Protos.LoginResponse.Parser));
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::MainServer.WebAPI.Protos.LoginRequest, global::MainServer.WebAPI.Protos.LoginResponse> __Method_AuthenticateUser = new grpc::Method<global::MainServer.WebAPI.Protos.LoginRequest, global::MainServer.WebAPI.Protos.LoginResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AuthenticateUser",
+        __Marshaller_datatier_LoginRequest,
+        __Marshaller_datatier_LoginResponse);
+
+    /// <summary>Service descriptor</summary>
+    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+    {
+      get { return global::MainServer.WebAPI.Protos.DatatierReflection.Descriptor.Services[5]; }
+    }
+
+    /// <summary>Client for AuthService</summary>
+    public partial class AuthServiceClient : grpc::ClientBase<AuthServiceClient>
+    {
+      /// <summary>Creates a new client for AuthService</summary>
+      /// <param name="channel">The channel to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public AuthServiceClient(grpc::ChannelBase channel) : base(channel)
+      {
+      }
+      /// <summary>Creates a new client for AuthService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public AuthServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      {
+      }
+      /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected AuthServiceClient() : base()
+      {
+      }
+      /// <summary>Protected constructor to allow creation of configured clients.</summary>
+      /// <param name="configuration">The client configuration.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected AuthServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      {
+      }
+
       /// <summary>
       /// Login operations
       /// </summary>
@@ -937,9 +1337,9 @@ namespace MainServer.WebAPI.Protos {
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      protected override DataTierServiceClient NewInstance(ClientBaseConfiguration configuration)
+      protected override AuthServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
-        return new DataTierServiceClient(configuration);
+        return new AuthServiceClient(configuration);
       }
     }
 

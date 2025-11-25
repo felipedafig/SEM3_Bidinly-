@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using shared.DTOs.Users;
+using Shared.DTOs.Users;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
 
@@ -9,11 +9,12 @@ namespace MainServer.WebAPI.Controllers
     [Route("users")]
     public class UsersController : ControllerBase
     {
-        private readonly DataTierGrpcClient dataTierClient;
+        private readonly RoleGrpcClient roleClient;
+        private readonly UserGrpcClient userClient;
 
-        public UsersController(DataTierGrpcClient dataTierClient)
+        public UsersController(RoleGrpcClient roleClient, UserGrpcClient userClient)
         {
-            this.dataTierClient = dataTierClient;
+            this.roleClient = roleClient;
         }
 
         [HttpGet("{id}")]
@@ -21,14 +22,14 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                var userResponse = await dataTierClient.GetUserAsync(id);
+                var userResponse = await userClient.GetUserAsync(id);
 
                 string? roleName = null;
                 if (userResponse.RoleId > 0)
                 {
                     try
                     {
-                        var roleResponse = await dataTierClient.GetRoleAsync(userResponse.RoleId);
+                        var roleResponse = await roleClient.GetRoleAsync(userResponse.RoleId);
                         roleName = roleResponse.RoleName;
                     }
                     catch
@@ -75,7 +76,7 @@ namespace MainServer.WebAPI.Controllers
                     return BadRequest(new { message = "Password is required" });
                 }
 
-                UserResponse userResponse = await dataTierClient.CreateUserAsync(
+                UserResponse userResponse = await userClient.CreateUserAsync(
                     createUserDto.Username,
                     createUserDto.Password,
                     createUserDto.RoleId
@@ -85,7 +86,7 @@ namespace MainServer.WebAPI.Controllers
                 if (userResponse.RoleId > 0)
                 {
                    
-                        GetRoleResponse roleResponse = await dataTierClient.GetRoleAsync(userResponse.RoleId);
+                        GetRoleResponse roleResponse = await roleClient.GetRoleAsync(userResponse.RoleId);
                         roleName = roleResponse.RoleName;
                     
                 }

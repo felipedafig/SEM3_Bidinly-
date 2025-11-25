@@ -1,13 +1,12 @@
 @page "/property/{PropertyId:int}"
 @layout NoLayout
-@using shared.DTOs.Properties
+@using Shared.DTOs.Properties
 @using Shared.DTOs.Bids
-@using System.Net.Http.Json
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Components.Authorization
+@using BlazorApp.Services
 
 @attribute [Authorize]
-@inject HttpClient Http
+@inject HttpPropertyService PropertyService
+@inject HttpBidService BidService
 @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthProvider
 @rendermode InteractiveServer
@@ -163,7 +162,7 @@ else
         try
         {
             loading = true;
-            property = await Http.GetFromJsonAsync<PropertyDto>($"properties/{PropertyId}");
+            property = await PropertyService.GetByIdAsync(PropertyId);
         }
         catch (Exception ex)
         {
@@ -230,18 +229,9 @@ else
                 ExpiryDate = bidExpiryDate
             };
             
-            var response = await Http.PostAsJsonAsync("bids", createBidDto);
+            await BidService.CreateAsync(createBidDto);
+            CloseBidForm();
             
-            if (response.IsSuccessStatusCode)
-            {
-                CloseBidForm();
-               
-            }
-            else
-            {
-               
-                Console.WriteLine($"Error creating bid: {response.StatusCode}");
-            }
         }
         catch (Exception ex)
         {

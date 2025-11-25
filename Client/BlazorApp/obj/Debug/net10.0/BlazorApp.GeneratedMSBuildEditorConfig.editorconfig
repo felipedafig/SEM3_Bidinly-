@@ -11,77 +11,77 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BlazorApp
 build_property.RootNamespace = BlazorApp
-build_property.ProjectDir = C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp\
+build_property.ProjectDir = /Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Git_VIACode\SEM3\SEM3_Bidinly\Client\BlazorApp
+build_property.MSBuildProjectDirectory = /Users/martazrno/SEM3_Bidinly-/Client/BlazorApp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/App.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/NoLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTm9MYXlvdXQucmF6b3I=
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Layout/NoLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTm9MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Error.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9FcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/NotFound.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Pages/NotFound.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ob3RGb3VuZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Routes.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/_Imports.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9fSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-qgsvw684bo
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-fekawvbbds
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-g8o6n169oq
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2TWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-zswk0q6kaa
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Layout/ReconnectModal.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcUmVjb25uZWN0TW9kYWwucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-pphnjiao61
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Layout/ReconnectModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvUmVjb25uZWN0TW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-0ydk0eezj3
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Bids.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCaWRzLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-8wvn8csdn9
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Pages/Bids.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9CaWRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-5g9q9jyyuk
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/BuyerDashboard.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xCdXllckRhc2hib2FyZC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-kclkyojskv
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Pages/BuyerDashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9CdXllckRhc2hib2FyZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ulruj0vjzi
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-7gt2111kuu
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-rgllmci9wr
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Login.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dpbi5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-1dfqxkzgeh
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Mb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-iudxaudzbj
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/PropertyDetail.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQcm9wZXJ0eURldGFpbC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-epwsfxszm9
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Pages/PropertyDetail.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Qcm9wZXJ0eURldGFpbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-0jo119hppa
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/Sales.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTYWxlcy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-5y9vnezspb
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Pages/Sales.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TYWxlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-0mie3u3xsx
 
-[C:/Git_VIACode/SEM3/SEM3_Bidinly/Client/BlazorApp/Components/Pages/SignUp.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaWduVXAucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-j569fatkmf
+[/Users/martazrno/SEM3_Bidinly-/Client/BlazorApp/Components/Pages/SignUp.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TaWduVXAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-hwecgiciv1

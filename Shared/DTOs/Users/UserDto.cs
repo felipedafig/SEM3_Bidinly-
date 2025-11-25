@@ -1,4 +1,4 @@
-namespace shared.DTOs.Users
+namespace Shared.DTOs.Users
 {
     public class UserDto
     {

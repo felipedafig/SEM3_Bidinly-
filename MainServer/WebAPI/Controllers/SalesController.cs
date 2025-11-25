@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using shared.DTOs.Sales;
+using Shared.DTOs.Sales;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
 using BidResponse = MainServer.WebAPI.Protos.BidResponse;
@@ -10,11 +10,17 @@ namespace MainServer.WebAPI.Controllers
     [Route("sales")]
     public class SalesController : ControllerBase
     {
-        private readonly DataTierGrpcClient dataTierClient;
+        private readonly SaleGrpcClient saleClient;
+        private readonly PropertyGrpcClient propertyClient;
+        private readonly UserGrpcClient userClient;
+        private readonly BidGrpcClient bidClient;
 
-        public SalesController(DataTierGrpcClient dataTierClient)
+        public SalesController(SaleGrpcClient saleClient, PropertyGrpcClient propertyClient, UserGrpcClient userClient, BidGrpcClient bidClient)
         {
-            this.dataTierClient = dataTierClient;
+            this.saleClient = saleClient;
+            this.propertyClient = propertyClient;
+            this.userClient = userClient;
+            this.bidClient = bidClient;
         }
 
         [HttpGet]
@@ -22,7 +28,7 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                GetSalesResponse response = await dataTierClient.GetSalesAsync();
+                GetSalesResponse response = await saleClient.GetSalesAsync();
 
                 var uniquePropertyIds = response.Sales.Select(s => s.PropertyId).Distinct().ToList();
                 var uniqueBuyerIds = response.Sales.Select(s => s.BuyerId).Distinct().ToList();
@@ -33,7 +39,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     try
                     {
-                        var property = await dataTierClient.GetPropertyAsync(id);
+                        var property = await propertyClient.GetPropertyAsync(id);
                         return new { Id = id, Property = (PropertyResponse?)property };
                     }
                     catch
@@ -46,7 +52,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     try
                     {
-                        var user = await dataTierClient.GetUserAsync(id);
+                        var user = await userClient.GetUserAsync(id);
                         return new { Id = id, User = (UserResponse?)user };
                     }
                     catch
@@ -59,7 +65,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     try
                     {
-                        var user = await dataTierClient.GetUserAsync(id);
+                        var user = await userClient.GetUserAsync(id);
                         return new { Id = id, User = (UserResponse?)user };
                     }
                     catch
@@ -72,7 +78,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     try
                     {
-                        var bid = await dataTierClient.GetBidAsync(id);
+                        var bid = await bidClient.GetBidAsync(id);
                         return new { Id = id, Bid = (BidResponse?)bid };
                     }
                     catch

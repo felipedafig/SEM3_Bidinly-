@@ -1,2 +1,0 @@
-obj\Debug\net10.0\Protos/Datatier.cs \
-obj\Debug\net10.0\Protos/DatatierGrpc.cs: Protos/datatier.proto

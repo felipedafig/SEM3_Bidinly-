@@ -1,6 +1,6 @@
 using BlazorApp.Auth;
 using BlazorApp.Components;
-using Microsoft.AspNetCore.Authentication;
+using BlazorApp.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +25,13 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddScoped<AuthenticationStateProvider, AuthProvider>();
 
+// API services
+builder.Services.AddScoped<HttpAuthService>();
+builder.Services.AddScoped<HttpRoleService>();
+builder.Services.AddScoped<HttpUserService>();
+builder.Services.AddScoped<HttpBidService>();
+builder.Services.AddScoped<HttpPropertyService>();
+builder.Services.AddScoped<HttpSaleService>();
 
 var app = builder.Build();
 
