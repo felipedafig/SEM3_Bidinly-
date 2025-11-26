@@ -1,5 +1,6 @@
 using BlazorApp.Auth;
 using BlazorApp.Components;
+using BlazorApp.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -13,6 +14,10 @@ builder.Services.AddScoped(sp => new HttpClient
 {
     BaseAddress = new Uri("http://localhost:5141/")
 });
+builder.Services.AddScoped<HttpSaleService>();
+builder.Services.AddScoped<HttpBidService>();
+builder.Services.AddScoped<HttpPropertyService>();
+builder.Services.AddScoped<HttpUserService>();
 
 builder.Services.AddAuthentication(options =>
 {

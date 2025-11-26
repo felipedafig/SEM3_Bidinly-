@@ -1,0 +1,45 @@
+using System.Net.Http.Json;
+using shared.DTOs.Properties;
+
+namespace BlazorApp.Services;
+
+public class HttpPropertyService
+{
+    private readonly HttpClient client;
+
+    public HttpPropertyService(HttpClient client)
+    {
+        this.client = client;
+    }
+
+    public async Task<List<PropertyDto>> GetAllAsync()
+    {
+        var properties = await client.GetFromJsonAsync<List<PropertyDto>>("properties");
+        return properties ?? new List<PropertyDto>();
+    }
+
+    public async Task<List<PropertyDto>> GetByAgentAsync(int agentId)
+    {
+        var properties = await client.GetFromJsonAsync<List<PropertyDto>>($"properties?agentId={agentId}");
+        return properties ?? new List<PropertyDto>();
+    }
+
+    public async Task<PropertyDto?> GetByIdAsync(int id)
+    {
+        return await client.GetFromJsonAsync<PropertyDto>($"properties/{id}");
+    }
+
+    public async Task<PropertyDto> CreateAsync(CreatePropertyDto dto)
+    {
+        var response = await client.PostAsJsonAsync("properties", dto);
+        if (!response.IsSuccessStatusCode)
+        {
+            string err = await response.Content.ReadAsStringAsync();
+            throw new Exception(string.IsNullOrWhiteSpace(err) ? "Failed to create property" : err);
+        }
+
+        return await response.Content.ReadFromJsonAsync<PropertyDto>()
+               ?? throw new Exception("Failed to deserialize property");
+    }
+}
+

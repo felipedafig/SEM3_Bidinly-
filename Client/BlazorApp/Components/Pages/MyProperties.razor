@@ -4,8 +4,6 @@
 
 @using shared.DTOs.Properties
 
-@using System.Net.Http.Json
-
 @using Microsoft.AspNetCore.Components
 
 @using Microsoft.AspNetCore.Components.Web
@@ -16,7 +14,7 @@
 
 @attribute [Authorize]
 
-@inject HttpClient Http
+@inject HttpPropertyService PropertyService
 
 @inject NavigationManager Navigation
 
@@ -328,9 +326,7 @@
 
             {
 
-                var response = await Http.GetFromJsonAsync<List<PropertyDto>>($"properties?agentId={currentAgentId.Value}");
-
-                properties = response ?? new List<PropertyDto>();
+                properties = await PropertyService.GetByAgentAsync(currentAgentId.Value);
 
             }
 
@@ -440,27 +436,11 @@
 
         {
 
-            var response = await Http.PostAsJsonAsync("properties", createPropertyDto);
+            await PropertyService.CreateAsync(createPropertyDto);
 
-            if (response.IsSuccessStatusCode)
+            HideCreatePropertyModal();
 
-            {
-
-                HideCreatePropertyModal();
-
-                await LoadProperties();
-
-            }
-
-            else
-
-            {
-
-                var errorContent = await response.Content.ReadAsStringAsync();
-
-                createPropertyError = $"Failed to create property: {errorContent}";
-
-            }
+            await LoadProperties();
 
         }
 
