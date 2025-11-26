@@ -22,6 +22,7 @@ using System.Reflection;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99d94f93150eb0678f62f4eec00ffde1644037b1")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9724390ae088bea08d90d1d1814cc79174ccd5bc")]
@@ -50,6 +51,9 @@ using System.Reflection;
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64c7cd4fc307b19fc33e1790b27971571e5099e2")]
 >>>>>>> 937913a (Blazor Http services done by marta)
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+937913a1d47775b86dd69c7253f84a242d186355")]
+>>>>>>> 4935c79 (Blazor Http services done by marta)
 [assembly: System.Reflection.AssemblyProductAttribute("DTOs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DTOs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
