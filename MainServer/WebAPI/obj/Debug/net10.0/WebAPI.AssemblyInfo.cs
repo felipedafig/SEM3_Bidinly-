@@ -13,27 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c61ce6f7067ea82c5b0e18fbbbb71eee2d319ea")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5072f33b4d11d89214eef1b15e55a82c46e8383")]
->>>>>>> f59c4d7 (propertyCreation api test passed http file)
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f59c4d7f80b458d15574e965223ae644a9867032")]
->>>>>>> 6e9c310 (propertyGrpcClient xunit tests)
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e9c31050d09a19e000e17b2bd29a5cd8bbaf3bc")]
->>>>>>> 64c7cd4 (UI add property works)
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64c7cd4fc307b19fc33e1790b27971571e5099e2")]
->>>>>>> 937913a (Blazor Http services done by marta)
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+937913a1d47775b86dd69c7253f84a242d186355")]
->>>>>>> 4935c79 (Blazor Http services done by marta)
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a547cfd84f6d099661abaaa1c5fa82c629155c99")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
