@@ -6,7 +6,11 @@ namespace MainServer.WebAPI.Services
 {
     public class DataTierGrpcClient
     {
-        private readonly DataTierService.DataTierServiceClient client;
+        private readonly BidService.BidServiceClient bidClient;
+        private readonly UserService.UserServiceClient userClient;
+        private readonly SaleService.SaleServiceClient saleClient;
+        private readonly RoleService.RoleServiceClient roleClient;
+        private readonly AuthService.AuthServiceClient authClient;
         private readonly GrpcChannel channel;
 
         public DataTierGrpcClient(IConfiguration configuration)
@@ -22,7 +26,11 @@ namespace MainServer.WebAPI.Services
                 MaxSendMessageSize = null
             });
             
-            client = new DataTierService.DataTierServiceClient(channel);
+            bidClient = new BidService.BidServiceClient(channel);
+            userClient = new UserService.UserServiceClient(channel);
+            saleClient = new SaleService.SaleServiceClient(channel);
+            roleClient = new RoleService.RoleServiceClient(channel);
+            authClient = new AuthService.AuthServiceClient(channel);
         }
 
         // Bid operations
@@ -32,7 +40,7 @@ namespace MainServer.WebAPI.Services
             try
             {
                 var request = new GetBidsRequest();
-                var response = await client.GetBidsAsync(request);
+                var response = await bidClient.GetBidsAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)
@@ -51,7 +59,7 @@ namespace MainServer.WebAPI.Services
             try
             {
                 var request = new GetBidRequest { Id = id };
-                var response = await client.GetBidAsync(request);
+                var response = await bidClient.GetBidAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)
@@ -75,7 +83,7 @@ namespace MainServer.WebAPI.Services
                     Amount = amount,
                     ExpiryDateSeconds = expiryDateSeconds
                 };
-                BidResponse response = await client.CreateBidAsync(request);
+                BidResponse response = await bidClient.CreateBidAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)
@@ -91,7 +99,7 @@ namespace MainServer.WebAPI.Services
         public async Task<bool> DeleteBidAsync(int id)
         {
             var request = new DeleteBidRequest { Id = id };
-            var response = await client.DeleteBidAsync(request);
+            var response = await bidClient.DeleteBidAsync(request);
             return response.Success;
         }
 
@@ -101,7 +109,7 @@ namespace MainServer.WebAPI.Services
             try
             {
                 var request = new GetUserRequest { Id = id };
-                var response = await client.GetUserAsync(request);
+                var response = await userClient.GetUserAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)
@@ -125,7 +133,7 @@ namespace MainServer.WebAPI.Services
                     RoleId = roleId
                 };
                 
-                UserResponse response = await client.CreateUserAsync(request);
+                UserResponse response = await userClient.CreateUserAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)
@@ -140,7 +148,7 @@ namespace MainServer.WebAPI.Services
             try
             {
                 var request = new GetSalesRequest();
-                var response = await client.GetSalesAsync(request);
+                var response = await saleClient.GetSalesAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)
@@ -159,7 +167,7 @@ namespace MainServer.WebAPI.Services
             try
             {
                 GetRoleRequest request = new GetRoleRequest { RoleId = roleId };
-                GetRoleResponse response = await client.GetRoleAsync(request);
+                GetRoleResponse response = await roleClient.GetRoleAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)
@@ -182,7 +190,7 @@ namespace MainServer.WebAPI.Services
                     Username = username,
                     Password = password
                 };
-                var response = await client.AuthenticateUserAsync(request);
+                var response = await authClient.AuthenticateUserAsync(request);
                 return response;
             }
             catch (Grpc.Core.RpcException ex)
