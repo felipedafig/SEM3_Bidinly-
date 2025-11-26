@@ -51,7 +51,6 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
             
             updateExpiredBids(bids);
             
-            // Apply filters if provided
             if (request.hasPropertyId() || request.hasBuyerId() || request.hasStatus()) {
                 bids = bids.stream()
                     .filter(bid -> {
