@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Shared.DTOs.Sales;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
+using Microsoft.AspNetCore.Authorization;
 using BidResponse = MainServer.WebAPI.Protos.BidResponse;
 
 namespace MainServer.WebAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("sales")]
     public class SalesController : ControllerBase
@@ -23,6 +25,7 @@ namespace MainServer.WebAPI.Controllers
             this.bidClient = bidClient;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<SaleDto>>> GetManySales()
         {

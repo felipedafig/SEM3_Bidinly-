@@ -11,11 +11,13 @@ namespace MainServer.WebAPI.Controllers
     {
         private readonly AuthGrpcClient _authClient;
         private readonly RoleGrpcClient _roleClient;
+        private readonly JwtService _jwtService;
 
-        public AuthController(AuthGrpcClient _authClient, RoleGrpcClient _roleClient)
+        public AuthController(AuthGrpcClient _authClient, RoleGrpcClient _roleClient, JwtService _jwtService)
         {
             this._authClient = _authClient;
             this._roleClient = _roleClient;
+            this._jwtService = _jwtService;
         }
 
         [HttpPost("login")]
@@ -31,6 +33,7 @@ namespace MainServer.WebAPI.Controllers
                 var response = await _authClient.AuthenticateUserAsync(request.Username, request.Password);
 
                 string? roleName = null;
+                
                 if (response.RoleId > 0)
                 {
                     try
@@ -50,8 +53,18 @@ namespace MainServer.WebAPI.Controllers
                     Username = response.Username,
                     RoleName = roleName
                 };
+                
+                var jwt = _jwtService.GenerateToken(
+                    response.Id,
+                    response.Username,
+                    roleName
+                );
 
-                return Ok(responseDto);
+                return Ok(new
+                {
+                    token = jwt,
+                    user = responseDto
+                });
             }
             catch (Exception ex)
             {

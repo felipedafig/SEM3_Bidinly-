@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text.Json;
 using BlazorApp.Services;
@@ -12,7 +13,6 @@ public class AuthProvider : AuthenticationStateProvider
     
     private readonly IJSRuntime jsRuntime;
     private readonly HttpAuthService authService;
-    private string userAsJson = string.Empty;
 
     public AuthProvider(HttpAuthService authService, IJSRuntime jsRuntime)
     {
@@ -20,31 +20,17 @@ public class AuthProvider : AuthenticationStateProvider
         this.jsRuntime = jsRuntime;
     }
 
-    private Task<ClaimsPrincipal> CreateClaimsPrincipalAsync(UserDto userDto)
-    {
-        var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, userDto.Username ?? ""),
-            new Claim("Id", userDto.Id.ToString()),
-            new Claim("RoleName", userDto.RoleName ?? "")
-        };
-
-        var identity = new ClaimsIdentity(claims, "apiauth");
-        return Task.FromResult(new ClaimsPrincipal(identity));
-    }
-
     public async Task Login(string username, string password)
     {
-        UserDto userDto = await authService.LoginAsync(username, password);
-        userAsJson = JsonSerializer.Serialize(userDto);
+        var (token, user) = await authService.LoginAsync(username, password);
+        await jsRuntime.InvokeVoidAsync("authStorage.saveToken", token);
 
-        // Save to browser storage ONLY if JS is available (not during prerender)
-        if (jsRuntime is IJSInProcessRuntime)
-        {
-            await jsRuntime.InvokeVoidAsync("authStorage.saveUser", userAsJson);
-        }
+        // build ClaimsPrincipal from JWT
+        var handler = new JwtSecurityTokenHandler();
+        var jwt = handler.ReadJwtToken(token);
 
-        ClaimsPrincipal cp = await CreateClaimsPrincipalAsync(userDto);
+        var identity = new ClaimsIdentity(jwt.Claims, "jwt");
+        var cp = new ClaimsPrincipal(identity);
 
         NotifyAuthenticationStateChanged(
             Task.FromResult(new AuthenticationState(cp))
@@ -53,30 +39,24 @@ public class AuthProvider : AuthenticationStateProvider
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        if (jsRuntime is not IJSInProcessRuntime)
-        {
-            return new AuthenticationState(new ClaimsPrincipal());
-        }
+        var token = await jsRuntime.InvokeAsync<string?>("authStorage.getToken");
 
-        string? stored = await jsRuntime.InvokeAsync<string?>("authStorage.getUser");
-        userAsJson = stored ?? string.Empty;
-
-        if (string.IsNullOrEmpty(userAsJson))
+        if (string.IsNullOrEmpty(token))
             return new AuthenticationState(new ClaimsPrincipal());
 
-        UserDto userDto = JsonSerializer.Deserialize<UserDto>(userAsJson)!;
-        ClaimsPrincipal cp = await CreateClaimsPrincipalAsync(userDto);
+        var handler = new JwtSecurityTokenHandler();
+        var jwt = handler.ReadJwtToken(token);
+
+        var identity = new ClaimsIdentity(jwt.Claims, "jwt");
+        var cp = new ClaimsPrincipal(identity);
 
         return new AuthenticationState(cp);
     }
 
     public async Task Logout()
-    {
-        if (jsRuntime is IJSInProcessRuntime)
-        {
-            await jsRuntime.InvokeVoidAsync("authStorage.clearUser");
-        }
-
+    { 
+        await jsRuntime.InvokeVoidAsync("authStorage.clearToken");
+       
         NotifyAuthenticationStateChanged(
             Task.FromResult(new AuthenticationState(new ClaimsPrincipal()))
         );

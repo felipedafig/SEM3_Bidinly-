@@ -3,6 +3,7 @@ package via.pro3.datatierserver.service;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import via.pro3.datatierserver.grpc.AuthServiceGrpc;
 import via.pro3.datatierserver.grpc.DataTierProto;
 import via.pro3.datatierserver.model.User;
@@ -15,6 +16,9 @@ public class AuthGrpcService extends AuthServiceGrpc.AuthServiceImplBase{
 
     @Autowired
     private IUserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void authenticateUser(DataTierProto.LoginRequest request, StreamObserver<DataTierProto.LoginResponse> responseObserver) {
@@ -44,9 +48,11 @@ public class AuthGrpcService extends AuthServiceGrpc.AuthServiceImplBase{
 
             User user = userOpt.get();
 
-            if (!user.getPassword().equals(request.getPassword())) {
+            System.out.println("Login attempt for username: " + request.getUsername());
+
+            if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
                 responseObserver.onError(io.grpc.Status.UNAUTHENTICATED
-                        .withDescription("Invalid username or password")
+                        .withDescription("Invalid username or password.")
                         .asRuntimeException());
                 return;
             }

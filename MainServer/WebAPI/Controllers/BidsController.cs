@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
+using Microsoft.AspNetCore.Authorization;
 using BidDto = Shared.DTOs.Bids.BidDto;
 using CreateBidDto = Shared.DTOs.Bids.CreateBidDto;
 
 namespace MainServer.WebAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("bids")]
     public class BidsController : ControllerBase
@@ -21,6 +23,7 @@ namespace MainServer.WebAPI.Controllers
             this.userClient = userClient;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<BidDto>>> GetManyBids()
         {
@@ -86,6 +89,7 @@ namespace MainServer.WebAPI.Controllers
             }
         }
 
+        [Authorize (Roles = "Buyer")]
         [HttpPost]
         public async Task<ActionResult<BidDto>> CreateBid([FromBody] CreateBidDto createBidDto)
         {

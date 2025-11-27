@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Shared.DTOs.Users;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MainServer.WebAPI.Controllers
 {
+    [Authorize (Roles = "Admin, Agent")]
     [ApiController]
     [Route("users")]
     public class UsersController : ControllerBase
@@ -18,6 +20,7 @@ namespace MainServer.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
             try
@@ -60,8 +63,6 @@ namespace MainServer.WebAPI.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
-
-        [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser([FromBody] CreateUserDto createUserDto)
         {
             try

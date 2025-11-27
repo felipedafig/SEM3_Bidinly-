@@ -9,17 +9,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddScoped(sp => new HttpClient
-{
-    BaseAddress = new Uri("http://localhost:5141/")
-});
+builder.Services.AddHttpClient();
+builder.Services.AddTransient<JwtAuthMessageHandler>();
 
-builder.Services.AddAuthentication(options =>
+builder.Services.AddHttpClient("AuthorizedClient", client =>
+    {
+        client.BaseAddress = new Uri("https://localhost:7141/");
+    })
+    .AddHttpMessageHandler<JwtAuthMessageHandler>();
+
+builder.Services.AddScoped(sp =>
 {
-    options.DefaultAuthenticateScheme = AuthCookieAuthenticationHandler.SchemeName;
-    options.DefaultChallengeScheme = AuthCookieAuthenticationHandler.SchemeName;
-}).AddScheme<AuthCookieAuthenticationOptions, AuthCookieAuthenticationHandler>(
-    AuthCookieAuthenticationHandler.SchemeName, _ => { });
+    var factory = sp.GetRequiredService<IHttpClientFactory>();
+    return factory.CreateClient("AuthorizedClient");
+});
 
 builder.Services.AddAuthorization();
 

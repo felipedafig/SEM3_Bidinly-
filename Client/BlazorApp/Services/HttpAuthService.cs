@@ -13,7 +13,7 @@ public class HttpAuthService
         this.client = client;
     }
 
-    public async Task<UserDto> LoginAsync(string username, string password)
+    public async Task<(string Token, UserDto User)> LoginAsync(string username, string password)
     {
         var dto = new LoginRequestDTO
         {
@@ -29,8 +29,10 @@ public class HttpAuthService
             throw new Exception(error);
         }
 
-        return await response.Content.ReadFromJsonAsync<UserDto>()
-               ?? throw new Exception("Failed to deserialize login response");
+        var result = await response.Content.ReadFromJsonAsync<LoginResponse>()
+                     ?? throw new Exception("Invalid login response");
+
+        return (result.Token, result.User);
     }
 
     public async Task CreateUserAsync(string username, string password, int roleId)

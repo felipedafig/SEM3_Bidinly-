@@ -1,10 +1,12 @@
 using MainServer.WebAPI.Protos;
 using MainServer.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared.DTOs.Roles;
 
 namespace MainServer.WebAPI.Controllers
 {
+    [Authorize (Roles = "Admin")]
     [ApiController]
     [Route("roles")]
     public class RolesController : ControllerBase

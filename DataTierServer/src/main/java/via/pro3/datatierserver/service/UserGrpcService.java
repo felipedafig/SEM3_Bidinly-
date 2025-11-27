@@ -3,6 +3,7 @@ package via.pro3.datatierserver.service;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import via.pro3.datatierserver.grpc.DataTierProto;
 import via.pro3.datatierserver.grpc.UserServiceGrpc;
 import via.pro3.datatierserver.model.User;
@@ -15,6 +16,9 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
 
     @Autowired
     private IUserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void getUser(DataTierProto.GetUserRequest request, StreamObserver<DataTierProto.UserResponse> responseObserver) {
@@ -76,7 +80,8 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
 
             User newUser = new User();
             newUser.setUsername(request.getUsername());
-            newUser.setPassword(request.getPassword());
+            String hashed = passwordEncoder.encode(request.getPassword());
+            newUser.setPassword(hashed);
             newUser.setRoleId(request.getRoleId());
 
             User savedUser = userRepository.save(newUser);
