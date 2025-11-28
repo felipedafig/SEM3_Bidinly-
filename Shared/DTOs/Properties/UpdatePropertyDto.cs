@@ -26,5 +26,11 @@ namespace shared.DTOs.Properties
         [StringLength(5000)]
         public string? Description { get; set; }
 
+        public string? Status { get; set; }
+
+        public string? CreationStatus { get; set; }
+
+        public string? ImageUrl { get; set; }
+
     }
 }

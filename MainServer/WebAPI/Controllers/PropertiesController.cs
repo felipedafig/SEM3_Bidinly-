@@ -20,11 +20,11 @@ namespace MainServer.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<PropertyDto>>> GetManyProperties([FromQuery] string? status = null, [FromQuery] int? agentId = null)
+        public async Task<ActionResult<List<PropertyDto>>> GetManyProperties([FromQuery] string? status = null, [FromQuery] int? agentId = null, [FromQuery] string? creationStatus = null)
         {
             try
             {
-                GetPropertiesResponse response = await propertyClient.GetPropertiesAsync(agentId, status);
+                GetPropertiesResponse response = await propertyClient.GetPropertiesAsync(agentId, status, creationStatus);
 
                 var uniqueAgentIds = response.Properties.Select(p => p.AgentId).Distinct().ToList();
 
@@ -50,6 +50,7 @@ namespace MainServer.WebAPI.Controllers
                     {
                         Id = propertyResponse.Id,
                         Title = propertyResponse.Title,
+                        AgentId = propertyResponse.AgentId,
                         AgentName = agentLookup.GetValueOrDefault(propertyResponse.AgentId)?.Username,
                         Address = propertyResponse.Address,
                         StartingPrice = (decimal)propertyResponse.StartingPrice,
@@ -57,7 +58,9 @@ namespace MainServer.WebAPI.Controllers
                         Bathrooms = propertyResponse.Bathrooms,
                         SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
                         Description = propertyResponse.Description,
-                        Status = propertyResponse.Status
+                        Status = propertyResponse.Status,
+                        CreationStatus = propertyResponse.CreationStatus,
+                        ImageUrl = propertyResponse.ImageUrl
                     };
                 }).ToList();
 
@@ -89,6 +92,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = propertyResponse.Id,
                     Title = propertyResponse.Title,
+                    AgentId = propertyResponse.AgentId,
                     AgentName = agentUser?.Username,
                     Address = propertyResponse.Address,
                     StartingPrice = (decimal)propertyResponse.StartingPrice,
@@ -96,7 +100,9 @@ namespace MainServer.WebAPI.Controllers
                     Bathrooms = propertyResponse.Bathrooms,
                     SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
                     Description = propertyResponse.Description,
-                    Status = propertyResponse.Status
+                    Status = propertyResponse.Status,
+                    CreationStatus = propertyResponse.CreationStatus,
+                    ImageUrl = propertyResponse.ImageUrl
                 };
 
                 return Ok(propertyDto);
@@ -147,6 +153,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = propertyResponse.Id,
                     Title = propertyResponse.Title,
+                    AgentId = propertyResponse.AgentId,
                     AgentName = null,
                     Address = propertyResponse.Address,
                     StartingPrice = (decimal)propertyResponse.StartingPrice,
@@ -161,6 +168,102 @@ namespace MainServer.WebAPI.Controllers
                 };
 
                 return CreatedAtAction(nameof(GetSingleProperty), new { id = createdPropertyDto.Id }, createdPropertyDto);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<PropertyDto>> UpdateProperty(int id, [FromBody] UpdatePropertyDto updatePropertyDto)
+        {
+            try
+            {
+                if (id != updatePropertyDto.Id)
+                {
+                    return BadRequest("Property ID mismatch");
+                }
+
+                var updateRequest = new UpdatePropertyRequest
+                {
+                    Id = updatePropertyDto.Id
+                };
+
+                if (!string.IsNullOrWhiteSpace(updatePropertyDto.Title))
+                {
+                    updateRequest.Title = updatePropertyDto.Title;
+                }
+                if (!string.IsNullOrWhiteSpace(updatePropertyDto.Address))
+                {
+                    updateRequest.Address = updatePropertyDto.Address;
+                }
+                if (updatePropertyDto.StartingPrice.HasValue)
+                {
+                    updateRequest.StartingPrice = (double)updatePropertyDto.StartingPrice.Value;
+                }
+                if (updatePropertyDto.Bedrooms.HasValue)
+                {
+                    updateRequest.Bedrooms = updatePropertyDto.Bedrooms.Value;
+                }
+                if (updatePropertyDto.Bathrooms.HasValue)
+                {
+                    updateRequest.Bathrooms = updatePropertyDto.Bathrooms.Value;
+                }
+                if (updatePropertyDto.SizeInSquareFeet.HasValue)
+                {
+                    updateRequest.SizeInSquareFeet = (int)updatePropertyDto.SizeInSquareFeet.Value;
+                }
+                if (!string.IsNullOrWhiteSpace(updatePropertyDto.Description))
+                {
+                    updateRequest.Description = updatePropertyDto.Description;
+                }
+                if (!string.IsNullOrWhiteSpace(updatePropertyDto.Status))
+                {
+                    updateRequest.Status = updatePropertyDto.Status;
+                }
+                if (!string.IsNullOrWhiteSpace(updatePropertyDto.CreationStatus))
+                {
+                    updateRequest.CreationStatus = updatePropertyDto.CreationStatus;
+                }
+                if (!string.IsNullOrWhiteSpace(updatePropertyDto.ImageUrl))
+                {
+                    updateRequest.ImageUrl = updatePropertyDto.ImageUrl;
+                }
+
+                PropertyResponse propertyResponse = await propertyClient.UpdatePropertyAsync(updateRequest);
+
+                UserResponse? agentUser = null;
+                try
+                {
+                    agentUser = await dataTierClient.GetUserAsync(propertyResponse.AgentId);
+                }
+                catch
+                {
+                }
+
+                PropertyDto updatedPropertyDto = new PropertyDto
+                {
+                    Id = propertyResponse.Id,
+                    Title = propertyResponse.Title,
+                    AgentId = propertyResponse.AgentId,
+                    AgentName = agentUser?.Username,
+                    Address = propertyResponse.Address,
+                    StartingPrice = (decimal)propertyResponse.StartingPrice,
+                    Bedrooms = propertyResponse.Bedrooms,
+                    Bathrooms = propertyResponse.Bathrooms,
+                    SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                    Description = propertyResponse.Description,
+                    Status = propertyResponse.Status,
+                    CreationStatus = propertyResponse.CreationStatus,
+                    ImageUrl = propertyResponse.ImageUrl
+                };
+
+                return Ok(updatedPropertyDto);
+            }
+            catch (Grpc.Core.RpcException ex) when (ex.StatusCode == Grpc.Core.StatusCode.NotFound)
+            {
+                return NotFound();
             }
             catch
             {
