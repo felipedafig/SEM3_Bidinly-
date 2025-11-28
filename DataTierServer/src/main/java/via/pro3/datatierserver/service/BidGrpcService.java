@@ -235,11 +235,9 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
 
             Bid acceptedBid = bidOpt.get();
 
-            // 1️⃣ Set accepted bid status
             acceptedBid.setStatus(request.getStatus());
             bidRepository.save(acceptedBid);
 
-            // 2️⃣ Reject all OTHER bids for the same property
             if ("Accepted".equals(request.getStatus())) {
                 List<Bid> allBids = bidRepository.getMany();
 
@@ -254,7 +252,6 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
                 }
             }
 
-            // 3️⃣ Return the accepted bid
             DataTierProto.BidResponse response = convertToBidResponse(acceptedBid);
             responseObserver.onNext(response);
             responseObserver.onCompleted();
