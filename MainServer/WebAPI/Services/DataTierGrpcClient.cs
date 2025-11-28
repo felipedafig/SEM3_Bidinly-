@@ -202,5 +202,26 @@ namespace MainServer.WebAPI.Services
                 throw;
             }
         }
+        
+        public async Task<BidResponse> SetBidStatusAsync(int bidId, string status)
+        {
+            try
+            {
+                var request = new SetBidStatusRequest
+                {
+                    Id = bidId,
+                    Status = status
+                };
+
+                var response = await bidClient.SetBidStatusAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+        }
+        
+        
     }
 }

@@ -12,6 +12,12 @@ public class HttpBidService
     {
         this.client = client;
     }
+    
+    public async Task<List<BidDto>> GetByPropertyIdAsync(int propertyId)
+    {
+        return await client.GetFromJsonAsync<List<BidDto>>($"bids/property/{propertyId}")
+               ?? new List<BidDto>();
+    }
 
     public async Task<List<BidDto>> GetAllAsync()
     {
@@ -40,6 +46,20 @@ public class HttpBidService
             string err = await response.Content.ReadAsStringAsync();
             throw new Exception(string.IsNullOrWhiteSpace(err) ? $"Failed to delete bid {id}" : err);
         }
+    }
+    
+    public async Task AcceptBidAsync(int id)
+    {
+        var response = await client.PutAsync($"bids/{id}/accept", null);
+        if (!response.IsSuccessStatusCode)
+            throw new Exception("Failed to accept bid");
+    }
+
+    public async Task RejectBidAsync(int id)
+    {
+        var response = await client.PutAsync($"bids/{id}/reject", null);
+        if (!response.IsSuccessStatusCode)
+            throw new Exception("Failed to reject bid");
     }
 }
 

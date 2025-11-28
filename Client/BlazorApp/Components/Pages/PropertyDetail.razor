@@ -2,15 +2,6 @@
 @layout NoLayout
 @using shared.DTOs.Properties
 @using Shared.DTOs.Bids
-@using shared.DTOs.Bids
-<<<<<<< HEAD
-@using System.Net.Http.Json
-@using System.Security.Claims
-=======
->>>>>>> 937913a (Blazor Http services done by marta)
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Components.Authorization
-
 @attribute [Authorize]
 @inject HttpPropertyService PropertyService
 @inject HttpBidService BidService
@@ -80,7 +71,19 @@ else
                     <div class="property-detail-price">
                         <h3>Starting Price</h3>
                         <p class="price-amount">@property.StartingPrice.ToString("N0") Kr</p>
-                        <button class="bid-button" @onclick="ShowBidForm">Bid</button>
+                        
+                        @if (!propertyHasAcceptedBid)
+                        {
+                            <button class="bid-button" @onclick="ShowBidForm">Bid</button>
+                        }
+                        else
+                        {
+                            <div class="bidding-closed-message">
+                                Bidding Closed — A bid has been accepted.
+                            </div>
+                        }
+
+                        <button class="bid-button" @onclick="GoToBids">View Bids</button>
                     </div>
                     
                     <div class="property-detail-specs">
@@ -182,6 +185,12 @@ else
     private bool isSubmittingBid = false;
     private string? errorMessage;
     private string? successMessage;
+    private bool propertyHasAcceptedBid = false;
+    
+    private void GoToBids()
+    {
+        Navigation.NavigateTo($"/property/{PropertyId}/bids");
+    }
     
     protected override async Task OnInitializedAsync()
     {
@@ -194,6 +203,9 @@ else
         {
             loading = true;
             property = await PropertyService.GetByIdAsync(PropertyId);
+            
+            var bids = await BidService.GetByPropertyIdAsync(PropertyId);
+            propertyHasAcceptedBid = bids.Any(b => b.Status == "Accepted");
         }
         catch (Exception ex)
         {
@@ -223,6 +235,10 @@ else
     
     private void ShowBidForm()
     {
+        
+        if (propertyHasAcceptedBid)
+            return;
+        
         bidAmount = property?.StartingPrice ?? 0;
         bidExpiryDate = DateTime.Now.AddDays(7);
         errorMessage = null;

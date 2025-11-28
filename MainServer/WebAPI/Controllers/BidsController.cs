@@ -68,6 +68,8 @@ namespace MainServer.WebAPI.Controllers
                 return new BidDto
                 {
                     Id = bidResponse.Id,
+                    PropertyId = bidResponse.PropertyId,   
+                    BuyerId = bidResponse.BuyerId,  
                     PropertyTitle = propertyLookup.GetValueOrDefault(bidResponse.PropertyId)?.Title,
                     BuyerUsername = userLookup.GetValueOrDefault(bidResponse.BuyerId)?.Username,
                     Amount = (decimal)bidResponse.Amount,
@@ -81,6 +83,54 @@ namespace MainServer.WebAPI.Controllers
             catch
             {
                 throw; 
+            }
+        }
+        
+        [HttpGet("property/{propertyId}")]
+        public async Task<ActionResult<List<BidDto>>> GetBidsByPropertyId(int propertyId)
+        {
+            try
+            {
+                GetBidsResponse response = await dataTierClient.GetBidsAsync();
+
+                var filtered = response.Bids.Where(b => b.PropertyId == propertyId).ToList();
+
+                if (!filtered.Any())
+                    return Ok(new List<BidDto>());
+                
+                var buyerIds = filtered.Select(b => b.BuyerId).Distinct().ToList();
+                var userTasks = buyerIds.Select(async id =>
+                {
+                    try { return new { Id = id, User = await dataTierClient.GetUserAsync(id) }; }
+                    catch { return new { Id = id, User = (UserResponse?)null }; }
+                });
+
+                var users = await Task.WhenAll(userTasks);
+                var userLookup = users.ToDictionary(u => u.Id, u => u.User);
+                var property = await propertyClient.GetPropertyAsync(propertyId);
+                
+                var dtos = filtered.Select(b =>
+                {
+                    var expiry = DateTimeOffset.FromUnixTimeSeconds(b.ExpiryDateSeconds).DateTime;
+
+                    return new BidDto
+                    {
+                        Id = b.Id,
+                        PropertyId = b.PropertyId,
+                        BuyerId = b.BuyerId,
+                        BuyerUsername = userLookup[b.BuyerId]?.Username,
+                        PropertyTitle = property?.Title,
+                        Amount = (decimal)b.Amount,
+                        ExpiryDate = expiry,
+                        Status = b.Status
+                    };
+                }).ToList();
+
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error retrieving bids: {ex.Message}");
             }
         }
 
@@ -114,6 +164,8 @@ namespace MainServer.WebAPI.Controllers
                 BidDto bidDto = new BidDto
                 {
                     Id = bidResponse.Id,
+                    PropertyId = bidResponse.PropertyId,
+                    BuyerId = bidResponse.BuyerId,  
                     PropertyTitle = property?.Title,
                     BuyerUsername = user?.Username,
                     Amount = (decimal)bidResponse.Amount,
@@ -126,6 +178,34 @@ namespace MainServer.WebAPI.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message });
+            }
+        }
+        
+        [HttpPut("{id}/accept")]
+        public async Task<IActionResult> AcceptBid(int id)
+        {
+            try
+            {
+                await dataTierClient.SetBidStatusAsync(id, "Accepted");
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error accepting bid: {ex.Message}");
+            }
+        }
+
+        [HttpPut("{id}/reject")]
+        public async Task<IActionResult> RejectBid(int id)
+        {
+            try
+            {
+                await dataTierClient.SetBidStatusAsync(id, "Rejected");
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error rejecting bid: {ex.Message}");
             }
         }
 
