@@ -72,7 +72,7 @@ else
                         <h3>Starting Price</h3>
                         <p class="price-amount">@property.StartingPrice.ToString("N0") Kr</p>
                         
-                        @if (!propertyHasAcceptedBid)
+                        @if (!IsNotAvailable)
                         {
                             <button class="bid-button" @onclick="ShowBidForm">Bid</button>
                         }
@@ -185,16 +185,18 @@ else
     private bool isSubmittingBid = false;
     private string? errorMessage;
     private string? successMessage;
-    private bool propertyHasAcceptedBid = false;
+    private bool IsNotAvailable => property?.Status == "Not Available";
+    
     
     private void GoToBids()
     {
         Navigation.NavigateTo($"/property/{PropertyId}/bids");
     }
     
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         await LoadProperty();
+        StateHasChanged();
     }
     
     private async Task LoadProperty()
@@ -203,9 +205,6 @@ else
         {
             loading = true;
             property = await PropertyService.GetByIdAsync(PropertyId);
-            
-            var bids = await BidService.GetByPropertyIdAsync(PropertyId);
-            propertyHasAcceptedBid = bids.Any(b => b.Status == "Accepted");
         }
         catch (Exception ex)
         {
@@ -236,7 +235,7 @@ else
     private void ShowBidForm()
     {
         
-        if (propertyHasAcceptedBid)
+        if (IsNotAvailable)
             return;
         
         bidAmount = property?.StartingPrice ?? 0;

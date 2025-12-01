@@ -186,7 +186,18 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                await dataTierClient.SetBidStatusAsync(id, "Accepted");
+                var accepted = await dataTierClient.SetBidStatusAsync(id, "Accepted");
+                var propertyId = accepted.PropertyId;
+                var allBids = await dataTierClient.GetBidsAsync();
+                var otherBids = allBids.Bids.Where(b => b.PropertyId == propertyId && b.Id != id);
+                
+                foreach (var b in otherBids)
+                {
+                    await dataTierClient.SetBidStatusAsync(b.Id, "Rejected");
+                }
+                
+                await propertyClient.SetPropertyStatusAsync(propertyId, "Not Available");
+
                 return NoContent();
             }
             catch (Exception ex)
@@ -194,6 +205,7 @@ namespace MainServer.WebAPI.Controllers
                 return StatusCode(500, $"Error accepting bid: {ex.Message}");
             }
         }
+    
 
         [HttpPut("{id}/reject")]
         public async Task<IActionResult> RejectBid(int id)
