@@ -50,8 +50,7 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
             List<Bid> bids = bidRepository.getMany();
             
             updateExpiredBids(bids);
-            
-            // Apply filters if provided
+
             if (request.hasPropertyId() || request.hasBuyerId() || request.hasStatus()) {
                 bids = bids.stream()
                     .filter(bid -> {
@@ -217,6 +216,53 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
             .setExpiryDateSeconds(expiryDateSeconds)
             .setStatus(bid.getStatus() != null ? bid.getStatus() : "Pending")
             .build();
+    }
+
+    @Override
+    public void setBidStatus(DataTierProto.SetBidStatusRequest request,
+                             StreamObserver<DataTierProto.BidResponse> responseObserver) {
+        try {
+            Optional<Bid> bidOpt = bidRepository.getSingle(request.getId());
+
+            if (bidOpt.isEmpty()) {
+                responseObserver.onError(
+                        io.grpc.Status.NOT_FOUND
+                                .withDescription("Bid with id " + request.getId() + " not found")
+                                .asRuntimeException()
+                );
+                return;
+            }
+
+            Bid acceptedBid = bidOpt.get();
+
+            acceptedBid.setStatus(request.getStatus());
+            bidRepository.save(acceptedBid);
+
+            if ("Accepted".equals(request.getStatus())) {
+                List<Bid> allBids = bidRepository.getMany();
+
+                for (Bid bid : allBids) {
+                    if (!bid.getId().equals(acceptedBid.getId()) &&
+                            bid.getPropertyId().equals(acceptedBid.getPropertyId()) &&
+                            !"Rejected".equals(bid.getStatus())) {
+
+                        bid.setStatus("Rejected");
+                        bidRepository.save(bid);
+                    }
+                }
+            }
+
+            DataTierProto.BidResponse response = convertToBidResponse(acceptedBid);
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+        }
+        catch (Exception e) {
+            responseObserver.onError(
+                    io.grpc.Status.INTERNAL
+                            .withDescription("Error updating bid status: " + e.getMessage())
+                            .asRuntimeException()
+            );
+        }
     }
 }
 

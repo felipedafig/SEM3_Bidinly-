@@ -226,29 +226,6 @@
     margin: 0 0.5rem;
 }
 
-.filter-search-button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: black;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 1rem;
-    transition: background-color 0.2s;
-    flex-shrink: 0;
-}
-
-.filter-search-button:hover {
-    background-color: #2d4ef3;
-}
-
-.filter-search-button:active {
-    transform: scale(0.95);
-}
-
 .white-section {
     background-color: white;
     padding: 2rem 0;

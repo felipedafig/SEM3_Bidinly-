@@ -78,6 +78,17 @@ namespace MainServer.WebAPI.Services
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
             }
         }
+        
+        public async Task<PropertyResponse> SetPropertyStatusAsync(int propertyId, string status)
+        {
+            var request = new UpdatePropertyRequest
+            {
+                Id = propertyId,
+                Status = status
+            };
+
+            return await UpdatePropertyAsync(request);
+        }
 
         public async Task<bool> DeletePropertyAsync(int id)
         {
