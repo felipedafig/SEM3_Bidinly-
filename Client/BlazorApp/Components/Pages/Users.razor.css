@@ -501,6 +501,200 @@
     .bids-table {
         font-size: 0.85rem;
     }
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.delete-modal {
+    max-width: 450px;
+}
+
+.error-modal {
+    max-width: 450px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.modal-close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.modal-close-button:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-body p {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.modal-body strong {
+    color: #2d4ef3;
+    font-weight: 600;
+}
+
+.modal-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.modal-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    border: 1px solid #f5c6cb;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.modal-button-cancel,
+.modal-button-ok {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.modal-button-cancel:hover:not(:disabled),
+.modal-button-ok:hover:not(:disabled) {
+    background-color: #e0e0e0;
+}
+
+.modal-button-cancel:disabled,
+.modal-button-ok:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.modal-button-delete {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #dc3545;
+    color: white;
+}
+
+.modal-button-delete:hover:not(:disabled) {
+    background-color: #c82333;
+}
+
+.modal-button-delete:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 1rem;
+    }
+    
+    .modal-content {
+        max-width: 100%;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1rem 1.5rem;
+    }
     
     .bids-table th,
     .bids-table td {

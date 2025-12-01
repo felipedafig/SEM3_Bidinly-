@@ -15,7 +15,6 @@
 @inject HttpBidService BidService
 @inject HttpSaleService SaleService
 @inject AuthenticationStateProvider AuthProvider
-@inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
 
 <PageTitle>Users - Bidinly</PageTitle>
@@ -296,6 +295,67 @@
     </div>
 </div>
 
+@if (showDeleteModal)
+{
+    <div class="modal-overlay" @onclick="CloseDeleteModal">
+        <div class="modal-content delete-modal" @onclick:stopPropagation="true">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirm Delete</h2>
+                <button class="modal-close-button" @onclick="CloseDeleteModal" type="button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete user <strong>@deleteUsername</strong>?</p>
+                <p class="modal-warning">This action cannot be undone.</p>
+                @if (!string.IsNullOrWhiteSpace(deleteErrorMessage))
+                {
+                    <div class="modal-error">
+                        @deleteErrorMessage
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button-cancel" @onclick="CloseDeleteModal" disabled="@isDeleting">Cancel</button>
+                <button class="modal-button-delete" @onclick="ConfirmDelete" disabled="@isDeleting">
+                    @if (isDeleting)
+                    {
+                        <text>Deleting...</text>
+                    }
+                    else
+                    {
+                        <text>Delete</text>
+                    }
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@if (showErrorModal)
+{
+    <div class="modal-overlay" @onclick="CloseErrorModal">
+        <div class="modal-content error-modal" @onclick:stopPropagation="true">
+            <div class="modal-header">
+                <h2 class="modal-title">Error</h2>
+                <button class="modal-close-button" @onclick="CloseErrorModal" type="button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>@errorMessage</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button-ok" @onclick="CloseErrorModal">OK</button>
+            </div>
+        </div>
+    </div>
+}
+
 @code {
     private List<UserDto> users = new();
     private List<PropertyDto> properties = new();
@@ -313,6 +373,14 @@
     
     private string agentSearchTerm = string.Empty;
     private string buyerSearchTerm = string.Empty;
+    
+    private bool showDeleteModal = false;
+    private bool showErrorModal = false;
+    private bool isDeleting = false;
+    private int deleteUserId = 0;
+    private string deleteUsername = string.Empty;
+    private string deleteErrorMessage = string.Empty;
+    private string errorMessage = string.Empty;
     
     private const int pageSize = 5;
     private int agentCurrentPage = 1;
@@ -573,29 +641,86 @@
         }
     }
     
-    private async Task DeleteUser(int userId, string username)
+    private void DeleteUser(int userId, string username)
     {
         if (userId == currentUserId)
         {
-            await JSRuntime.InvokeVoidAsync("alert", "You cannot delete your own account!");
+            errorMessage = "You cannot delete your own account!";
+            showErrorModal = true;
             return;
         }
         
-        var confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete {username}?");
-        if (!confirmed)
-        {
-            return;
-        }
+        deleteUserId = userId;
+        deleteUsername = username;
+        deleteErrorMessage = string.Empty;
+        showDeleteModal = true;
+    }
+    
+    private void CloseDeleteModal()
+    {
+        showDeleteModal = false;
+        deleteUserId = 0;
+        deleteUsername = string.Empty;
+        deleteErrorMessage = string.Empty;
+        isDeleting = false;
+    }
+    
+    private void CloseErrorModal()
+    {
+        showErrorModal = false;
+        errorMessage = string.Empty;
+    }
+    
+    private async Task ConfirmDelete()
+    {
+        if (deleteUserId == 0) return;
         
         try
         {
-            await UserService.DeleteAsync(userId);
+            isDeleting = true;
+            deleteErrorMessage = string.Empty;
+            StateHasChanged();
+            
+            await UserService.DeleteAsync(deleteUserId);
+            CloseDeleteModal();
             await LoadData();
         }
         catch (Exception ex)
         {
-            await JSRuntime.InvokeVoidAsync("alert", $"Error deleting user: {ex.Message}");
+            deleteErrorMessage = ParseErrorMessage(ex.Message);
+            StateHasChanged();
         }
+        finally
+        {
+            isDeleting = false;
+        }
+    }
+    
+    private string ParseErrorMessage(string message)
+    {
+        if (message.Contains("foreign key constraint") || message.Contains("violates foreign key"))
+        {
+            if (message.Contains("fk_buyer") || message.Contains("Bid"))
+            {
+                return "Cannot delete this user because they have active bids. Please delete or resolve their bids first.";
+            }
+            if (message.Contains("fk_selling_agent") || message.Contains("Sale"))
+            {
+                return "Cannot delete this user because they have sales records. This user cannot be deleted.";
+            }
+            if (message.Contains("Property"))
+            {
+                return "Cannot delete this user because they have properties listed. Please transfer or delete their properties first.";
+            }
+            return "Cannot delete this user because they have related records in the system.";
+        }
+        
+        if (message.Contains("NOT_FOUND") || message.Contains("not found"))
+        {
+            return "User not found. It may have already been deleted.";
+        }
+        
+        return $"Error: {message}";
     }
 }
 
