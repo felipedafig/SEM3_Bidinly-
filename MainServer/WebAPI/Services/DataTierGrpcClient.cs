@@ -142,6 +142,42 @@ namespace MainServer.WebAPI.Services
             }
         }
 
+        public async Task<GetUsersResponse> GetUsersAsync()
+        {
+            try
+            {
+                var request = new GetUsersRequest();
+                var response = await userClient.GetUsersAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> DeleteUserAsync(int id)
+        {
+            try
+            {
+                var request = new DeleteUserRequest { Id = id };
+                var response = await userClient.DeleteUserAsync(request);
+                return response.Success;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         // Sale operations
         public async Task<GetSalesResponse> GetSalesAsync()
         {
