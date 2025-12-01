@@ -3,9 +3,11 @@
 @using shared.DTOs.Bids
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
 
 @attribute [Authorize]
 @inject HttpBidService BidService
+@inject AuthenticationStateProvider AuthProvider
 @rendermode InteractiveServer
 
 <PageTitle>Bids - Bidinly</PageTitle>
@@ -167,9 +169,28 @@
     private string filterPropertyName = string.Empty;
     private HashSet<string> filterStatus = new HashSet<string>();
     
+    private string? currentUserUsername = null;
+    
     protected override async Task OnInitializedAsync()
     {
+        await LoadUserInfo();
         await LoadBids();
+    }
+    
+    private async Task LoadUserInfo()
+    {
+        try
+        {
+            var authState = await AuthProvider.GetAuthenticationStateAsync();
+            if (authState.User.Identity?.IsAuthenticated == true)
+            {
+                currentUserUsername = authState.User.Identity.Name;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading user info: {ex.Message}");
+        }
     }
     
     private async Task LoadBids()
@@ -227,6 +248,8 @@
     private void ApplyFilters()
     {
         filteredBids = bids.Where(bid =>
+            (string.IsNullOrWhiteSpace(currentUserUsername) || bid.BuyerUsername == currentUserUsername) &&
+            
             (filterId == null || bid.Id == filterId.Value) &&
             (string.IsNullOrWhiteSpace(filterPropertyName) || (bid.PropertyTitle != null && bid.PropertyTitle.Contains(filterPropertyName, StringComparison.OrdinalIgnoreCase))) &&
             (filterStatus.Count == 0 || (bid.Status != null && filterStatus.Contains(bid.Status, StringComparer.OrdinalIgnoreCase)))

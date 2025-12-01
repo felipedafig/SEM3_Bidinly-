@@ -3,9 +3,11 @@
 @using shared.DTOs.Sales
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
 
 @attribute [Authorize]
 @inject HttpSaleService SaleService
+@inject AuthenticationStateProvider AuthProvider
 @rendermode InteractiveServer
 
 <PageTitle>Sales - Bidinly</PageTitle>
@@ -155,9 +157,30 @@
     private string filterBuyerName = string.Empty;
     private int? filterBidId;
     
+    private string? currentUserUsername = null;
+    private string? currentUserRole = null;
+    
     protected override async Task OnInitializedAsync()
     {
+        await LoadUserInfo();
         await LoadSales();
+    }
+    
+    private async Task LoadUserInfo()
+    {
+        try
+        {
+            var authState = await AuthProvider.GetAuthenticationStateAsync();
+            if (authState.User.Identity?.IsAuthenticated == true)
+            {
+                currentUserUsername = authState.User.Identity.Name;
+                currentUserRole = authState.User.FindFirst("RoleName")?.Value;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading user info: {ex.Message}");
+        }
     }
     
     private async Task LoadSales()
@@ -217,12 +240,29 @@
     private void ApplyFilters()
     {
         filteredSales = sales.Where(sale =>
-            (filterId == null || sale.Id == filterId.Value) &&
-            (string.IsNullOrWhiteSpace(filterPropertyName) || (sale.PropertyTitle != null && sale.PropertyTitle.Contains(filterPropertyName, StringComparison.OrdinalIgnoreCase))) &&
-            (string.IsNullOrWhiteSpace(filterAgentName) || (sale.AgentUsername != null && sale.AgentUsername.Contains(filterAgentName, StringComparison.OrdinalIgnoreCase))) &&
-            (string.IsNullOrWhiteSpace(filterBuyerName) || (sale.BuyerUsername != null && sale.BuyerUsername.Contains(filterBuyerName, StringComparison.OrdinalIgnoreCase))) &&
-            (filterBidId == null || sale.WinningBidId == filterBidId.Value)
-        ).ToList();
+        {
+            bool matchesUserAccount = true;
+            if (!string.IsNullOrWhiteSpace(currentUserRole) && !string.IsNullOrWhiteSpace(currentUserUsername))
+            {
+                if (currentUserRole.Equals("Agent", StringComparison.OrdinalIgnoreCase))
+                {
+                    matchesUserAccount = sale.AgentUsername == currentUserUsername;
+                }
+                else if (currentUserRole.Equals("Buyer", StringComparison.OrdinalIgnoreCase))
+                {
+                    matchesUserAccount = sale.BuyerUsername == currentUserUsername;
+                }
+            }
+
+            //matchUserAccount stays true for Admin 
+            
+            return matchesUserAccount &&
+                   (filterId == null || sale.Id == filterId.Value) &&
+                   (string.IsNullOrWhiteSpace(filterPropertyName) || (sale.PropertyTitle != null && sale.PropertyTitle.Contains(filterPropertyName, StringComparison.OrdinalIgnoreCase))) &&
+                   (string.IsNullOrWhiteSpace(filterAgentName) || (sale.AgentUsername != null && sale.AgentUsername.Contains(filterAgentName, StringComparison.OrdinalIgnoreCase))) &&
+                   (string.IsNullOrWhiteSpace(filterBuyerName) || (sale.BuyerUsername != null && sale.BuyerUsername.Contains(filterBuyerName, StringComparison.OrdinalIgnoreCase))) &&
+                   (filterBidId == null || sale.WinningBidId == filterBidId.Value);
+        }).ToList();
     }
 }
 
