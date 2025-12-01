@@ -22,11 +22,13 @@
 
 <PageTitle>My Properties - Bidinly</PageTitle>
 
-<div class="my-properties-page"> 
+<div class="properties-background">
+    <img src="/assets/images/Table-Background.png" alt="Properties Background" />
+    <h1 class="properties-title">My Properties</h1>
+</div>
 
-    <div class="page-header">
-
-        <h1 class="page-title">My Properties</h1>
+<div class="properties-content">
+    <div class="properties-container">
 
         <button class="add-property-button" @onclick="ShowCreatePropertyModal" type="button">
 
@@ -39,79 +41,119 @@
             Add Property
 
         </button>
+        
+        <div class="filter-search-section">
+            <div class="filter-search-container">
 
-    </div>
+                <div class="filter-field filter-field-property">
+                    <label class="filter-label">Title</label>
+                    <input type="text" class="filter-input" placeholder="title?"
+                           @bind="filterTitle" />
+                </div>
 
-    <div class="properties-section">
+                <div class="filter-separator"></div>
 
-        <div class="properties-container">
+                <div class="filter-field">
+                    <label class="filter-label">Address</label>
+                    <input type="text" class="filter-input" placeholder="address?"
+                           @bind="filterAddress" />
+                </div>
 
-            @if (isLoading)
+                <div class="filter-separator"></div>
 
-            {
+                <div class="filter-field">
+                    <label class="filter-label">Status</label>
+                    <select class="filter-input" @bind="filterStatus">
+                        <option value="">Any</option>
+                        <option value="Available">Available</option>
+                        <option value="Sold">Sold</option>
+                    </select>
+                </div>
 
-                <div class="loading">Loading properties...</div>
+                <button class="filter-search-button" @onclick="ApplyFilters">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                              stroke="white" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
 
-            }
-
-            else if (properties == null || !properties.Any())
-
-            {
-
-                <div class="no-results">No properties found. Click "Add Property" to create your first property.</div>
-
-            }
-
-            else
-
-            {
-
-                @foreach (var property in properties)
-
-                {
-
-                    <div class="property-card" @onclick="() => NavigateToProperty(property.Id)">
-
-                        <div class="card-image-placeholder">
-
-                            <span>Image</span>
-
-                        </div>
-
-                        <div class="card-details">
-
-                            <h3 class="card-title">@property.Title</h3>
-
-                            <p class="card-address">@property.Address</p>
-
-                            <p class="card-description">@property.Description</p>
-
-                            <div class="card-info">
-
-                                <span class="info-item">Bedrooms: @property.Bedrooms</span>
-
-                                <span class="info-item">Bathrooms: @property.Bathrooms</span>
-
-                                <span class="info-item">Size: @property.SizeInSquareFeet sq ft</span>
-
-                                <span class="info-item">Price: $@property.StartingPrice.ToString("N0")</span>
-
-                            </div>
-
-                            <div class="card-status">Status: @property.Status</div>
-
-                        </div>
-
-                    </div>
-
-                }
-
-            }
-
+            </div>
         </div>
 
     </div>
+    
+    
 
+    <div class="properties-section">
+
+    <div class="properties-container">
+
+        @if (isLoading)
+
+        {
+
+            <div class="loading">Loading properties...</div>
+
+        }
+
+        else if (properties == null || !properties.Any())
+
+        {
+
+            <div class="no-results">No properties found. Click "Add Property" to create your first property.</div>
+
+        }
+
+        else
+
+        {
+
+            @foreach (var property in filteredProperties)
+
+            {
+
+                <div class="property-card" @onclick="() => NavigateToProperty(property.Id)">
+
+                    <div class="card-image-placeholder">
+
+                        <span>Image</span>
+
+                    </div>
+
+                    <div class="card-details">
+
+                        <h3 class="card-title">@property.Title</h3>
+
+                        <p class="card-address">@property.Address</p>
+
+                        <p class="card-description">@property.Description</p>
+
+                        <div class="card-info">
+
+                            <span class="info-item">Bedrooms: @property.Bedrooms</span>
+
+                            <span class="info-item">Bathrooms: @property.Bathrooms</span>
+
+                            <span class="info-item">Size: @property.SizeInSquareFeet sq ft</span>
+
+                            <span class="info-item">Price: $@property.StartingPrice.ToString("N0")</span>
+
+                        </div>
+
+                        <div class="card-status">Status: @property.Status</div>
+
+                    </div>
+
+                </div>
+
+            }
+
+        }
+
+    </div>
+
+</div>
 </div>
 
 @if (showCreateModal)
@@ -263,6 +305,12 @@
     private string createPropertyError = string.Empty;
 
     private CreatePropertyDto createPropertyDto = new CreatePropertyDto { Title = string.Empty };
+    
+    private string filterTitle = string.Empty;
+    private string filterAddress = string.Empty;
+    private string filterStatus = string.Empty;
+
+    private List<PropertyDto>? filteredProperties = new();
 
     protected override async Task OnInitializedAsync()
 
@@ -327,6 +375,7 @@
             {
 
                 properties = await PropertyService.GetByAgentAsync(currentAgentId.Value);
+                ApplyFilters();
 
             }
 
@@ -356,6 +405,26 @@
 
         }
 
+    }
+    
+    private void ApplyFilters()
+    {
+        if (properties == null)
+        {
+            filteredProperties = new List<PropertyDto>();
+            return;
+        }
+
+        filteredProperties = properties.Where(p =>
+            (string.IsNullOrWhiteSpace(filterTitle) ||
+             p.Title.Contains(filterTitle, StringComparison.OrdinalIgnoreCase)) &&
+
+            (string.IsNullOrWhiteSpace(filterAddress) ||
+             p.Address.Contains(filterAddress, StringComparison.OrdinalIgnoreCase)) &&
+
+            (string.IsNullOrWhiteSpace(filterStatus) ||
+             p.Status.ToString().Contains(filterStatus, StringComparison.OrdinalIgnoreCase))
+        ).ToList();
     }
 
     private void NavigateToProperty(int propertyId)
