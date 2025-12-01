@@ -36,7 +36,6 @@ namespace MainServer.WebAPI.Controllers
                         }
                         catch
                         {
-                            // If role lookup fails, roleName remains null
                         }
                     }
 

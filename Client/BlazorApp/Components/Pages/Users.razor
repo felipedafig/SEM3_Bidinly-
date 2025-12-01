@@ -59,27 +59,35 @@
             <div class="chart-container">
                 <h3 class="chart-title">Role Distribution</h3>
                 <div class="chart-wrapper">
-                    <div class="chart-bar-container">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-bar-label">Admin</div>
-                            <div class="chart-bar-bg">
-                                <div class="chart-bar chart-bar-admin" style="width: @GetAdminPercentage()%"></div>
+                    <div class="pie-chart-container">
+                        <div class="pie-chart" style="background: @GetPieChartGradient();">
+                            <div class="pie-chart-center">
+                                <div class="pie-chart-total">@totalUsers</div>
+                                <div class="pie-chart-label">Total</div>
                             </div>
-                            <div class="chart-bar-value">@adminCount</div>
                         </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-bar-label">Agent</div>
-                            <div class="chart-bar-bg">
-                                <div class="chart-bar chart-bar-agent" style="width: @GetAgentPercentage()%"></div>
+                        <div class="pie-chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color legend-admin"></div>
+                                <div class="legend-text">
+                                    <span class="legend-label">Admin</span>
+                                    <span class="legend-value">@adminCount</span>
+                                </div>
                             </div>
-                            <div class="chart-bar-value">@agentCount</div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-bar-label">Buyer</div>
-                            <div class="chart-bar-bg">
-                                <div class="chart-bar chart-bar-buyer" style="width: @GetBuyerPercentage()%"></div>
+                            <div class="legend-item">
+                                <div class="legend-color legend-agent"></div>
+                                <div class="legend-text">
+                                    <span class="legend-label">Agent</span>
+                                    <span class="legend-value">@agentCount</span>
+                                </div>
                             </div>
-                            <div class="chart-bar-value">@buyerCount</div>
+                            <div class="legend-item">
+                                <div class="legend-color legend-buyer"></div>
+                                <div class="legend-text">
+                                    <span class="legend-label">Buyer</span>
+                                    <span class="legend-value">@buyerCount</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -330,7 +338,6 @@
             var authState = await AuthProvider.GetAuthenticationStateAsync();
             if (authState.User.Identity?.IsAuthenticated == true)
             {
-                // Try different claim names that might be used
                 var userIdClaim = authState.User.FindFirst("Id")?.Value 
                     ?? authState.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
                 if (int.TryParse(userIdClaim, out int userId))
@@ -351,7 +358,6 @@
         {
             isLoading = true;
             
-            // Load all data in parallel
             var usersTask = UserService.GetAllAsync();
             var propertiesTask = PropertyService.GetAllAsync();
             var bidsTask = BidService.GetAllAsync();
@@ -393,7 +399,6 @@
     
     private void FilterAndSortUsers()
     {
-        // Filter and sort agents (Admin and Agent roles)
         filteredAgents = users
             .Where(u => string.Equals(u.RoleName, "Admin", StringComparison.OrdinalIgnoreCase) ||
                        string.Equals(u.RoleName, "Agent", StringComparison.OrdinalIgnoreCase))
@@ -402,7 +407,6 @@
             .OrderByDescending(u => GetAgentPropertiesCount(u.Id))
             .ToList();
         
-        // Filter and sort buyers
         filteredBuyers = users
             .Where(u => string.Equals(u.RoleName, "Buyer", StringComparison.OrdinalIgnoreCase))
             .Where(u => string.IsNullOrWhiteSpace(buyerSearchTerm) ||
@@ -413,7 +417,6 @@
     
     private void UpdatePagination()
     {
-        // Agents pagination
         agentTotalPages = (int)Math.Ceiling(filteredAgents.Count / (double)pageSize);
         if (agentCurrentPage > agentTotalPages && agentTotalPages > 0)
         {
@@ -424,7 +427,6 @@
             .Take(pageSize)
             .ToList();
         
-        // Buyers pagination
         buyerTotalPages = (int)Math.Ceiling(filteredBuyers.Count / (double)pageSize);
         if (buyerCurrentPage > buyerTotalPages && buyerTotalPages > 0)
         {
@@ -478,6 +480,39 @@
     {
         if (totalUsers == 0) return 0;
         return (buyerCount / (double)totalUsers) * 100;
+    }
+    
+    private string GetPieChartGradient()
+    {
+        if (totalUsers == 0)
+        {
+            return "conic-gradient(#e0e0e0 0deg 360deg)";
+        }
+        
+        double adminPercent = GetAdminPercentage();
+        double agentPercent = GetAgentPercentage();
+        double buyerPercent = GetBuyerPercentage();
+        
+        double adminDegrees = adminPercent * 3.6; // Convert percentage to degrees
+        double agentDegrees = agentPercent * 3.6;
+        double buyerDegrees = buyerPercent * 3.6;
+        
+        double adminEnd = adminDegrees;
+        double agentStart = adminEnd;
+        double agentEnd = agentStart + agentDegrees;
+        double buyerStart = agentEnd;
+        double buyerEnd = buyerStart + buyerDegrees;
+        
+        // Colors matching the stats cards (using the vibrant left-side colors from gradients)
+        string adminColor = "#f093fb"; // Vibrant pink
+        string agentColor = "#4facfe"; // Bright blue
+        string buyerColor = "#43e97b"; // Vivid green
+        
+        return $"conic-gradient(" +
+               $"{adminColor} 0deg {adminEnd}deg, " +
+               $"{agentColor} {agentStart}deg {agentEnd}deg, " +
+               $"{buyerColor} {buyerStart}deg {buyerEnd}deg" +
+               $")";
     }
     
     private void OnAgentSearchInput(ChangeEventArgs e)

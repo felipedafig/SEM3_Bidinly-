@@ -57,7 +57,6 @@
     font-size: 1.2rem;
 }
 
-/* Statistics Dashboard */
 .stats-dashboard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -134,65 +133,125 @@
     align-items: center;
 }
 
-.chart-bar-container {
+.pie-chart-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
     width: 100%;
     max-width: 800px;
+}
+
+.pie-chart {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.pie-chart:hover {
+    transform: scale(1.05);
+}
+
+.pie-chart-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: white;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-}
-
-.chart-bar-wrapper {
-    display: grid;
-    grid-template-columns: 120px 1fr 80px;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.chart-bar-label {
-    font-weight: 600;
+.pie-chart-total {
+    font-size: 2rem;
+    font-weight: bold;
     color: #333;
-    font-size: 1rem;
+    line-height: 1;
 }
 
-.chart-bar-bg {
-    background-color: #e0e0e0;
-    border-radius: 8px;
-    height: 40px;
-    position: relative;
-    overflow: hidden;
+.pie-chart-label {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.chart-bar {
-    height: 100%;
-    border-radius: 8px;
-    transition: width 0.5s ease;
+.pie-chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: auto;
+    min-width: 200px;
+    align-items: center;
+}
+
+.legend-item {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 0.5rem;
-    color: white;
-    font-weight: 600;
-    font-size: 0.9rem;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
 }
 
-.chart-bar-admin {
+.legend-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.legend-admin {
     background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
 }
 
-.chart-bar-agent {
+.legend-agent {
     background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
 }
 
-.chart-bar-buyer {
+.legend-buyer {
     background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
 }
 
-.chart-bar-value {
+.legend-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    gap: 1rem;
+}
+
+.legend-label {
     font-weight: 600;
     color: #333;
     font-size: 1rem;
-    text-align: right;
+}
+
+.legend-value {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1rem;
 }
 
 /* Table Section */
@@ -377,10 +436,6 @@
     .bids-container {
         padding: 0 1.5rem;
     }
-    
-    .chart-bar-wrapper {
-        grid-template-columns: 100px 1fr 60px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -411,17 +466,36 @@
         margin-bottom: 2rem;
     }
     
-    .chart-bar-wrapper {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
+    .pie-chart-container {
+        flex-direction: column;
+        gap: 1.5rem;
     }
     
-    .chart-bar-label {
-        text-align: left;
+    .pie-chart {
+        width: 250px;
+        height: 250px;
     }
     
-    .chart-bar-value {
-        text-align: left;
+    .pie-chart-center {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .pie-chart-total {
+        font-size: 1.5rem;
+    }
+    
+    .pie-chart-label {
+        font-size: 0.75rem;
+    }
+    
+    .pie-chart-legend {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .legend-item {
+        padding: 0.75rem 1rem;
     }
     
     .bids-table {
