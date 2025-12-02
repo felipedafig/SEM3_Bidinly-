@@ -16,6 +16,45 @@ namespace MainServer.WebAPI.Controllers
             this.dataTierClient = dataTierClient;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<List<UserDto>>> GetUsers()
+        {
+            try
+            {
+                var usersResponse = await dataTierClient.GetUsersAsync();
+                var userDtos = new List<UserDto>();
+
+                foreach (var userResponse in usersResponse.Users)
+                {
+                    string? roleName = null;
+                    if (userResponse.RoleId > 0)
+                    {
+                        try
+                        {
+                            var roleResponse = await dataTierClient.GetRoleAsync(userResponse.RoleId);
+                            roleName = roleResponse.RoleName;
+                        }
+                        catch
+                        {
+                        }
+                    }
+
+                    userDtos.Add(new UserDto
+                    {
+                        Id = userResponse.Id,
+                        Username = userResponse.Username,
+                        RoleName = roleName
+                    });
+                }
+
+                return Ok(userDtos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
@@ -102,6 +141,35 @@ namespace MainServer.WebAPI.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteUser(int id)
+        {
+            try
+            {
+                var success = await dataTierClient.DeleteUserAsync(id);
+                if (success)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return NotFound(new { message = $"User with id {id} not found" });
+                }
+            }
+            catch (Exception ex) when (ex.InnerException is Grpc.Core.RpcException rpcEx && rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
+            {
+                return NotFound(new { message = $"User with id {id} not found" });
+            }
+            catch (Exception ex) when (ex.Message.Contains("NOT_FOUND") || ex.Message.Contains("not found"))
+            {
+                return NotFound(new { message = $"User with id {id} not found" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
             }
         }
     }

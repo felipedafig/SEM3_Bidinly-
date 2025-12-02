@@ -50,7 +50,7 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
             List<Bid> bids = bidRepository.getMany();
             
             updateExpiredBids(bids);
-
+            
             if (request.hasPropertyId() || request.hasBuyerId() || request.hasStatus()) {
                 bids = bids.stream()
                     .filter(bid -> {
