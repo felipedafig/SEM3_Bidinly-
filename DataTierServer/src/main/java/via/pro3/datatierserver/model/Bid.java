@@ -37,6 +37,9 @@ public class Bid {
     @NotNull
     private BigDecimal amount;
 
+    @Column(name = "\"Message\"")
+    private String message;
+
     @Column(name = "\"ExpiryDate\"", nullable = false)
     @NotNull
     private Instant expiryDate;
@@ -103,6 +106,10 @@ public class Bid {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
+
+    public String getMessage() {return message;}
+
+    public void setMessage(String message) {this.message = message;}
 
     public Instant getExpiryDate() {
         return expiryDate;

@@ -72,7 +72,7 @@ namespace MainServer.WebAPI.Services
             }
         }
 
-        public async Task<BidResponse> CreateBidAsync(int buyerId, int propertyId, double amount, long expiryDateSeconds)
+        public async Task<BidResponse> CreateBidAsync(int buyerId, int propertyId, double amount, long expiryDateSeconds, string? message)
         {
             try
             {
@@ -81,7 +81,8 @@ namespace MainServer.WebAPI.Services
                     BuyerId = buyerId,
                     PropertyId = propertyId,
                     Amount = amount,
-                    ExpiryDateSeconds = expiryDateSeconds
+                    ExpiryDateSeconds = expiryDateSeconds,
+                    Message = message ?? ""
                 };
                 BidResponse response = await bidClient.CreateBidAsync(request);
                 return response;

@@ -74,7 +74,8 @@ namespace MainServer.WebAPI.Controllers
                     BuyerUsername = userLookup.GetValueOrDefault(bidResponse.BuyerId)?.Username,
                     Amount = (decimal)bidResponse.Amount,
                     ExpiryDate = expiryDate,
-                    Status = bidResponse.Status
+                    Status = bidResponse.Status,
+                    Message = bidResponse.Message
                 };
             }).ToList();
 
@@ -122,7 +123,8 @@ namespace MainServer.WebAPI.Controllers
                         PropertyTitle = property?.Title,
                         Amount = (decimal)b.Amount,
                         ExpiryDate = expiry,
-                        Status = b.Status
+                        Status = b.Status,
+                        Message = b.Message
                     };
                 }).ToList();
 
@@ -145,7 +147,8 @@ namespace MainServer.WebAPI.Controllers
                     createBidDto.BuyerId,
                     createBidDto.PropertyId,
                     (double)createBidDto.Amount,
-                    expiryDateSeconds
+                    expiryDateSeconds,
+                    createBidDto.Message 
                 );
 
 
@@ -170,7 +173,8 @@ namespace MainServer.WebAPI.Controllers
                     BuyerUsername = user?.Username,
                     Amount = (decimal)bidResponse.Amount,
                     ExpiryDate = expiryDate,
-                    Status = bidResponse.Status
+                    Status = bidResponse.Status,
+                    Message = bidResponse.Message 
                 };
 
                 return CreatedAtAction(nameof(GetManyBids), new { id = bidDto.Id }, bidDto);

@@ -29,7 +29,9 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
             newBid.setAmount(BigDecimal.valueOf(request.getAmount()));
             newBid.setExpiryDate(Instant.ofEpochSecond(request.getExpiryDateSeconds()));
             newBid.setStatus("Pending");
-            
+
+            if (request.hasMessage()) {newBid.setMessage(request.getMessage());}
+
             Bid savedBid = bidRepository.save(newBid);
             
             DataTierProto.BidResponse response = convertToBidResponse(savedBid);
@@ -139,6 +141,10 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
             if (request.hasStatus()) {
                 bid.setStatus(request.getStatus());
             }
+
+            if (request.hasMessage()) {
+                bid.setMessage(request.getMessage());
+            }
             
             Bid updatedBid = bidRepository.save(bid);
             
@@ -214,7 +220,8 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
             .setPropertyId(bid.getPropertyId() != null ? bid.getPropertyId() : 0)
             .setAmount(bid.getAmount() != null ? bid.getAmount().doubleValue() : 0.0)
             .setExpiryDateSeconds(expiryDateSeconds)
-            .setStatus(bid.getStatus() != null ? bid.getStatus() : "Pending")
+                .setStatus(bid.getStatus() != null ? bid.getStatus() : "Pending")
+                .setMessage(bid.getMessage() != null ? bid.getMessage() : "")
             .build();
     }
 
