@@ -33,13 +33,19 @@
                     }
                     @if (isAdmin)
                     {
-                        <NavLink class="nav-link" href="@dashboardRoute" Match="NavLinkMatch.All">Home</NavLink>
+                        <button class="nav-link nav-button"
+                                @onclick='() => Navigation.NavigateTo($"/{dashboardRoute}", true)'>
+                            Home
+                        </button>
                         <NavLink class="nav-link" href="requests">Requests</NavLink>
                         <NavLink class="nav-link" href="users">Users</NavLink>
                     }
                     else
                     {
-                        <NavLink class="nav-link" href="@dashboardRoute" Match="NavLinkMatch.All">Home</NavLink>
+                        <button class="nav-link nav-button"
+                                @onclick='() => Navigation.NavigateTo("/", true)'>
+                            Home
+                        </button>
                         @if (isAgent)
                         {
                             <NavLink class="nav-link" href="my-properties">Properties</NavLink>

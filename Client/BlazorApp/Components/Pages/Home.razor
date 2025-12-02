@@ -1,4 +1,5 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 @using shared.DTOs.Properties
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Web
@@ -9,6 +10,8 @@
 @inject NavigationManager Navigation
 @inject IJSRuntime JSRuntime
 @inject AuthenticationStateProvider AuthProvider
+
+
 
 <PageTitle>Bidinly</PageTitle>
 
@@ -123,7 +126,7 @@
     
     protected override async Task OnInitializedAsync()
     {
-        
+        await CheckAuthenticationState();  
         await LoadProperties();
     }
     
