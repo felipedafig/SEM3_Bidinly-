@@ -12,6 +12,7 @@ service BidService {
   rpc GetBids (GetBidsRequest) returns (GetBidsResponse);
   rpc UpdateBid (UpdateBidRequest) returns (BidResponse);
   rpc DeleteBid (DeleteBidRequest) returns (DeleteBidResponse);
+  rpc SetBidStatus (SetBidStatusRequest) returns (BidResponse);
 }
 
 service UserService{
@@ -87,6 +88,11 @@ message GetBidsResponse {
 
 message DeleteBidResponse {
   bool success = 1;
+}
+
+message SetBidStatusRequest {
+  int32 id = 1;
+  string status = 2;
 }
 
 // User messages

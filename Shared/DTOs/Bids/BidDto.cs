@@ -3,6 +3,9 @@ namespace shared.DTOs.Bids
     public class BidDto
     {
         public int Id { get; set; }
+        
+        public int PropertyId { get; set; }
+        public int BuyerId { get; set; }
 
         public string? BuyerUsername { get; set; }//enrichment
         public string? PropertyTitle { get; set; }//erichment
