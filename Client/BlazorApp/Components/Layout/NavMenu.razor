@@ -25,6 +25,11 @@
                                     : "buyer-dashboard";
                         var isAgent = string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase);
                         var isAdmin = string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase);
+                        var isBuyer = string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase);
+                        
+                        var salesRoute = isAgent ? "agent/sales"
+                            : isBuyer ? "buyer/sales"
+                            : "sales";
                     }
                     @if (isAdmin)
                     {
@@ -43,7 +48,7 @@
                         {
                             <NavLink class="nav-link" href="bids">Bids</NavLink>
                         }
-                        <NavLink class="nav-link" href="sales">Sales</NavLink>
+                        <NavLink class="nav-link" href="@salesRoute">Sales</NavLink>
                     }
                     <div class="user-dropdown @(isDropdownOpen ? "show" : "")">
                         <button class="user-dropdown-toggle nav-link nav-button" @onclick="ToggleDropdown" @onclick:stopPropagation="true">
