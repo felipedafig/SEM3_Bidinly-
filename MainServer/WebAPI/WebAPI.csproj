@@ -31,6 +31,7 @@
   <ItemGroup>
     <Protobuf Include="Protos/datatier.proto" GrpcServices="Client" />
     <Protobuf Include="Protos/property.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos/payment.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>
