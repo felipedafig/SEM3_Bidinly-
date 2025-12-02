@@ -95,7 +95,22 @@
         }
         catch (Exception ex)
         {
-            errorMessage = ex.Message;
+            try
+            {
+                var errorJson = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(ex.Message);
+                if (errorJson.TryGetProperty("message", out var messageElement))
+                {
+                    errorMessage = messageElement.GetString() ?? ex.Message;
+                }
+                else
+                {
+                    errorMessage = ex.Message;
+                }
+            }
+            catch
+            {
+                errorMessage = ex.Message;
+            }
         }
         finally
         {

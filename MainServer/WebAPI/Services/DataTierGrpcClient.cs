@@ -178,6 +178,45 @@ namespace MainServer.WebAPI.Services
             }
         }
 
+        public async Task<UserResponse> UpdateUserAsync(int id, string? username = null, string? password = null, int? roleId = null, bool? isActive = null)
+        {
+            try
+            {
+                var requestBuilder = new UpdateUserRequest { Id = id };
+                
+                if (username != null)
+                {
+                    requestBuilder.Username = username;
+                }
+                
+                if (password != null)
+                {
+                    requestBuilder.Password = password;
+                }
+                
+                if (roleId.HasValue)
+                {
+                    requestBuilder.RoleId = roleId.Value;
+                }
+                
+                if (isActive.HasValue)
+                {
+                    requestBuilder.IsActive = isActive.Value;
+                }
+                
+                var response = await userClient.UpdateUserAsync(requestBuilder);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         // Sale operations
         public async Task<GetSalesResponse> GetSalesAsync()
         {

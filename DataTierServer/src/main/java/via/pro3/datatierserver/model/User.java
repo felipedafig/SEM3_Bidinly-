@@ -27,6 +27,10 @@ public class User {
     @NotNull
     private Integer roleId;
 
+    @Column(name = "\"IsActive\"", nullable = false)
+    @NotNull
+    private Boolean isActive = true;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"RoleId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_role"))
@@ -40,6 +44,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.roleId = roleId;
+        this.isActive = true;
     }
 
     public Integer getId() {
@@ -80,5 +85,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 }

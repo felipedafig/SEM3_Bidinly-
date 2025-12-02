@@ -44,5 +44,18 @@ public class HttpUserService
             throw new Exception(string.IsNullOrWhiteSpace(err) ? $"Failed to delete user {id}" : err);
         }
     }
+
+    public async Task<UserDto> ToggleActiveAsync(int id)
+    {
+        var response = await client.PatchAsync($"users/{id}/toggle-active", null);
+        if (!response.IsSuccessStatusCode)
+        {
+            string err = await response.Content.ReadAsStringAsync();
+            throw new Exception(string.IsNullOrWhiteSpace(err) ? $"Failed to toggle active status for user {id}" : err);
+        }
+        
+        var user = await response.Content.ReadFromJsonAsync<UserDto>();
+        return user ?? throw new Exception("Failed to deserialize user response");
+    }
 }
 
