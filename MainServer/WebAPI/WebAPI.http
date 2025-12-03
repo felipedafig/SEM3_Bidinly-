@@ -486,9 +486,9 @@ Content-Type: application/json
     "expirationDate": "11/28",
     "cvc": "123",
     "name": "FELIPE FIGUEIREDO",
-    "propertyId": 5,
-    "bidId": 10,
-    "buyerId": 2,
+    "propertyId": 4,
+    "bidId": 11,
+    "buyerId": 3,
     "agentId": 1
 }
 ###
