@@ -412,3 +412,16 @@
     }
 }
 
+.bid-form-input {
+    height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+textarea.bid-form-input {
+    height: auto;
+    min-height: 80px;
+    resize: vertical; /* user can drag to make it taller */
+    white-space: normal;
+}
+
