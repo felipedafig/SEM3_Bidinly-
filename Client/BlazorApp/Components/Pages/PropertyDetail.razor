@@ -15,6 +15,8 @@
 @inject AuthenticationStateProvider AuthProvider
 @rendermode InteractiveServer
 
+@namespace BlazorApp.Components.Pages
+
 <PageTitle>Property Details - Bidinly</PageTitle>
 
 @if (loading)
@@ -88,8 +90,6 @@ else
                                 Bidding Closed — A bid has been accepted.
                             </div>
                         }
-
-                        <button class="bid-button" @onclick="GoToBids">View Bids</button>
                     </div>
                     
                     <div class="property-detail-specs">
@@ -140,6 +140,16 @@ else
                            min="0" 
                            placeholder="Enter bid amount" />
                 </div>
+                
+                <div class="bid-form-group">
+					<label for="bid-message">Message (optional)</label>
+    				<textarea id="bid-message"
+                      class="bid-form-input"
+                      @bind="bidMessage"
+                      rows="3"
+                      placeholder="Write a message..."></textarea>
+				</div>
+                
                 <div class="bid-form-group">
                     <label for="bid-expiry">Expiry Date</label>
                     <input type="datetime-local" 
@@ -192,12 +202,8 @@ else
     private string? errorMessage;
     private string? successMessage;
     private bool IsNotAvailable => property?.Status == "Not Available";
+    private string? bidMessage;
     
-    
-    private void GoToBids()
-    {
-        Navigation.NavigateTo($"/property/{PropertyId}/bids");
-    }
     
     protected override async Task OnParametersSetAsync()
     {
@@ -294,7 +300,8 @@ else
                 BuyerId = buyerId,
                 PropertyId = PropertyId,
                 Amount = bidAmount,
-                ExpiryDate = bidExpiryDate
+                ExpiryDate = bidExpiryDate,
+                Message= bidMessage
             };
             
             await BidService.CreateAsync(createBidDto);

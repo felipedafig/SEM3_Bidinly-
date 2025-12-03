@@ -402,3 +402,9 @@
     }
 }
 
+.message-cell {
+    max-width: 300px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}

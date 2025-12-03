@@ -15,6 +15,8 @@ namespace shared.DTOs.Bids
         public DateTime ExpiryDate { get; set; } 
 
         public string? Status { get; set; } // e.g., "Pending", "Accepted", "Rejected", "Expired"
+        
+        public string? Message { get; set; }
     }
 }
 

@@ -221,11 +221,11 @@
     .property-detail-info-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .property-detail-title {
         font-size: 2rem;
     }
-    
+
     .property-detail-image-placeholder {
         height: 300px;
     }
@@ -383,29 +383,29 @@
     .property-detail-container {
         padding: 0 1rem;
     }
-    
+
     .property-detail-title {
         font-size: 1.75rem;
     }
-    
+
     .property-detail-image-placeholder {
         height: 250px;
     }
-    
+
     .property-detail-header {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .bid-modal {
         max-width: 100%;
         margin: 0;
     }
-    
+
     .bid-modal-footer {
         flex-direction: column;
     }
-    
+
     .bid-button-cancel,
     .bid-button-confirm {
         width: 100%;
