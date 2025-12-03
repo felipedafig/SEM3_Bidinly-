@@ -9,10 +9,6 @@ import jakarta.validation.constraints.Size;
 public class ValidCard {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-
     @Column(name = "card_number", length = 19, nullable = false, unique = true)
     @NotNull
     @Size(max = 19)
@@ -45,14 +41,6 @@ public class ValidCard {
     }
 
     // Getters and Setters
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getCardNumber() {
         return cardNumber;
     }

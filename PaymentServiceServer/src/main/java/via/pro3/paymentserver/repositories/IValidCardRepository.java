@@ -7,17 +7,13 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface IValidCardRepository extends JpaRepository<ValidCard, Integer> {
+public interface IValidCardRepository extends JpaRepository<ValidCard, String> {
     // Spring Data JPA automatically provides:
     // - save(ValidCard) for add/update
-    // - findById(Integer) for getSingle
+    // - findById(String) for getSingle
     // - findAll() for getMany
-    // - deleteById(Integer) for delete
+    // - deleteById(String) for delete
     // - delete(ValidCard) for delete by entity
-    
-    default Optional<ValidCard> getSingle(Integer id) {
-        return findById(id);
-    }
     
     Optional<ValidCard> findByCardNumber(String cardNumber);
 }
