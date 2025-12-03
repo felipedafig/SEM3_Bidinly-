@@ -25,7 +25,6 @@ namespace MainServer.WebAPI.Services
             paymentClient = new PaymentService.PaymentServiceClient(channel);
         }
 
-        // Payment operations
         public async Task<ValidateCardResponse> ValidateCardAsync(string cardNumber, string expirationDate, string cvc, string name)
         {
             try
