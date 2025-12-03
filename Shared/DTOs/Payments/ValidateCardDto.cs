@@ -16,7 +16,6 @@ namespace shared.DTOs.Payments
         [Required]
         public string Name { get; set; } = string.Empty;
 
-        // Optional fields for RabbitMQ event publishing
         public int? PropertyId { get; set; }
         public int? BidId { get; set; }
         public int? BuyerId { get; set; }

@@ -45,7 +45,6 @@ namespace MainServer.WebAPI.Services
                     Name = name
                 };
                 
-                // Add optional fields if provided
                 if (propertyId.HasValue)
                     request.PropertyId = propertyId.Value;
                 if (bidId.HasValue)
