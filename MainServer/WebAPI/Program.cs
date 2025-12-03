@@ -11,6 +11,8 @@ builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
 
 builder.Services.AddOpenApi();
 
+builder.Services.AddSingleton<RabbitMqPublisher>();
+
 // gRPC Client as Singleton
 builder.Services.AddSingleton<DataTierGrpcClient>();
 builder.Services.AddSingleton<PropertyGrpcClient>();

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
+using MainServer.WebAPI.Services;
+using Shared.DTOs.Notifications;
 using BidDto = shared.DTOs.Bids.BidDto;
 using CreateBidDto = Shared.DTOs.Bids.CreateBidDto;
 
@@ -12,11 +13,13 @@ namespace MainServer.WebAPI.Controllers
     {
         private readonly DataTierGrpcClient dataTierClient;
         private readonly PropertyGrpcClient propertyClient;
+        private readonly RabbitMqPublisher notificationPublisher;
 
-        public BidsController(DataTierGrpcClient dataTierClient, PropertyGrpcClient propertyClient)
+        public BidsController(DataTierGrpcClient dataTierClient, PropertyGrpcClient propertyClient, RabbitMqPublisher notificationPublisher)
         {
             this.dataTierClient = dataTierClient;
             this.propertyClient = propertyClient;
+            this.notificationPublisher =  notificationPublisher;
         }
 
         [HttpGet]
@@ -192,16 +195,37 @@ namespace MainServer.WebAPI.Controllers
             {
                 var accepted = await dataTierClient.SetBidStatusAsync(id, "Accepted");
                 var propertyId = accepted.PropertyId;
+                var property = await propertyClient.GetPropertyAsync(propertyId);
+
+                notificationPublisher.Publish(new BidNotificationDto
+                {
+                    BidId = accepted.Id,
+                    BuyerId = accepted.BuyerId,
+                    PropertyId = propertyId,
+                    Status = "Accepted",
+                    Message = "Your bid was accepted!",
+                    PropertyTitle = property.Title
+                });
+                
                 var allBids = await dataTierClient.GetBidsAsync();
                 var otherBids = allBids.Bids.Where(b => b.PropertyId == propertyId && b.Id != id);
-                
+
                 foreach (var b in otherBids)
                 {
                     await dataTierClient.SetBidStatusAsync(b.Id, "Rejected");
+
+                    notificationPublisher.Publish(new BidNotificationDto
+                    {
+                        BidId = b.Id,
+                        BuyerId = b.BuyerId,
+                        PropertyId = propertyId,
+                        Status = "Rejected",
+                        Message = "Another bid on this property was accepted.",
+                        PropertyTitle = property.Title
+                    });
                 }
                 
                 await propertyClient.SetPropertyStatusAsync(propertyId, "Not Available");
-
                 return NoContent();
             }
             catch (Exception ex)
