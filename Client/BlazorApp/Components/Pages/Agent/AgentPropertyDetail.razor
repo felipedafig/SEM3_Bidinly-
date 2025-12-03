@@ -79,18 +79,6 @@ else
                     <div class="property-detail-price">
                         <h3>Starting Price</h3>
                         <p class="price-amount">@property.StartingPrice.ToString("N0") Kr</p>
-                        
-                        @if (!IsNotAvailable)
-                        {
-                            <button class="bid-button" @onclick="ShowBidForm">Bid</button>
-                        }
-                        else
-                        {
-                            <div class="bidding-closed-message">
-                                Bidding Closed — A bid has been accepted.
-                            </div>
-                        }
-
                         <button class="bid-button" @onclick="GoToBids">View Bids</button>
                     </div>
                     
@@ -117,75 +105,6 @@ else
                         }
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-}
-
-@if (showBidModal)
-{
-    <div class="bid-modal-overlay" @onclick="CloseBidForm">
-        <div class="bid-modal" @onclick:stopPropagation="true">
-            <div class="bid-modal-header">
-                <h2>Create Bid</h2>
-                <button class="bid-modal-close" @onclick="CloseBidForm">×</button>
-            </div>
-            <div class="bid-modal-body">
-                <div class="bid-form-group">
-                    <label for="bid-amount">Amount (Kr)</label>
-                    <input type="number" 
-                           id="bid-amount" 
-                           class="bid-form-input" 
-                           @bind="bidAmount" 
-                           @bind:event="oninput"
-                           step="0.01" 
-                           min="0" 
-                           placeholder="Enter bid amount" />
-                </div>
-                
-                <div class="bid-form-group">
-					<label for="bid-message">Message (optional)</label>
-    				<textarea id="bid-message"
-                      class="bid-form-input"
-                      @bind="bidMessage"
-                      rows="3"
-                      placeholder="Write a message..."></textarea>
-				</div>
-                
-                <div class="bid-form-group">
-                    <label for="bid-expiry">Expiry Date</label>
-                    <input type="datetime-local" 
-                           id="bid-expiry" 
-                           class="bid-form-input" 
-                           @bind="bidExpiryDate" 
-                           @bind:event="onchange"
-                           min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
-                </div>
-            </div>
-            <div class="bid-modal-footer">
-                @if (!string.IsNullOrWhiteSpace(errorMessage))
-                {
-                    <div class="bid-error-message" style="color: red; margin-bottom: 10px; padding: 8px; background-color: #ffe6e6; border-radius: 4px;">
-                        @errorMessage
-                    </div>
-                }
-                @if (!string.IsNullOrWhiteSpace(successMessage))
-                {
-                    <div class="bid-success-message" style="color: green; margin-bottom: 10px; padding: 8px; background-color: #e6ffe6; border-radius: 4px;">
-                        @successMessage
-                    </div>
-                }
-                <button class="bid-button-cancel" @onclick="CloseBidForm" disabled="@isSubmittingBid">Cancel</button>
-                <button class="bid-button-confirm" @onclick="SubmitBid" disabled="@(!IsBidFormValid() || isSubmittingBid)">
-                    @if (isSubmittingBid)
-                    {
-                        <text>Submitting...</text>
-                    }
-                    else
-                    {
-                        <text>Confirm</text>
-                    }
-                </button>
             </div>
         </div>
     </div>
@@ -240,89 +159,6 @@ else
     {
         Navigation.NavigateTo("/my-properties");
         return Task.CompletedTask;
-    }
-    
-    private void ShowBidForm()
-    {
-        
-        if (IsNotAvailable)
-            return;
-        
-        bidAmount = property?.StartingPrice ?? 0;
-        bidExpiryDate = DateTime.Now.AddDays(7);
-        errorMessage = null;
-        successMessage = null;
-        showBidModal = true;
-    }
-    
-    private void CloseBidForm()
-    {
-        showBidModal = false;
-        bidAmount = 0;
-        bidExpiryDate = DateTime.Now.AddDays(7);
-        errorMessage = null;
-        successMessage = null;
-        isSubmittingBid = false;
-    }
-    
-    private bool IsBidFormValid()
-    {
-        return bidAmount > 0 && bidExpiryDate > DateTime.Now;
-    }
-    
-    private async Task SubmitBid()
-    {
-        if (!IsBidFormValid() || property == null || isSubmittingBid)
-        {
-            return;
-        }
-        
-        isSubmittingBid = true;
-        errorMessage = null;
-        successMessage = null;
-        
-        try
-        {
-            var authState = await AuthProvider.GetAuthenticationStateAsync();
-            var userIdClaim = authState.User?.FindFirst("Id");
-            
-            if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int buyerId))
-            {
-                errorMessage = "Unable to determine user ID. Please log in again.";
-                isSubmittingBid = false;
-                return;
-            }
-            
-            var createBidDto = new CreateBidDto
-            {
-                BuyerId = buyerId,
-                PropertyId = PropertyId,
-                Amount = bidAmount,
-                ExpiryDate = bidExpiryDate,
-                Message= bidMessage
-            };
-            
-            await BidService.CreateAsync(createBidDto);
-
-            successMessage = $"Bid created successfully! Amount: {bidAmount:N0} Kr";
-
-            await Task.Delay(1500);
-            CloseBidForm();
-        }
-        catch (HttpRequestException ex)
-        {
-            errorMessage = $"Network error: Unable to connect to the server. Please make sure the API server is running.";
-            Console.WriteLine($"HTTP error creating bid: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"An error occurred: {ex.Message}";
-            Console.WriteLine($"Error creating bid: {ex.Message}");
-        }
-        finally
-        {
-            isSubmittingBid = false;
-        }
     }
 }
 

@@ -90,8 +90,6 @@ else
                                 Bidding Closed — A bid has been accepted.
                             </div>
                         }
-
-                        <button class="bid-button" @onclick="GoToBids">View Bids</button>
                     </div>
                     
                     <div class="property-detail-specs">
@@ -206,11 +204,6 @@ else
     private bool IsNotAvailable => property?.Status == "Not Available";
     private string? bidMessage;
     
-    
-    private void GoToBids()
-    {
-        Navigation.NavigateTo($"/property/{PropertyId}/bids");
-    }
     
     protected override async Task OnParametersSetAsync()
     {
