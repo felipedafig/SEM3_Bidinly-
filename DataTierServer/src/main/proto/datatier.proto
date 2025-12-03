@@ -118,6 +118,7 @@ message UpdateUserRequest {
   optional string username = 2;
   optional string password = 3;
   optional int32 roleId = 4;
+  optional bool isActive = 5;
 }
 
 message DeleteUserRequest {
@@ -128,6 +129,7 @@ message UserResponse {
   int32 id = 1;
   string username = 2;
   int32 roleId = 3;
+  bool isActive = 4;
 }
 
 message GetUsersResponse {

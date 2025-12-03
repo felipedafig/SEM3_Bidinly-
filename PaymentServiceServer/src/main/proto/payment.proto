@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package payment;
+
+option java_package = "via.pro3.paymentserver.grpc";
+option java_outer_classname = "PaymentProto";
+
+service PaymentService {
+  // Card validation operations
+  rpc ValidateCard (ValidateCardRequest) returns (ValidateCardResponse);
+}
+
+// Payment messages
+message ValidateCardRequest {
+  string card_number = 1;
+  string expiration_date = 2;
+  string cvc = 3;
+  string name = 4;
+}
+
+message ValidateCardResponse {
+  bool is_valid = 1;
+  string message = 2;
+}
+

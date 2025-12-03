@@ -43,7 +43,8 @@ namespace MainServer.WebAPI.Controllers
                     {
                         Id = userResponse.Id,
                         Username = userResponse.Username,
-                        RoleName = roleName
+                        RoleName = roleName,
+                        IsActive = userResponse.IsActive
                     });
                 }
 
@@ -80,7 +81,8 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = userResponse.Id,
                     Username = userResponse.Username,
-                    RoleName = roleName
+                    RoleName = roleName,
+                    IsActive = userResponse.IsActive
                 };
 
                 return Ok(userDto);
@@ -133,7 +135,8 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = userResponse.Id,
                     Username = userResponse.Username,
-                    RoleName = roleName
+                    RoleName = roleName,
+                    IsActive = userResponse.IsActive
                 };
 
                 return Created($"/users/{userDto.Id}", userDto);
@@ -158,6 +161,55 @@ namespace MainServer.WebAPI.Controllers
                 {
                     return NotFound(new { message = $"User with id {id} not found" });
                 }
+            }
+            catch (Exception ex) when (ex.InnerException is Grpc.Core.RpcException rpcEx && rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
+            {
+                return NotFound(new { message = $"User with id {id} not found" });
+            }
+            catch (Exception ex) when (ex.Message.Contains("NOT_FOUND") || ex.Message.Contains("not found"))
+            {
+                return NotFound(new { message = $"User with id {id} not found" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+        [HttpPatch("{id}/toggle-active")]
+        public async Task<ActionResult<UserDto>> ToggleUserActive(int id)
+        {
+            try
+            {
+                // Get current user to check isActive status
+                var userResponse = await dataTierClient.GetUserAsync(id);
+                
+                // Toggle the isActive status
+                var updatedUserResponse = await dataTierClient.UpdateUserAsync(id, null, null, null, !userResponse.IsActive);
+                
+                string? roleName = null;
+                if (updatedUserResponse.RoleId > 0)
+                {
+                    try
+                    {
+                        var roleResponse = await dataTierClient.GetRoleAsync(updatedUserResponse.RoleId);
+                        roleName = roleResponse.RoleName;
+                    }
+                    catch
+                    {
+                        // If role lookup fails, roleName remains null
+                    }
+                }
+
+                var userDto = new UserDto
+                {
+                    Id = updatedUserResponse.Id,
+                    Username = updatedUserResponse.Username,
+                    RoleName = roleName,
+                    IsActive = updatedUserResponse.IsActive
+                };
+
+                return Ok(userDto);
             }
             catch (Exception ex) when (ex.InnerException is Grpc.Core.RpcException rpcEx && rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
             {

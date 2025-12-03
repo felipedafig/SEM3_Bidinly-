@@ -51,6 +51,13 @@ public class AuthGrpcService extends AuthServiceGrpc.AuthServiceImplBase {
                 return;
             }
             
+            if (user.getIsActive() == null || !user.getIsActive()) {
+                responseObserver.onError(io.grpc.Status.PERMISSION_DENIED
+                        .withDescription("Your account has been deactivated. Email felipedafig@gamail to find out why.")
+                        .asRuntimeException());
+                return;
+            }
+            
             DataTierProto.LoginResponse response = DataTierProto.LoginResponse.newBuilder()
                     .setId(user.getId() != null ? user.getId() : 0)
                     .setUsername(user.getUsername() != null ? user.getUsername() : "")

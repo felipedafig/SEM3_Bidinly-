@@ -5,6 +5,7 @@ namespace shared.DTOs.Properties
    
     public class CreatePropertyDto
     {
+
         [Required] 
         public int AgentId { get; set; } //links to the agent creating the property
 
