@@ -18,12 +18,12 @@ public class ValidCard {
     @Size(max = 19)
     private String cardNumber;
 
-    @Column(name = "expiration_date", length = 5, nullable = false)
+    @Column(name = "expiration_date", columnDefinition = "CHAR(5)", nullable = false)
     @NotNull
     @Size(max = 5)
     private String expirationDate;
 
-    @Column(name = "cvc", length = 4, nullable = false)
+    @Column(name = "cvc", columnDefinition = "CHAR(4)", nullable = false)
     @NotNull
     @Size(max = 4)
     private String cvc;

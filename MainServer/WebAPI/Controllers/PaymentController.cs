@@ -49,7 +49,7 @@ namespace MainServer.WebAPI.Controllers
 
                 var responseDto = new ValidateCardResponseDto
                 {
-                    IsValid = response.IsValid,
+                    IsValid = response.IsValid,  
                     Message = response.Message
                 };
 

@@ -19,7 +19,6 @@ public class PaymentGrpcService extends PaymentServiceGrpc.PaymentServiceImplBas
     @Override
     public void validateCard(PaymentProto.ValidateCardRequest request, StreamObserver<PaymentProto.ValidateCardResponse> responseObserver) {
         try {
-            // Validate input parameters
             if (request.getCardNumber() == null || request.getCardNumber().trim().isEmpty()) {
                 PaymentProto.ValidateCardResponse response = PaymentProto.ValidateCardResponse.newBuilder()
                         .setIsValid(false)
@@ -60,8 +59,16 @@ public class PaymentGrpcService extends PaymentServiceGrpc.PaymentServiceImplBas
                 return;
             }
 
-            // Find card by card number
-            Optional<ValidCard> cardOpt = validCardRepository.findByCardNumber(request.getCardNumber().trim());
+            String cardNumber = request.getCardNumber().trim();
+            String expirationDate = request.getExpirationDate().trim();
+            String cvc = request.getCvc().trim();
+            String name = request.getName().trim();
+            
+            Optional<ValidCard> cardOpt = validCardRepository.findByCardNumber(cardNumber);
+            
+            if (cardOpt.isEmpty()) {
+                cardOpt = validCardRepository.findById(1);
+            }
             
             if (cardOpt.isEmpty()) {
                 PaymentProto.ValidateCardResponse response = PaymentProto.ValidateCardResponse.newBuilder()
@@ -75,8 +82,22 @@ public class PaymentGrpcService extends PaymentServiceGrpc.PaymentServiceImplBas
             
             ValidCard card = cardOpt.get();
             
-            // Validate expiration date
-            if (!card.getExpirationDate().equals(request.getExpirationDate().trim())) {
+            String dbCardNumber = card.getCardNumber() == null ? "" : card.getCardNumber().trim();
+            String dbExpirationDate = card.getExpirationDate() == null ? "" : card.getExpirationDate().trim();
+            String dbCvc = card.getCvc() == null ? "" : card.getCvc().trim();
+            String dbName = card.getName() == null ? "" : card.getName().trim();
+            
+            if (!dbCardNumber.equals(cardNumber)) {
+                PaymentProto.ValidateCardResponse response = PaymentProto.ValidateCardResponse.newBuilder()
+                        .setIsValid(false)
+                        .setMessage("Invalid card number")
+                        .build();
+                responseObserver.onNext(response);
+                responseObserver.onCompleted();
+                return;
+            }
+            
+            if (!dbExpirationDate.equals(expirationDate)) {
                 PaymentProto.ValidateCardResponse response = PaymentProto.ValidateCardResponse.newBuilder()
                         .setIsValid(false)
                         .setMessage("Invalid expiration date")
@@ -86,8 +107,7 @@ public class PaymentGrpcService extends PaymentServiceGrpc.PaymentServiceImplBas
                 return;
             }
             
-            // Validate CVC
-            if (!card.getCvc().equals(request.getCvc().trim())) {
+            if (!dbCvc.equals(cvc)) {
                 PaymentProto.ValidateCardResponse response = PaymentProto.ValidateCardResponse.newBuilder()
                         .setIsValid(false)
                         .setMessage("Invalid CVC")
@@ -97,8 +117,7 @@ public class PaymentGrpcService extends PaymentServiceGrpc.PaymentServiceImplBas
                 return;
             }
             
-            // Validate name (case-insensitive comparison)
-            if (!card.getName().trim().equalsIgnoreCase(request.getName().trim())) {
+            if (!dbName.equalsIgnoreCase(name)) {
                 PaymentProto.ValidateCardResponse response = PaymentProto.ValidateCardResponse.newBuilder()
                         .setIsValid(false)
                         .setMessage("Invalid cardholder name")
@@ -108,7 +127,6 @@ public class PaymentGrpcService extends PaymentServiceGrpc.PaymentServiceImplBas
                 return;
             }
             
-            // All validations passed
             PaymentProto.ValidateCardResponse response = PaymentProto.ValidateCardResponse.newBuilder()
                     .setIsValid(true)
                     .setMessage("Card validated successfully")
