@@ -88,7 +88,6 @@ public class PaymentGrpcService extends PaymentServiceGrpc.PaymentServiceImplBas
         responseObserver.onNext(response);
         responseObserver.onCompleted();
         
-        // Publish to RabbitMQ after successful validation (only if sale info is provided)
         if (request.hasPropertyId() && request.hasBidId() && 
             request.hasBuyerId() && request.hasAgentId()) {
             try {
@@ -103,7 +102,6 @@ public class PaymentGrpcService extends PaymentServiceGrpc.PaymentServiceImplBas
                 logger.info("Payment validated event published to RabbitMQ for PropertyId={}, BidId={}", 
                     request.getPropertyId(), request.getBidId());
             } catch (Exception e) {
-                // Log error but don't fail the gRPC response
                 logger.error("Error publishing payment validated event to RabbitMQ: {}", e.getMessage(), e);
             }
         } else {
