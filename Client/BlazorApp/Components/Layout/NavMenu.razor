@@ -67,6 +67,14 @@
                         }
                         <div class="user-dropdown-menu @(isDropdownOpen ? "show" : "")" @onclick:stopPropagation="true">
                             <div class="dropdown-header">@authContext.User.Identity?.Name</div>
+                            
+                            @if (isBuyer)
+                            {
+                                <button class="dropdown-item"
+                                        @onclick='() => Navigation.NavigateTo("/buyer/notifications")'>
+                                    Notifications
+                                </button>
+                            }
                             <button class="dropdown-item" @onclick="HandleLogout">Logout</button>
                         </div>
                     </div>

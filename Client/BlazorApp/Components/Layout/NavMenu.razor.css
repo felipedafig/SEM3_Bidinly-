@@ -297,3 +297,12 @@ a.nav-link {
 .navbar-header .navbar-container .navbar-nav .nav-link:hover {
     color: black !important;
 }
+
+.notification-badge {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    margin-left: 8px;
+    font-size: 12px;
+}

@@ -1,6 +1,5 @@
-using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace MainServer.WebAPI.Services;
+namespace MainServer.WebAPI.Notifications;
 
 using System.Text;
 using System.Text.Json;

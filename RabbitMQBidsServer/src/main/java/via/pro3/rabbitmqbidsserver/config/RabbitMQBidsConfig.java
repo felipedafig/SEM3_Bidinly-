@@ -17,7 +17,7 @@ public class RabbitMQBidsConfig {
 
     // exchange
     @Bean
-    public Exchange bidExchange() {return new DirectExchange(EXCHANGE);}
+    public DirectExchange bidExchange() {return new DirectExchange(EXCHANGE);}
 
     // queue
     @Bean
@@ -25,12 +25,12 @@ public class RabbitMQBidsConfig {
 
     // binding queue to exchange with routing key
     @Bean
-    public Binding bidBinding() {
+    public Binding bidBinding(Queue bidQueue, DirectExchange bidExchange) {
         return BindingBuilder
-                .bind(bidQueue())
-                .to(bidExchange())
-                .with(ROUTING_KEY)
-                .noargs();}
+                .bind(bidQueue)
+                .to(bidExchange)
+                .with(ROUTING_KEY);
+    }
 
     // JSON converter
     @Bean

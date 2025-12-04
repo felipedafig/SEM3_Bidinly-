@@ -1,3 +1,4 @@
+using MainServer.WebAPI.Notifications;
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Protos;
 using MainServer.WebAPI.Services;
@@ -189,14 +190,25 @@ namespace MainServer.WebAPI.Controllers
         }
         
         [HttpPut("{id}/accept")]
+        [HttpPut("{id}/accept")]
         public async Task<IActionResult> AcceptBid(int id)
         {
             try
             {
                 var accepted = await dataTierClient.SetBidStatusAsync(id, "Accepted");
                 var propertyId = accepted.PropertyId;
+                
                 var property = await propertyClient.GetPropertyAsync(propertyId);
+                var allBids = await dataTierClient.GetBidsAsync();
+                var otherBids = allBids.Bids.Where(b => b.PropertyId == propertyId && b.Id != id);
 
+                foreach (var b in otherBids)
+                {
+                    await dataTierClient.SetBidStatusAsync(b.Id, "Rejected");
+                }
+                
+                await propertyClient.SetPropertyStatusAsync(propertyId, "Not Available");
+                
                 notificationPublisher.Publish(new BidNotificationDto
                 {
                     BidId = accepted.Id,
@@ -207,13 +219,8 @@ namespace MainServer.WebAPI.Controllers
                     PropertyTitle = property.Title
                 });
                 
-                var allBids = await dataTierClient.GetBidsAsync();
-                var otherBids = allBids.Bids.Where(b => b.PropertyId == propertyId && b.Id != id);
-
                 foreach (var b in otherBids)
                 {
-                    await dataTierClient.SetBidStatusAsync(b.Id, "Rejected");
-
                     notificationPublisher.Publish(new BidNotificationDto
                     {
                         BidId = b.Id,
@@ -224,8 +231,7 @@ namespace MainServer.WebAPI.Controllers
                         PropertyTitle = property.Title
                     });
                 }
-                
-                await propertyClient.SetPropertyStatusAsync(propertyId, "Not Available");
+
                 return NoContent();
             }
             catch (Exception ex)
@@ -233,7 +239,6 @@ namespace MainServer.WebAPI.Controllers
                 return StatusCode(500, $"Error accepting bid: {ex.Message}");
             }
         }
-    
 
         [HttpPut("{id}/reject")]
         public async Task<IActionResult> RejectBid(int id)

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+import via.pro3.rabbitmqbidsserver.config.RabbitMQBidsConfig;
 import via.pro3.rabbitmqbidsserver.model.BidsNotificationMessage;
 
 @Component
@@ -11,7 +12,7 @@ public class BidsNotificationSubscriber {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BidsNotificationSubscriber.class);
 
-    @RabbitListener(queues = "bid_notifications_queue", id = "bidNotificationListener")
+    @RabbitListener(queues = RabbitMQBidsConfig.QUEUE, id = "bidNotificationListener")
     public void receiveNotification(BidsNotificationMessage message) {
 
         LOGGER.info("Received notification: {}", message.toString());

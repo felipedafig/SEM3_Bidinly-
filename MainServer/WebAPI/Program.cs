@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using MainServer.WebAPI.Middlewares;
+using MainServer.WebAPI.Notifications;
 using MainServer.WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
