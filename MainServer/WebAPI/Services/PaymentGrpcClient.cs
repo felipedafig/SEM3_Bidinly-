@@ -25,15 +25,7 @@ namespace MainServer.WebAPI.Services
             paymentClient = new PaymentService.PaymentServiceClient(channel);
         }
 
-        public async Task<ValidateCardResponse> ValidateCardAsync(
-            string cardNumber, 
-            string expirationDate, 
-            string cvc, 
-            string name,
-            int? propertyId = null,
-            int? bidId = null,
-            int? buyerId = null,
-            int? agentId = null)
+        public async Task<ValidateCardResponse> ValidateCardAsync(string cardNumber, string expirationDate, string cvc, string name)
         {
             try
             {
@@ -44,15 +36,6 @@ namespace MainServer.WebAPI.Services
                     Cvc = cvc,
                     Name = name
                 };
-                
-                if (propertyId.HasValue)
-                    request.PropertyId = propertyId.Value;
-                if (bidId.HasValue)
-                    request.BidId = bidId.Value;
-                if (buyerId.HasValue)
-                    request.BuyerId = buyerId.Value;
-                if (agentId.HasValue)
-                    request.AgentId = agentId.Value;
                 
                 var response = await paymentClient.ValidateCardAsync(request);
                 return response;

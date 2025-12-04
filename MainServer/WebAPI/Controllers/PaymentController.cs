@@ -44,11 +44,7 @@ namespace MainServer.WebAPI.Controllers
                     validateCardDto.CardNumber,
                     validateCardDto.ExpirationDate,
                     validateCardDto.Cvc,
-                    validateCardDto.Name,
-                    validateCardDto.PropertyId,
-                    validateCardDto.BidId,
-                    validateCardDto.BuyerId,
-                    validateCardDto.AgentId
+                    validateCardDto.Name
                 );
 
                 var responseDto = new ValidateCardResponseDto

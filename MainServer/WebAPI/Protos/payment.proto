@@ -15,10 +15,6 @@ message ValidateCardRequest {
   string expiration_date = 2;
   string cvc = 3;
   string name = 4;
-  optional int32 property_id = 5;  
-  optional int32 bid_id = 6;
-  optional int32 buyer_id = 7;
-  optional int32 agent_id = 8;
 }
 
 message ValidateCardResponse {
