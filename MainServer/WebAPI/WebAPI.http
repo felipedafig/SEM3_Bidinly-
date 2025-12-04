@@ -474,6 +474,28 @@ Content-Type: application/json
 
 ###
 
+###############################################
+# payment with rabitmq 
+###############################################
+
+POST {{WebAPI_HostAddress}}/payments/validate-card
+Content-Type: application/json
+
+{
+    "cardNumber": "4000123456789010",
+    "expirationDate": "11/28",
+    "cvc": "123",
+    "name": "FELIPE FIGUEIREDO",
+    "propertyId": 4,
+    "bidId": 11,
+    "buyerId": 3,
+    "agentId": 1
+}
+###
+
+
+
+
 
 
 
