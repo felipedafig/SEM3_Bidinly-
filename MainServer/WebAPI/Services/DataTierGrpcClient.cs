@@ -11,6 +11,7 @@ namespace MainServer.WebAPI.Services
         private readonly SaleService.SaleServiceClient saleClient;
         private readonly RoleService.RoleServiceClient roleClient;
         private readonly AuthService.AuthServiceClient authClient;
+        private readonly NotificationService.NotificationServiceClient notificationClient;
         private readonly GrpcChannel channel;
 
         public DataTierGrpcClient(IConfiguration configuration)
@@ -31,6 +32,7 @@ namespace MainServer.WebAPI.Services
             saleClient = new SaleService.SaleServiceClient(channel);
             roleClient = new RoleService.RoleServiceClient(channel);
             authClient = new AuthService.AuthServiceClient(channel);
+            notificationClient = new NotificationService.NotificationServiceClient(channel);
         }
 
         // Bid operations
@@ -295,6 +297,69 @@ namespace MainServer.WebAPI.Services
             catch (Grpc.Core.RpcException ex)
             {
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+        }
+
+        // Notification operations
+        public async Task<GetNotificationsResponse> GetNotificationsAsync(int? buyerId = null, bool? isRead = null)
+        {
+            try
+            {
+                var request = new GetNotificationsRequest();
+                if (buyerId.HasValue)
+                {
+                    request.BuyerId = buyerId.Value;
+                }
+                if (isRead.HasValue)
+                {
+                    request.IsRead = isRead.Value;
+                }
+                var response = await notificationClient.GetNotificationsAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<NotificationResponse> GetNotificationAsync(int id)
+        {
+            try
+            {
+                var request = new GetNotificationRequest { Id = id };
+                var response = await notificationClient.GetNotificationAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<NotificationResponse> MarkNotificationAsReadAsync(int id)
+        {
+            try
+            {
+                var request = new MarkNotificationAsReadRequest { Id = id };
+                var response = await notificationClient.MarkNotificationAsReadAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
             }
         }
         

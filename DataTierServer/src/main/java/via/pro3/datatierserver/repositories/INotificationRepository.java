@@ -24,7 +24,6 @@ public interface INotificationRepository extends JpaRepository<Notification, Int
         return findById(id);
     }
     
-    // Custom query methods
     List<Notification> findByBuyerId(Integer buyerId);
     
     List<Notification> findByBuyerIdAndIsRead(Integer buyerId, Boolean isRead);

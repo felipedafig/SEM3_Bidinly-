@@ -43,6 +43,13 @@ service AuthService{
   rpc AuthenticateUser (LoginRequest) returns (LoginResponse);
 }
 
+service NotificationService {
+  // Notification operations
+  rpc GetNotifications (GetNotificationsRequest) returns (GetNotificationsResponse);
+  rpc GetNotification (GetNotificationRequest) returns (NotificationResponse);
+  rpc MarkNotificationAsRead (MarkNotificationAsReadRequest) returns (NotificationResponse);
+}
+
 
 // Bid messages
 message CreateBidRequest {
@@ -211,4 +218,34 @@ message LoginResponse {
   int32 id = 1;
   string username = 2;
   int32 roleId = 3;
+}
+
+// Notification messages
+message GetNotificationsRequest {
+  optional int32 buyerId = 1;
+  optional bool isRead = 2;
+}
+
+message GetNotificationRequest {
+  int32 id = 1;
+}
+
+message MarkNotificationAsReadRequest {
+  int32 id = 1;
+}
+
+message NotificationResponse {
+  int32 id = 1;
+  int32 bidId = 2;
+  int32 buyerId = 3;
+  int32 propertyId = 4;
+  string status = 5;
+  string message = 6;
+  optional string propertyTitle = 7;
+  int64 createdAtSeconds = 8; // Unix timestamp
+  bool isRead = 9;
+}
+
+message GetNotificationsResponse {
+  repeated NotificationResponse notifications = 1;
 }
