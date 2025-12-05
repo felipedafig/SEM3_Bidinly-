@@ -43,6 +43,14 @@ service AuthService{
   rpc AuthenticateUser (LoginRequest) returns (LoginResponse);
 }
 
+service NotificationService {
+  // Notification operations
+  rpc CreateNotification (CreateNotificationRequest) returns (NotificationResponse);
+  rpc GetNotifications (GetNotificationsRequest) returns (GetNotificationsResponse);
+  rpc GetNotification (GetNotificationRequest) returns (NotificationResponse);
+  rpc MarkNotificationAsRead (MarkNotificationAsReadRequest) returns (NotificationResponse);
+}
+
 
 // Bid messages
 message CreateBidRequest {
@@ -103,6 +111,7 @@ message CreateUserRequest {
   string username = 1;
   string password = 2;
   int32 roleId = 3;
+  optional string email = 4;
 }
 
 message GetUserRequest {
@@ -119,6 +128,7 @@ message UpdateUserRequest {
   optional string password = 3;
   optional int32 roleId = 4;
   optional bool isActive = 5;
+  optional string email = 6;
 }
 
 message DeleteUserRequest {
@@ -130,6 +140,7 @@ message UserResponse {
   string username = 2;
   int32 roleId = 3;
   bool isActive = 4;
+  optional string email = 5;
 }
 
 message GetUsersResponse {
@@ -211,4 +222,50 @@ message LoginResponse {
   int32 id = 1;
   string username = 2;
   int32 roleId = 3;
+  optional string email = 4;
+}
+
+// Notification messages
+message CreateNotificationRequest {
+  int32 bidId = 1;
+  string recipientType = 2;
+  optional int32 buyerId = 3;
+  optional int32 agentId = 4;
+  int32 propertyId = 5;
+  optional string status = 6;
+  string message = 7;
+  optional string propertyTitle = 8;
+}
+
+message GetNotificationsRequest {
+  optional string recipientType = 1;
+  optional int32 buyerId = 2;
+  optional int32 agentId = 3;
+  optional bool isRead = 4;
+}
+
+message GetNotificationRequest {
+  int32 id = 1;
+}
+
+message MarkNotificationAsReadRequest {
+  int32 id = 1;
+}
+
+message NotificationResponse {
+  int32 id = 1;
+  int32 bidId = 2;
+  string recipientType = 3;
+  optional int32 buyerId = 4;
+  optional int32 agentId = 5;
+  int32 propertyId = 6;
+  optional string status = 7;
+  string message = 8;
+  optional string propertyTitle = 9;
+  int64 createdAtSeconds = 10; // Unix timestamp
+  bool isRead = 11;
+}
+
+message GetNotificationsResponse {
+  repeated NotificationResponse notifications = 1;
 }

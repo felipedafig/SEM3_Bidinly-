@@ -48,6 +48,9 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
             newUser.setPassword(request.getPassword());
             newUser.setRoleId(request.getRoleId());
             newUser.setIsActive(true); // New users are active by default
+            if (request.hasEmail() && !request.getEmail().trim().isEmpty()) {
+                newUser.setEmail(request.getEmail());
+            }
             
             User savedUser = userRepository.save(newUser);
             
@@ -158,6 +161,10 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
                 user.setIsActive(request.getIsActive());
             }
             
+            if (request.hasEmail()) {
+                user.setEmail(request.getEmail().trim().isEmpty() ? null : request.getEmail());
+            }
+            
             User updatedUser = userRepository.save(user);
             
             DataTierProto.UserResponse response = convertToUserResponse(updatedUser);
@@ -201,12 +208,17 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
     }
 
     private DataTierProto.UserResponse convertToUserResponse(User user) {
-        return DataTierProto.UserResponse.newBuilder()
+        DataTierProto.UserResponse.Builder builder = DataTierProto.UserResponse.newBuilder()
             .setId(user.getId() != null ? user.getId() : 0)
             .setUsername(user.getUsername() != null ? user.getUsername() : "")
             .setRoleId(user.getRoleId() != null ? user.getRoleId() : 0)
-            .setIsActive(user.getIsActive() != null ? user.getIsActive() : true)
-            .build();
+            .setIsActive(user.getIsActive() != null ? user.getIsActive() : true);
+        
+        if (user.getEmail() != null && !user.getEmail().trim().isEmpty()) {
+            builder.setEmail(user.getEmail());
+        }
+        
+        return builder.build();
     }
 }
 
