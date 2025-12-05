@@ -23,14 +23,26 @@ public class Notification {
             foreignKey = @ForeignKey(name = "fk_notification_bid"))
     private Bid bid;
 
-    @Column(name = "\"BuyerId\"", nullable = false)
+    @Column(name = "\"RecipientType\"", length = 20, nullable = false)
     @NotNull
+    @Size(max = 20)
+    private String recipientType;
+
+    @Column(name = "\"BuyerId\"", nullable = true)
     private Integer buyerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"BuyerId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_notification_buyer"))
     private User buyer;
+
+    @Column(name = "\"AgentId\"", nullable = true)
+    private Integer agentId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "\"AgentId\"", insertable = false, updatable = false,
+            foreignKey = @ForeignKey(name = "fk_notification_agent"))
+    private User agent;
 
     @Column(name = "\"PropertyId\"", nullable = false)
     @NotNull
@@ -41,8 +53,7 @@ public class Notification {
             foreignKey = @ForeignKey(name = "fk_notification_property"))
     private Property property;
 
-    @Column(name = "\"Status\"", length = 50, nullable = false)
-    @NotNull
+    @Column(name = "\"Status\"", length = 50, nullable = true)
     @Size(max = 50)
     private String status;
 
@@ -180,6 +191,30 @@ public class Notification {
 
     public void setIsRead(Boolean isRead) {
         this.isRead = isRead;
+    }
+
+    public String getRecipientType() {
+        return recipientType;
+    }
+
+    public void setRecipientType(String recipientType) {
+        this.recipientType = recipientType;
+    }
+
+    public Integer getAgentId() {
+        return agentId;
+    }
+
+    public void setAgentId(Integer agentId) {
+        this.agentId = agentId;
+    }
+
+    public User getAgent() {
+        return agent;
+    }
+
+    public void setAgent(User agent) {
+        this.agent = agent;
     }
 }
 

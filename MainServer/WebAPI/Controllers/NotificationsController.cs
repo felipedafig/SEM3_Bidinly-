@@ -23,11 +23,13 @@ namespace MainServer.WebAPI.Controllers
             try
             {
                 NotificationResponse response = await dataTierClient.CreateNotificationAsync(
+                    dto.RecipientType,
                     dto.BidId,
-                    dto.BuyerId,
                     dto.PropertyId,
-                    dto.Status,
                     dto.Message,
+                    dto.Status,
+                    dto.BuyerId,
+                    dto.AgentId,
                     dto.PropertyTitle);
 
                 DateTime createdAt = DateTimeOffset.FromUnixTimeSeconds(response.CreatedAtSeconds).DateTime;
@@ -36,9 +38,11 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = response.Id,
                     BidId = response.BidId,
-                    BuyerId = response.BuyerId,
+                    RecipientType = response.RecipientType,
+                    BuyerId = response.HasBuyerId ? response.BuyerId : null,
+                    AgentId = response.HasAgentId ? response.AgentId : null,
                     PropertyId = response.PropertyId,
-                    Status = response.Status,
+                    Status = response.HasStatus ? response.Status : null,
                     Message = response.Message,
                     PropertyTitle = response.HasPropertyTitle ? response.PropertyTitle : null,
                     CreatedAt = createdAt,
@@ -54,11 +58,11 @@ namespace MainServer.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<NotificationDto>>> GetNotifications([FromQuery] int? buyerId, [FromQuery] bool? isRead)
+        public async Task<ActionResult<List<NotificationDto>>> GetNotifications([FromQuery] string? recipientType, [FromQuery] int? buyerId, [FromQuery] int? agentId, [FromQuery] bool? isRead)
         {
             try
             {
-                GetNotificationsResponse response = await dataTierClient.GetNotificationsAsync(buyerId, isRead);
+                GetNotificationsResponse response = await dataTierClient.GetNotificationsAsync(recipientType, buyerId, agentId, isRead);
 
                 List<NotificationDto> notificationDtos = response.Notifications.Select(notificationResponse =>
                 {
@@ -68,9 +72,11 @@ namespace MainServer.WebAPI.Controllers
                     {
                         Id = notificationResponse.Id,
                         BidId = notificationResponse.BidId,
-                        BuyerId = notificationResponse.BuyerId,
+                        RecipientType = notificationResponse.RecipientType,
+                        BuyerId = notificationResponse.HasBuyerId ? notificationResponse.BuyerId : null,
+                        AgentId = notificationResponse.HasAgentId ? notificationResponse.AgentId : null,
                         PropertyId = notificationResponse.PropertyId,
-                        Status = notificationResponse.Status,
+                        Status = notificationResponse.HasStatus ? notificationResponse.Status : null,
                         Message = notificationResponse.Message,
                         PropertyTitle = notificationResponse.HasPropertyTitle ? notificationResponse.PropertyTitle : null,
                         CreatedAt = createdAt,
@@ -99,9 +105,11 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = response.Id,
                     BidId = response.BidId,
-                    BuyerId = response.BuyerId,
+                    RecipientType = response.RecipientType,
+                    BuyerId = response.HasBuyerId ? response.BuyerId : null,
+                    AgentId = response.HasAgentId ? response.AgentId : null,
                     PropertyId = response.PropertyId,
-                    Status = response.Status,
+                    Status = response.HasStatus ? response.Status : null,
                     Message = response.Message,
                     PropertyTitle = response.HasPropertyTitle ? response.PropertyTitle : null,
                     CreatedAt = createdAt,
@@ -133,9 +141,11 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = response.Id,
                     BidId = response.BidId,
-                    BuyerId = response.BuyerId,
+                    RecipientType = response.RecipientType,
+                    BuyerId = response.HasBuyerId ? response.BuyerId : null,
+                    AgentId = response.HasAgentId ? response.AgentId : null,
                     PropertyId = response.PropertyId,
-                    Status = response.Status,
+                    Status = response.HasStatus ? response.Status : null,
                     Message = response.Message,
                     PropertyTitle = response.HasPropertyTitle ? response.PropertyTitle : null,
                     CreatedAt = createdAt,

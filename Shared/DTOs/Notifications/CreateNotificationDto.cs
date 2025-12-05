@@ -8,13 +8,16 @@ namespace shared.DTOs.Notifications
         public int BidId { get; set; }
 
         [Required]
-        public int BuyerId { get; set; }
+        public string RecipientType { get; set; } = string.Empty; // "Buyer" or "Agent"
+
+        public int? BuyerId { get; set; }
+
+        public int? AgentId { get; set; }
 
         [Required]
         public int PropertyId { get; set; }
 
-        [Required]
-        public string Status { get; set; } = string.Empty; // e.g., "Accepted", "Rejected"
+        public string? Status { get; set; } // e.g., "Accepted", "Rejected"
 
         [Required]
         public string Message { get; set; } = string.Empty;

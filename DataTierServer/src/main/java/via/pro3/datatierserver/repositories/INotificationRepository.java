@@ -27,5 +27,13 @@ public interface INotificationRepository extends JpaRepository<Notification, Int
     List<Notification> findByBuyerId(Integer buyerId);
     
     List<Notification> findByBuyerIdAndIsRead(Integer buyerId, Boolean isRead);
+    
+    List<Notification> findByRecipientTypeAndBuyerId(String recipientType, Integer buyerId);
+    
+    List<Notification> findByRecipientTypeAndBuyerIdAndIsRead(String recipientType, Integer buyerId, Boolean isRead);
+    
+    List<Notification> findByRecipientTypeAndAgentId(String recipientType, Integer agentId);
+    
+    List<Notification> findByRecipientTypeAndAgentIdAndIsRead(String recipientType, Integer agentId, Boolean isRead);
 }
 

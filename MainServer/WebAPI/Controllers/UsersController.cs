@@ -44,7 +44,8 @@ namespace MainServer.WebAPI.Controllers
                         Id = userResponse.Id,
                         Username = userResponse.Username,
                         RoleName = roleName,
-                        IsActive = userResponse.IsActive
+                        IsActive = userResponse.IsActive,
+                        Email = userResponse.HasEmail ? userResponse.Email : null
                     });
                 }
 
@@ -82,7 +83,8 @@ namespace MainServer.WebAPI.Controllers
                     Id = userResponse.Id,
                     Username = userResponse.Username,
                     RoleName = roleName,
-                    IsActive = userResponse.IsActive
+                    IsActive = userResponse.IsActive,
+                    Email = userResponse.HasEmail ? userResponse.Email : null
                 };
 
                 return Ok(userDto);
@@ -119,7 +121,8 @@ namespace MainServer.WebAPI.Controllers
                 UserResponse userResponse = await dataTierClient.CreateUserAsync(
                     createUserDto.Username,
                     createUserDto.Password,
-                    createUserDto.RoleId
+                    createUserDto.RoleId,
+                    createUserDto.Email
                 );
 
                 string? roleName = null;
@@ -136,7 +139,8 @@ namespace MainServer.WebAPI.Controllers
                     Id = userResponse.Id,
                     Username = userResponse.Username,
                     RoleName = roleName,
-                    IsActive = userResponse.IsActive
+                    IsActive = userResponse.IsActive,
+                    Email = userResponse.HasEmail ? userResponse.Email : null
                 };
 
                 return Created($"/users/{userDto.Id}", userDto);
@@ -206,7 +210,8 @@ namespace MainServer.WebAPI.Controllers
                     Id = updatedUserResponse.Id,
                     Username = updatedUserResponse.Username,
                     RoleName = roleName,
-                    IsActive = updatedUserResponse.IsActive
+                    IsActive = updatedUserResponse.IsActive,
+                    Email = updatedUserResponse.HasEmail ? updatedUserResponse.Email : null
                 };
 
                 return Ok(userDto);
