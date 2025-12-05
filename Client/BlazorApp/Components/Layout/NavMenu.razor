@@ -43,7 +43,7 @@
                     else
                     {
                         <button class="nav-link nav-button"
-                                @onclick='() => Navigation.NavigateTo("/", true)'>
+                                @onclick='() => Navigation.NavigateTo($"/{dashboardRoute}", true)'>
                             Home
                         </button>
                         @if (isAgent)

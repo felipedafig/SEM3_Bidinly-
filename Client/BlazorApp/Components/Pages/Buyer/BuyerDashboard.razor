@@ -134,6 +134,41 @@
         }
     </div>
 </div>
+<div class="properties-section">
+    <div class="properties-container">
+        @if (isLoading)
+        {
+            <div class="loading">Loading properties...</div>
+        }
+        else if (properties == null || !properties.Any())
+        {
+            <div class="no-results">No properties found.</div>
+        }
+        else
+        {
+            @foreach (var property in properties)
+            {
+                <div class="property-card" @onclick="() => NavigateToProperty(property.Id)">
+                    <div class="card-image-placeholder">
+                        <span>Image</span>
+                    </div>
+                    <div class="card-details">
+                        <h3 class="card-title">@property.Title</h3>
+                        <p class="card-address">@property.Address</p>
+                        <p class="card-description">@property.Description</p>
+                        <div class="card-info">
+                            <span class="info-item">Bedrooms: @property.Bedrooms</span>
+                            <span class="info-item">Bathrooms: @property.Bathrooms</span>
+                            <span class="info-item">Size: @property.SizeInSquareFeet sq ft</span>
+                            <span class="info-item">Price: @property.StartingPrice.ToString("N0") Kr</span>
+                        </div>
+                        <div class="card-status">Status: @property.Status</div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
 
 @code {
     private List<PropertyDto>? properties;
@@ -196,9 +231,12 @@
         isLoading = true;
         try
         {
-            properties = await PropertyService.GetAllAsync();
+            var allProps = await PropertyService.GetAllAsync();
+            properties = allProps
+                .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
-        catch (Exception ex)
+        catch
         {
             properties = new List<PropertyDto>();
         }
