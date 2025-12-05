@@ -1,4 +1,4 @@
-package via.pro3.propertyserver.config;
+3package via.pro3.propertyserver.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
