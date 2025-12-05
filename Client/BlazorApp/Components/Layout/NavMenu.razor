@@ -67,6 +67,18 @@
                         }
                         <div class="user-dropdown-menu @(isDropdownOpen ? "show" : "")" @onclick:stopPropagation="true">
                             <div class="dropdown-header">@authContext.User.Identity?.Name</div>
+                            @if (isBuyer)
+                            {
+                                <button class="dropdown-item" @onclick='() => Navigation.NavigateTo("/buyer-notifications")'>
+                                    Notifications (@NotificationCount)
+                                </button>
+                            }
+                            else if (isAgent)
+                            {
+                                <button class="dropdown-item" @onclick='() => Navigation.NavigateTo("/agent-notifications")'>
+                                    Notifications (@NotificationCount)
+                                </button>
+                            }
                             <button class="dropdown-item" @onclick="HandleLogout">Logout</button>
                         </div>
                     </div>
@@ -83,6 +95,7 @@
 
 @code {
     private bool isDropdownOpen = false;
+    private int NotificationCount = 0;
 
     protected override void OnInitialized()
     {

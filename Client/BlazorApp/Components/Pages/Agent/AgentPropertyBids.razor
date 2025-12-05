@@ -7,12 +7,11 @@
 @namespace BlazorApp.Components.Pages.Agent
 
 <div class="bids-page">
+    <button class="back-button" @onclick="GoBack">
+        ← Back
+    </button>
     <div class="page-header">
         <h1 class="page-title">Property Bids</h1>
-
-        <button class="back-button" @onclick="GoBack">
-            ← Back
-        </button>
     </div>
 
     <div class="bids-section">
@@ -55,7 +54,7 @@
                             <span class="info-item"><strong>Amount:</strong> @bid.Amount.ToString("N0") Kr</span>
                             <span class="info-item"><strong>Expiry:</strong> @bid.ExpiryDate.ToString("g")</span>
                         </div>
-                        
+
                         @if (!string.IsNullOrWhiteSpace(bid.Message))
                         {
                             <div class="bid-message">
