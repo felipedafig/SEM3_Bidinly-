@@ -45,6 +45,7 @@ service AuthService{
 
 service NotificationService {
   // Notification operations
+  rpc CreateNotification (CreateNotificationRequest) returns (NotificationResponse);
   rpc GetNotifications (GetNotificationsRequest) returns (GetNotificationsResponse);
   rpc GetNotification (GetNotificationRequest) returns (NotificationResponse);
   rpc MarkNotificationAsRead (MarkNotificationAsReadRequest) returns (NotificationResponse);
@@ -221,6 +222,15 @@ message LoginResponse {
 }
 
 // Notification messages
+message CreateNotificationRequest {
+  int32 bidId = 1;
+  int32 buyerId = 2;
+  int32 propertyId = 3;
+  string status = 4;
+  string message = 5;
+  optional string propertyTitle = 6;
+}
+
 message GetNotificationsRequest {
   optional int32 buyerId = 1;
   optional bool isRead = 2;

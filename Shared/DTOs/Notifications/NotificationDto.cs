@@ -10,7 +10,7 @@ namespace shared.DTOs.Notifications
         
         public int PropertyId { get; set; }
         
-        public string Status { get; set; } = string.Empty; // e.g., "Accepted", "Rejected"
+        public string Status { get; set; } = string.Empty; 
         
         public string Message { get; set; } = string.Empty;
         

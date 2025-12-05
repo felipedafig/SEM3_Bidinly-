@@ -20,6 +20,37 @@ public class NotificationGrpcService extends NotificationServiceGrpc.Notificatio
     private INotificationRepository notificationRepository;
 
     @Override
+    public void createNotification(DataTierProto.CreateNotificationRequest request,
+                                  StreamObserver<DataTierProto.NotificationResponse> responseObserver) {
+        try {
+            Notification newNotification = new Notification();
+            newNotification.setBidId(request.getBidId());
+            newNotification.setBuyerId(request.getBuyerId());
+            newNotification.setPropertyId(request.getPropertyId());
+            newNotification.setStatus(request.getStatus());
+            newNotification.setMessage(request.getMessage());
+            newNotification.setIsRead(false);
+            newNotification.setCreatedAt(Instant.now());
+
+            if (request.hasPropertyTitle() && !request.getPropertyTitle().isEmpty()) {
+                newNotification.setPropertyTitle(request.getPropertyTitle());
+            }
+
+            Notification savedNotification = notificationRepository.save(newNotification);
+
+            DataTierProto.NotificationResponse response = convertToNotificationResponse(savedNotification);
+
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+
+        } catch (Exception e) {
+            responseObserver.onError(io.grpc.Status.INTERNAL
+                    .withDescription("Error creating notification: " + e.getMessage())
+                    .asRuntimeException());
+        }
+    }
+
+    @Override
     public void getNotifications(DataTierProto.GetNotificationsRequest request,
                                  StreamObserver<DataTierProto.GetNotificationsResponse> responseObserver) {
         try {

@@ -301,6 +301,35 @@ namespace MainServer.WebAPI.Services
         }
 
         // Notification operations
+        public async Task<NotificationResponse> CreateNotificationAsync(int bidId, int buyerId, int propertyId, string status, string message, string? propertyTitle = null)
+        {
+            try
+            {
+                var request = new CreateNotificationRequest
+                {
+                    BidId = bidId,
+                    BuyerId = buyerId,
+                    PropertyId = propertyId,
+                    Status = status,
+                    Message = message
+                };
+                if (!string.IsNullOrEmpty(propertyTitle))
+                {
+                    request.PropertyTitle = propertyTitle;
+                }
+                var response = await notificationClient.CreateNotificationAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public async Task<GetNotificationsResponse> GetNotificationsAsync(int? buyerId = null, bool? isRead = null)
         {
             try
