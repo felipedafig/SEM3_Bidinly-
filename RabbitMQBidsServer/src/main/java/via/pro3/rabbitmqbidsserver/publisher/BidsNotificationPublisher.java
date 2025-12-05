@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import via.pro3.rabbitmqbidsserver.config.RabbitMQBidsConfig;
 import via.pro3.rabbitmqbidsserver.model.BidsNotificationMessage;
 
+
 @Service
 public class BidsNotificationPublisher {
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import via.pro3.rabbitmqbidsserver.config.RabbitMQBidsConfig;
 import via.pro3.rabbitmqbidsserver.model.BidsNotificationMessage;
 
+//logs message, prints it
 @Component
 public class BidsNotificationSubscriber {
 
@@ -18,11 +19,11 @@ public class BidsNotificationSubscriber {
         LOGGER.info("Received notification: {}", message.toString());
 
         System.out.println("\nNOTIFICATION RECEIVED");
-        System.out.println("Bid ID:        " + message.bidId());
-        System.out.println("Buyer ID:      " + message.buyerId());
-        System.out.println("Property ID:   " + message.propertyId());
-        System.out.println("Status:        " + message.status());
-        System.out.println("Message:       " + message.message());
-        System.out.println("Property Title:" + message.propertyTitle());
+        System.out.println("Bid ID: " + message.bidId());
+        System.out.println("Buyer ID: " + message.buyerId());
+        System.out.println("Property ID: " + message.propertyId());
+        System.out.println("Status: " + message.status());
+        System.out.println("Message: " + message.message());
+        System.out.println("Property Title: " + message.propertyTitle());
     }
 }

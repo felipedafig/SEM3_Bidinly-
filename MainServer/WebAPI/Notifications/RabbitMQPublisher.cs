@@ -6,6 +6,7 @@ using System.Text.Json;
 using RabbitMQ.Client;
 using Shared.DTOs.Notifications;
 
+//sends messages into RabbitMQ
 public class RabbitMqPublisher : IDisposable
 {
     private readonly IConnection _connection;

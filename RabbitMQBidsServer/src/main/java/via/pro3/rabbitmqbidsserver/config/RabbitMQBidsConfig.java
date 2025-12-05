@@ -15,30 +15,30 @@ public class RabbitMQBidsConfig {
     public static final String QUEUE = "bid_notifications_queue";
     public static final String ROUTING_KEY = "bid.notifications";
 
-    // exchange
+    //exchange
     @Bean
-    public DirectExchange bidExchange() {return new DirectExchange(EXCHANGE);}
+    public DirectExchange bidExchange() {return new DirectExchange(EXCHANGE );}
 
     // queue
     @Bean
-    public Queue bidQueue() {return new Queue(QUEUE, true);}
+    public Queue bidQueue() {return new Queue(QUEUE, true );}
 
-    // binding queue to exchange with routing key
+    //binding queue to exchange with routing key
     @Bean
-    public Binding bidBinding(Queue bidQueue, DirectExchange bidExchange) {
+    public Binding bidBinding( Queue bidQueue, DirectExchange bidExchange) {
         return BindingBuilder
                 .bind(bidQueue)
                 .to(bidExchange)
                 .with(ROUTING_KEY);
     }
 
-    // JSON converter
+    //json converter
     @Bean
     public MessageConverter jsonMessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
 
-    // RabbitTemplate (used for sending messages)
+    // RabbitTemplate for sending messages
     @Bean
     public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
         var rabbitTemplate = new RabbitTemplate(connectionFactory);

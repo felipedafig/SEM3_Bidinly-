@@ -7,6 +7,7 @@ using Shared.DTOs.Notifications;
 
 namespace MainServer.WebAPI.Notifications;
 
+//receives messages from RabbitMQ and sends them to Blazor
 public class RabbitMqListener : BackgroundService
 {
     private readonly IHubContext<NotificationHub> hubContext;
