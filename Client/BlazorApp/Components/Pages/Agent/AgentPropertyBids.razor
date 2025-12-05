@@ -55,11 +55,11 @@
                             <span class="info-item"><strong>Expiry:</strong> @bid.ExpiryDate.ToString("g")</span>
                         </div>
 
-                        @if (!string.IsNullOrWhiteSpace(bid.Message))
+                        @if (!string.IsNullOrWhiteSpace(bid.Deal))
                         {
-                            <div class="bid-message">
+                            <div class="bid-deal">
                                 <strong>Message:</strong>
-                                <p>@bid.Message</p>
+                                <p>@bid.Deal</p>
                             </div>
                         }
 

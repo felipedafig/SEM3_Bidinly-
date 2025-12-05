@@ -49,7 +49,7 @@ message CreateBidRequest {
   int32 propertyId = 2;
   double amount = 3;
   int64 expiryDateSeconds = 4; // Unix timestamp
-  optional string message = 5;
+  optional string deal = 5;
 }
 
 message GetBidRequest {
@@ -67,7 +67,7 @@ message UpdateBidRequest {
   optional double amount = 2;
   optional int64 expiryDateSeconds = 3;
   optional string status = 4;
-  optional string message = 5;
+  optional string deal = 5;
 }
 
 message DeleteBidRequest {
@@ -81,7 +81,7 @@ message BidResponse {
   double amount = 4;
   int64 expiryDateSeconds = 5;
   string status = 6;
-  optional string message = 7;
+  optional string deal = 7;
 }
 
 message GetBidsResponse {
