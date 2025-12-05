@@ -47,6 +47,7 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
             newUser.setUsername(request.getUsername());
             newUser.setPassword(request.getPassword());
             newUser.setRoleId(request.getRoleId());
+            newUser.setIsActive(true); // New users are active by default
             
             User savedUser = userRepository.save(newUser);
             
@@ -153,6 +154,10 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
                 user.setRoleId(request.getRoleId());
             }
             
+            if (request.hasIsActive()) {
+                user.setIsActive(request.getIsActive());
+            }
+            
             User updatedUser = userRepository.save(user);
             
             DataTierProto.UserResponse response = convertToUserResponse(updatedUser);
@@ -200,6 +205,7 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
             .setId(user.getId() != null ? user.getId() : 0)
             .setUsername(user.getUsername() != null ? user.getUsername() : "")
             .setRoleId(user.getRoleId() != null ? user.getRoleId() : 0)
+            .setIsActive(user.getIsActive() != null ? user.getIsActive() : true)
             .build();
     }
 }

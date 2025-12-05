@@ -72,7 +72,7 @@ namespace MainServer.WebAPI.Services
             }
         }
 
-        public async Task<BidResponse> CreateBidAsync(int buyerId, int propertyId, double amount, long expiryDateSeconds)
+        public async Task<BidResponse> CreateBidAsync(int buyerId, int propertyId, double amount, long expiryDateSeconds, string? message)
         {
             try
             {
@@ -81,7 +81,8 @@ namespace MainServer.WebAPI.Services
                     BuyerId = buyerId,
                     PropertyId = propertyId,
                     Amount = amount,
-                    ExpiryDateSeconds = expiryDateSeconds
+                    ExpiryDateSeconds = expiryDateSeconds,
+                    Message = message ?? ""
                 };
                 BidResponse response = await bidClient.CreateBidAsync(request);
                 return response;
@@ -167,6 +168,45 @@ namespace MainServer.WebAPI.Services
                 var request = new DeleteUserRequest { Id = id };
                 var response = await userClient.DeleteUserAsync(request);
                 return response.Success;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<UserResponse> UpdateUserAsync(int id, string? username = null, string? password = null, int? roleId = null, bool? isActive = null)
+        {
+            try
+            {
+                var requestBuilder = new UpdateUserRequest { Id = id };
+                
+                if (username != null)
+                {
+                    requestBuilder.Username = username;
+                }
+                
+                if (password != null)
+                {
+                    requestBuilder.Password = password;
+                }
+                
+                if (roleId.HasValue)
+                {
+                    requestBuilder.RoleId = roleId.Value;
+                }
+                
+                if (isActive.HasValue)
+                {
+                    requestBuilder.IsActive = isActive.Value;
+                }
+                
+                var response = await userClient.UpdateUserAsync(requestBuilder);
+                return response;
             }
             catch (Grpc.Core.RpcException ex)
             {
