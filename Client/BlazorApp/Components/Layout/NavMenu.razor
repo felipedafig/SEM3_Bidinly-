@@ -16,20 +16,21 @@
                 <Authorized Context="authContext">
                     @{
                         var roleName = authContext.User.FindFirst("RoleName")?.Value;
-                        var dashboardRoute = string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase) 
-                            ? "buyer-dashboard" 
-                            : string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase) 
-                                ? "agent-dashboard" 
-                                : string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase)
-                                    ? "admin-dashboard"
-                                    : "buyer-dashboard";
+
+                        var isBuyer = string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase);
                         var isAgent = string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase);
                         var isAdmin = string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase);
-                        var isBuyer = string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase);
-                        
-                        var salesRoute = isAgent ? "agent/sales"
-                            : isBuyer ? "buyer/sales"
-                            : "sales";
+
+                        var dashboardRoute =
+                            isBuyer ? "buyer-dashboard" :
+                            isAgent ? "agent-dashboard" :
+                            isAdmin ? "admin-dashboard" :
+                            "buyer-dashboard";
+
+                        var salesRoute =
+                            isAgent ? "agent/sales" :
+                            isBuyer ? "buyer/sales" :
+                            "sales";
                     }
                     @if (isAdmin)
                     {

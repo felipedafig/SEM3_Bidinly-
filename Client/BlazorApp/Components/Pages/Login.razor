@@ -91,7 +91,18 @@
                 return;
             }
 
-            Navigation.NavigateTo("/dashboard");
+            var authState = await AuthProvider.GetAuthenticationStateAsync();
+            var role = authState.User.FindFirst("RoleName")?.Value;
+
+            var route = role switch
+            {
+                "Agent" => "/agent-dashboard",
+                "Buyer" => "/buyer-dashboard",
+                "Admin" => "/admin-dashboard",
+                _ => "/buyer-dashboard"
+            };
+
+            Navigation.NavigateTo(route, true);
         }
         catch (Exception ex)
         {
