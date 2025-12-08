@@ -156,6 +156,66 @@ else
     </div>
 }
 
+@if (showEditModal)
+{
+    <div class="modal-overlay" @onclick="() => showEditModal = false">
+        <div class="modal-content" @onclick:stopPropagation="true">
+
+            <div class="modal-header">
+                <h2 class="modal-title">Edit Property</h2>
+                <button class="modal-close-button" @onclick="() => showEditModal = false" type="button">
+                    ✕
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <EditForm Model="@editDto" OnValidSubmit="HandleEditSubmit">
+                    <DataAnnotationsValidator />
+
+                    <!-- TITLE -->
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <InputText class="form-input" @bind-Value="editDto.Title" />
+                    </div>
+
+                    <!-- DESCRIPTION -->
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-input form-textarea"
+                                  @bind="editDto.Description"
+                                  rows="5"></textarea>
+                    </div>
+
+                    <!-- IMAGE URL -->
+                    <div class="form-group">
+                        <label class="form-label">Image URL</label>
+                        <InputText class="form-input" @bind-Value="editDto.ImageUrl"
+                                   placeholder="https://example.com/photo.jpg" />
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(editError))
+                    {
+                        <div class="form-error">@editError</div>
+                    }
+
+                    <div class="modal-footer">
+                        <button type="button" class="form-button form-button-cancel"
+                                @onclick="() => showEditModal = false">
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="form-button form-button-submit" disabled="@isEditing">
+                            @(isEditing ? "Saving..." : "Save Changes")
+                        </button>
+                    </div>
+                </EditForm>
+
+            </div>
+        </div>
+    </div>
+}
+
 @code {
     [Parameter]
     public int PropertyId { get; set; }
@@ -171,6 +231,12 @@ else
     private bool IsNotAvailable => property?.Status == "Not Available";
     private string? bidMessage;
     private bool showDeleteModal = false;
+    private bool showEditModal = false;
+    private bool isEditing = false;
+    private string? editError = null;
+
+    private UpdatePropertyDto editDto = new();
+    
     
     
     private void GoToBids()
@@ -210,7 +276,47 @@ else
     
     private void EditProperty()
     {
-        Navigation.NavigateTo($"/agent/property/{PropertyId}/edit");
+        if (property == null) return;
+
+        editDto = new UpdatePropertyDto
+        {
+            Id = property.Id,
+            AgentId = property.AgentId!.Value,
+            Title = property.Title,
+            Address = property.Address,
+            StartingPrice = property.StartingPrice,
+            Bedrooms = property.Bedrooms,
+            Bathrooms = property.Bathrooms,
+            SizeInSquareFeet = property.SizeInSquareFeet,
+            Description = property.Description
+        };
+
+        editError = null;
+        showEditModal = true;
+    }
+    
+    private async Task HandleEditSubmit()
+    {
+        isEditing = true;
+        editError = null;
+
+        try
+        {
+            await PropertyService.UpdateAsync(editDto);
+
+            showEditModal = false;
+
+            await LoadProperty();
+        }
+        catch (Exception ex)
+        {
+            editError = ex.Message;
+            Console.WriteLine($"Edit error: {ex}");
+        }
+        finally
+        {
+            isEditing = false;
+        }
     }
 
     private void DeleteProperty()
