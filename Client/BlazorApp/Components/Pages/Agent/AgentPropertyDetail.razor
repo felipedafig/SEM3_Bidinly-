@@ -14,6 +14,7 @@
 @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthProvider
 @rendermode InteractiveServer
+@inject IJSRuntime JS
 
 @namespace BlazorApp.Components.Pages.Agent
 
@@ -41,12 +42,21 @@ else
         <button class="back-button" @onclick="async () => await GoBack()">← Back</button>
         
         <div class="property-detail-header">
-            <h1 class="property-detail-title">@property.Title</h1>
-            @if (!string.IsNullOrWhiteSpace(property.Status))
-            {
-                <span class="property-detail-status">@property.Status</span>
-            }
+            <div class="header-left">
+                <h1 class="property-detail-title">@property.Title</h1>
+                @if (!string.IsNullOrWhiteSpace(property.Status))
+                {
+                    <span class="property-detail-status">@property.Status</span>
+                }
+            </div>
+
+            <!-- ACTION BUTTONS FOR AGENT -->
+            <div class="agent-action-buttons">
+                <button class="agent-btn edit-btn" @onclick="EditProperty">Edit</button>
+                <button class="agent-btn delete-btn" @onclick="DeleteProperty">Delete</button>
+            </div>
         </div>
+        
         
         <!-- TOP GRID: IMAGES LEFT, SIDEBAR RIGHT -->
 <div class="property-detail-top-grid">
@@ -126,6 +136,26 @@ else
 </div>
 }
 
+@if (showDeleteModal)
+{
+    <div class="modal-overlay">
+        <div class="modal-container">
+            <h2>Delete Property?</h2>
+            <p>This action cannot be undone.</p>
+
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" @onclick="() => showDeleteModal = false">
+                    Cancel
+                </button>
+
+                <button class="modal-btn delete" @onclick="ConfirmDelete">
+                    Delete Property
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
 @code {
     [Parameter]
     public int PropertyId { get; set; }
@@ -140,6 +170,7 @@ else
     private string? successMessage;
     private bool IsNotAvailable => property?.Status == "Not Available";
     private string? bidMessage;
+    private bool showDeleteModal = false;
     
     
     private void GoToBids()
@@ -176,5 +207,32 @@ else
         Navigation.NavigateTo("/my-properties");
         return Task.CompletedTask;
     }
+    
+    private void EditProperty()
+    {
+        Navigation.NavigateTo($"/agent/property/{PropertyId}/edit");
+    }
+
+    private void DeleteProperty()
+    {
+        showDeleteModal = true;
+    }
+
+    private async Task ConfirmDelete()
+    {
+        try
+        {
+            await PropertyService.DeleteAsync(PropertyId);
+
+            showDeleteModal = false;
+
+            Navigation.NavigateTo("/my-properties", forceLoad: true);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Delete error: {ex.Message}");
+        }
+    }
+
 }
 

@@ -174,6 +174,28 @@ namespace MainServer.WebAPI.Controllers
                 throw;
             }
         }
+        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProperty(int id)
+        {
+            try
+            {
+                var success = await propertyClient.DeletePropertyAsync(id);
+
+                if (!success)
+                    return NotFound();
+
+                return NoContent();
+            }
+            catch (Grpc.Core.RpcException ex) when (ex.StatusCode == Grpc.Core.StatusCode.NotFound)
+            {
+                return NotFound();
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<PropertyDto>> UpdateProperty(int id, [FromBody] UpdatePropertyDto updatePropertyDto)
