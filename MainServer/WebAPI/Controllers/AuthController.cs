@@ -47,7 +47,8 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = response.Id,
                     Username = response.Username,
-                    RoleName = roleName
+                    RoleName = roleName,
+                    Email = response.HasEmail ? response.Email : null
                 };
 
                 return Ok(responseDto);

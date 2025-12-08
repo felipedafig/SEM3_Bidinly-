@@ -11,6 +11,7 @@ namespace MainServer.WebAPI.Services
         private readonly SaleService.SaleServiceClient saleClient;
         private readonly RoleService.RoleServiceClient roleClient;
         private readonly AuthService.AuthServiceClient authClient;
+        private readonly NotificationService.NotificationServiceClient notificationClient;
         private readonly GrpcChannel channel;
 
         public DataTierGrpcClient(IConfiguration configuration)
@@ -31,6 +32,7 @@ namespace MainServer.WebAPI.Services
             saleClient = new SaleService.SaleServiceClient(channel);
             roleClient = new RoleService.RoleServiceClient(channel);
             authClient = new AuthService.AuthServiceClient(channel);
+            notificationClient = new NotificationService.NotificationServiceClient(channel);
         }
 
         // Bid operations
@@ -123,7 +125,7 @@ namespace MainServer.WebAPI.Services
             }
         }
 
-        public async Task<UserResponse> CreateUserAsync(string username, string password, int roleId)
+        public async Task<UserResponse> CreateUserAsync(string username, string password, int roleId, string? email = null)
         {
             try
             {
@@ -133,6 +135,11 @@ namespace MainServer.WebAPI.Services
                     Password = password,
                     RoleId = roleId
                 };
+                
+                if (!string.IsNullOrWhiteSpace(email))
+                {
+                    request.Email = email;
+                }
                 
                 UserResponse response = await userClient.CreateUserAsync(request);
                 return response;
@@ -179,7 +186,7 @@ namespace MainServer.WebAPI.Services
             }
         }
 
-        public async Task<UserResponse> UpdateUserAsync(int id, string? username = null, string? password = null, int? roleId = null, bool? isActive = null)
+        public async Task<UserResponse> UpdateUserAsync(int id, string? username = null, string? password = null, int? roleId = null, bool? isActive = null, string? email = null)
         {
             try
             {
@@ -203,6 +210,11 @@ namespace MainServer.WebAPI.Services
                 if (isActive.HasValue)
                 {
                     requestBuilder.IsActive = isActive.Value;
+                }
+                
+                if (email != null)
+                {
+                    requestBuilder.Email = email;
                 }
                 
                 var response = await userClient.UpdateUserAsync(requestBuilder);
@@ -266,6 +278,7 @@ namespace MainServer.WebAPI.Services
                     Username = username,
                     Password = password
                 };
+                
                 var response = await authClient.AuthenticateUserAsync(request);
                 return response;
             }
@@ -295,6 +308,122 @@ namespace MainServer.WebAPI.Services
             catch (Grpc.Core.RpcException ex)
             {
                 throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+        }
+
+        // Notification operations
+        public async Task<NotificationResponse> CreateNotificationAsync(string recipientType, int bidId, int propertyId, string message, string? status = null, int? buyerId = null, int? agentId = null, string? propertyTitle = null)
+        {
+            try
+            {
+                var request = new CreateNotificationRequest
+                {
+                    BidId = bidId,
+                    RecipientType = recipientType,
+                    PropertyId = propertyId,
+                    Message = message
+                };
+                
+                if (buyerId.HasValue)
+                {
+                    request.BuyerId = buyerId.Value;
+                }
+                
+                if (agentId.HasValue)
+                {
+                    request.AgentId = agentId.Value;
+                }
+                
+                if (!string.IsNullOrEmpty(status))
+                {
+                    request.Status = status;
+                }
+                
+                if (!string.IsNullOrEmpty(propertyTitle))
+                {
+                    request.PropertyTitle = propertyTitle;
+                }
+                
+                var response = await notificationClient.CreateNotificationAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<GetNotificationsResponse> GetNotificationsAsync(string? recipientType = null, int? buyerId = null, int? agentId = null, bool? isRead = null)
+        {
+            try
+            {
+                var request = new GetNotificationsRequest();
+                if (!string.IsNullOrEmpty(recipientType))
+                {
+                    request.RecipientType = recipientType;
+                }
+                if (buyerId.HasValue)
+                {
+                    request.BuyerId = buyerId.Value;
+                }
+                if (agentId.HasValue)
+                {
+                    request.AgentId = agentId.Value;
+                }
+                if (isRead.HasValue)
+                {
+                    request.IsRead = isRead.Value;
+                }
+                var response = await notificationClient.GetNotificationsAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<NotificationResponse> GetNotificationAsync(int id)
+        {
+            try
+            {
+                var request = new GetNotificationRequest { Id = id };
+                var response = await notificationClient.GetNotificationAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<NotificationResponse> MarkNotificationAsReadAsync(int id)
+        {
+            try
+            {
+                var request = new MarkNotificationAsReadRequest { Id = id };
+                var response = await notificationClient.MarkNotificationAsReadAsync(request);
+                return response;
+            }
+            catch (Grpc.Core.RpcException ex)
+            {
+                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+            }
+            catch
+            {
+                throw;
             }
         }
         

@@ -494,6 +494,243 @@ Content-Type: application/json
 ###
 
 
+###############################################
+# NOTIFICATIONS CONTROLLER
+###############################################
+
+### 1. POST - Create Notification (Accepted Bid)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 1,
+    "BuyerId": 3,
+    "PropertyId": 1,
+    "Status": "Accepted",
+    "Message": "Your bid was accepted!",
+    "PropertyTitle": "Kamtjatka Student Apartment"
+}
+
+###
+
+### 2. POST - Create Notification (Rejected Bid)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 2,
+    "BuyerId": 4,
+    "PropertyId": 8,
+    "Status": "Rejected",
+    "Message": "Another bid was accepted.",
+    "PropertyTitle": "Studio, Aalborg"
+}
+
+###
+
+### 3. POST - Create Notification (Without PropertyTitle)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 3,
+    "BuyerId": 3,
+    "PropertyId": 1,
+    "Status": "Accepted",
+    "Message": "Congratulations! Your bid has been accepted."
+}
+
+###
+
+### 4. POST - Create Notification (Missing BidId - Should Fail)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BuyerId": 3,
+    "PropertyId": 1,
+    "Status": "Accepted",
+    "Message": "Missing BidId"
+}
+
+###
+
+### 5. POST - Create Notification (Missing BuyerId - Should Fail)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 4,
+    "PropertyId": 8,
+    "Status": "Rejected",
+    "Message": "Missing BuyerId"
+}
+
+###
+
+### 6. POST - Create Notification (Missing PropertyId - Should Fail)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 5,
+    "BuyerId": 4,
+    "Status": "Accepted",
+    "Message": "Missing PropertyId"
+}
+
+###
+
+### 7. POST - Create Notification (Missing Status - Should Fail)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 6,
+    "BuyerId": 3,
+    "PropertyId": 1,
+    "Message": "Missing Status"
+}
+
+###
+
+### 8. POST - Create Notification (Missing Message - Should Fail)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 7,
+    "BuyerId": 4,
+    "PropertyId": 8,
+    "Status": "Accepted"
+}
+
+###
+
+### 9. POST - Create Notification (Empty Status - Should Fail)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 8,
+    "BuyerId": 3,
+    "PropertyId": 1,
+    "Status": "",
+    "Message": "Empty status should fail"
+}
+
+###
+
+### 10. POST - Create Notification (Empty Message - Should Fail)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 9,
+    "BuyerId": 4,
+    "PropertyId": 8,
+    "Status": "Rejected",
+    "Message": ""
+}
+
+###
+
+### 11. GET - Get All Notifications
+GET {{WebAPI_HostAddress}}/notifications
+
+###
+
+### 12. GET - Get Notifications by BuyerId
+GET {{WebAPI_HostAddress}}/notifications?buyerId=3
+
+###
+
+### 13. GET - Get Unread Notifications for Buyer
+GET {{WebAPI_HostAddress}}/notifications?buyerId=3&isRead=false
+
+###
+
+### 14. GET - Get Read Notifications for Buyer
+GET {{WebAPI_HostAddress}}/notifications?buyerId=3&isRead=true
+
+###
+
+### 15. GET - Get All Unread Notifications
+GET {{WebAPI_HostAddress}}/notifications?isRead=false
+
+###
+
+### 16. GET - Get All Read Notifications
+GET {{WebAPI_HostAddress}}/notifications?isRead=true
+
+###
+
+### 17. GET - Get Single Notification (by ID)
+GET {{WebAPI_HostAddress}}/notifications/1
+
+###
+
+### 18. GET - Get Single Notification (Non-existent ID - Should Return 404)
+GET {{WebAPI_HostAddress}}/notifications/999
+
+###
+
+### 19. PUT - Mark Notification as Read
+PUT {{WebAPI_HostAddress}}/notifications/1/read
+
+###
+
+### 20. PUT - Mark Notification as Read (Non-existent ID - Should Return 404)
+PUT {{WebAPI_HostAddress}}/notifications/999/read
+
+###
+
+### 21. GET - Get Notifications for Buyer 4
+GET {{WebAPI_HostAddress}}/notifications?buyerId=4
+
+###
+
+### 22. GET - Get Notifications for Buyer 4 (Unread Only)
+GET {{WebAPI_HostAddress}}/notifications?buyerId=4&isRead=false
+
+###
+
+### 23. POST - Create Multiple Notifications (Test Data Setup)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 1,
+    "BuyerId": 3,
+    "PropertyId": 2,
+    "Status": "Accepted",
+    "Message": "Your bid of $515,000 was accepted!",
+    "PropertyTitle": "Kamtjatka Student Apartment"
+}
+
+###
+
+### 24. POST - Create Multiple Notifications (Test Data Setup)
+POST {{WebAPI_HostAddress}}/notifications
+Content-Type: application/json
+
+{
+    "BidId": 11,
+    "BuyerId": 4,
+    "PropertyId": 8,
+    "Status": "Rejected",
+    "Message": "Your bid was not selected. Another buyer's offer was accepted.",
+    "PropertyTitle": "High-Rise Apartment, Vejle"
+}
+
+###
+
+### 25. GET - Verify Created Notifications (After Creating Test Data)
+GET {{WebAPI_HostAddress}}/notifications
+
+###
+
+
 
 
 
