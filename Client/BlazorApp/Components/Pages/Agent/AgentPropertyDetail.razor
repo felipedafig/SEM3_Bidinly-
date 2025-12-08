@@ -36,78 +36,94 @@ else if (property == null)
 else
 {
     <div class="property-detail-section">
-        <div class="property-detail-container">
-            <button class="back-button" @onclick="async () => await GoBack()">← Back</button>
-            
-            <div class="property-detail-header">
-                <h1 class="property-detail-title">@property.Title</h1>
-                @if (!string.IsNullOrWhiteSpace(property.Status))
-                {
-                    <span class="property-detail-status">@property.Status</span>
-                }
-            </div>
-            
+    <div class="property-detail-container">
+        
+        <button class="back-button" @onclick="async () => await GoBack()">← Back</button>
+        
+        <div class="property-detail-header">
+            <h1 class="property-detail-title">@property.Title</h1>
+            @if (!string.IsNullOrWhiteSpace(property.Status))
+            {
+                <span class="property-detail-status">@property.Status</span>
+            }
+        </div>
+        
+        <!-- TOP GRID: IMAGES LEFT, SIDEBAR RIGHT -->
+<div class="property-detail-top-grid">
+
+    <!-- LEFT COLUMN -->
+    <div>
+        <!-- IMAGES -->
+        <div class="property-detail-images">
             <div class="property-detail-image-placeholder">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20.5523 5.44772 21 6 21H9M19 10L21 12M19 10V20C19 20.5523 18.5523 21 18 21H15M9 21C9.55228 21 10 20.5523 10 20V16C10 15.4477 10.4477 15 11 15H13C13.5523 15 14 15.4477 14 16V20C14 20.5523 14.4477 21 15 21M9 21H15" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20 5 20 6 21H9M19 10L21 12M19 10V20C19 20 18 21 18 21H15M9 21H15"
+                          stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-            
-            <div class="property-detail-info-grid">
-                <div class="property-detail-main">
-                    @if (!string.IsNullOrWhiteSpace(property.Address))
-                    {
-                        <div class="property-detail-address">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>@property.Address</span>
-                        </div>
-                    }
-                    
-                    @if (!string.IsNullOrWhiteSpace(property.Description))
-                    {
-                        <div class="property-detail-description">
-                            <h2>Description</h2>
-                            <p>@property.Description</p>
-                        </div>
-                    }
-                </div>
-                
-                <div class="property-detail-sidebar">
-                    <div class="property-detail-price">
-                        <h3>Starting Price</h3>
-                        <p class="price-amount">@property.StartingPrice.ToString("N0") Kr</p>
-                        <button class="bid-button" @onclick="GoToBids">View Bids</button>
-                    </div>
-                    
-                    <div class="property-detail-specs">
-                        <h3>Property Details</h3>
-                        <div class="spec-item">
-                            <span class="spec-label">Bedrooms:</span>
-                            <span class="spec-value">@property.Bedrooms</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Bathrooms:</span>
-                            <span class="spec-value">@property.Bathrooms</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Size:</span>
-                            <span class="spec-value">@property.SizeInSquareFeet.ToString("F0") sq ft</span>
-                        </div>
-                        @if (!string.IsNullOrWhiteSpace(property.AgentName))
-                        {
-                            <div class="spec-item">
-                                <span class="spec-label">Agent:</span>
-                                <span class="spec-value">@property.AgentName</span>
-                            </div>
-                        }
-                    </div>
-                </div>
+        </div>
+
+        <!-- ADDRESS *IMMEDIATELY BELOW IMAGES* -->
+        @if (!string.IsNullOrWhiteSpace(property.Address))
+        {
+            <div class="property-detail-address under-image-address">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.6 4 5.3 6 3.6C7.3 2 9.6 1 12 1C14.4 1 16.7 2 18.4 3.6C20 5.3 21 7.6 21 10Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 13C13.7 13 15 11.7 15 10C15 8.3 13.7 7 12 7C10.3 7 9 8.3 9 10C9 11.7 10.3 13 12 13Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span>@property.Address</span>
             </div>
+        }
+    </div>
+
+    <!-- RIGHT COLUMN: PRICE + SPECS -->
+    <div class="property-detail-sidebar">
+        <div class="property-detail-price">
+            <h3>Starting Price</h3>
+            <p class="price-amount">@property.StartingPrice.ToString("N0") Kr</p>
+            <button class="bid-button" @onclick="GoToBids">View Bids</button>
+        </div>
+
+        <div class="property-detail-specs">
+            <h3>Property Details</h3>
+
+            <div class="spec-item">
+                <span class="spec-label">Bedrooms:</span>
+                <span class="spec-value">@property.Bedrooms</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Bathrooms:</span>
+                <span class="spec-value">@property.Bathrooms</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span class="spec-value">@property.SizeInSquareFeet.ToString("F0") sq ft</span>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(property.AgentName))
+            {
+                <div class="spec-item">
+                    <span class="spec-label">Agent:</span>
+                    <span class="spec-value">@property.AgentName</span>
+                </div>
+            }
         </div>
     </div>
+
+</div>
+
+<!-- DESCRIPTION BELOW EVERYTHING -->
+@if (!string.IsNullOrWhiteSpace(property.Description))
+{
+    <div class="property-detail-description description-bottom">
+        <h2>Description</h2>
+        <p>@property.Description</p>
+    </div>
+}
+        
+
+    </div>
+</div>
 }
 
 @code {
