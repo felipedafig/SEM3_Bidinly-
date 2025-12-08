@@ -16,7 +16,7 @@ namespace shared.DTOs.Bids
 
         public string? Status { get; set; } // e.g., "Pending", "Accepted", "Rejected", "Expired"
         
-        public string? Message { get; set; }
+        public string? Deal { get; set; }
     }
 }
 

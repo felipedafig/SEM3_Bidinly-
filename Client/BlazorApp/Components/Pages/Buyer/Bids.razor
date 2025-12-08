@@ -86,7 +86,7 @@
                     </th>
                     <th>
                         <div class="table-header-cell">
-                            <span>Message</span>
+                            <span>Deal</span>
                         </div>
                     </th>
                     <th>
@@ -134,7 +134,7 @@
                             <td>@bid.Id</td>
                             <td>@(bid.PropertyTitle ?? "N/A")</td>
                             <td>@bid.Amount.ToString("N2") kr</td>
-                            <td class="message-cell">@bid.Message</td>
+                            <td class="deal-cell">@bid.Deal</td>
                             <td>@bid.ExpiryDate.ToString("dd/MM/yyyy")</td>
                             <td>
                                 <span class="status-badge status-@(bid.Status?.ToLower() ?? "pending")">

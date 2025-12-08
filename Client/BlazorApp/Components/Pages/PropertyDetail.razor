@@ -142,12 +142,12 @@ else
                 </div>
                 
                 <div class="bid-form-group">
-					<label for="bid-message">Message (optional)</label>
-    				<textarea id="bid-message"
+					<label for="bid-deal">Deal (optional)</label>
+    				<textarea id="bid-deal"
                       class="bid-form-input"
-                      @bind="bidMessage"
+                      @bind="bidDeal"
                       rows="3"
-                      placeholder="Write a message..."></textarea>
+                      placeholder="Suggest a deal ..."></textarea>
 				</div>
                 
                 <div class="bid-form-group">
@@ -202,7 +202,7 @@ else
     private string? errorMessage;
     private string? successMessage;
     private bool IsNotAvailable => property?.Status == "Not Available";
-    private string? bidMessage;
+    private string? bidDeal;
     
     
     protected override async Task OnParametersSetAsync()
@@ -301,7 +301,7 @@ else
                 PropertyId = PropertyId,
                 Amount = bidAmount,
                 ExpiryDate = bidExpiryDate,
-                Message= bidMessage
+                Deal= bidDeal
             };
             
             await BidService.CreateAsync(createBidDto);

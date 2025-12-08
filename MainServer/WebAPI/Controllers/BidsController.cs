@@ -75,7 +75,7 @@ namespace MainServer.WebAPI.Controllers
                     Amount = (decimal)bidResponse.Amount,
                     ExpiryDate = expiryDate,
                     Status = bidResponse.Status,
-                    Message = bidResponse.Message
+                    Deal = bidResponse.Deal
                 };
             }).ToList();
 
@@ -124,7 +124,7 @@ namespace MainServer.WebAPI.Controllers
                         Amount = (decimal)b.Amount,
                         ExpiryDate = expiry,
                         Status = b.Status,
-                        Message = b.Message
+                        Deal = b.Deal
                     };
                 }).ToList();
 
@@ -148,7 +148,7 @@ namespace MainServer.WebAPI.Controllers
                     createBidDto.PropertyId,
                     (double)createBidDto.Amount,
                     expiryDateSeconds,
-                    createBidDto.Message 
+                    createBidDto.Deal 
                 );
 
 
@@ -174,7 +174,7 @@ namespace MainServer.WebAPI.Controllers
                     Amount = (decimal)bidResponse.Amount,
                     ExpiryDate = expiryDate,
                     Status = bidResponse.Status,
-                    Message = bidResponse.Message 
+                    Deal = bidResponse.Deal 
                 };
 
                 return CreatedAtAction(nameof(GetManyBids), new { id = bidDto.Id }, bidDto);

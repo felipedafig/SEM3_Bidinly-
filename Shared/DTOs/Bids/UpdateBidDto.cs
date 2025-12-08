@@ -16,7 +16,7 @@ namespace shared.DTOs.Bids
 
         public DateTime? ExpiryDate { get; set; }//should it be modifiable?
         
-        public string? Message { get; set; }
+        public string? Deal { get; set; }
 
     }
 }

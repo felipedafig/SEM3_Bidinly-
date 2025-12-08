@@ -16,20 +16,21 @@
                 <Authorized Context="authContext">
                     @{
                         var roleName = authContext.User.FindFirst("RoleName")?.Value;
-                        var dashboardRoute = string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase) 
-                            ? "buyer-dashboard" 
-                            : string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase) 
-                                ? "agent-dashboard" 
-                                : string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase)
-                                    ? "admin-dashboard"
-                                    : "buyer-dashboard";
+
+                        var isBuyer = string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase);
                         var isAgent = string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase);
                         var isAdmin = string.Equals(roleName, "Admin", StringComparison.OrdinalIgnoreCase);
-                        var isBuyer = string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase);
-                        
-                        var salesRoute = isAgent ? "agent/sales"
-                            : isBuyer ? "buyer/sales"
-                            : "sales";
+
+                        var dashboardRoute =
+                            isBuyer ? "buyer-dashboard" :
+                            isAgent ? "agent-dashboard" :
+                            isAdmin ? "admin-dashboard" :
+                            "buyer-dashboard";
+
+                        var salesRoute =
+                            isAgent ? "agent/sales" :
+                            isBuyer ? "buyer/sales" :
+                            "sales";
                     }
                     @if (isAdmin)
                     {
@@ -43,7 +44,7 @@
                     else
                     {
                         <button class="nav-link nav-button"
-                                @onclick='() => Navigation.NavigateTo("/", true)'>
+                                @onclick='() => Navigation.NavigateTo($"/{dashboardRoute}", true)'>
                             Home
                         </button>
                         @if (isAgent)
@@ -67,6 +68,18 @@
                         }
                         <div class="user-dropdown-menu @(isDropdownOpen ? "show" : "")" @onclick:stopPropagation="true">
                             <div class="dropdown-header">@authContext.User.Identity?.Name</div>
+                            @if (isBuyer)
+                            {
+                                <button class="dropdown-item" @onclick='() => Navigation.NavigateTo("/buyer-notifications")'>
+                                    Notifications (@NotificationCount)
+                                </button>
+                            }
+                            else if (isAgent)
+                            {
+                                <button class="dropdown-item" @onclick='() => Navigation.NavigateTo("/agent-notifications")'>
+                                    Notifications (@NotificationCount)
+                                </button>
+                            }
                             <button class="dropdown-item" @onclick="HandleLogout">Logout</button>
                         </div>
                     </div>
@@ -83,6 +96,7 @@
 
 @code {
     private bool isDropdownOpen = false;
+    private int NotificationCount = 0;
 
     protected override void OnInitialized()
     {

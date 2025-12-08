@@ -1,4 +1,3 @@
-@page "/dashboard"
 @page "/buyer-dashboard"
 @namespace BlazorApp.Components.Pages.Buyer
 @using shared.DTOs.Properties
@@ -55,12 +54,7 @@
             </NotAuthorized>
         </AuthorizeView>
         <div class="hero-search-container">
-            <input type="text" class="hero-search-bar" placeholder="Find a property..." @bind="searchQuery" @onkeydown="HandleSearchKeyDown" />
-            <button class="hero-search-button" @onclick="PerformSearch" type="button">
-                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
+            <input type="text" class="hero-search-bar" placeholder="Find a property..." @bind="searchQuery" @bind:event="oninput" />
         </div>
     </div>
 </div>
@@ -69,33 +63,28 @@
     <div class="filter-search-container">
         <div class="filter-field">
             <label class="filter-label">City</label>
-            <input type="text" class="filter-input" placeholder="city?" @bind="filterCity" />
+            <input type="text" class="filter-input" placeholder="city?" @bind="filterCity" @bind:event="oninput" />
         </div>
         <div class="filter-separator"></div>
         <div class="filter-field">
             <label class="filter-label">Bedrooms</label>
-            <input type="number" class="filter-input" placeholder="bedrooms?" min="0" @bind="filterBedrooms" />
+            <input type="number" class="filter-input" placeholder="bedrooms?" min="0" @bind="filterBedrooms" @bind:event="oninput" />
         </div>
         <div class="filter-separator"></div>
         <div class="filter-field">
             <label class="filter-label">Bathrooms</label>
-            <input type="number" class="filter-input" placeholder="bathrooms?" min="0" @bind="filterBathrooms" />
+            <input type="number" class="filter-input" placeholder="bathrooms?" min="0" @bind="filterBathrooms" @bind:event="oninput" />
         </div>
         <div class="filter-separator"></div>
         <div class="filter-field">
             <label class="filter-label">Min Price</label>
-            <input type="number" class="filter-input" placeholder="min price?" min="0" @bind="filterMinPrice" />
+            <input type="number" class="filter-input" placeholder="min price?" min="0" @bind="filterMinPrice" @bind:event="oninput" />
         </div>
         <div class="filter-separator"></div>
         <div class="filter-field">
             <label class="filter-label">Max Price</label>
-            <input type="number" class="filter-input" placeholder="max price?" min="0" @bind="filterMaxPrice" />
+            <input type="number" class="filter-input" placeholder="max price?" min="0" @bind="filterMaxPrice" @bind:event="oninput" />
         </div>
-        <button class="filter-search-button" @onclick="LoadProperties" type="button">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </button>
     </div>
 </div>
 
@@ -111,7 +100,7 @@
         }
         else
         {
-            @foreach (var property in properties)
+            @foreach (var property in filteredProperties)
             {
                 <div class="property-card" @onclick="() => NavigateToProperty(property.Id)">
                     <div class="card-image-placeholder">
@@ -125,7 +114,7 @@
                             <span class="info-item">Bedrooms: @property.Bedrooms</span>
                             <span class="info-item">Bathrooms: @property.Bathrooms</span>
                             <span class="info-item">Size: @property.SizeInSquareFeet sq ft</span>
-                            <span class="info-item">Price: $@property.StartingPrice.ToString("N0")</span>
+                            <span class="info-item">Price: @property.StartingPrice.ToString("N0") Kr</span>
                         </div>
                         <div class="card-status">Status: @property.Status</div>
                     </div>
@@ -135,6 +124,7 @@
     </div>
 </div>
 
+
 @code {
     private List<PropertyDto>? properties;
     private bool isLoading = false;
@@ -143,11 +133,22 @@
     private string filterCity = string.Empty;
     private int? filterBedrooms;
     private int? filterBathrooms;
-    private double? filterMinPrice;
-    private double? filterMaxPrice;
+    private decimal? filterMinPrice;
+    private decimal? filterMaxPrice;
     private string welcomeRoleName = "Buyer";
     private string welcomeIconPath = "/assets/icons/buyerIcon.png";
     private string welcomeIconAlt = "Buyer Icon";
+    private IEnumerable<PropertyDto> filteredProperties =>
+        (properties ?? Enumerable.Empty<PropertyDto>())
+        .Where(p => p.Status == "Available" || p.Status == "Active") 
+        .Where(p => string.IsNullOrWhiteSpace(searchQuery) || 
+                    p.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+        .Where(p => string.IsNullOrWhiteSpace(filterCity) || 
+                    p.Address.Contains(filterCity, StringComparison.OrdinalIgnoreCase))
+        .Where(p => !filterBedrooms.HasValue || p.Bedrooms >= filterBedrooms.Value)
+        .Where(p => !filterBathrooms.HasValue || p.Bathrooms >= filterBathrooms.Value)
+        .Where(p => !filterMinPrice.HasValue || p.StartingPrice >= filterMinPrice.Value)
+        .Where(p => !filterMaxPrice.HasValue || p.StartingPrice <= filterMaxPrice.Value);
 
     protected override async Task OnInitializedAsync()
     {
@@ -196,9 +197,12 @@
         isLoading = true;
         try
         {
-            properties = await PropertyService.GetAllAsync();
+            var allProps = await PropertyService.GetAllAsync();
+            properties = allProps
+                .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
-        catch (Exception ex)
+        catch
         {
             properties = new List<PropertyDto>();
         }
@@ -212,20 +216,6 @@
     {
         Navigation.NavigateTo($"/property/{propertyId}");
     }
+    
 
-    private async Task PerformSearch()
-    {
-        if (!string.IsNullOrWhiteSpace(searchQuery))
-        {
-            Navigation.NavigateTo($"/?search={Uri.EscapeDataString(searchQuery)}");
-        }
-    }
-
-    private async Task HandleSearchKeyDown(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter")
-        {
-            await PerformSearch();
-        }
-    }
 }
