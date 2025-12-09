@@ -11,6 +11,7 @@ import via.pro3.datatierserver.repositories.IUserRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import via.pro3.datatierserver.security.PasswordHasher;
 
 @GrpcService
 public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
@@ -45,7 +46,8 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
 
             User newUser = new User();
             newUser.setUsername(request.getUsername());
-            newUser.setPassword(request.getPassword());
+            String hashedPassword = PasswordHasher.hash(request.getPassword());
+            newUser.setPassword(hashedPassword);
             newUser.setRoleId(request.getRoleId());
             newUser.setIsActive(true); // New users are active by default
             if (request.hasEmail() && !request.getEmail().trim().isEmpty()) {
@@ -148,9 +150,10 @@ public class UserGrpcService extends UserServiceGrpc.UserServiceImplBase {
                 }
                 user.setUsername(request.getUsername());
             }
-            
+
             if (request.hasPassword()) {
-                user.setPassword(request.getPassword());
+                String hashedPassword = PasswordHasher.hash(request.getPassword());
+                user.setPassword(hashedPassword);
             }
             
             if (request.hasRoleId()) {
