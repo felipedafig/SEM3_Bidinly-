@@ -6,10 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import via.pro3.datatierserver.grpc.BidServiceGrpc;
 import via.pro3.datatierserver.grpc.DataTierProto;
 import via.pro3.datatierserver.model.Bid;
+import via.pro3.datatierserver.model.User;
 import via.pro3.datatierserver.repositories.IBidRepository;
+import via.pro3.datatierserver.repositories.IUserRepository;
+import via.pro3.datatierserver.security.AESUtil;
 
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.Signature;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.time.Instant;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,30 +29,71 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
     @Autowired
     private IBidRepository bidRepository;
 
+    @Autowired
+    private IUserRepository userRepository;
+
     @Override
     public void createBid(DataTierProto.CreateBidRequest request, StreamObserver<DataTierProto.BidResponse> responseObserver) {
         try {
+            //build bid
             Bid newBid = new Bid();
             newBid.setBuyerId(request.getBuyerId());
             newBid.setPropertyId(request.getPropertyId());
             newBid.setAmount(BigDecimal.valueOf(request.getAmount()));
             newBid.setExpiryDate(Instant.ofEpochSecond(request.getExpiryDateSeconds()));
             newBid.setStatus("Pending");
-            newBid.setDeal("");
+            newBid.setDeal(request.hasDeal() ? request.getDeal() : "");
 
-            if (request.hasDeal()) {newBid.setDeal(request.getDeal());}
+            //Fetch buyer for signing
+            Optional<User> userOpt = userRepository.getSingle(request.getBuyerId());
+            if (userOpt.isEmpty()) {
+                responseObserver.onError(io.grpc.Status.NOT_FOUND
+                        .withDescription("Buyer not found")
+                        .asRuntimeException());
+                return;
+            }
+            User buyer = userOpt.get();
 
+            //decrypt private key
+            String encryptedPrivateKey = buyer.getPrivateKey();
+            String passwordHash = buyer.getPassword();
+            String privateKeyBase64 = AESUtil.decrypt(encryptedPrivateKey, passwordHash);
+            byte[] privateKeyBytes = Base64.getDecoder().decode(privateKeyBase64);
+
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
+
+            // build message to sign
+            String message = request.getBuyerId() + "|" +
+                    request.getPropertyId() + "|" +
+                    request.getAmount() + "|" +
+                    request.getExpiryDateSeconds() + "|" +
+                    (request.hasDeal() ? request.getDeal() : "");
+
+            byte[] messageBytes = message.getBytes(StandardCharsets.UTF_8);
+
+            //sign the msg
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initSign(privateKey);
+            signature.update(messageBytes);
+            byte[] signatureBytes = signature.sign();
+            String signatureBase64 = Base64.getEncoder().encodeToString(signatureBytes);
+
+            //save signature in bid
+            newBid.setSignature(signatureBase64);
+
+            //save bid
             Bid savedBid = bidRepository.save(newBid);
-            
+
             DataTierProto.BidResponse response = convertToBidResponse(savedBid);
-            
             responseObserver.onNext(response);
             responseObserver.onCompleted();
-            
+
         } catch (Exception e) {
             responseObserver.onError(io.grpc.Status.INTERNAL
-                .withDescription("Error creating bid: " + e.getMessage())
-                .asRuntimeException());
+                    .withDescription("Error creating bid: " + e.getMessage())
+                    .asRuntimeException());
         }
     }
 
@@ -223,6 +273,7 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
             .setExpiryDateSeconds(expiryDateSeconds)
                 .setStatus(bid.getStatus() != null ? bid.getStatus() : "Pending")
                 .setDeal(bid.getDeal() != null ? bid.getDeal() : "")
+                .setSignature(bid.getSignature() != null ? bid.getSignature() : "")
             .build();
     }
 

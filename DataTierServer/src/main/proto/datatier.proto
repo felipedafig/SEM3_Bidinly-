@@ -91,6 +91,7 @@ message BidResponse {
   int64 expiryDateSeconds = 5;
   string status = 6;
   optional string deal = 7;
+  optional string signature = 8;
 }
 
 message GetBidsResponse {

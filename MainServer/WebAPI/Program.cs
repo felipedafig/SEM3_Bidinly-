@@ -6,6 +6,17 @@ using MainServer.WebAPI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazor",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5122")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
+});
 
 builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
 
@@ -21,6 +32,7 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 
 app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+app.UseCors("AllowBlazor");
 
 app.MapControllers();
 

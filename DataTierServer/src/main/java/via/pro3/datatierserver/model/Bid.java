@@ -48,6 +48,9 @@ public class Bid {
     @Size(max = 50)
     private String status = "Pending";
 
+    @Column(name = "\"Signature\"", columnDefinition = "TEXT")
+    private String signature;
+
     public Bid() {
     }
 
@@ -127,4 +130,7 @@ public class Bid {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getSignature() { return signature; }
+    public void setSignature(String signature) { this.signature = signature; }
 }
