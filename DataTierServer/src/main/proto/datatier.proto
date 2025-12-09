@@ -92,6 +92,7 @@ message BidResponse {
   string status = 6;
   optional string deal = 7;
   optional string signature = 8;
+  bool signatureValid = 9;
 }
 
 message GetBidsResponse {

@@ -75,7 +75,8 @@ namespace MainServer.WebAPI.Controllers
                     Amount = (decimal)bidResponse.Amount,
                     ExpiryDate = expiryDate,
                     Status = bidResponse.Status,
-                    Deal = bidResponse.Deal
+                    Deal = bidResponse.Deal,
+                    SignatureValid = bidResponse.SignatureValid
                 };
             }).ToList();
 
@@ -174,7 +175,8 @@ namespace MainServer.WebAPI.Controllers
                     Amount = (decimal)bidResponse.Amount,
                     ExpiryDate = expiryDate,
                     Status = bidResponse.Status,
-                    Deal = bidResponse.Deal 
+                    Deal = bidResponse.Deal ,
+                    SignatureValid = bidResponse.SignatureValid
                 };
 
                 return CreatedAtAction(nameof(GetManyBids), new { id = bidDto.Id }, bidDto);

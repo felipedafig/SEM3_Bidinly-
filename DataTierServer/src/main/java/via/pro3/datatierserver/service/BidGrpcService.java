@@ -15,8 +15,10 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.List;
@@ -261,20 +263,63 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
     }
 
     private DataTierProto.BidResponse convertToBidResponse(Bid bid) {
-        long expiryDateSeconds = bid.getExpiryDate() != null 
-            ? bid.getExpiryDate().getEpochSecond() 
-            : 0;
-        
+
+        long expiryDateSeconds = bid.getExpiryDate() != null
+                ? bid.getExpiryDate().getEpochSecond()
+                : 0;
+
+        boolean signatureValid = false;
+
+        try {
+            // fetch buyer public key
+            Optional<User> userOpt = userRepository.getSingle(bid.getBuyerId());
+            if (userOpt.isPresent()) {
+                User user = userOpt.get();
+
+                String publicKeyBase64 = user.getPublicKey();
+                byte[] publicKeyBytes = Base64.getDecoder().decode(publicKeyBase64);
+
+                X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicKeyBytes);
+                KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+                PublicKey publicKey = keyFactory.generatePublic(keySpec);
+
+                // recreate message
+                String message = bid.getBuyerId() + "|" +
+                        bid.getPropertyId() + "|" +
+                        bid.getAmount().doubleValue() + "|" +
+                        expiryDateSeconds + "|" +
+                        (bid.getDeal() != null ? bid.getDeal() : "");
+
+                byte[] messageBytes = message.getBytes(StandardCharsets.UTF_8);
+
+                //decode signature
+                if (bid.getSignature() != null && !bid.getSignature().isEmpty()) {
+                    byte[] signatureBytes = Base64.getDecoder().decode(bid.getSignature());
+
+                    //verify
+                    Signature sig = Signature.getInstance("SHA256withRSA");
+                    sig.initVerify(publicKey);
+                    sig.update(messageBytes);
+                    signatureValid = sig.verify(signatureBytes);
+                }
+            }
+
+        } catch (Exception e) {
+            signatureValid = false;
+        }
+
+        //bild response
         return DataTierProto.BidResponse.newBuilder()
-            .setId(bid.getId() != null ? bid.getId() : 0)
-            .setBuyerId(bid.getBuyerId() != null ? bid.getBuyerId() : 0)
-            .setPropertyId(bid.getPropertyId() != null ? bid.getPropertyId() : 0)
-            .setAmount(bid.getAmount() != null ? bid.getAmount().doubleValue() : 0.0)
-            .setExpiryDateSeconds(expiryDateSeconds)
+                .setId(bid.getId() != null ? bid.getId() : 0)
+                .setBuyerId(bid.getBuyerId() != null ? bid.getBuyerId() : 0)
+                .setPropertyId(bid.getPropertyId() != null ? bid.getPropertyId() : 0)
+                .setAmount(bid.getAmount() != null ? bid.getAmount().doubleValue() : 0.0)
+                .setExpiryDateSeconds(expiryDateSeconds)
                 .setStatus(bid.getStatus() != null ? bid.getStatus() : "Pending")
                 .setDeal(bid.getDeal() != null ? bid.getDeal() : "")
                 .setSignature(bid.getSignature() != null ? bid.getSignature() : "")
-            .build();
+                .setSignatureValid(signatureValid) // ⭐ NEW FIELD
+                .build();
     }
 
     @Override
