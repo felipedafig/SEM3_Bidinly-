@@ -35,6 +35,15 @@ public class User {
     @Size(max = 100)
     private String email;
 
+    @Column(name = "\"PublicKey\"", columnDefinition = "TEXT")
+    private String publicKey;
+
+    @Column(name = "\"PrivateKey\"", columnDefinition = "TEXT")
+    private String privateKey;
+
+    @Column(name = "\"Certificate\"", columnDefinition = "TEXT")
+    private String certificate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "\"RoleId\"", insertable = false, updatable = false,
             foreignKey = @ForeignKey(name = "fk_role"))
@@ -114,4 +123,13 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPublicKey() { return publicKey; }
+    public void setPublicKey(String publicKey) { this.publicKey = publicKey; }
+
+    public String getPrivateKey() { return privateKey; }
+    public void setPrivateKey(String privateKey) { this.privateKey = privateKey; }
+
+    public String getCertificate() { return certificate; }
+    public void setCertificate(String certificate) { this.certificate = certificate; }
 }

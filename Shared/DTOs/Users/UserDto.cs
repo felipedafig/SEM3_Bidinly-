@@ -7,6 +7,8 @@ namespace shared.DTOs.Users
         public string? RoleName { get; set; }//we display the role name, readable text
         public bool IsActive { get; set; } = true;
         public string? Email { get; set; }
+
+        public string? PublicKey { get; set; }
     }
 }
 

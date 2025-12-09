@@ -141,6 +141,7 @@ message UserResponse {
   int32 roleId = 3;
   bool isActive = 4;
   optional string email = 5;
+  string publicKey = 6;
 }
 
 message GetUsersResponse {
@@ -223,6 +224,7 @@ message LoginResponse {
   string username = 2;
   int32 roleId = 3;
   optional string email = 4;
+  string publicKey = 5;
 }
 
 // Notification messages

@@ -66,7 +66,8 @@ public class AuthGrpcService extends AuthServiceGrpc.AuthServiceImplBase {
             DataTierProto.LoginResponse.Builder responseBuilder = DataTierProto.LoginResponse.newBuilder()
                     .setId(user.getId() != null ? user.getId() : 0)
                     .setUsername(user.getUsername() != null ? user.getUsername() : "")
-                    .setRoleId(user.getRoleId() != null ? user.getRoleId() : 0);
+                    .setRoleId(user.getRoleId() != null ? user.getRoleId() : 0)
+                    .setPublicKey(user.getPublicKey());
 
             if (user.getEmail() != null && !user.getEmail().trim().isEmpty()) {
                 responseBuilder.setEmail(user.getEmail());
