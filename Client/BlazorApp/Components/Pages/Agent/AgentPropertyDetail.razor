@@ -44,9 +44,24 @@ else
         <div class="property-detail-header">
             <div class="header-left">
                 <h1 class="property-detail-title">@property.Title</h1>
-                @if (!string.IsNullOrWhiteSpace(property.Status))
+                @if (property.CreationStatus == "Pending")
                 {
-                    <span class="property-detail-status">@property.Status</span>
+                    <span class="property-detail-status pending">Waiting for approval</span>
+                }
+                else if (property.CreationStatus == "Rejected")
+                {
+                    <span class="property-detail-status rejected">Rejected</span>
+                }
+                else
+                {
+                    @if (property.Status == "Sold")
+                    {
+                        <span class="property-detail-status sold">Sold</span>
+                    }
+                    else if (!string.IsNullOrWhiteSpace(property.Status))
+                    {
+                        <span class="property-detail-status normal">@property.Status</span>
+                    }
                 }
             </div>
 
@@ -91,7 +106,11 @@ else
         <div class="property-detail-price">
             <h3>Starting Price</h3>
             <p class="price-amount">@property.StartingPrice.ToString("N0") Kr</p>
-            <button class="bid-button" @onclick="GoToBids">View Bids</button>
+            @if (property.CreationStatus == "Approved" 
+                 && property.Status != "Sold")
+            {
+                <button class="bid-button" @onclick="GoToBids">View Bids</button>
+            }
         </div>
 
         <div class="property-detail-specs">

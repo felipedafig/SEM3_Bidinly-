@@ -141,7 +141,7 @@
         {
             @foreach (var property in filteredProperties)
             {
-                <div class="property-card" @onclick="() => NavigateToProperty(property.Id)">
+                <div class="property-card" @onclick="() => NavigateBasedOnOwner(property)">
                     <div class="card-image-placeholder">
                         <span>Image</span>
                     </div>
@@ -182,22 +182,21 @@
 
     private string searchQuery = string.Empty;
     private string filterCity = string.Empty;
-
     private int? filterBedrooms;
     private int? filterBathrooms;
     private decimal? filterMinPrice;
     private decimal? filterMaxPrice;
-
     private string welcomeRoleName = "Agent";
     private string welcomeIconPath = "/assets/icons/agentIcon.png";
     private string welcomeIconAlt = "Agent Icon";
-
     private List<PropertyDto>? properties;
     private bool isLoading = true;
+    private int? currentAgentId = null;
 
     protected override async Task OnInitializedAsync()
     {
         await LoadAuthState();
+        await LoadAgentId();
         await LoadProperties();
     }
 
@@ -233,11 +232,13 @@
     private async Task LoadProperties()
     {
         isLoading = true;
-
+        
         try
         {
             var allProps = await PropertyService.GetAllAsync();
+
             properties = allProps
+                .Where(p => p.CreationStatus == "Approved")
                 .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
@@ -253,18 +254,47 @@
 
     private IEnumerable<PropertyDto> filteredProperties =>
         (properties ?? Enumerable.Empty<PropertyDto>())
-            .Where(p => p.Status == "Available" || p.Status == "Active")
-            .Where(p => string.IsNullOrWhiteSpace(searchQuery)
-                     || p.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
-            .Where(p => string.IsNullOrWhiteSpace(filterCity)
-                     || p.Address.Contains(filterCity, StringComparison.OrdinalIgnoreCase))
-            .Where(p => !filterBedrooms.HasValue || p.Bedrooms >= filterBedrooms.Value)
-            .Where(p => !filterBathrooms.HasValue || p.Bathrooms >= filterBathrooms.Value)
-            .Where(p => !filterMinPrice.HasValue || p.StartingPrice >= filterMinPrice.Value)
-            .Where(p => !filterMaxPrice.HasValue || p.StartingPrice <= filterMaxPrice.Value);
+        .Where(p => p.CreationStatus == "Approved")
+        .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase))
+        .Where(p => string.IsNullOrWhiteSpace(searchQuery)
+                    || p.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+        .Where(p => string.IsNullOrWhiteSpace(filterCity)
+                    || p.Address.Contains(filterCity, StringComparison.OrdinalIgnoreCase))
+        .Where(p => !filterBedrooms.HasValue || p.Bedrooms >= filterBedrooms.Value)
+        .Where(p => !filterBathrooms.HasValue || p.Bathrooms >= filterBathrooms.Value)
+        .Where(p => !filterMinPrice.HasValue || p.StartingPrice >= filterMinPrice.Value)
+        .Where(p => !filterMaxPrice.HasValue || p.StartingPrice <= filterMaxPrice.Value);
 
     private void NavigateToProperty(int propertyId)
     {
         Navigation.NavigateTo($"/property/{propertyId}");
+    }
+    
+    private async Task LoadAgentId()
+    {
+        try
+        {
+            var authState = await AuthProvider.GetAuthenticationStateAsync();
+            var idClaim = authState.User.FindFirst("Id")?.Value;
+
+            if (int.TryParse(idClaim, out int id))
+                currentAgentId = id;
+        }
+        catch
+        {
+            currentAgentId = null;
+        }
+    }
+    
+    private void NavigateBasedOnOwner(PropertyDto property)
+    {
+        if (currentAgentId.HasValue && property.AgentId == currentAgentId.Value)
+        {
+            Navigation.NavigateTo($"/agent/property/{property.Id}");
+        }
+        else
+        {
+            Navigation.NavigateTo($"/property/{property.Id}");
+        }
     }
 }
