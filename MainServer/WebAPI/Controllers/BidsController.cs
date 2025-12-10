@@ -125,7 +125,8 @@ namespace MainServer.WebAPI.Controllers
                         Amount = (decimal)b.Amount,
                         ExpiryDate = expiry,
                         Status = b.Status,
-                        Deal = b.Deal
+                        Deal = b.Deal,
+                        SignatureValid = b.SignatureValid
                     };
                 }).ToList();
 
