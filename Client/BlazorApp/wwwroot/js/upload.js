@@ -8,6 +8,7 @@ window.multiUpload = {
 
         const formData = new FormData();
         for (const file of input.files) {
+            console.log("JS File:", file.name, "size:", file.size);
             formData.append("files", file, file.name);
         }
 
@@ -17,10 +18,20 @@ window.multiUpload = {
         });
 
         if (!response.ok) {
-            const errorText = await response.text();
+            let errorText = await response.text();
+            console.error("Upload error response:", errorText);
             throw new Error("Upload failed: " + errorText);
         }
 
-        return await response.json();
+        // 🚀 FIX: Use text() to avoid buffering crash inside json()
+        const text = await response.text();
+        console.log("Server response text:", text);
+
+        try {
+            return JSON.parse(text);
+        } catch (err) {
+            console.error("JSON parse failed:", err);
+            throw new Error("Upload succeeded but response JSON is invalid.");
+        }
     }
 };
