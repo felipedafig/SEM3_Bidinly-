@@ -89,13 +89,22 @@ else
             }
             else
             {
-                <div class="property-detail-image-gallery">
-                    @foreach (var url in imageUrls)
+                <div class="image-carousel">
+
+                    @if (imageUrls.Count > 1)
                     {
-                        <img src="@url"
-                             class="property-detail-image clickable-image"
-                             @onclick="() => OpenImage(url)" />
+                        <button class="carousel-btn left" @onclick="PrevImage">‹</button>
                     }
+
+                    <img src="@imageUrls[currentImageIndex]"
+                         class="carousel-image clickable-image"
+                         @onclick="() => OpenImage(imageUrls[currentImageIndex])" />
+
+                    @if (imageUrls.Count > 1)
+                    {
+                        <button class="carousel-btn right" @onclick="NextImage">›</button>
+                    }
+
                 </div>
             }
 
@@ -404,6 +413,20 @@ else
     {
         showImageModal = false;
         selectedImageUrl = null;
+    }
+    
+    private int currentImageIndex = 0;
+
+    private void NextImage()
+    {
+        if (imageUrls.Count == 0) return;
+        currentImageIndex = (currentImageIndex + 1) % imageUrls.Count;
+    }
+
+    private void PrevImage()
+    {
+        if (imageUrls.Count == 0) return;
+        currentImageIndex = (currentImageIndex - 1 + imageUrls.Count) % imageUrls.Count;
     }
 
 }
