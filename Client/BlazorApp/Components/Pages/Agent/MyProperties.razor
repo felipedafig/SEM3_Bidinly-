@@ -17,7 +17,7 @@
 @inject HttpPropertyService PropertyService
 
 @inject NavigationManager Navigation
-
+@inject IJSRuntime JS
 @inject AuthenticationStateProvider AuthProvider
 
 <PageTitle>My Properties - Bidinly</PageTitle>
@@ -315,12 +315,7 @@
                     
                     <div class="form-group">
                         <label class="form-label">Property Images (up to 5)</label>
-                        <InputFile OnChange="HandleImageSelected" multiple accept="image/*" />
-
-                        @if (selectedImages?.Count > 0)
-                        {
-                            <p>@selectedImages.Count image(s) selected</p>
-                        }
+                        <input id="propertyImagesInput" type="file" multiple accept="image/*" />
                     </div>
 
                     @if (!string.IsNullOrEmpty(createPropertyError))
@@ -362,7 +357,6 @@
     private string filterAddress = string.Empty;
     private string filterStatus = string.Empty;
     private List<PropertyDto>? filteredProperties = new();
-    private List<IBrowserFile> selectedImages = new();
 
     protected override async Task OnInitializedAsync()
 
@@ -552,35 +546,26 @@
 
         try
         {
-            // STEP 1 — Upload images to WebAPI if any were selected
-            if (selectedImages.Count > 0)
+            try
             {
-                var client = new HttpClient();
-                client.BaseAddress = new Uri("https://localhost:7204/"); // WebAPI URL
+                var uploadedUrls = await JS.InvokeAsync<List<string>>(
+                    "multiUpload.uploadFiles",
+                    "propertyImagesInput", // input element ID
+                    "https://localhost:7204/properties/upload"
+                );
 
-                var form = new MultipartFormDataContent();
-
-                foreach (var file in selectedImages)
+                if (uploadedUrls != null && uploadedUrls.Count > 0)
                 {
-                    var stream = file.OpenReadStream(10_000_000); // 10 MB per file
-                    var content = new StreamContent(stream);
-                    content.Headers.ContentType =
-                        new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
-
-                    form.Add(content, "files", file.Name);
+                    createPropertyDto.ImageUrl = 
+                        System.Text.Json.JsonSerializer.Serialize(uploadedUrls);
                 }
-
-                var uploadResponse = await client.PostAsync("properties/upload", form);
-
-                if (!uploadResponse.IsSuccessStatusCode)
-                {
-                    createPropertyError = "Failed to upload images.";
-                    return;
-                }
-
-                var urls = await uploadResponse.Content.ReadFromJsonAsync<List<string>>();
-                createPropertyDto.ImageUrl = System.Text.Json.JsonSerializer.Serialize(urls); 
-            } 
+            }
+            catch (Exception ex)
+            {
+                createPropertyError = "Image upload failed: " + ex.Message;
+                isCreatingProperty = false;
+                return;
+            }
             
             await PropertyService.CreateAsync(createPropertyDto);
 
@@ -595,12 +580,6 @@
         {
             isCreatingProperty = false;
         }
-    }
-        
-    
-    private void HandleImageSelected(InputFileChangeEventArgs e)
-    {
-        selectedImages = e.GetMultipleFiles(5).ToList();
     }
 
 }

@@ -305,6 +305,7 @@ namespace MainServer.WebAPI.Controllers
             [FromServices] CloudinaryDotNet.Cloudinary cloudinary,
             List<IFormFile> files)
         {
+            Console.WriteLine("=== UploadImages CALLED ===");
             var sw = System.Diagnostics.Stopwatch.StartNew();
             Console.WriteLine("=== UploadImages PARALLEL START ===");
 
@@ -319,6 +320,7 @@ namespace MainServer.WebAPI.Controllers
                 var tasks = files.Select(async file =>
                 {
                     var fileSw = System.Diagnostics.Stopwatch.StartNew();
+                    Console.WriteLine($"File received: {file.FileName}, size: {file.Length}");
                     Console.WriteLine($"(Parallel) Compressing {file.FileName}...");
 
                     // Compress image first
