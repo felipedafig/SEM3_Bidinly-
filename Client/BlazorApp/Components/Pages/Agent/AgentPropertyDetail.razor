@@ -64,8 +64,7 @@ else
                     }
                 }
             </div>
-
-            <!-- ACTION BUTTONS FOR AGENT -->
+            
             <div class="agent-action-buttons">
                 <button class="agent-btn edit-btn" @onclick="EditProperty">Edit</button>
                 <button class="agent-btn delete-btn" @onclick="DeleteProperty">Delete</button>
@@ -73,22 +72,33 @@ else
         </div>
         
         
-        <!-- TOP GRID: IMAGES LEFT, SIDEBAR RIGHT -->
+
 <div class="property-detail-top-grid">
-
-    <!-- LEFT COLUMN -->
+    
     <div>
-        <!-- IMAGES -->
         <div class="property-detail-images">
-            <div class="property-detail-image-placeholder">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20 5 20 6 21H9M19 10L21 12M19 10V20C19 20 18 21 18 21H15M9 21H15"
-                          stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-        </div>
 
-        <!-- ADDRESS *IMMEDIATELY BELOW IMAGES* -->
+            @if (imageUrls.Count == 0)
+            {
+                <div class="property-detail-image-placeholder">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20 5 20 6 21H9M19 10L21 12M19 10V20C19 20 18 21 18 21H15M9 21H15"
+                              stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            }
+            else
+            {
+                <div class="property-detail-image-gallery">
+                    @foreach (var url in imageUrls)
+                    {
+                        <img src="@url" class="property-detail-image" />
+                    }
+                </div>
+            }
+
+        </div>
+        
         @if (!string.IsNullOrWhiteSpace(property.Address))
         {
             <div class="property-detail-address under-image-address">
@@ -100,8 +110,7 @@ else
             </div>
         }
     </div>
-
-    <!-- RIGHT COLUMN: PRICE + SPECS -->
+    
     <div class="property-detail-sidebar">
         <div class="property-detail-price">
             <h3>Starting Price</h3>
@@ -141,7 +150,6 @@ else
 
 </div>
 
-<!-- DESCRIPTION BELOW EVERYTHING -->
 @if (!string.IsNullOrWhiteSpace(property.Description))
 {
     <div class="property-detail-description description-bottom">
@@ -205,8 +213,7 @@ else
                                   @bind="editDto.Description"
                                   rows="5"></textarea>
                     </div>
-
-                    <!-- IMAGE URL -->
+                    
                     <div class="form-group">
                         <label class="form-label">Image URL</label>
                         <InputText class="form-input" @bind-Value="editDto.ImageUrl"
@@ -253,8 +260,8 @@ else
     private bool showEditModal = false;
     private bool isEditing = false;
     private string? editError = null;
-
     private UpdatePropertyDto editDto = new();
+    private List<string> imageUrls = new();
     
     
     
@@ -275,6 +282,20 @@ else
         {
             loading = true;
             property = await PropertyService.GetByIdAsync(PropertyId);
+            imageUrls = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(property?.ImageUrl))
+            {
+                try
+                {
+                    imageUrls = System.Text.Json.JsonSerializer.Deserialize<List<string>>(property.ImageUrl)
+                                ?? new List<string>();
+                }
+                catch
+                {
+                    imageUrls.Add(property.ImageUrl);
+                }
+            }
         }
         catch (Exception ex)
         {

@@ -292,5 +292,50 @@ namespace MainServer.WebAPI.Controllers
                 throw;
             }
         }
+        
+        [HttpPost("upload")]
+        [RequestSizeLimit(20_000_000)] // allow up to ~20MB total (5 medium images)
+        public async Task<ActionResult<List<string>>> UploadImages(
+            [FromServices] CloudinaryDotNet.Cloudinary cloudinary,
+            List<IFormFile> files)
+        {
+            try
+            {
+                if (files == null || files.Count == 0)
+                    return BadRequest("No files provided.");
+
+                if (files.Count > 5)
+                    return BadRequest("Maximum 5 images allowed.");
+
+                var uploadedUrls = new List<string>();
+
+                foreach (var file in files)
+                {
+                    using var stream = file.OpenReadStream();
+
+                    var uploadParams = new CloudinaryDotNet.Actions.ImageUploadParams
+                    {
+                        File = new CloudinaryDotNet.FileDescription(file.FileName, stream),
+                        Folder = "bidinly-properties", 
+                        UseFilename = false,
+                        UniqueFilename = true,
+                        Overwrite = false
+                    };
+
+                    var uploadResult = await cloudinary.UploadAsync(uploadParams);
+
+                    if (uploadResult.SecureUrl == null)
+                        return StatusCode(500, "Cloudinary failed to upload image.");
+
+                    uploadedUrls.Add(uploadResult.SecureUrl.ToString());
+                }
+
+                return Ok(uploadedUrls);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Upload failed: {ex.Message}");
+            }
+        }
     }
 }

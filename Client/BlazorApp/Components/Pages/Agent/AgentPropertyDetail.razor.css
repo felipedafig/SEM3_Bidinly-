@@ -551,3 +551,16 @@
         padding: 1rem;
     }
 }
+
+.property-detail-image-gallery {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.property-detail-image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}

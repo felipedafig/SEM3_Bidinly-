@@ -289,6 +289,16 @@
                         <ValidationMessage For="@(() => createPropertyDto.Description)" />
 
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Property Images (up to 5)</label>
+                        <InputFile OnChange="HandleImageSelected" multiple accept="image/*" />
+
+                        @if (selectedImages?.Count > 0)
+                        {
+                            <p>@selectedImages.Count image(s) selected</p>
+                        }
+                    </div>
 
                     @if (!string.IsNullOrEmpty(createPropertyError))
 
@@ -319,24 +329,17 @@
 @code {
 
     private List<PropertyDto>? properties;
-
     private bool isLoading = false;
-
     private int? currentAgentId = null;
-
     private bool showCreateModal = false;
-
     private bool isCreatingProperty = false;
-
     private string createPropertyError = string.Empty;
-
     private CreatePropertyDto createPropertyDto = new CreatePropertyDto { Title = string.Empty };
-    
     private string filterTitle = string.Empty;
     private string filterAddress = string.Empty;
     private string filterStatus = string.Empty;
-
     private List<PropertyDto>? filteredProperties = new();
+    private List<IBrowserFile> selectedImages = new();
 
     protected override async Task OnInitializedAsync()
 
@@ -520,41 +523,61 @@
     }
 
     private async Task HandleCreateProperty()
-
     {
-
         isCreatingProperty = true;
-
         createPropertyError = string.Empty;
 
         try
-
         {
+            // STEP 1 — Upload images to WebAPI if any were selected
+            if (selectedImages.Count > 0)
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri("https://localhost:7204/"); // WebAPI URL
 
+                var form = new MultipartFormDataContent();
+
+                foreach (var file in selectedImages)
+                {
+                    var stream = file.OpenReadStream(10_000_000); // 10 MB per file
+                    var content = new StreamContent(stream);
+                    content.Headers.ContentType =
+                        new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
+
+                    form.Add(content, "files", file.Name);
+                }
+
+                var uploadResponse = await client.PostAsync("properties/upload", form);
+
+                if (!uploadResponse.IsSuccessStatusCode)
+                {
+                    createPropertyError = "Failed to upload images.";
+                    return;
+                }
+
+                var urls = await uploadResponse.Content.ReadFromJsonAsync<List<string>>();
+                createPropertyDto.ImageUrl = System.Text.Json.JsonSerializer.Serialize(urls); 
+            } 
+            
             await PropertyService.CreateAsync(createPropertyDto);
 
             HideCreatePropertyModal();
-
             await LoadProperties();
-
         }
-
         catch (Exception ex)
-
         {
-
             createPropertyError = $"An error occurred: {ex.Message}";
-
         }
-
         finally
-
         {
-
             isCreatingProperty = false;
-
         }
-
+    }
+        
+    
+    private void HandleImageSelected(InputFileChangeEventArgs e)
+    {
+        selectedImages = e.GetMultipleFiles(5).ToList();
     }
 
 }

@@ -60,8 +60,7 @@ public class Property {
     @Size(max = 50)
     private String creationStatus = "Pending";
 
-    @Column(name = "\"ImageUrl\"", length = 1000)
-    @Size(max = 1000)
+    @Column(name = "\"ImageUrl\"", columnDefinition = "TEXT")
     private String imageUrl;
 
     public Property() {

@@ -18,6 +18,20 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddSingleton(provider =>
+{
+    var config = provider.GetRequiredService<IConfiguration>();
+    var cloud = config.GetSection("Cloudinary");
+
+    var account = new CloudinaryDotNet.Account(
+        cloud["CloudName"],
+        cloud["ApiKey"],
+        cloud["ApiSecret"]
+    );
+
+    return new CloudinaryDotNet.Cloudinary(account);
+});
+
 builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
 
 builder.Services.AddOpenApi();
