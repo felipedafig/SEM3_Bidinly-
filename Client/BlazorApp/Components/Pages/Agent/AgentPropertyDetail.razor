@@ -92,7 +92,9 @@ else
                 <div class="property-detail-image-gallery">
                     @foreach (var url in imageUrls)
                     {
-                        <img src="@url" class="property-detail-image" />
+                        <img src="@url"
+                             class="property-detail-image clickable-image"
+                             @onclick="() => OpenImage(url)" />
                     }
                 </div>
             }
@@ -242,6 +244,16 @@ else
     </div>
 }
 
+@if (showImageModal && selectedImageUrl != null)
+{
+    <div class="image-modal-overlay" @onclick="CloseImage">
+        <div class="image-modal-content" @onclick:stopPropagation="true">
+            <img src="@selectedImageUrl" class="image-modal-full" />
+            <button class="image-modal-close" @onclick="CloseImage">×</button>
+        </div>
+    </div>
+}
+
 @code {
     [Parameter]
     public int PropertyId { get; set; }
@@ -262,6 +274,8 @@ else
     private string? editError = null;
     private UpdatePropertyDto editDto = new();
     private List<string> imageUrls = new();
+    private bool showImageModal = false;
+    private string? selectedImageUrl = null;
     
     
     
@@ -378,6 +392,18 @@ else
         {
             Console.WriteLine($"Delete error: {ex.Message}");
         }
+    }
+
+    private void OpenImage(string url)
+    {
+        selectedImageUrl = url;
+        showImageModal = true;
+    }
+
+    private void CloseImage()
+    {
+        showImageModal = false;
+        selectedImageUrl = null;
     }
 
 }
