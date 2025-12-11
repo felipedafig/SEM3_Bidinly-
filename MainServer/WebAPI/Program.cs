@@ -32,6 +32,11 @@ builder.Services.AddSingleton(provider =>
     return new CloudinaryDotNet.Cloudinary(account);
 });
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 100_000_000; 
+});
+
 builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
 
 builder.Services.AddOpenApi();

@@ -1,8 +1,14 @@
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
 using PropertyDto = shared.DTOs.Properties.PropertyDto;
 using shared.DTOs.Properties;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Processing;
+using Size = SixLabors.ImageSharp.Size;
 
 namespace MainServer.WebAPI.Controllers
 {
@@ -294,11 +300,14 @@ namespace MainServer.WebAPI.Controllers
         }
         
         [HttpPost("upload")]
-        [RequestSizeLimit(20_000_000)] // allow up to ~20MB total (5 medium images)
+        [RequestSizeLimit(60_000_000)]
         public async Task<ActionResult<List<string>>> UploadImages(
             [FromServices] CloudinaryDotNet.Cloudinary cloudinary,
             List<IFormFile> files)
         {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine("=== UploadImages PARALLEL START ===");
+
             try
             {
                 if (files == null || files.Count == 0)
@@ -307,35 +316,73 @@ namespace MainServer.WebAPI.Controllers
                 if (files.Count > 5)
                     return BadRequest("Maximum 5 images allowed.");
 
-                var uploadedUrls = new List<string>();
-
-                foreach (var file in files)
+                var tasks = files.Select(async file =>
                 {
-                    using var stream = file.OpenReadStream();
+                    var fileSw = System.Diagnostics.Stopwatch.StartNew();
+                    Console.WriteLine($"(Parallel) Compressing {file.FileName}...");
 
-                    var uploadParams = new CloudinaryDotNet.Actions.ImageUploadParams
+                    // Compress image first
+                    var compressedStream = await CompressImageAsync(file);
+
+                    Console.WriteLine($"(Parallel) Uploading {file.FileName} compressed to {compressedStream.Length / 1024} KB");
+
+                    var uploadParams = new ImageUploadParams
                     {
-                        File = new CloudinaryDotNet.FileDescription(file.FileName, stream),
-                        Folder = "bidinly-properties", 
+                        File = new FileDescription(file.FileName + ".jpg", compressedStream),
+                        Folder = "bidinly-properties",
                         UseFilename = false,
                         UniqueFilename = true,
                         Overwrite = false
                     };
 
-                    var uploadResult = await cloudinary.UploadAsync(uploadParams);
+                    var result = await cloudinary.UploadAsync(uploadParams);
 
-                    if (uploadResult.SecureUrl == null)
-                        return StatusCode(500, "Cloudinary failed to upload image.");
+                    fileSw.Stop();
+                    Console.WriteLine($"(Parallel) Finished {file.FileName} in {fileSw.ElapsedMilliseconds} ms");
 
-                    uploadedUrls.Add(uploadResult.SecureUrl.ToString());
-                }
+                    return result.SecureUrl?.ToString();
+                });
 
-                return Ok(uploadedUrls);
+                var urls = await Task.WhenAll(tasks);
+
+                sw.Stop();
+                Console.WriteLine($"=== TOTAL PARALLEL TIME: {sw.ElapsedMilliseconds} ms ===");
+
+                return Ok(urls);
             }
             catch (Exception ex)
             {
+                sw.Stop();
+                Console.WriteLine($" Parallel Upload FAILED after {sw.ElapsedMilliseconds} ms: {ex.Message}");
                 return StatusCode(500, $"Upload failed: {ex.Message}");
             }
+        }
+        
+        private async Task<Stream> CompressImageAsync(IFormFile file)
+        {
+            using var inputStream = file.OpenReadStream();
+            using var image = await Image.LoadAsync(inputStream);
+
+            int maxWidth = 1920;
+            if (image.Width > maxWidth)
+            {
+                image.Mutate(x => x.Resize(new ResizeOptions
+                {
+                    Mode = ResizeMode.Max,
+                    Size = new Size(maxWidth, 0)
+                }));
+            }
+
+            var output = new MemoryStream();
+            var encoder = new JpegEncoder
+            {
+                Quality = 80
+            };
+
+            await image.SaveAsJpegAsync(output, encoder);
+            output.Position = 0;
+
+            return output;
         }
     }
 }
