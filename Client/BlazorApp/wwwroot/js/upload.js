@@ -22,8 +22,7 @@ window.multiUpload = {
             console.error("Upload error response:", errorText);
             throw new Error("Upload failed: " + errorText);
         }
-
-        // 🚀 FIX: Use text() to avoid buffering crash inside json()
+        
         const text = await response.text();
         console.log("Server response text:", text);
 

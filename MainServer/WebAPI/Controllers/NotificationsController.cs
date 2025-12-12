@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
-using NotificationDto = shared.DTOs.Notifications.NotificationDto;
-using CreateNotificationDto = shared.DTOs.Notifications.CreateNotificationDto;
+using NotificationDto = Shared.DTOs.Notifications.NotificationDto;
+using CreateNotificationDto = Shared.DTOs.Notifications.CreateNotificationDto;
 
 namespace MainServer.WebAPI.Controllers
 {

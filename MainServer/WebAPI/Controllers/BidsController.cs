@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
-using BidDto = shared.DTOs.Bids.BidDto;
+using BidDto = Shared.DTOs.Bids.BidDto;
 using CreateBidDto = Shared.DTOs.Bids.CreateBidDto;
 
 namespace MainServer.WebAPI.Controllers

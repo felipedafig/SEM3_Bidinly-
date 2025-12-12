@@ -1,9 +1,6 @@
 @page "/requests"
 @namespace BlazorApp.Components.Pages
-@using shared.DTOs.Properties
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Authorization
-
+@using Shared.DTOs.Properties
 @attribute [Authorize]
 @inject HttpPropertyService PropertyService
 @inject NavigationManager Navigation

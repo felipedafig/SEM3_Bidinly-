@@ -1,6 +1,5 @@
 @page "/property/{PropertyId:int}/bids"
-
-@using shared.DTOs.Bids
+@using Shared.DTOs.Bids
 @inject HttpBidService BidService
 @inject NavigationManager Navigation
 @layout NoLayout
@@ -75,7 +74,6 @@
                                 <p>@bid.Deal</p>
                             </div>
                         }
-
                     </div>
                 }
             </div>

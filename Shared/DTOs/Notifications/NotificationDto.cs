@@ -1,4 +1,4 @@
-namespace shared.DTOs.Notifications
+namespace Shared.DTOs.Notifications
 {
     public class NotificationDto
     {

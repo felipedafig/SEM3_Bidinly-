@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace shared.DTOs.Payments
+namespace Shared.DTOs.Payments
 {
     public class ValidateCardDto
     {

@@ -1,17 +1,10 @@
 ﻿@page "/"
 @rendermode InteractiveServer
-@using shared.DTOs.Properties
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Components.Web
-@using Microsoft.AspNetCore.Components.Authorization
-@using Microsoft.JSInterop
-
+@using Shared.DTOs.Properties
 @inject HttpPropertyService PropertyService
 @inject NavigationManager Navigation
 @inject IJSRuntime JSRuntime
 @inject AuthenticationStateProvider AuthProvider
-
-
 
 <PageTitle>Bidinly</PageTitle>
 

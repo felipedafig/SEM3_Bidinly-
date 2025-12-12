@@ -1,10 +1,6 @@
 @page "/bids"
 @namespace BlazorApp.Components.Pages.Buyer
-@using shared.DTOs.Bids
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.Authorization
-
+@using Shared.DTOs.Bids
 @attribute [Authorize]
 @inject HttpBidService BidService
 @inject AuthenticationStateProvider AuthProvider

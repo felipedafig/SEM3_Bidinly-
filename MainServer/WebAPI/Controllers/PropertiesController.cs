@@ -3,8 +3,8 @@ using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
-using PropertyDto = shared.DTOs.Properties.PropertyDto;
-using shared.DTOs.Properties;
+using PropertyDto = Shared.DTOs.Properties.PropertyDto;
+using Shared.DTOs.Properties;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
@@ -322,8 +322,6 @@ namespace MainServer.WebAPI.Controllers
                     var fileSw = System.Diagnostics.Stopwatch.StartNew();
                     Console.WriteLine($"File received: {file.FileName}, size: {file.Length}");
                     Console.WriteLine($"(Parallel) Compressing {file.FileName}...");
-
-                    // Compress image first
                     var compressedStream = await CompressImageAsync(file);
 
                     Console.WriteLine($"(Parallel) Uploading {file.FileName} compressed to {compressedStream.Length / 1024} KB");

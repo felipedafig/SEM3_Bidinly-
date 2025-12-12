@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace shared.DTOs.Notifications
+namespace Shared.DTOs.Notifications
 {
     public class CreateNotificationDto
     {

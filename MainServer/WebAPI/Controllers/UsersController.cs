@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using shared.DTOs.Users;
+using Shared.DTOs.Users;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
 
@@ -188,10 +188,7 @@ namespace MainServer.WebAPI.Controllers
         {
             try
             {
-                // Get current user to check isActive status
                 var userResponse = await dataTierClient.GetUserAsync(id);
-                
-                // Toggle the isActive status
                 var updatedUserResponse = await dataTierClient.UpdateUserAsync(id, null, null, null, !userResponse.IsActive);
                 
                 string? roleName = null;

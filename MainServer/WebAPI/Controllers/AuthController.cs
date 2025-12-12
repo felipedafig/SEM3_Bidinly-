@@ -1,7 +1,6 @@
 using MainServer.WebAPI.Services;
-using MainServer.WebAPI.Protos;
 using Microsoft.AspNetCore.Mvc;
-using shared.DTOs.Users;
+using Shared.DTOs.Users;
 using Shared.DTOs.Auth;
 
 namespace MainServer.WebAPI.Controllers

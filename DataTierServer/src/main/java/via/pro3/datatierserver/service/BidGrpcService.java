@@ -308,7 +308,7 @@ public class BidGrpcService extends BidServiceGrpc.BidServiceImplBase {
             signatureValid = false;
         }
 
-        //bild response
+        //build response
         return DataTierProto.BidResponse.newBuilder()
                 .setId(bid.getId() != null ? bid.getId() : 0)
                 .setBuyerId(bid.getBuyerId() != null ? bid.getBuyerId() : 0)

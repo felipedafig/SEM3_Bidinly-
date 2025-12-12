@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace shared.DTOs.Payments
+namespace Shared.DTOs.Payments
 {
     public class ValidateCardResponseDto
     {

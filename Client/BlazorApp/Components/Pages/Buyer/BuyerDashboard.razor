@@ -1,10 +1,6 @@
 @page "/buyer-dashboard"
 @namespace BlazorApp.Components.Pages.Buyer
-@using shared.DTOs.Properties
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Components.Web
-@using Microsoft.AspNetCore.Components.Authorization
-
+@using Shared.DTOs.Properties
 @attribute [Authorize]
 @inject HttpPropertyService PropertyService
 @inject NavigationManager Navigation
@@ -190,8 +186,8 @@
             var allProps = await PropertyService.GetAllAsync();
 
             properties = allProps
-                .Where(p => p.CreationStatus == "Approved")            // Only approved
-                .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase)) // No sold
+                .Where(p => p.CreationStatus == "Approved")         
+                .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
         catch
@@ -211,14 +207,9 @@
     
     private IEnumerable<PropertyDto> filteredProperties =>
         (properties ?? Enumerable.Empty<PropertyDto>())
-
-        // Must be approved
+    
         .Where(p => p.CreationStatus == "Approved")
-
-        // Must not be sold
         .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase))
-
-        // Search & filters
         .Where(p => string.IsNullOrWhiteSpace(searchQuery) 
                     || p.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         .Where(p => string.IsNullOrWhiteSpace(filterCity) 

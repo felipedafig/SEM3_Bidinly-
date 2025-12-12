@@ -1,13 +1,6 @@
 @page "/agent/property/{PropertyId:int}"
 @layout NoLayout
-@using shared.DTOs.Properties
-@using Shared.DTOs.Bids
-@using shared.DTOs.Bids
-@using System.Net.Http.Json
-@using System.Security.Claims
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Components.Authorization
-
+@using Shared.DTOs.Properties
 @attribute [Authorize]
 @inject HttpPropertyService PropertyService
 @inject HttpBidService BidService
@@ -287,7 +280,6 @@ else
     private string? selectedImageUrl = null;
     
     
-    
     private void GoToBids()
     {
         Navigation.NavigateTo($"/property/{PropertyId}/bids");
@@ -428,6 +420,4 @@ else
         if (imageUrls.Count == 0) return;
         currentImageIndex = (currentImageIndex - 1 + imageUrls.Count) % imageUrls.Count;
     }
-
 }
-
