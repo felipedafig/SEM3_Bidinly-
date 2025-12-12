@@ -113,7 +113,7 @@
                         <div class="card-info">
                             <span class="info-item">Bedrooms: @property.Bedrooms</span>
                             <span class="info-item">Bathrooms: @property.Bathrooms</span>
-                            <span class="info-item">Size: @property.SizeInSquareFeet sq ft</span>
+                            <span class="info-item">Size: @property.SizeInSquareFeet sq m</span>
                             <span class="info-item">Price: $@property.StartingPrice.ToString("N0")</span>
                         </div>
 
@@ -188,7 +188,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="sizeInSquareFeet">Size (sq ft) <span class="required">*</span></label>
+                            <label class="form-label" for="sizeInSquareFeet">Size (sq m) <span class="required">*</span></label>
                             <InputNumber id="sizeInSquareFeet" class="form-input" 
                                          @bind-Value="createPropertyDto.SizeInSquareFeet" placeholder="0" />
                             <ValidationMessage For="@(() => createPropertyDto.SizeInSquareFeet)" />
