@@ -191,26 +191,36 @@ namespace MainServer.WebAPI.Controllers
         [HttpPut("{id}/accept")]
         public async Task<IActionResult> AcceptBid(int id)
         {
+            // 1. Accept the bid
+            await dataTierClient.SetBidStatusAsync(id, "Accepted");
+
+            // 2. Fetch the bid explicitly (guarantees BuyerId exists)
+            var bid = await dataTierClient.GetBidAsync(id);
+
+            // 3. Fetch property title (safe, optional)
+            var property = await propertyClient.GetPropertyAsync(bid.PropertyId);
+            var propertyTitle = property?.Title ?? "Property";
+
+            // 4. Create notification (safe inputs only)
             try
             {
-                var accepted = await dataTierClient.SetBidStatusAsync(id, "Accepted");
-                var propertyId = accepted.PropertyId;
-                var allBids = await dataTierClient.GetBidsAsync();
-                var otherBids = allBids.Bids.Where(b => b.PropertyId == propertyId && b.Id != id);
-                
-                foreach (var b in otherBids)
-                {
-                    await dataTierClient.SetBidStatusAsync(b.Id, "Rejected");
-                }
-                
-                await propertyClient.SetPropertyStatusAsync(propertyId, "Not Available");
-
-                return NoContent();
+                await dataTierClient.CreateNotificationAsync(
+                    "Buyer",
+                    bid.Id,
+                    bid.PropertyId,
+                    $"Your bid for '{propertyTitle}' was accepted.",
+                    "Accepted",
+                    bid.BuyerId,
+                    null,
+                    propertyTitle
+                );
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error accepting bid: {ex.Message}");
+                Console.WriteLine("Notification creation failed: " + ex.Message);
             }
+
+            return NoContent();
         }
     
 

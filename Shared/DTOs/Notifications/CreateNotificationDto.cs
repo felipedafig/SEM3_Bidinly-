@@ -8,7 +8,7 @@ namespace Shared.DTOs.Notifications
         public int BidId { get; set; }
 
         [Required]
-        public string RecipientType { get; set; } = string.Empty; // "Buyer" or "Agent"
+        public string RecipientType { get; set; } = string.Empty; 
 
         public int? BuyerId { get; set; }
 
@@ -17,14 +17,13 @@ namespace Shared.DTOs.Notifications
         [Required]
         public int PropertyId { get; set; }
 
-        public string? Status { get; set; } // e.g., "Accepted", "Rejected"
+        public string? Status { get; set; }
 
         [Required]
         public string Message { get; set; } = string.Empty;
 
         public string? PropertyTitle { get; set; }
-
-        // Id, CreatedAt, and IsRead are omitted as they are server-generated/managed.
+        
     }
 }
 
