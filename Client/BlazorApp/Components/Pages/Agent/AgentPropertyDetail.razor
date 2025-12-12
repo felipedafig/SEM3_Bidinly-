@@ -203,25 +203,17 @@ else
 
                 <EditForm Model="@editDto" OnValidSubmit="HandleEditSubmit">
                     <DataAnnotationsValidator />
-
-                    <!-- TITLE -->
+                    
                     <div class="form-group">
                         <label class="form-label">Title</label>
                         <InputText class="form-input" @bind-Value="editDto.Title" />
                     </div>
-
-                    <!-- DESCRIPTION -->
+                    
                     <div class="form-group">
                         <label class="form-label">Description</label>
                         <textarea class="form-input form-textarea"
                                   @bind="editDto.Description"
                                   rows="5"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Image URL</label>
-                        <InputText class="form-input" @bind-Value="editDto.ImageUrl"
-                                   placeholder="https://example.com/photo.jpg" />
                     </div>
 
                     @if (!string.IsNullOrWhiteSpace(editError))
@@ -259,7 +251,6 @@ else
 @code {
     [Parameter]
     public int PropertyId { get; set; }
-    
     private PropertyDto? property;
     private bool loading = true;
     private bool showBidModal = false;
@@ -278,6 +269,7 @@ else
     private List<string> imageUrls = new();
     private bool showImageModal = false;
     private string? selectedImageUrl = null;
+    
     
     
     private void GoToBids()
@@ -420,4 +412,5 @@ else
         if (imageUrls.Count == 0) return;
         currentImageIndex = (currentImageIndex - 1 + imageUrls.Count) % imageUrls.Count;
     }
+}
 }
