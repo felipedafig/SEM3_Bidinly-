@@ -191,17 +191,11 @@ namespace MainServer.WebAPI.Controllers
         [HttpPut("{id}/accept")]
         public async Task<IActionResult> AcceptBid(int id)
         {
-            // 1. Accept the bid
             await dataTierClient.SetBidStatusAsync(id, "Accepted");
-
-            // 2. Fetch the bid explicitly (guarantees BuyerId exists)
             var bid = await dataTierClient.GetBidAsync(id);
-
-            // 3. Fetch property title (safe, optional)
             var property = await propertyClient.GetPropertyAsync(bid.PropertyId);
             var propertyTitle = property?.Title ?? "Property";
-
-            // 4. Create notification (safe inputs only)
+            
             try
             {
                 await dataTierClient.CreateNotificationAsync(
@@ -219,7 +213,6 @@ namespace MainServer.WebAPI.Controllers
             {
                 Console.WriteLine("Notification creation failed: " + ex.Message);
             }
-
             return NoContent();
         }
     
@@ -227,15 +220,30 @@ namespace MainServer.WebAPI.Controllers
         [HttpPut("{id}/reject")]
         public async Task<IActionResult> RejectBid(int id)
         {
+            await dataTierClient.SetBidStatusAsync(id, "Rejected");
+            var bid = await dataTierClient.GetBidAsync(id);
+            var property = await propertyClient.GetPropertyAsync(bid.PropertyId);
+            var propertyTitle = property?.Title ?? "Property";
+            
             try
             {
-                await dataTierClient.SetBidStatusAsync(id, "Rejected");
-                return NoContent();
+                await dataTierClient.CreateNotificationAsync(
+                    recipientType: "Buyer",
+                    bidId: bid.Id,
+                    propertyId: bid.PropertyId,
+                    message: $"Your bid for '{propertyTitle}' was rejected.",
+                    status: "Rejected",
+                    buyerId: bid.BuyerId,
+                    agentId: null,
+                    propertyTitle: propertyTitle
+                );
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error rejecting bid: {ex.Message}");
+                Console.WriteLine("Rejected notification failed: " + ex.Message);
             }
+
+            return NoContent();
         }
 
     }
