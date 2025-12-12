@@ -192,26 +192,54 @@ namespace MainServer.WebAPI.Controllers
         public async Task<IActionResult> AcceptBid(int id)
         {
             await dataTierClient.SetBidStatusAsync(id, "Accepted");
-            var bid = await dataTierClient.GetBidAsync(id);
-            var property = await propertyClient.GetPropertyAsync(bid.PropertyId);
+            var acceptedBid = await dataTierClient.GetBidAsync(id);
+            var property = await propertyClient.GetPropertyAsync(acceptedBid.PropertyId);
             var propertyTitle = property?.Title ?? "Property";
             
             try
             {
                 await dataTierClient.CreateNotificationAsync(
-                    "Buyer",
-                    bid.Id,
-                    bid.PropertyId,
-                    $"Your bid for '{propertyTitle}' was accepted.",
-                    "Accepted",
-                    bid.BuyerId,
-                    null,
-                    propertyTitle
+                    recipientType: "Buyer",
+                    bidId: acceptedBid.Id,
+                    propertyId: acceptedBid.PropertyId,
+                    message: $"Your bid for '{propertyTitle}' was accepted.",
+                    status: "Accepted",
+                    buyerId: acceptedBid.BuyerId,
+                    agentId: null,
+                    propertyTitle: propertyTitle
                 );
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Notification creation failed: " + ex.Message);
+                Console.WriteLine("Accepted notification failed: " + ex.Message);
+            }
+            
+            var allBids = await dataTierClient.GetBidsAsync();
+            var losingBids = allBids.Bids
+                .Where(b => b.PropertyId == acceptedBid.PropertyId && b.Id != acceptedBid.Id)
+                .ToList();
+
+            foreach (var b in losingBids)
+            {
+                await dataTierClient.SetBidStatusAsync(b.Id, "Rejected");
+                
+                try
+                {
+                    await dataTierClient.CreateNotificationAsync(
+                        recipientType: "Buyer",
+                        bidId: b.Id,
+                        propertyId: b.PropertyId,
+                        message: $"Your bid for '{propertyTitle}' was rejected.",
+                        status: "Rejected",
+                        buyerId: b.BuyerId,
+                        agentId: null,
+                        propertyTitle: propertyTitle
+                    );
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Rejected notification failed for bid {b.Id}: " + ex.Message);
+                }
             }
             return NoContent();
         }
