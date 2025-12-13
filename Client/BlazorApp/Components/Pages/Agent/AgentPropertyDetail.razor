@@ -139,7 +139,7 @@ else
             </div>
             <div class="spec-item">
                 <span class="spec-label">Size:</span>
-                <span class="spec-value">@property.SizeInSquareFeet.ToString("F0") sq m</span>
+                <span class="spec-value">@property.SizeInSquareMeters.ToString("F0") sq m</span>
             </div>
 
             @if (!string.IsNullOrWhiteSpace(property.AgentName))
@@ -334,7 +334,7 @@ else
             StartingPrice = property.StartingPrice,
             Bedrooms = property.Bedrooms,
             Bathrooms = property.Bathrooms,
-            SizeInSquareFeet = property.SizeInSquareFeet,
+            SizeInSquareMeters = property.SizeInSquareMeters,
             Description = property.Description
         };
 

@@ -199,13 +199,11 @@ namespace MainServer.WebAPI.Controllers
             try
             {
                 await dataTierClient.CreateNotificationAsync(
-                    recipientType: "Buyer",
                     bidId: acceptedBid.Id,
                     propertyId: acceptedBid.PropertyId,
                     message: $"Your bid for '{propertyTitle}' was accepted.",
                     status: "Accepted",
-                    buyerId: acceptedBid.BuyerId,
-                    agentId: null,
+                    userId: acceptedBid.BuyerId,
                     propertyTitle: propertyTitle
                 );
             }
@@ -226,13 +224,11 @@ namespace MainServer.WebAPI.Controllers
                 try
                 {
                     await dataTierClient.CreateNotificationAsync(
-                        recipientType: "Buyer",
                         bidId: b.Id,
                         propertyId: b.PropertyId,
                         message: $"Your bid for '{propertyTitle}' was rejected.",
                         status: "Rejected",
-                        buyerId: b.BuyerId,
-                        agentId: null,
+                        userId: b.BuyerId,
                         propertyTitle: propertyTitle
                     );
                 }
@@ -256,13 +252,11 @@ namespace MainServer.WebAPI.Controllers
             try
             {
                 await dataTierClient.CreateNotificationAsync(
-                    recipientType: "Buyer",
                     bidId: bid.Id,
                     propertyId: bid.PropertyId,
                     message: $"Your bid for '{propertyTitle}' was rejected.",
                     status: "Rejected",
-                    buyerId: bid.BuyerId,
-                    agentId: null,
+                    userId: bid.BuyerId,
                     propertyTitle: propertyTitle
                 );
             }

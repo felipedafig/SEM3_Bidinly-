@@ -6,11 +6,7 @@ namespace Shared.DTOs.Notifications
         
         public int BidId { get; set; }
         
-        public string RecipientType { get; set; } = string.Empty;
-        
-        public int? BuyerId { get; set; }
-        
-        public int? AgentId { get; set; }
+        public int? UserId { get; set; }
         
         public int PropertyId { get; set; }
         

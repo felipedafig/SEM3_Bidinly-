@@ -21,7 +21,7 @@ namespace Shared.DTOs.Properties
 
         public int? Bedrooms { get; set; } 
         public int? Bathrooms { get; set; } 
-        public double? SizeInSquareFeet { get; set; }
+        public double? SizeInSquareMeters { get; set; }
 
         [StringLength(5000)]
         public string? Description { get; set; }

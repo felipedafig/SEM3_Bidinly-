@@ -62,7 +62,7 @@ namespace MainServer.WebAPI.Controllers
                         StartingPrice = (decimal)propertyResponse.StartingPrice,
                         Bedrooms = propertyResponse.Bedrooms,
                         Bathrooms = propertyResponse.Bathrooms,
-                        SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                        SizeInSquareMeters = propertyResponse.SizeInSquareMeters,
                         Description = propertyResponse.Description,
                         Status = propertyResponse.Status,
                         CreationStatus = propertyResponse.CreationStatus,
@@ -104,7 +104,7 @@ namespace MainServer.WebAPI.Controllers
                     StartingPrice = (decimal)propertyResponse.StartingPrice,
                     Bedrooms = propertyResponse.Bedrooms,
                     Bathrooms = propertyResponse.Bathrooms,
-                    SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                    SizeInSquareMeters = propertyResponse.SizeInSquareMeters,
                     Description = propertyResponse.Description,
                     Status = propertyResponse.Status,
                     CreationStatus = propertyResponse.CreationStatus,
@@ -135,7 +135,7 @@ namespace MainServer.WebAPI.Controllers
                     StartingPrice = (double)createPropertyDto.StartingPrice,
                     Bedrooms = createPropertyDto.Bedrooms,
                     Bathrooms = createPropertyDto.Bathrooms,
-                    SizeInSquareFeet = (int)createPropertyDto.SizeInSquareFeet,
+                    SizeInSquareMeters = (int)createPropertyDto.SizeInSquareMeters,
                     Status = "Available",
                     CreationStatus = "Pending"
                 };
@@ -165,7 +165,7 @@ namespace MainServer.WebAPI.Controllers
                     StartingPrice = (decimal)propertyResponse.StartingPrice,
                     Bedrooms = propertyResponse.Bedrooms,
                     Bathrooms = propertyResponse.Bathrooms,
-                    SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                    SizeInSquareMeters = propertyResponse.SizeInSquareMeters,
                     Description = propertyResponse.Description,
                     Status = propertyResponse.Status,
                     CreationStatus = propertyResponse.CreationStatus,
@@ -238,9 +238,9 @@ namespace MainServer.WebAPI.Controllers
                 {
                     updateRequest.Bathrooms = updatePropertyDto.Bathrooms.Value;
                 }
-                if (updatePropertyDto.SizeInSquareFeet.HasValue)
+                if (updatePropertyDto.SizeInSquareMeters.HasValue)
                 {
-                    updateRequest.SizeInSquareFeet = (int)updatePropertyDto.SizeInSquareFeet.Value;
+                    updateRequest.SizeInSquareMeters = (int)updatePropertyDto.SizeInSquareMeters.Value;
                 }
                 if (!string.IsNullOrWhiteSpace(updatePropertyDto.Description))
                 {
@@ -280,7 +280,7 @@ namespace MainServer.WebAPI.Controllers
                     StartingPrice = (decimal)propertyResponse.StartingPrice,
                     Bedrooms = propertyResponse.Bedrooms,
                     Bathrooms = propertyResponse.Bathrooms,
-                    SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                    SizeInSquareMeters = propertyResponse.SizeInSquareMeters,
                     Description = propertyResponse.Description,
                     Status = propertyResponse.Status,
                     CreationStatus = propertyResponse.CreationStatus,

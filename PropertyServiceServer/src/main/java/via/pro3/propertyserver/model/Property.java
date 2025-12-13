@@ -44,9 +44,9 @@ public class Property {
     @NotNull
     private Integer bathrooms;
 
-    @Column(name = "\"SizeInSquareFeet\"", nullable = false)
+    @Column(name = "\"SizeInSquareMeters\"", nullable = false)
     @NotNull
-    private Double sizeInSquareFeet;
+    private Double sizeInSquareMeters;
 
     @Column(name = "\"Description\"", length = 5000)
     @Size(max = 5000)
@@ -67,13 +67,13 @@ public class Property {
     }
 
     public Property(Integer agentId, String title, BigDecimal startingPrice,
-                    Integer bedrooms, Integer bathrooms, Double sizeInSquareFeet, String creationStatus) {
+                    Integer bedrooms, Integer bathrooms, Double sizeInSquareMeters, String creationStatus) {
         this.agentId = agentId;
         this.title = title;
         this.startingPrice = startingPrice;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
-        this.sizeInSquareFeet = sizeInSquareFeet;
+        this.sizeInSquareMeters = sizeInSquareMeters;
         this.status = "Available";
         this.creationStatus = creationStatus;
         this.imageUrl = null;
@@ -135,12 +135,12 @@ public class Property {
         this.bathrooms = bathrooms;
     }
 
-    public Double getSizeInSquareFeet() {
-        return sizeInSquareFeet;
+    public Double getSizeInSquareMeters() {
+        return sizeInSquareMeters;
     }
 
-    public void setSizeInSquareFeet(Double sizeInSquareFeet) {
-        this.sizeInSquareFeet = sizeInSquareFeet;
+    public void setSizeInSquareMeters(Double sizeInSquareMeters) {
+        this.sizeInSquareMeters = sizeInSquareMeters;
     }
 
     public String getDescription() {

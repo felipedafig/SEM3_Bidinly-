@@ -26,7 +26,7 @@ namespace Shared.DTOs.Properties
         public int Bathrooms { get; set; }
 
         [Required]
-        public double SizeInSquareFeet { get; set; }
+        public double SizeInSquareMeters { get; set; }
 
         public string? Description { get; set; }
 

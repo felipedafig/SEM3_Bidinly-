@@ -231,19 +231,15 @@ message LoginResponse {
 // Notification messages
 message CreateNotificationRequest {
   int32 bidId = 1;
-  string recipientType = 2;
-  optional int32 buyerId = 3;
-  optional int32 agentId = 4;
-  int32 propertyId = 5;
-  optional string status = 6;
-  string message = 7;
-  optional string propertyTitle = 8;
+  optional int32 userId = 2;
+  int32 propertyId = 3;
+  optional string status = 4;
+  string message = 5;
+  optional string propertyTitle = 6;
 }
 
 message GetNotificationsRequest {
-  optional string recipientType = 1;
-  optional int32 buyerId = 2;
-  optional int32 agentId = 3;
+  optional int32 userId = 3;
   optional bool isRead = 4;
 }
 
@@ -258,14 +254,12 @@ message MarkNotificationAsReadRequest {
 message NotificationResponse {
   int32 id = 1;
   int32 bidId = 2;
-  string recipientType = 3;
-  optional int32 buyerId = 4;
-  optional int32 agentId = 5;
+  optional int32 userId = 5;
   int32 propertyId = 6;
   optional string status = 7;
   string message = 8;
   optional string propertyTitle = 9;
-  int64 createdAtSeconds = 10; // Unix timestamp
+  int64 createdAtSeconds = 10; 
   bool isRead = 11;
 }
 
