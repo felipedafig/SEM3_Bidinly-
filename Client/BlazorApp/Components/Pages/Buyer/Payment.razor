@@ -1,6 +1,8 @@
 @page "/payment/{PropertyId:int}"
 @layout NoLayout
 @inject NavigationManager Navigation
+@inject HttpClient Http
+@using Shared.DTOs.Payments
 
 <PageTitle>Payment - Bidinly</PageTitle>
 
@@ -48,18 +50,6 @@
                     <label>CVC</label>
                     <input class="input" @bind="CVC" maxlength="4" placeholder="123" />
                 </div>
-            </div>
-
-            <h2 class="section-title" style="margin-top: 1rem;">Billing Information</h2>
-
-            <div class="form-group">
-                <label>Email Receipt (optional)</label>
-                <input class="input" @bind="Email" placeholder="email@example.com" />
-            </div>
-
-            <div class="form-group">
-                <label>Billing Address (optional)</label>
-                <input class="input" @bind="Address" placeholder="Street address" />
             </div>
 
             @if (!string.IsNullOrEmpty(ErrorMessage))
@@ -130,10 +120,57 @@
 
         IsSubmitting = true;
 
-        await Task.Delay(1500); // simulate network call
+        try
+        {
+            var dto = new ValidateCardDto
+            {
+                CardNumber = CardNumber.Replace(" ", ""),
+                ExpirationDate = Expiration,
+                Cvc = CVC,
+                Name = NameOnCard,
+                PropertyId = PropertyId,
 
-        // TODO: Call your payment API here
-        SuccessMessage = "Payment completed successfully!";
-        IsSubmitting = false;
+                // ⚠️ TEMP (next step we load these properly)
+                BidId = 29,
+                BuyerId = 3,
+                AgentId = 2
+            };
+
+            var response = await Http.PostAsJsonAsync(
+                "payments/validate-card",
+                dto
+            );
+
+            if (!response.IsSuccessStatusCode)
+            {
+                ErrorMessage = "Payment service error.";
+                return;
+            }
+
+            var result = await response.Content
+                .ReadFromJsonAsync<ValidateCardResponseDto>();
+
+            if (result == null)
+            {
+                ErrorMessage = "Invalid response from payment service.";
+                return;
+            }
+
+            if (!result.IsValid)
+            {
+                ErrorMessage = result.Message;
+                return;
+            }
+
+            SuccessMessage = "Payment completed successfully!";
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Payment failed: {ex.Message}";
+        }
+        finally
+        {
+            IsSubmitting = false;
+        }
     }
 }
