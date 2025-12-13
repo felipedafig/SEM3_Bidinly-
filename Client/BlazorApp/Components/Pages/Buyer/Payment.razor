@@ -1,8 +1,11 @@
-@page "/payment/{PropertyId:int}"
+@page "/payment/{PropertyId:int}/{BidId:int}"
 @layout NoLayout
 @inject NavigationManager Navigation
 @inject HttpClient Http
+@using Shared.DTOs.Properties
+@using Shared.DTOs.Bids
 @using Shared.DTOs.Payments
+@inject AuthenticationStateProvider AuthProvider
 
 <PageTitle>Payment - Bidinly</PageTitle>
 
@@ -78,11 +81,10 @@
 
 @code {
     [Parameter] public int PropertyId { get; set; }
+    [Parameter] public int BidId { get; set; }
 
     private string PropertyTitle = "";
     private decimal Price = 0;
-
-    // Form fields
     private string NameOnCard = "";
     private string CardNumber = "";
     private string Expiration = "";
@@ -93,12 +95,36 @@
     private string ErrorMessage = "";
     private string SuccessMessage = "";
     private bool IsSubmitting = false;
+    private int BuyerId;
+    private int AgentId;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        // replace with api
-        PropertyTitle = "Modern Apartment in Oslo";
-        Price = 4_500_000;
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        BuyerId = int.Parse(authState.User.FindFirst("Id")!.Value);
+
+        var bid = await Http.GetFromJsonAsync<BidDto>(
+            $"/bids/{BidId}");
+
+        if (bid == null)
+        {
+            ErrorMessage = "Bid not found";
+            return;
+        }
+
+        Price = bid.Amount;
+        PropertyTitle = bid.PropertyTitle;
+        var property = await Http.GetFromJsonAsync<PropertyDto>(
+            $"/properties/{PropertyId}");
+
+        if (property == null)
+        {
+            ErrorMessage = "Property not found";
+            return;
+        }
+
+        AgentId = property.AgentId 
+                  ?? throw new Exception("Property has no agent assigned");
     }
 
     private void GoBack() =>
@@ -108,32 +134,20 @@
     {
         ErrorMessage = "";
         SuccessMessage = "";
-
-        if (string.IsNullOrWhiteSpace(NameOnCard) ||
-            string.IsNullOrWhiteSpace(CardNumber) ||
-            string.IsNullOrWhiteSpace(Expiration) ||
-            string.IsNullOrWhiteSpace(CVC))
-        {
-            ErrorMessage = "Please fill all required fields.";
-            return;
-        }
-
         IsSubmitting = true;
 
         try
         {
-            var dto = new ValidateCardDto
+            var dto = new
             {
-                CardNumber = CardNumber.Replace(" ", ""),
-                ExpirationDate = Expiration,
-                Cvc = CVC,
-                Name = NameOnCard,
-                PropertyId = PropertyId,
-
-                // ⚠️ TEMP (next step we load these properly)
-                BidId = 29,
-                BuyerId = 3,
-                AgentId = 2
+                cardNumber = CardNumber,
+                expirationDate = Expiration,
+                cvc = CVC,
+                name = NameOnCard,
+                propertyId = PropertyId,
+                bidId = BidId,
+                buyerId = BuyerId,
+                agentId = AgentId
             };
 
             var response = await Http.PostAsJsonAsync(
@@ -143,30 +157,25 @@
 
             if (!response.IsSuccessStatusCode)
             {
-                ErrorMessage = "Payment service error.";
+                ErrorMessage = "Payment failed";
                 return;
             }
 
             var result = await response.Content
                 .ReadFromJsonAsync<ValidateCardResponseDto>();
 
-            if (result == null)
+            if (result == null || !result.IsValid)
             {
-                ErrorMessage = "Invalid response from payment service.";
-                return;
-            }
-
-            if (!result.IsValid)
-            {
-                ErrorMessage = result.Message;
+                ErrorMessage = result?.Message ?? "Payment rejected";
                 return;
             }
 
             SuccessMessage = "Payment completed successfully!";
+            Navigation.NavigateTo("/buyer-dashboard");
         }
         catch (Exception ex)
         {
-            ErrorMessage = $"Payment failed: {ex.Message}";
+            ErrorMessage = ex.Message;
         }
         finally
         {

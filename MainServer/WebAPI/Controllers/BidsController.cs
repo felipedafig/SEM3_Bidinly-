@@ -259,6 +259,59 @@ namespace MainServer.WebAPI.Controllers
 
             return NoContent();
         }
+        
+        [HttpGet("accepted")]
+        public async Task<ActionResult<BidDto>> GetAcceptedBid(
+            [FromQuery] int propertyId,
+            [FromQuery] int buyerId)
+        {
+            var bids = await dataTierClient.GetBidsAsync();
+
+            var bid = bids.Bids.FirstOrDefault(b =>
+                b.PropertyId == propertyId &&
+                b.BuyerId == buyerId &&
+                b.Status == "Accepted");
+
+            if (bid == null)
+                return NotFound("No accepted bid found");
+
+            return Ok(new
+            {
+                bidId = bid.Id,
+                propertyId = bid.PropertyId,
+                amount = bid.Amount,
+                buyerId = bid.BuyerId
+            });
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BidDto>> GetBidById(int id)
+        {
+            var bid = await dataTierClient.GetBidAsync(id);
+            if (bid == null)
+                return NotFound();
+
+            var property = await propertyClient.GetPropertyAsync(bid.PropertyId);
+            var user = await dataTierClient.GetUserAsync(bid.BuyerId);
+
+            DateTime expiry = DateTimeOffset
+                .FromUnixTimeSeconds(bid.ExpiryDateSeconds)
+                .DateTime;
+
+            return Ok(new BidDto
+            {
+                Id = bid.Id,
+                PropertyId = bid.PropertyId,
+                BuyerId = bid.BuyerId,
+                PropertyTitle = property?.Title,
+                BuyerUsername = user?.Username,
+                Amount = (decimal)bid.Amount,
+                ExpiryDate = expiry,
+                Status = bid.Status,
+                Deal = bid.Deal,
+                SignatureValid = bid.SignatureValid
+            });
+        }
 
     }
 }

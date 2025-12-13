@@ -58,7 +58,7 @@
                         @if (n.Status == "Accepted")
                         {
                             <button class="notif-action-button"
-                                    @onclick="() => GoToPayment(n.PropertyId)">
+                                    @onclick="() => GoToPayment(n.PropertyId, n.BidId)">
                                 Go to Payment
                             </button>
                         }
@@ -102,8 +102,8 @@
     private void GoBack() =>
         Navigation.NavigateTo("/buyer-dashboard");
 
-    private void GoToPayment(int propertyId) =>
-        Navigation.NavigateTo($"/payment/{propertyId}");
+    private void GoToPayment(int propertyId, int bidId) =>
+        Navigation.NavigateTo($"/payment/{propertyId}/{bidId}");
 
     private void ViewProperty(int propertyId) =>
         Navigation.NavigateTo($"/property/{propertyId}");
