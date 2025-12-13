@@ -1,18 +1,23 @@
-@page "/buyer-notifications"
+@page "/agent-notifications"
 @layout NoLayout
-@inject NavigationManager Navigation
-@using Shared.DTOs.Notifications
+@using Shared.DTOs.Properties
 @inject HttpClient Http
 @inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+@using Shared.DTOs.Notifications
 
 <PageTitle>Notifications - Bidinly</PageTitle>
 
 <div class="notifications-page">
 
+<div class="back-button-wrapper">
     <button class="back-button" @onclick="GoBack">
         ← Back
     </button>
+</div>
 
+<div class="notifications-content">
     <div class="page-header">
         <h1 class="page-title">Notifications</h1>
     </div>
@@ -23,7 +28,7 @@
         {
             <div class="loading">Loading notifications...</div>
         }
-        else if (notifications == null || !notifications.Any())
+        else if (!notifications.Any())
         {
             <div class="no-results">No notifications yet.</div>
         }
@@ -32,16 +37,9 @@
             <div class="notifications-container">
                 @foreach (var n in notifications)
                 {
-                    var status = n.Status?.Trim();
-
-                    var (title, type) = status switch
+                    var (title, type) = n.Status switch
                     {
-                        var s when string.Equals(s, "Accepted", StringComparison.OrdinalIgnoreCase)
-                            => ("Bid Accepted", "success"),
-
-                        var s when string.Equals(s, "Rejected", StringComparison.OrdinalIgnoreCase)
-                            => ("Bid Rejected", "error"),
-
+                        "SaleCompleted" => ("Property Sold", "success"),
                         _ => ("Notification", "info")
                     };
 
@@ -53,22 +51,16 @@
                             </span>
                         </div>
 
-                        <div class="notification-message">@n.Message</div>
+                        <div class="notification-message">
+                            <button class="notif-action-button"
+                                    @onclick="() => GoToProperty(n.PropertyId)">
+                                @propertyTitles.GetValueOrDefault(n.PropertyId, "Property")
+                            </button>
 
-                        @if (n.Status == "Accepted")
-                        {
-                            <button class="notif-action-button"
-                                    @onclick="() => GoToPayment(n.PropertyId, n.BidId)">
-                                Go to Payment
-                            </button>
-                        }
-                        else
-                        {
-                            <button class="notif-action-button"
-                                    @onclick="() => ViewProperty(n.PropertyId)">
-                                View Property
-                            </button>
-                        }
+                            <div class="notif-message-text">
+                                @n.Message
+                            </div>
+                        </div>
                     </div>
                 }
             </div>
@@ -76,43 +68,52 @@
 
     </div>
 </div>
+</div>
 
 @code {
     private List<NotificationDto> notifications = new();
     private bool isLoading = true;
+    private Dictionary<int, string> propertyTitles = new();
 
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
-
-        var buyerIdClaim = user.FindFirst("Id")?.Value;
-        if (buyerIdClaim == null)
-            return;
-
-        var buyerId = int.Parse(buyerIdClaim);
-
+        var agentId = int.Parse(authState.User.FindFirst("Id")!.Value);
+        
         notifications = await Http.GetFromJsonAsync<List<NotificationDto>>(
-            $"/notifications?userId={buyerId}"
+            $"/notifications?userId={agentId}"
         ) ?? new();
+        
+        foreach (var n in notifications)
+        {
+            if (!propertyTitles.ContainsKey(n.PropertyId))
+            {
+                var property = await Http.GetFromJsonAsync<PropertyDto>(
+                    $"/properties/{n.PropertyId}"
+                );
+
+                if (property != null)
+                {
+                    propertyTitles[n.PropertyId] = property.Title;
+                }
+            }
+        }
 
         isLoading = false;
     }
 
     private void GoBack() =>
-        Navigation.NavigateTo("/buyer-dashboard");
-
-    private void GoToPayment(int propertyId, int bidId) =>
-        Navigation.NavigateTo($"/payment/{propertyId}/{bidId}");
-
-    private void ViewProperty(int propertyId) =>
-        Navigation.NavigateTo($"/property/{propertyId}");
+        Navigation.NavigateTo("/agent-dashboard");
 
     private string GetTypeClass(string type) =>
         type switch
         {
             "success" => "notif-success",
             "error" => "notif-error",
+            "warning" => "notif-warning",
             _ => "notif-info"
         };
+    
+    private void GoToProperty(int propertyId) =>
+        Navigation.NavigateTo($"/agent/property/{propertyId}");
 }

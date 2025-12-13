@@ -120,3 +120,21 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 107, 183, 0.3);
 }
+
+.notif-message-text {
+    margin-bottom: 12px;
+}
+
+.notifications-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications-container {
+    width: 100%;
+    max-width: 1000px;  
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
