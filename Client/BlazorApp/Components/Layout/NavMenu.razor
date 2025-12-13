@@ -160,7 +160,8 @@
 
         var roleName = user.FindFirst("RoleName")?.Value;
         
-        if (!string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase))
+        if (!string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase) &&
+            !string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase))
         {
             NotificationCount = 0;
             return;
