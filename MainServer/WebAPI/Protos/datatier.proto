@@ -239,8 +239,8 @@ message CreateNotificationRequest {
 }
 
 message GetNotificationsRequest {
-  optional int32 userId = 3;
-  optional bool isRead = 4;
+  optional int32 userId = 1;
+  optional bool isRead = 2;
 }
 
 message GetNotificationRequest {
@@ -254,13 +254,13 @@ message MarkNotificationAsReadRequest {
 message NotificationResponse {
   int32 id = 1;
   int32 bidId = 2;
-  optional int32 userId = 5;
-  int32 propertyId = 6;
-  optional string status = 7;
-  string message = 8;
-  optional string propertyTitle = 9;
-  int64 createdAtSeconds = 10; 
-  bool isRead = 11;
+  optional int32 userId = 3;
+  int32 propertyId = 4;
+  optional string status = 5;
+  string message = 6;
+  optional string propertyTitle = 7;
+  int64 createdAtSeconds = 8; 
+  bool isRead = 9;
 }
 
 message GetNotificationsResponse {

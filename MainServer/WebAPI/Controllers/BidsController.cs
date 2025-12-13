@@ -192,54 +192,46 @@ namespace MainServer.WebAPI.Controllers
         public async Task<IActionResult> AcceptBid(int id)
         {
             await dataTierClient.SetBidStatusAsync(id, "Accepted");
+
             var acceptedBid = await dataTierClient.GetBidAsync(id);
             var property = await propertyClient.GetPropertyAsync(acceptedBid.PropertyId);
             var propertyTitle = property?.Title ?? "Property";
             
-            try
-            {
-                await dataTierClient.CreateNotificationAsync(
-                    bidId: acceptedBid.Id,
-                    propertyId: acceptedBid.PropertyId,
-                    message: $"Your bid for '{propertyTitle}' was accepted.",
-                    status: "Accepted",
-                    userId: acceptedBid.BuyerId,
-                    propertyTitle: propertyTitle
-                );
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Accepted notification failed: " + ex.Message);
-            }
+            await dataTierClient.CreateNotificationAsync(
+                bidId: acceptedBid.Id,
+                propertyId: acceptedBid.PropertyId,
+                message: $"Your bid for '{propertyTitle}' was accepted.",
+                status: "Accepted",
+                userId: acceptedBid.BuyerId,
+                propertyTitle: propertyTitle
+            );
             
             var allBids = await dataTierClient.GetBidsAsync();
+
             var losingBids = allBids.Bids
-                .Where(b => b.PropertyId == acceptedBid.PropertyId && b.Id != acceptedBid.Id)
+                .Where(b =>
+                    b.PropertyId == acceptedBid.PropertyId &&
+                    b.Id != acceptedBid.Id &&
+                    b.Status != "Accepted"
+                )
                 .ToList();
 
             foreach (var b in losingBids)
             {
                 await dataTierClient.SetBidStatusAsync(b.Id, "Rejected");
-                
-                try
-                {
-                    await dataTierClient.CreateNotificationAsync(
-                        bidId: b.Id,
-                        propertyId: b.PropertyId,
-                        message: $"Your bid for '{propertyTitle}' was rejected.",
-                        status: "Rejected",
-                        userId: b.BuyerId,
-                        propertyTitle: propertyTitle
-                    );
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Rejected notification failed for bid {b.Id}: " + ex.Message);
-                }
+
+                await dataTierClient.CreateNotificationAsync(
+                    bidId: b.Id,
+                    propertyId: b.PropertyId,
+                    message: $"Your bid for '{propertyTitle}' was rejected.",
+                    status: "Rejected",
+                    userId: b.BuyerId,
+                    propertyTitle: propertyTitle
+                );
             }
+
             return NoContent();
         }
-    
 
         [HttpPut("{id}/reject")]
         public async Task<IActionResult> RejectBid(int id)

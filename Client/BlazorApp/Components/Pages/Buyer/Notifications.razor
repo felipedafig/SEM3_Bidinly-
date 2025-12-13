@@ -32,8 +32,18 @@
             <div class="notifications-container">
                 @foreach (var n in notifications)
                 {
-                    var title = n.Status == "Accepted" ? "Bid Accepted" : "Bid Rejected";
-                    var type = n.Status == "Accepted" ? "success" : "error";
+                    var status = n.Status?.Trim();
+
+                    var (title, type) = status switch
+                    {
+                        var s when string.Equals(s, "Accepted", StringComparison.OrdinalIgnoreCase)
+                            => ("Bid Accepted", "success"),
+
+                        var s when string.Equals(s, "Rejected", StringComparison.OrdinalIgnoreCase)
+                            => ("Bid Rejected", "error"),
+
+                        _ => ("Notification", "info")
+                    };
 
                     <div class="notification-card @GetTypeClass(type)">
                         <div class="notification-header">
@@ -83,7 +93,7 @@
         var buyerId = int.Parse(buyerIdClaim);
 
         notifications = await Http.GetFromJsonAsync<List<NotificationDto>>(
-            $"/notifications?recipientType=Buyer&buyerId={buyerId}"
+            $"/notifications?userId={buyerId}"
         ) ?? new();
 
         isLoading = false;

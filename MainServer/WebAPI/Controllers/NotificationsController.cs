@@ -23,12 +23,13 @@ namespace MainServer.WebAPI.Controllers
             try
             {
                 NotificationResponse response = await dataTierClient.CreateNotificationAsync(
-                    dto.BidId,
-                    dto.PropertyId,
-                    dto.Message,
-                    dto.Status,
-                    dto.UserId,
-                    dto.PropertyTitle);
+                    bidId: dto.BidId,
+                    userId: dto.UserId,
+                    propertyId: dto.PropertyId,
+                    status: dto.Status,
+                    message: dto.Message,
+                    propertyTitle: dto.PropertyTitle
+                );
 
                 DateTime createdAt = DateTimeOffset.FromUnixTimeSeconds(response.CreatedAtSeconds).DateTime;
 

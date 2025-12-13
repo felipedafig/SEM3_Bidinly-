@@ -158,30 +158,22 @@
             return;
         }
 
+        var roleName = user.FindFirst("RoleName")?.Value;
+        
+        if (!string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase))
+        {
+            NotificationCount = 0;
+            return;
+        }
+
         var userId = GetUserId(user);
         if (userId == null)
         {
             NotificationCount = 0;
             return;
         }
-
-        var roleName = user.FindFirst("RoleName")?.Value;
-
-        string url;
-
-        if (string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase))
-        {
-            url = $"/notifications?recipientType=Buyer&buyerId={userId}&isRead=false";
-        }
-        else if (string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase))
-        {
-            url = $"/notifications?recipientType=Agent&agentId={userId}&isRead=false";
-        }
-        else
-        {
-            NotificationCount = 0;
-            return;
-        }
+        
+        var url = $"/notifications?userId={userId}&isRead=false";
 
         var notifications = await Http.GetFromJsonAsync<List<NotificationDto>>(url);
         NotificationCount = notifications?.Count ?? 0;

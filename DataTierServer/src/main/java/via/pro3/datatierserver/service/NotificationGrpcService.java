@@ -31,7 +31,16 @@ public class NotificationGrpcService extends NotificationServiceGrpc.Notificatio
             newNotification.setIsRead(false);
             newNotification.setCreatedAt(Instant.now());
 
-            if (request.hasUserId()) {newNotification.setUserId(request.getUserId());}
+            if (!request.hasUserId()) {
+                responseObserver.onError(
+                        io.grpc.Status.INVALID_ARGUMENT
+                                .withDescription("UserId is required for notification")
+                                .asRuntimeException()
+                );
+                return;
+            }
+
+            newNotification.setUserId(request.getUserId());
 
             if (request.hasStatus()) {
                 newNotification.setStatus(request.getStatus());

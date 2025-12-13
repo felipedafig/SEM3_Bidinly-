@@ -241,7 +241,7 @@ message CreateNotificationRequest {
 
 message GetNotificationsRequest {
   optional int32 userId = 1;
-  optional bool isRead = 4;
+  optional bool isRead = 2;
 }
 
 message GetNotificationRequest {
