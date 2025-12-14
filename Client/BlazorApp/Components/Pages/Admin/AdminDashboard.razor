@@ -138,8 +138,17 @@
             @foreach (var property in filteredProperties)
             {
                 <div class="property-card" @onclick="() => NavigateToProperty(property.Id)">
-                    <div class="card-image-placeholder">
-                        <span>Image</span>
+                    <div class="card-image">
+                        @if (GetFirstImage(property) is string imageUrl)
+                        {
+                            <img src="@imageUrl" alt="@property.Title" />
+                        }
+                        else
+                        {
+                            <div class="card-image-placeholder">
+                                <span>No Image</span>
+                            </div>
+                        }
                     </div>
 
                     <div class="card-details">
@@ -253,5 +262,23 @@
     private void NavigateToProperty(int propertyId)
     {
         Navigation.NavigateTo($"/property/{propertyId}");
+    }
+    
+    private string? GetFirstImage(PropertyDto property)
+    {
+        if (string.IsNullOrWhiteSpace(property.ImageUrl))
+            return null;
+
+        try
+        {
+            var images = System.Text.Json.JsonSerializer
+                .Deserialize<List<string>>(property.ImageUrl);
+
+            return images?.FirstOrDefault();
+        }
+        catch
+        {
+            return property.ImageUrl;
+        }
     }
 }
