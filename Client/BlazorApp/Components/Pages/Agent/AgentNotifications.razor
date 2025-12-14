@@ -46,20 +46,33 @@
                     <div class="notification-card @GetTypeClass(type)">
                         <div class="notification-header">
                             <h3 class="notification-title">@title</h3>
-                            <span class="notification-date">
-                                @n.CreatedAt.ToString("g")
-                            </span>
+
+                            <div class="notif-header-right">
+                                <span class="notification-date">
+                                    @n.CreatedAt.ToString("g")
+                                </span>
+
+                                <button class="notif-read-icon"
+                                        title="Mark as read"
+                                        @onclick="() => MarkAsRead(n.Id)">
+                                    🗑️
+                                </button>
+                            </div>
                         </div>
 
                         <div class="notification-message">
-                            <button class="notif-action-button"
-                                    @onclick="() => GoToProperty(n.PropertyId)">
-                                @propertyTitles.GetValueOrDefault(n.PropertyId, "Property")
-                            </button>
+
+                            <div class="notif-message-top">
+                                <button class="notif-action-button"
+                                        @onclick="() => GoToProperty(n.PropertyId)">
+                                    @propertyTitles.GetValueOrDefault(n.PropertyId, "Property")
+                                </button>
+                            </div>
 
                             <div class="notif-message-text">
                                 @n.Message
                             </div>
+
                         </div>
                     </div>
                 }
@@ -81,7 +94,7 @@
         var agentId = int.Parse(authState.User.FindFirst("Id")!.Value);
         
         notifications = await Http.GetFromJsonAsync<List<NotificationDto>>(
-            $"/notifications?userId={agentId}"
+            $"/notifications?userId={agentId}&isRead=false"
         ) ?? new();
         
         foreach (var n in notifications)
@@ -116,4 +129,12 @@
     
     private void GoToProperty(int propertyId) =>
         Navigation.NavigateTo($"/agent/property/{propertyId}");
+
+
+    private async Task MarkAsRead(int notificationId) 
+    { 
+        await Http.PutAsync($"/notifications/{notificationId}/read", null);
+        notifications.RemoveAll(n => n.Id == notificationId);
+        
+    }
 }

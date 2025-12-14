@@ -122,7 +122,6 @@
     font-weight: 600;
     transition: all 0.3s ease;
 }
-
 .notif-action-button:hover {
     background-color: #005a9e;
     transform: translateY(-2px);
@@ -136,4 +135,26 @@
 
 .notif-message-text {
     margin-top: 12px;
+}
+
+.notif-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notif-read-icon {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    line-height: 1;
+    opacity: 0.6;
+    transition: all 0.2s ease;
+}
+
+.notif-read-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
 }
