@@ -320,12 +320,7 @@ namespace MainServer.WebAPI.Controllers
                 var tasks = files.Select(async file =>
                 {
                     var fileSw = System.Diagnostics.Stopwatch.StartNew();
-                    Console.WriteLine($"File received: {file.FileName}, size: {file.Length}");
-                    Console.WriteLine($"(Parallel) Compressing {file.FileName}...");
                     var compressedStream = await CompressImageAsync(file);
-
-                    Console.WriteLine($"(Parallel) Uploading {file.FileName} compressed to {compressedStream.Length / 1024} KB");
-
                     var uploadParams = new ImageUploadParams
                     {
                         File = new FileDescription(file.FileName + ".jpg", compressedStream),
