@@ -49,9 +49,18 @@
                         <div class="notification-card @GetTypeClass(type)">
                             <div class="notification-header">
                                 <h3 class="notification-title">@title</h3>
-                                <span class="notification-date">
-                                    @n.CreatedAt.ToString("g")
-                                </span>
+
+                                <div class="notif-header-right">
+                                    <span class="notification-date">
+                                        @n.CreatedAt.ToString("g")
+                                    </span>
+
+                                    <button class="notif-read-icon"
+                                            title="Mark as read"
+                                            @onclick="() => MarkAsRead(n.Id)">
+                                        🗑️
+                                    </button>
+                                </div>
                             </div>
 
                             <div class="notification-message">
@@ -99,7 +108,7 @@
         var buyerId = int.Parse(buyerIdClaim);
 
         notifications = await Http.GetFromJsonAsync<List<NotificationDto>>(
-            $"/notifications?userId={buyerId}"
+            $"/notifications?userId={buyerId}&isRead=false"
         ) ?? new();
 
         isLoading = false;
@@ -121,4 +130,10 @@
             "error" => "notif-error",
             _ => "notif-info"
         };
+    
+    private async Task MarkAsRead(int notificationId)
+    {
+        await Http.PutAsync($"/notifications/{notificationId}/read", null);
+        notifications.RemoveAll(n => n.Id == notificationId);
+    }
 }
