@@ -30,7 +30,24 @@
                         <div class="card-image-placeholder">
                             @if (!string.IsNullOrWhiteSpace(property.ImageUrl))
                             {
-                                <img src="@property.ImageUrl" alt="@property.Title" class="property-image" />
+                                var imageUrl = property.ImageUrl;
+
+                                try
+                                {
+                                    var images = System.Text.Json.JsonSerializer
+                                        .Deserialize<List<string>>(property.ImageUrl);
+
+                                    if (images?.Any() == true)
+                                    {
+                                        imageUrl = images[0];
+                                    }
+                                }
+                                catch
+                                {
+                                    //
+                                }
+
+                                <img src="@imageUrl" alt="@property.Title" class="property-image" />
                             }
                             else
                             {
