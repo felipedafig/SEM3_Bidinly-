@@ -99,8 +99,33 @@
             @foreach (var property in filteredProperties)
             {
                 <div class="property-card" @onclick="() => NavigateToProperty(property.Id)">
+                    @{
+                        List<string>? cardImages = null;
+
+                        if (!string.IsNullOrWhiteSpace(property.ImageUrl))
+                        {
+                            try
+                            {
+                                cardImages = System.Text.Json.JsonSerializer
+                                    .Deserialize<List<string>>(property.ImageUrl);
+                            }
+                            catch
+                            {
+                                cardImages = new List<string> { property.ImageUrl };
+                            }
+                        }
+
+                        var firstImage = cardImages?.FirstOrDefault();
+                    }
                     <div class="card-image-placeholder">
-                        <span>Image</span>
+                        @if (firstImage != null)
+                        {
+                            <img src="@firstImage" class="card-image" />
+                        }
+                        else
+                        {
+                            <span>Image</span>
+                        }
                     </div>
                     <div class="card-details">
                         <h3 class="card-title">@property.Title</h3>
