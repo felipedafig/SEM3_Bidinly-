@@ -424,11 +424,6 @@ textarea.bid-form-input {
     resize: vertical; 
     white-space: normal;
 }
-
-/* =========================
-   IMAGE GALLERY (MATCH AGENT)
-   ========================= */
-
 .property-detail-images {
     width: 100%;
     margin: 0;          
@@ -509,48 +504,61 @@ textarea.bid-form-input {
     background: rgba(0,0,0,0.65);
 }
 
-/* =========================
-   IMAGE MODAL (MATCH AGENT)
-   ========================= */
-
 .image-modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;      
     background: rgba(0,0,0,0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10000; /* higher than bid modal */
+    z-index: 10000;
+    padding: 2rem;
+    overflow: hidden;
 }
 
 .image-modal-content {
     position: relative;
+    width: 900px;
+    height: 600px;
     max-width: 90vw;
     max-height: 90vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .image-modal-full {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 85vh; 
+    width: auto;
+    height: auto;
     object-fit: contain;
-    background-color: black;
     border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 .image-modal-close {
     position: absolute;
-    top: -10px;
-    right: -10px;
-    background: #fff;
+    top: 10px;
+    right: 10px;
+
+    background: rgba(255, 255, 255, 0.9);
     border: none;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     font-size: 22px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2;
 }
 
