@@ -108,7 +108,7 @@ namespace TestProject.Services
             double startingPrice = 200000.00;
             int bedrooms = 3;
             int bathrooms = 2;
-            int sizeInSquareFeet = 1500;
+            int sizeInSquareMeters = 1500;
             string description = "Test description";
             string status = "Available";
             string creationStatus = "Pending";
@@ -122,7 +122,7 @@ namespace TestProject.Services
                 StartingPrice = startingPrice,
                 Bedrooms = bedrooms,
                 Bathrooms = bathrooms,
-                SizeInSquareFeet = sizeInSquareFeet,
+                SizeInSquareMeters = sizeInSquareMeters,
                 Description = description,
                 Status = status,
                 CreationStatus = creationStatus,
@@ -135,7 +135,7 @@ namespace TestProject.Services
             Assert.Equal(startingPrice, request.StartingPrice);
             Assert.Equal(bedrooms, request.Bedrooms);
             Assert.Equal(bathrooms, request.Bathrooms);
-            Assert.Equal(sizeInSquareFeet, request.SizeInSquareFeet);
+            Assert.Equal(sizeInSquareMeters, request.SizeInSquareMeters);
             Assert.Equal(description, request.Description);
             Assert.Equal(status, request.Status);
             Assert.Equal(creationStatus, request.CreationStatus);
@@ -181,7 +181,7 @@ namespace TestProject.Services
                 StartingPrice = 200000.00,
                 Bedrooms = 3,
                 Bathrooms = 2,
-                SizeInSquareFeet = 1500,
+                SizeInSquareMeters = 1500,
                 Description = "Test description",
                 Status = "Available",
                 CreationStatus = "Pending",
@@ -195,7 +195,7 @@ namespace TestProject.Services
             Assert.Equal(200000.00, response.StartingPrice);
             Assert.Equal(3, response.Bedrooms);
             Assert.Equal(2, response.Bathrooms);
-            Assert.Equal(1500, response.SizeInSquareFeet);
+            Assert.Equal(1500, response.SizeInSquareMeters);
             Assert.Equal("Test description", response.Description);
             Assert.Equal("Available", response.Status);
             Assert.Equal("Pending", response.CreationStatus);
@@ -268,7 +268,7 @@ namespace TestProject.Services
                 StartingPrice = 100000.00,
                 Bedrooms = 2,
                 Bathrooms = 1,
-                SizeInSquareFeet = 800,
+                SizeInSquareMeters = 800,
                 Status = "Available",
                 CreationStatus = "Pending"
             };
@@ -278,7 +278,7 @@ namespace TestProject.Services
             Assert.Equal(100000.00, request.StartingPrice);
             Assert.Equal(2, request.Bedrooms);
             Assert.Equal(1, request.Bathrooms);
-            Assert.Equal(800, request.SizeInSquareFeet);
+            Assert.Equal(800, request.SizeInSquareMeters);
             Assert.Equal("Available", request.Status);
             Assert.Equal("Pending", request.CreationStatus);
         }
@@ -294,7 +294,7 @@ namespace TestProject.Services
                 StartingPrice = 300000.00,
                 Bedrooms = 4,
                 Bathrooms = 3,
-                SizeInSquareFeet = 2000,
+                SizeInSquareMeters = 2000,
                 Description = "Updated Description",
                 Status = "Sold",
                 CreationStatus = "Approved",
@@ -307,7 +307,7 @@ namespace TestProject.Services
             Assert.Equal(300000.00, request.StartingPrice);
             Assert.Equal(4, request.Bedrooms);
             Assert.Equal(3, request.Bathrooms);
-            Assert.Equal(2000, request.SizeInSquareFeet);
+            Assert.Equal(2000, request.SizeInSquareMeters);
             Assert.Equal("Updated Description", request.Description);
             Assert.Equal("Sold", request.Status);
             Assert.Equal("Approved", request.CreationStatus);
@@ -326,7 +326,7 @@ namespace TestProject.Services
                 StartingPrice = 100000.00,
                 Bedrooms = 2,
                 Bathrooms = 1,
-                SizeInSquareFeet = 1000,
+                SizeInSquareMeters = 1000,
                 Description = "",
                 Status = "Available",
                 CreationStatus = "Pending",
@@ -364,7 +364,7 @@ namespace TestProject.Services
                 StartingPrice = 0.0,
                 Bedrooms = 0,
                 Bathrooms = 0,
-                SizeInSquareFeet = 0,
+                SizeInSquareMeters = 0,
                 Status = "",
                 CreationStatus = ""
             };
@@ -373,7 +373,7 @@ namespace TestProject.Services
             Assert.Equal(0.0, request.StartingPrice);
             Assert.Equal(0, request.Bedrooms);
             Assert.Equal(0, request.Bathrooms);
-            Assert.Equal(0, request.SizeInSquareFeet);
+            Assert.Equal(0, request.SizeInSquareMeters);
         }
 
         [Fact]
@@ -412,7 +412,7 @@ namespace TestProject.Services
                 StartingPrice = double.MaxValue,
                 Bedrooms = int.MaxValue,
                 Bathrooms = int.MaxValue,
-                SizeInSquareFeet = int.MaxValue
+                SizeInSquareMeters = int.MaxValue
             };
 
             Assert.Equal(int.MaxValue, response.Id);
@@ -420,7 +420,7 @@ namespace TestProject.Services
             Assert.Equal(double.MaxValue, response.StartingPrice);
             Assert.Equal(int.MaxValue, response.Bedrooms);
             Assert.Equal(int.MaxValue, response.Bathrooms);
-            Assert.Equal(int.MaxValue, response.SizeInSquareFeet);
+            Assert.Equal(int.MaxValue, response.SizeInSquareMeters);
         }
     }
 }
