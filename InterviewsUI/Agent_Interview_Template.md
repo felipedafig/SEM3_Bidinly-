@@ -1,14 +1,4 @@
-# Bidinly – UI User Interview Template
-
-## Agent Interview Template
-
-### Interview Information
-**Date:** ____________  
-**Interviewer:** ____________  
-**Duration:** ____________ minutes  
-**Session Type:** [ ] In-person [ ] Remote [ ] Screen Recording
-
----
+# Bidinly – UI User Interview 
 
 ### Interviewee Profile
 **Name:** ____________  
@@ -18,19 +8,6 @@
 **Previous experience with property platforms:** [ ] Yes [ ] No  
 **If yes, which ones:** ____________
 
-**Notes about interviewee:**
-- 
-- 
-
----
-
-### Pre-Interview Instructions
-
-**Instructions to read to the user:**
-
-"Thank you for participating in this user interview. Today, we'll be testing the Bidinly property bidding platform from an agent's perspective. I'll ask you to complete some tasks while thinking aloud - please share what you're thinking, what you're looking for, and any confusion or concerns you have. There are no right or wrong answers - we're testing the interface, not you. Feel free to be honest about your experience. Do you have any questions before we begin?"
-
----
 
 ### Scenario 1: Account Creation and First Impression
 
@@ -267,10 +244,6 @@
 - 
 - 
 
-**Quotes from User:**
-- 
-- 
-
 ---
 
 ### Action Items & Recommendations
@@ -288,13 +261,4 @@
 - 
 
 ---
-
-### Sign-off
-
-**Interviewer Signature:** _______________  
-**Date:** _______________
-
-**Interviewee Feedback on Interview Process:**
-- 
-- 
 

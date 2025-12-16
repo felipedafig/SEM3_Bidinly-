@@ -1,14 +1,4 @@
-# Bidinly – UI User Interview Template
-
-## Buyer Interview Template
-
-### Interview Information
-**Date:** ____________  
-**Interviewer:** ____________  
-**Duration:** ____________ minutes  
-**Session Type:** [ ] In-person [ ] Remote [ ] Screen Recording
-
----
+# Bidinly – UI User Interview
 
 ### Interviewee Profile
 **Name:** ____________  
@@ -216,10 +206,6 @@
 
 ### Interview Notes (For Interviewer)
 
-**Key Observations:**
-- 
-- 
-- 
 
 **Main Pain Points:**
 - 
@@ -236,34 +222,4 @@
 - 
 - 
 
-**Quotes from User:**
-- 
-- 
-
----
-
-### Action Items & Recommendations
-
-**High Priority Issues:**
-- 
-- 
-
-**Medium Priority Issues:**
-- 
-- 
-
-**Low Priority / Nice to Have:**
-- 
-- 
-
----
-
-### Sign-off
-
-**Interviewer Signature:** _______________  
-**Date:** _______________
-
-**Interviewee Feedback on Interview Process:**
-- 
-- 
 
