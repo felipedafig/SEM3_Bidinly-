@@ -23,26 +23,13 @@ public class Notification {
             foreignKey = @ForeignKey(name = "fk_notification_bid"))
     private Bid bid;
 
-    @Column(name = "\"RecipientType\"", length = 20, nullable = false)
-    @NotNull
-    @Size(max = 20)
-    private String recipientType;
-
-    @Column(name = "\"BuyerId\"", nullable = true)
-    private Integer buyerId;
+    @Column(name = "\"UserId\"", nullable = true)
+    private Integer userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"BuyerId\"", insertable = false, updatable = false,
-            foreignKey = @ForeignKey(name = "fk_notification_buyer"))
-    private User buyer;
-
-    @Column(name = "\"AgentId\"", nullable = true)
-    private Integer agentId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"AgentId\"", insertable = false, updatable = false,
-            foreignKey = @ForeignKey(name = "fk_notification_agent"))
-    private User agent;
+    @JoinColumn(name = "\"UserId\"", insertable = false, updatable = false,
+            foreignKey = @ForeignKey(name = "fk_notification_user"))
+    private User user;
 
     @Column(name = "\"PropertyId\"", nullable = false)
     @NotNull
@@ -89,7 +76,7 @@ public class Notification {
 
     public Notification(Integer bidId, Integer buyerId, Integer propertyId, String status, String message) {
         this.bidId = bidId;
-        this.buyerId = buyerId;
+        this.userId = buyerId;
         this.propertyId = propertyId;
         this.status = status;
         this.message = message;
@@ -121,20 +108,16 @@ public class Notification {
         this.bid = bid;
     }
 
-    public Integer getBuyerId() {
-        return buyerId;
+    public Integer getUserId() {return userId;}
+
+    public void setUserId(Integer userId) {this.userId = userId;}
+
+    public User getUser() {
+        return user;
     }
 
-    public void setBuyerId(Integer buyerId) {
-        this.buyerId = buyerId;
-    }
-
-    public User getBuyer() {
-        return buyer;
-    }
-
-    public void setBuyer(User buyer) {
-        this.buyer = buyer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getPropertyId() {
@@ -193,28 +176,5 @@ public class Notification {
         this.isRead = isRead;
     }
 
-    public String getRecipientType() {
-        return recipientType;
-    }
-
-    public void setRecipientType(String recipientType) {
-        this.recipientType = recipientType;
-    }
-
-    public Integer getAgentId() {
-        return agentId;
-    }
-
-    public void setAgentId(Integer agentId) {
-        this.agentId = agentId;
-    }
-
-    public User getAgent() {
-        return agent;
-    }
-
-    public void setAgent(User agent) {
-        this.agent = agent;
-    }
 }
 

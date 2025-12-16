@@ -11,11 +11,30 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowBlazor",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5122")
+            policy.WithOrigins("https://localhost:7059")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
         });
+});
+
+builder.Services.AddSingleton(provider =>
+{
+    var config = provider.GetRequiredService<IConfiguration>();
+    var cloud = config.GetSection("Cloudinary");
+
+    var account = new CloudinaryDotNet.Account(
+        cloud["CloudName"],
+        cloud["ApiKey"],
+        cloud["ApiSecret"]
+    );
+
+    return new CloudinaryDotNet.Cloudinary(account);
+});
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 100_000_000; 
 });
 
 builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();

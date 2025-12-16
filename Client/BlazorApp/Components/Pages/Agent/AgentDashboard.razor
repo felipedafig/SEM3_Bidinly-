@@ -1,8 +1,6 @@
 @page "/agent-dashboard"
 @namespace BlazorApp.Components.Pages.Agent
-
-@using shared.DTOs.Properties
-
+@using Shared.DTOs.Properties
 @attribute [Authorize]
 @inject HttpPropertyService PropertyService
 @inject NavigationManager Navigation
@@ -142,8 +140,36 @@
             @foreach (var property in filteredProperties)
             {
                 <div class="property-card" @onclick="() => NavigateBasedOnOwner(property)">
+                    
+                    
+                    @{
+                        List<string>? cardImages = null;
+
+                        if (!string.IsNullOrWhiteSpace(property.ImageUrl))
+                        {
+                            try
+                            {
+                                cardImages = System.Text.Json.JsonSerializer
+                                    .Deserialize<List<string>>(property.ImageUrl);
+                            }
+                            catch
+                            {
+                                cardImages = new List<string> { property.ImageUrl };
+                            }
+                        }
+
+                        var firstImage = cardImages?.FirstOrDefault();
+                    }
+                    
                     <div class="card-image-placeholder">
-                        <span>Image</span>
+                        @if (firstImage != null)
+                        {
+                            <img src="@firstImage" class="card-image" />
+                        }
+                        else
+                        {
+                            <span>Image</span>
+                        }
                     </div>
 
                     <div class="card-details">
@@ -162,7 +188,7 @@
                         <div class="card-info">
                             <span class="info-item">Bedrooms: @property.Bedrooms</span>
                             <span class="info-item">Bathrooms: @property.Bathrooms</span>
-                            <span class="info-item">Size: @property.SizeInSquareFeet sq ft</span>
+                            <span class="info-item">Size: @property.SizeInSquareMeters sq m</span>
                             <span class="info-item">@property.StartingPrice.ToString("N0") Kr</span>
                         </div>
 
@@ -222,7 +248,10 @@
                 welcomeIconAlt = $"{welcomeRoleName} Icon";
             }
         }
-        catch { }
+        catch
+        {
+            
+        }
         finally
         {
             isLoadingAuth = false;

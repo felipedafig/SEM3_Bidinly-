@@ -1,9 +1,6 @@
 @page "/requests"
 @namespace BlazorApp.Components.Pages
-@using shared.DTOs.Properties
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Authorization
-
+@using Shared.DTOs.Properties
 @attribute [Authorize]
 @inject HttpPropertyService PropertyService
 @inject NavigationManager Navigation
@@ -33,7 +30,24 @@
                         <div class="card-image-placeholder">
                             @if (!string.IsNullOrWhiteSpace(property.ImageUrl))
                             {
-                                <img src="@property.ImageUrl" alt="@property.Title" class="property-image" />
+                                var imageUrl = property.ImageUrl;
+
+                                try
+                                {
+                                    var images = System.Text.Json.JsonSerializer
+                                        .Deserialize<List<string>>(property.ImageUrl);
+
+                                    if (images?.Any() == true)
+                                    {
+                                        imageUrl = images[0];
+                                    }
+                                }
+                                catch
+                                {
+                                    //
+                                }
+
+                                <img src="@imageUrl" alt="@property.Title" class="property-image" />
                             }
                             else
                             {
@@ -55,7 +69,7 @@
                             <div class="card-info">
                                 <span class="info-item">@property.Bedrooms Bedrooms</span>
                                 <span class="info-item">@property.Bathrooms Bathrooms</span>
-                                <span class="info-item">@property.SizeInSquareFeet.ToString("F0") sq ft</span>
+                                <span class="info-item">@property.SizeInSquareMeters.ToString("F0") sq m</span>
                                 <span class="info-item">@property.StartingPrice.ToString("N0") Kr</span>
                             </div>
                             @if (!string.IsNullOrWhiteSpace(property.AgentName))

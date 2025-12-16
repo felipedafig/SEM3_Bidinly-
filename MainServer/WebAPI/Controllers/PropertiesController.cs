@@ -1,8 +1,14 @@
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
-using PropertyDto = shared.DTOs.Properties.PropertyDto;
-using shared.DTOs.Properties;
+using PropertyDto = Shared.DTOs.Properties.PropertyDto;
+using Shared.DTOs.Properties;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Processing;
+using Size = SixLabors.ImageSharp.Size;
 
 namespace MainServer.WebAPI.Controllers
 {
@@ -56,7 +62,7 @@ namespace MainServer.WebAPI.Controllers
                         StartingPrice = (decimal)propertyResponse.StartingPrice,
                         Bedrooms = propertyResponse.Bedrooms,
                         Bathrooms = propertyResponse.Bathrooms,
-                        SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                        SizeInSquareMeters = propertyResponse.SizeInSquareMeters,
                         Description = propertyResponse.Description,
                         Status = propertyResponse.Status,
                         CreationStatus = propertyResponse.CreationStatus,
@@ -98,7 +104,7 @@ namespace MainServer.WebAPI.Controllers
                     StartingPrice = (decimal)propertyResponse.StartingPrice,
                     Bedrooms = propertyResponse.Bedrooms,
                     Bathrooms = propertyResponse.Bathrooms,
-                    SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                    SizeInSquareMeters = propertyResponse.SizeInSquareMeters,
                     Description = propertyResponse.Description,
                     Status = propertyResponse.Status,
                     CreationStatus = propertyResponse.CreationStatus,
@@ -129,7 +135,7 @@ namespace MainServer.WebAPI.Controllers
                     StartingPrice = (double)createPropertyDto.StartingPrice,
                     Bedrooms = createPropertyDto.Bedrooms,
                     Bathrooms = createPropertyDto.Bathrooms,
-                    SizeInSquareFeet = (int)createPropertyDto.SizeInSquareFeet,
+                    SizeInSquareMeters = (int)createPropertyDto.SizeInSquareMeters,
                     Status = "Available",
                     CreationStatus = "Pending"
                 };
@@ -159,7 +165,7 @@ namespace MainServer.WebAPI.Controllers
                     StartingPrice = (decimal)propertyResponse.StartingPrice,
                     Bedrooms = propertyResponse.Bedrooms,
                     Bathrooms = propertyResponse.Bathrooms,
-                    SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                    SizeInSquareMeters = propertyResponse.SizeInSquareMeters,
                     Description = propertyResponse.Description,
                     Status = propertyResponse.Status,
                     CreationStatus = propertyResponse.CreationStatus,
@@ -232,9 +238,9 @@ namespace MainServer.WebAPI.Controllers
                 {
                     updateRequest.Bathrooms = updatePropertyDto.Bathrooms.Value;
                 }
-                if (updatePropertyDto.SizeInSquareFeet.HasValue)
+                if (updatePropertyDto.SizeInSquareMeters.HasValue)
                 {
-                    updateRequest.SizeInSquareFeet = (int)updatePropertyDto.SizeInSquareFeet.Value;
+                    updateRequest.SizeInSquareMeters = (int)updatePropertyDto.SizeInSquareMeters.Value;
                 }
                 if (!string.IsNullOrWhiteSpace(updatePropertyDto.Description))
                 {
@@ -274,7 +280,7 @@ namespace MainServer.WebAPI.Controllers
                     StartingPrice = (decimal)propertyResponse.StartingPrice,
                     Bedrooms = propertyResponse.Bedrooms,
                     Bathrooms = propertyResponse.Bathrooms,
-                    SizeInSquareFeet = propertyResponse.SizeInSquareFeet,
+                    SizeInSquareMeters = propertyResponse.SizeInSquareMeters,
                     Description = propertyResponse.Description,
                     Status = propertyResponse.Status,
                     CreationStatus = propertyResponse.CreationStatus,
@@ -291,6 +297,87 @@ namespace MainServer.WebAPI.Controllers
             {
                 throw;
             }
+        }
+        
+        [HttpPost("upload")]
+        [RequestSizeLimit(60_000_000)]
+        public async Task<ActionResult<List<string>>> UploadImages(
+            [FromServices] CloudinaryDotNet.Cloudinary cloudinary,
+            List<IFormFile> files)
+        {
+            Console.WriteLine("=== UploadImages CALLED ===");
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine("=== UploadImages PARALLEL START ===");
+
+            try
+            {
+                if (files == null || files.Count == 0)
+                    return BadRequest("No files provided.");
+
+                if (files.Count > 5)
+                    return BadRequest("Maximum 5 images allowed.");
+
+                var tasks = files.Select(async file =>
+                {
+                    var fileSw = System.Diagnostics.Stopwatch.StartNew();
+                    var compressedStream = await CompressImageAsync(file);
+                    var uploadParams = new ImageUploadParams
+                    {
+                        File = new FileDescription(file.FileName + ".jpg", compressedStream),
+                        Folder = "bidinly-properties",
+                        UseFilename = false,
+                        UniqueFilename = true,
+                        Overwrite = false
+                    };
+
+                    var result = await cloudinary.UploadAsync(uploadParams);
+
+                    fileSw.Stop();
+                    Console.WriteLine($"(Parallel) Finished {file.FileName} in {fileSw.ElapsedMilliseconds} ms");
+
+                    return result.SecureUrl?.ToString();
+                });
+
+                var urls = await Task.WhenAll(tasks);
+
+                sw.Stop();
+                Console.WriteLine($"=== TOTAL PARALLEL TIME: {sw.ElapsedMilliseconds} ms ===");
+
+                return Ok(urls);
+            }
+            catch (Exception ex)
+            {
+                sw.Stop();
+                Console.WriteLine($" Parallel Upload FAILED after {sw.ElapsedMilliseconds} ms: {ex.Message}");
+                return StatusCode(500, $"Upload failed: {ex.Message}");
+            }
+        }
+        
+        private async Task<Stream> CompressImageAsync(IFormFile file)
+        {
+            using var inputStream = file.OpenReadStream();
+            using var image = await Image.LoadAsync(inputStream);
+
+            int maxWidth = 1920;
+            if (image.Width > maxWidth)
+            {
+                image.Mutate(x => x.Resize(new ResizeOptions
+                {
+                    Mode = ResizeMode.Max,
+                    Size = new Size(maxWidth, 0)
+                }));
+            }
+
+            var output = new MemoryStream();
+            var encoder = new JpegEncoder
+            {
+                Quality = 80
+            };
+
+            await image.SaveAsJpegAsync(output, encoder);
+            output.Position = 0;
+
+            return output;
         }
     }
 }

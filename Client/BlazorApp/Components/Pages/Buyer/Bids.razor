@@ -1,10 +1,6 @@
 @page "/bids"
 @namespace BlazorApp.Components.Pages.Buyer
-@using shared.DTOs.Bids
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.Authorization
-
+@using Shared.DTOs.Bids
 @attribute [Authorize]
 @inject HttpBidService BidService
 @inject AuthenticationStateProvider AuthProvider
@@ -137,9 +133,24 @@
                             <td class="deal-cell">@bid.Deal</td>
                             <td>@bid.ExpiryDate.ToString("dd/MM/yyyy")</td>
                             <td>
-                                <span class="status-badge status-@(bid.Status?.ToLower() ?? "pending")">
-                                    @(bid.Status ?? "Pending")
-                                </span>
+                                <div style="display:flex; flex-direction:column; gap:4px;">
+                                    <span class="status-badge status-@(bid.Status?.ToLower() ?? "pending")">
+                                        @(bid.Status ?? "Pending")
+                                    </span>
+
+                                    @if (bid.SignatureValid)
+                                    {
+                                        <span class="signature-badge signature-valid">
+                                            ✔ Verified
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="signature-badge signature-invalid">
+                                            ✘ Invalid Signature
+                                        </span>
+                                    }
+                                </div>
                             </td>
                             <td>
                                 <div class="action-buttons">

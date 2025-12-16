@@ -314,26 +314,20 @@ namespace MainServer.WebAPI.Services
         }
 
         // Notification operations
-        public async Task<NotificationResponse> CreateNotificationAsync(string recipientType, int bidId, int propertyId, string message, string? status = null, int? buyerId = null, int? agentId = null, string? propertyTitle = null)
+        public async Task<NotificationResponse> CreateNotificationAsync(int bidId, int propertyId, string message, string? status = null, int? userId = null, string? propertyTitle = null)
         {
             try
             {
                 var request = new CreateNotificationRequest
                 {
                     BidId = bidId,
-                    RecipientType = recipientType,
                     PropertyId = propertyId,
                     Message = message
                 };
                 
-                if (buyerId.HasValue)
+                if (userId.HasValue)
                 {
-                    request.BuyerId = buyerId.Value;
-                }
-                
-                if (agentId.HasValue)
-                {
-                    request.AgentId = agentId.Value;
+                    request.UserId = userId.Value;
                 }
                 
                 if (!string.IsNullOrEmpty(status))
@@ -359,22 +353,15 @@ namespace MainServer.WebAPI.Services
             }
         }
 
-        public async Task<GetNotificationsResponse> GetNotificationsAsync(string? recipientType = null, int? buyerId = null, int? agentId = null, bool? isRead = null)
+        public async Task<GetNotificationsResponse> GetNotificationsAsync(int? userId = null, bool? isRead = null)
         {
             try
             {
                 var request = new GetNotificationsRequest();
-                if (!string.IsNullOrEmpty(recipientType))
+                
+                if (userId.HasValue)
                 {
-                    request.RecipientType = recipientType;
-                }
-                if (buyerId.HasValue)
-                {
-                    request.BuyerId = buyerId.Value;
-                }
-                if (agentId.HasValue)
-                {
-                    request.AgentId = agentId.Value;
+                    request.UserId = userId.Value;
                 }
                 if (isRead.HasValue)
                 {

@@ -1,13 +1,6 @@
 @page "/agent/property/{PropertyId:int}"
 @layout NoLayout
-@using shared.DTOs.Properties
-@using Shared.DTOs.Bids
-@using shared.DTOs.Bids
-@using System.Net.Http.Json
-@using System.Security.Claims
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Components.Authorization
-
+@using Shared.DTOs.Properties
 @attribute [Authorize]
 @inject HttpPropertyService PropertyService
 @inject HttpBidService BidService
@@ -64,8 +57,7 @@ else
                     }
                 }
             </div>
-
-            <!-- ACTION BUTTONS FOR AGENT -->
+            
             <div class="agent-action-buttons">
                 <button class="agent-btn edit-btn" @onclick="EditProperty">Edit</button>
                 <button class="agent-btn delete-btn" @onclick="DeleteProperty">Delete</button>
@@ -73,22 +65,44 @@ else
         </div>
         
         
-        <!-- TOP GRID: IMAGES LEFT, SIDEBAR RIGHT -->
+
 <div class="property-detail-top-grid">
-
-    <!-- LEFT COLUMN -->
+    
     <div>
-        <!-- IMAGES -->
         <div class="property-detail-images">
-            <div class="property-detail-image-placeholder">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20 5 20 6 21H9M19 10L21 12M19 10V20C19 20 18 21 18 21H15M9 21H15"
-                          stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-        </div>
 
-        <!-- ADDRESS *IMMEDIATELY BELOW IMAGES* -->
+            @if (imageUrls.Count == 0)
+            {
+                <div class="property-detail-image-placeholder">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20 5 20 6 21H9M19 10L21 12M19 10V20C19 20 18 21 18 21H15M9 21H15"
+                              stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            }
+            else
+            {
+                <div class="image-carousel">
+
+                    @if (imageUrls.Count > 1)
+                    {
+                        <button class="carousel-btn left" @onclick="PrevImage">‹</button>
+                    }
+
+                    <img src="@imageUrls[currentImageIndex]"
+                         class="carousel-image clickable-image"
+                         @onclick="() => OpenImage(imageUrls[currentImageIndex])" />
+
+                    @if (imageUrls.Count > 1)
+                    {
+                        <button class="carousel-btn right" @onclick="NextImage">›</button>
+                    }
+
+                </div>
+            }
+
+        </div>
+        
         @if (!string.IsNullOrWhiteSpace(property.Address))
         {
             <div class="property-detail-address under-image-address">
@@ -100,8 +114,7 @@ else
             </div>
         }
     </div>
-
-    <!-- RIGHT COLUMN: PRICE + SPECS -->
+    
     <div class="property-detail-sidebar">
         <div class="property-detail-price">
             <h3>Starting Price</h3>
@@ -126,7 +139,7 @@ else
             </div>
             <div class="spec-item">
                 <span class="spec-label">Size:</span>
-                <span class="spec-value">@property.SizeInSquareFeet.ToString("F0") sq ft</span>
+                <span class="spec-value">@property.SizeInSquareMeters.ToString("F0") sq m</span>
             </div>
 
             @if (!string.IsNullOrWhiteSpace(property.AgentName))
@@ -141,7 +154,6 @@ else
 
 </div>
 
-<!-- DESCRIPTION BELOW EVERYTHING -->
 @if (!string.IsNullOrWhiteSpace(property.Description))
 {
     <div class="property-detail-description description-bottom">
@@ -191,26 +203,17 @@ else
 
                 <EditForm Model="@editDto" OnValidSubmit="HandleEditSubmit">
                     <DataAnnotationsValidator />
-
-                    <!-- TITLE -->
+                    
                     <div class="form-group">
                         <label class="form-label">Title</label>
                         <InputText class="form-input" @bind-Value="editDto.Title" />
                     </div>
-
-                    <!-- DESCRIPTION -->
+                    
                     <div class="form-group">
                         <label class="form-label">Description</label>
                         <textarea class="form-input form-textarea"
                                   @bind="editDto.Description"
                                   rows="5"></textarea>
-                    </div>
-
-                    <!-- IMAGE URL -->
-                    <div class="form-group">
-                        <label class="form-label">Image URL</label>
-                        <InputText class="form-input" @bind-Value="editDto.ImageUrl"
-                                   placeholder="https://example.com/photo.jpg" />
                     </div>
 
                     @if (!string.IsNullOrWhiteSpace(editError))
@@ -235,10 +238,19 @@ else
     </div>
 }
 
+@if (showImageModal && selectedImageUrl != null)
+{
+    <div class="image-modal-overlay" @onclick="CloseImage">
+        <div class="image-modal-content" @onclick:stopPropagation="true">
+            <img src="@selectedImageUrl" class="image-modal-full" />
+            <button class="image-modal-close" @onclick="CloseImage">×</button>
+        </div>
+    </div>
+}
+
 @code {
     [Parameter]
     public int PropertyId { get; set; }
-    
     private PropertyDto? property;
     private bool loading = true;
     private bool showBidModal = false;
@@ -253,8 +265,10 @@ else
     private bool showEditModal = false;
     private bool isEditing = false;
     private string? editError = null;
-
     private UpdatePropertyDto editDto = new();
+    private List<string> imageUrls = new();
+    private bool showImageModal = false;
+    private string? selectedImageUrl = null;
     
     
     
@@ -275,6 +289,20 @@ else
         {
             loading = true;
             property = await PropertyService.GetByIdAsync(PropertyId);
+            imageUrls = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(property?.ImageUrl))
+            {
+                try
+                {
+                    imageUrls = System.Text.Json.JsonSerializer.Deserialize<List<string>>(property.ImageUrl)
+                                ?? new List<string>();
+                }
+                catch
+                {
+                    imageUrls.Add(property.ImageUrl);
+                }
+            }
         }
         catch (Exception ex)
         {
@@ -306,7 +334,7 @@ else
             StartingPrice = property.StartingPrice,
             Bedrooms = property.Bedrooms,
             Bathrooms = property.Bathrooms,
-            SizeInSquareFeet = property.SizeInSquareFeet,
+            SizeInSquareMeters = property.SizeInSquareMeters,
             Description = property.Description
         };
 
@@ -359,5 +387,30 @@ else
         }
     }
 
-}
+    private void OpenImage(string url)
+    {
+        selectedImageUrl = url;
+        showImageModal = true;
+    }
 
+    private void CloseImage()
+    {
+        showImageModal = false;
+        selectedImageUrl = null;
+    }
+    
+    private int currentImageIndex = 0;
+
+    private void NextImage()
+    {
+        if (imageUrls.Count == 0) return;
+        currentImageIndex = (currentImageIndex + 1) % imageUrls.Count;
+    }
+
+    private void PrevImage()
+    {
+        if (imageUrls.Count == 0) return;
+        currentImageIndex = (currentImageIndex - 1 + imageUrls.Count) % imageUrls.Count;
+    }
+}
+}

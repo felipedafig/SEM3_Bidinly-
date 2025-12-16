@@ -1,8 +1,10 @@
 ﻿@using BlazorApp.Auth
 @using Microsoft.AspNetCore.Components.Authorization
 @using System.Security.Claims
+@using Shared.DTOs.Notifications
 @inject AuthenticationStateProvider AuthProvider
 @inject NavigationManager Navigation
+@inject HttpClient Http
 @implements IDisposable
 
 <header class="navbar-header">
@@ -98,14 +100,19 @@
     private bool isDropdownOpen = false;
     private int NotificationCount = 0;
 
-    protected override void OnInitialized()
+    protected override async void OnInitialized()
     {
         Navigation.LocationChanged += OnLocationChanged;
+        await LoadNotificationCountAsync();
     }
 
-    private void ToggleDropdown()
+    private async void ToggleDropdown()
     {
         isDropdownOpen = !isDropdownOpen;
+        if (isDropdownOpen)
+        {
+            await LoadNotificationCountAsync();
+        }
         StateHasChanged();
     }
 
@@ -132,6 +139,47 @@
     public void Dispose()
     {
         Navigation.LocationChanged -= OnLocationChanged;
+    }
+    
+    private int? GetUserId(ClaimsPrincipal user)
+    {
+        var idClaim = user.FindFirst("Id")?.Value;
+        return int.TryParse(idClaim, out var id) ? id : null;
+    }
+    
+    private async Task LoadNotificationCountAsync()
+    {
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (!user.Identity?.IsAuthenticated ?? true)
+        {
+            NotificationCount = 0;
+            return;
+        }
+
+        var roleName = user.FindFirst("RoleName")?.Value;
+        
+        if (!string.Equals(roleName, "Buyer", StringComparison.OrdinalIgnoreCase) &&
+            !string.Equals(roleName, "Agent", StringComparison.OrdinalIgnoreCase))
+        {
+            NotificationCount = 0;
+            return;
+        }
+
+        var userId = GetUserId(user);
+        if (userId == null)
+        {
+            NotificationCount = 0;
+            return;
+        }
+        
+        var url = $"/notifications?userId={userId}&isRead=false";
+
+        var notifications = await Http.GetFromJsonAsync<List<NotificationDto>>(url);
+        NotificationCount = notifications?.Count ?? 0;
+
+        StateHasChanged();
     }
 }
 

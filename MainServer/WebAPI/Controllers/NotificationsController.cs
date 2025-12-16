@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MainServer.WebAPI.Services;
 using MainServer.WebAPI.Protos;
-using NotificationDto = shared.DTOs.Notifications.NotificationDto;
-using CreateNotificationDto = shared.DTOs.Notifications.CreateNotificationDto;
+using NotificationDto = Shared.DTOs.Notifications.NotificationDto;
+using CreateNotificationDto = Shared.DTOs.Notifications.CreateNotificationDto;
 
 namespace MainServer.WebAPI.Controllers
 {
@@ -23,14 +23,13 @@ namespace MainServer.WebAPI.Controllers
             try
             {
                 NotificationResponse response = await dataTierClient.CreateNotificationAsync(
-                    dto.RecipientType,
-                    dto.BidId,
-                    dto.PropertyId,
-                    dto.Message,
-                    dto.Status,
-                    dto.BuyerId,
-                    dto.AgentId,
-                    dto.PropertyTitle);
+                    bidId: dto.BidId,
+                    userId: dto.UserId,
+                    propertyId: dto.PropertyId,
+                    status: dto.Status,
+                    message: dto.Message,
+                    propertyTitle: dto.PropertyTitle
+                );
 
                 DateTime createdAt = DateTimeOffset.FromUnixTimeSeconds(response.CreatedAtSeconds).DateTime;
 
@@ -38,9 +37,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = response.Id,
                     BidId = response.BidId,
-                    RecipientType = response.RecipientType,
-                    BuyerId = response.HasBuyerId ? response.BuyerId : null,
-                    AgentId = response.HasAgentId ? response.AgentId : null,
+                    UserId = response.UserId,
                     PropertyId = response.PropertyId,
                     Status = response.HasStatus ? response.Status : null,
                     Message = response.Message,
@@ -58,11 +55,11 @@ namespace MainServer.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<NotificationDto>>> GetNotifications([FromQuery] string? recipientType, [FromQuery] int? buyerId, [FromQuery] int? agentId, [FromQuery] bool? isRead)
+        public async Task<ActionResult<List<NotificationDto>>> GetNotifications([FromQuery] int? userId, [FromQuery] bool? isRead)
         {
             try
             {
-                GetNotificationsResponse response = await dataTierClient.GetNotificationsAsync(recipientType, buyerId, agentId, isRead);
+                GetNotificationsResponse response = await dataTierClient.GetNotificationsAsync(userId, isRead);
 
                 List<NotificationDto> notificationDtos = response.Notifications.Select(notificationResponse =>
                 {
@@ -72,9 +69,7 @@ namespace MainServer.WebAPI.Controllers
                     {
                         Id = notificationResponse.Id,
                         BidId = notificationResponse.BidId,
-                        RecipientType = notificationResponse.RecipientType,
-                        BuyerId = notificationResponse.HasBuyerId ? notificationResponse.BuyerId : null,
-                        AgentId = notificationResponse.HasAgentId ? notificationResponse.AgentId : null,
+                        UserId = notificationResponse.UserId,
                         PropertyId = notificationResponse.PropertyId,
                         Status = notificationResponse.HasStatus ? notificationResponse.Status : null,
                         Message = notificationResponse.Message,
@@ -105,9 +100,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = response.Id,
                     BidId = response.BidId,
-                    RecipientType = response.RecipientType,
-                    BuyerId = response.HasBuyerId ? response.BuyerId : null,
-                    AgentId = response.HasAgentId ? response.AgentId : null,
+                    UserId = response.UserId,
                     PropertyId = response.PropertyId,
                     Status = response.HasStatus ? response.Status : null,
                     Message = response.Message,
@@ -141,9 +134,7 @@ namespace MainServer.WebAPI.Controllers
                 {
                     Id = response.Id,
                     BidId = response.BidId,
-                    RecipientType = response.RecipientType,
-                    BuyerId = response.HasBuyerId ? response.BuyerId : null,
-                    AgentId = response.HasAgentId ? response.AgentId : null,
+                    UserId = response.UserId,
                     PropertyId = response.PropertyId,
                     Status = response.HasStatus ? response.Status : null,
                     Message = response.Message,

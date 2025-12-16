@@ -1,14 +1,9 @@
 @page "/users"
 @namespace BlazorApp.Components.Pages
-@using shared.DTOs.Users
-@using shared.DTOs.Properties
-@using shared.DTOs.Bids
-@using shared.DTOs.Sales
-@using Microsoft.AspNetCore.Components
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.Authorization
-@using System.Security.Claims
-
+@using Shared.DTOs.Users
+@using Shared.DTOs.Properties
+@using Shared.DTOs.Bids
+@using Shared.DTOs.Sales
 @attribute [Authorize]
 @inject HttpUserService UserService
 @inject HttpPropertyService PropertyService
@@ -203,8 +198,7 @@
                     </div>
                 }
             </div>
-
-            <!-- Buyers Table -->
+            
             <div class="table-section">
                 <h2 class="table-section-title">Buyers</h2>
                 <div class="search-section">

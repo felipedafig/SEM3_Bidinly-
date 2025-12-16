@@ -1,4 +1,4 @@
-namespace shared.DTOs.Properties
+namespace Shared.DTOs.Properties
 {
     public class PropertyDto
     {
@@ -10,7 +10,7 @@ namespace shared.DTOs.Properties
         public decimal StartingPrice { get; set; }
         public int Bedrooms { get; set; }
         public int Bathrooms { get; set; }
-        public double SizeInSquareFeet { get; set; }
+        public double SizeInSquareMeters { get; set; }
         public string? Description { get; set; }
         public string? Status { get; set; } // "Available", "Sold"
 

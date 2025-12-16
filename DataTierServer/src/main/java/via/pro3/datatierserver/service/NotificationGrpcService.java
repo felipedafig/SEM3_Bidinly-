@@ -23,47 +23,26 @@ public class NotificationGrpcService extends NotificationServiceGrpc.Notificatio
     public void createNotification(DataTierProto.CreateNotificationRequest request,
                                   StreamObserver<DataTierProto.NotificationResponse> responseObserver) {
         try {
-            if (request.getRecipientType() == null || request.getRecipientType().trim().isEmpty()) {
-                responseObserver.onError(io.grpc.Status.INVALID_ARGUMENT
-                        .withDescription("RecipientType is required")
-                        .asRuntimeException());
-                return;
-            }
 
             Notification newNotification = new Notification();
             newNotification.setBidId(request.getBidId());
-            newNotification.setRecipientType(request.getRecipientType());
             newNotification.setPropertyId(request.getPropertyId());
             newNotification.setMessage(request.getMessage());
             newNotification.setIsRead(false);
             newNotification.setCreatedAt(Instant.now());
 
-            if ("Buyer".equals(request.getRecipientType())) {
-                if (!request.hasBuyerId()) {
-                    responseObserver.onError(io.grpc.Status.INVALID_ARGUMENT
-                            .withDescription("BuyerId is required when RecipientType is Buyer")
-                            .asRuntimeException());
-                    return;
-                }
-                newNotification.setBuyerId(request.getBuyerId());
-                newNotification.setAgentId(null);
-            } else if ("Agent".equals(request.getRecipientType())) {
-                if (!request.hasAgentId()) {
-                    responseObserver.onError(io.grpc.Status.INVALID_ARGUMENT
-                            .withDescription("AgentId is required when RecipientType is Agent")
-                            .asRuntimeException());
-                    return;
-                }
-                newNotification.setAgentId(request.getAgentId());
-                newNotification.setBuyerId(null);
-            } else {
-                responseObserver.onError(io.grpc.Status.INVALID_ARGUMENT
-                        .withDescription("RecipientType must be 'Buyer' or 'Agent'")
-                        .asRuntimeException());
+            if (!request.hasUserId()) {
+                responseObserver.onError(
+                        io.grpc.Status.INVALID_ARGUMENT
+                                .withDescription("UserId is required for notification")
+                                .asRuntimeException()
+                );
                 return;
             }
 
-            if (request.hasStatus() && !request.getStatus().isEmpty()) {
+            newNotification.setUserId(request.getUserId());
+
+            if (request.hasStatus()) {
                 newNotification.setStatus(request.getStatus());
             }
 
@@ -90,32 +69,17 @@ public class NotificationGrpcService extends NotificationServiceGrpc.Notificatio
                                  StreamObserver<DataTierProto.GetNotificationsResponse> responseObserver) {
         try {
             List<Notification> notifications;
-            String recipientType = request.hasRecipientType() ? request.getRecipientType() : null;
 
-            if ("Buyer".equals(recipientType) && request.hasBuyerId()) {
+            if (request.hasUserId()) {
                 if (request.hasIsRead()) {
-                    notifications = notificationRepository.findByRecipientTypeAndBuyerIdAndIsRead(
-                            "Buyer", request.getBuyerId(), request.getIsRead());
+                    notifications = notificationRepository
+                            .findByUserIdAndIsRead(request.getUserId(), request.getIsRead());
                 } else {
-                    notifications = notificationRepository.findByRecipientTypeAndBuyerId("Buyer", request.getBuyerId());
-                }
-            } else if ("Agent".equals(recipientType) && request.hasAgentId()) {
-                if (request.hasIsRead()) {
-                    notifications = notificationRepository.findByRecipientTypeAndAgentIdAndIsRead(
-                            "Agent", request.getAgentId(), request.getIsRead());
-                } else {
-                    notifications = notificationRepository.findByRecipientTypeAndAgentId("Agent", request.getAgentId());
-                }
-            } else if (request.hasBuyerId()) {
-                // Backward compatibility: if BuyerId is provided but no RecipientType, filter by BuyerId
-                if (request.hasIsRead()) {
-                    notifications = notificationRepository.findByBuyerIdAndIsRead(
-                            request.getBuyerId(), request.getIsRead());
-                } else {
-                    notifications = notificationRepository.findByBuyerId(request.getBuyerId());
+                    notifications = notificationRepository
+                            .findByUserId(request.getUserId());
                 }
             } else {
-                notifications = notificationRepository.getMany();
+                notifications = notificationRepository.findAll();
             }
 
             List<DataTierProto.NotificationResponse> notificationResponses = notifications.stream()
@@ -140,7 +104,8 @@ public class NotificationGrpcService extends NotificationServiceGrpc.Notificatio
     public void getNotification(DataTierProto.GetNotificationRequest request,
                                 StreamObserver<DataTierProto.NotificationResponse> responseObserver) {
         try {
-            Optional<Notification> notificationOpt = notificationRepository.getSingle(request.getId());
+            Optional<Notification> notificationOpt =
+                    notificationRepository.findById(request.getId());
 
             if (notificationOpt.isEmpty()) {
                 responseObserver.onError(io.grpc.Status.NOT_FOUND
@@ -166,7 +131,8 @@ public class NotificationGrpcService extends NotificationServiceGrpc.Notificatio
     public void markNotificationAsRead(DataTierProto.MarkNotificationAsReadRequest request,
                                        StreamObserver<DataTierProto.NotificationResponse> responseObserver) {
         try {
-            Optional<Notification> notificationOpt = notificationRepository.getSingle(request.getId());
+            Optional<Notification> notificationOpt =
+                    notificationRepository.findById(request.getId());
 
             if (notificationOpt.isEmpty()) {
                 responseObserver.onError(io.grpc.Status.NOT_FOUND
@@ -195,17 +161,12 @@ public class NotificationGrpcService extends NotificationServiceGrpc.Notificatio
         DataTierProto.NotificationResponse.Builder builder = DataTierProto.NotificationResponse.newBuilder()
                 .setId(notification.getId() != null ? notification.getId() : 0)
                 .setBidId(notification.getBidId() != null ? notification.getBidId() : 0)
-                .setRecipientType(notification.getRecipientType() != null ? notification.getRecipientType() : "")
                 .setPropertyId(notification.getPropertyId() != null ? notification.getPropertyId() : 0)
                 .setMessage(notification.getMessage() != null ? notification.getMessage() : "")
                 .setIsRead(notification.getIsRead() != null ? notification.getIsRead() : false);
 
-        if (notification.getBuyerId() != null) {
-            builder.setBuyerId(notification.getBuyerId());
-        }
-
-        if (notification.getAgentId() != null) {
-            builder.setAgentId(notification.getAgentId());
+        if (notification.getUserId() != null) {
+            builder.setUserId(notification.getUserId());
         }
 
         if (notification.getStatus() != null && !notification.getStatus().isEmpty()) {

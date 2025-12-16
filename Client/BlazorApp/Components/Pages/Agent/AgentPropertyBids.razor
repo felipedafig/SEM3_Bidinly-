@@ -1,6 +1,5 @@
 @page "/property/{PropertyId:int}/bids"
-
-@using shared.DTOs.Bids
+@using Shared.DTOs.Bids
 @inject HttpBidService BidService
 @inject NavigationManager Navigation
 @layout NoLayout
@@ -53,6 +52,19 @@
                         <div class="bid-info">
                             <span class="info-item"><strong>Amount:</strong> @bid.Amount.ToString("N0") Kr</span>
                             <span class="info-item"><strong>Expiry:</strong> @bid.ExpiryDate.ToString("g")</span>
+                            
+                            @if (bid.SignatureValid)
+                            {
+                                <span class="signature-badge signature-valid">
+                                    ✔ Verified
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="signature-badge signature-invalid">
+                                    ✘ Invalid Signature
+                                </span>
+                            }
                         </div>
 
                         @if (!string.IsNullOrWhiteSpace(bid.Deal))
@@ -62,7 +74,6 @@
                                 <p>@bid.Deal</p>
                             </div>
                         }
-
                     </div>
                 }
             </div>
@@ -94,7 +105,7 @@
 
     private void GoBack()
     {
-        Navigation.NavigateTo($"/property/{PropertyId}");
+        Navigation.NavigateTo($"/agent/property/{PropertyId}");
     }
     
     private async Task AcceptBid(int bidId)

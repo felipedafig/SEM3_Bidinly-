@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using shared.DTOs.Payments;
+using Shared.DTOs.Payments;
 using MainServer.WebAPI.Services;
 
 namespace MainServer.WebAPI.Controllers

@@ -1,6 +1,4 @@
-using System.Net.Http.Json;
-using shared.DTOs.Properties;
-
+using Shared.DTOs.Properties;
 namespace BlazorApp.Services;
 
 public class HttpPropertyService
