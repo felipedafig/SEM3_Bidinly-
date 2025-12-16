@@ -509,3 +509,42 @@
     }
 }
 
+.card-status-section {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.card-status {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.card-status.pending {
+    background-color: #fff4c2;
+    color: #a18100;
+}
+
+.card-status.rejected {
+    background-color: #ffd6d6;
+    color: #b10000;
+}
+
+.card-status.approved {
+    background-color: #d7ffd8;
+    color: #0d7c00;
+}
+
+.card-status.normal {
+    background-color: #e0e0e0;
+    color: #555;
+}
+
+.card-status.sold {
+    background-color: #ffe2e2;
+    color: #8a0000;
+    font-weight: bold;
+}

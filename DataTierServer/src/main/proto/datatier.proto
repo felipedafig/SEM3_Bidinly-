@@ -91,6 +91,8 @@ message BidResponse {
   int64 expiryDateSeconds = 5;
   string status = 6;
   optional string deal = 7;
+  optional string signature = 8;
+  bool signatureValid = 9;
 }
 
 message GetBidsResponse {
@@ -141,6 +143,7 @@ message UserResponse {
   int32 roleId = 3;
   bool isActive = 4;
   optional string email = 5;
+  string publicKey = 6;
 }
 
 message GetUsersResponse {
@@ -223,6 +226,7 @@ message LoginResponse {
   string username = 2;
   int32 roleId = 3;
   optional string email = 4;
+  string publicKey = 5;
 }
 
 // Notification messages

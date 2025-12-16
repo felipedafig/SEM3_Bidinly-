@@ -45,7 +45,8 @@ namespace MainServer.WebAPI.Controllers
                         Username = userResponse.Username,
                         RoleName = roleName,
                         IsActive = userResponse.IsActive,
-                        Email = userResponse.HasEmail ? userResponse.Email : null
+                        Email = userResponse.HasEmail ? userResponse.Email : null,
+                        PublicKey = userResponse.PublicKey
                     });
                 }
 
@@ -84,7 +85,8 @@ namespace MainServer.WebAPI.Controllers
                     Username = userResponse.Username,
                     RoleName = roleName,
                     IsActive = userResponse.IsActive,
-                    Email = userResponse.HasEmail ? userResponse.Email : null
+                    Email = userResponse.HasEmail ? userResponse.Email : null,
+                    PublicKey = userResponse.PublicKey
                 };
 
                 return Ok(userDto);
@@ -140,7 +142,8 @@ namespace MainServer.WebAPI.Controllers
                     Username = userResponse.Username,
                     RoleName = roleName,
                     IsActive = userResponse.IsActive,
-                    Email = userResponse.HasEmail ? userResponse.Email : null
+                    Email = userResponse.HasEmail ? userResponse.Email : null,
+                    PublicKey = userResponse.PublicKey
                 };
 
                 return Created($"/users/{userDto.Id}", userDto);
@@ -211,7 +214,8 @@ namespace MainServer.WebAPI.Controllers
                     Username = updatedUserResponse.Username,
                     RoleName = roleName,
                     IsActive = updatedUserResponse.IsActive,
-                    Email = updatedUserResponse.HasEmail ? updatedUserResponse.Email : null
+                    Email = updatedUserResponse.HasEmail ? updatedUserResponse.Email : null,
+                    PublicKey = updatedUserResponse.PublicKey
                 };
 
                 return Ok(userDto);

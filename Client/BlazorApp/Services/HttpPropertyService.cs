@@ -60,5 +60,18 @@ public class HttpPropertyService
         return await response.Content.ReadFromJsonAsync<PropertyDto>()
                ?? throw new Exception("Failed to deserialize property");
     }
+    
+    public async Task DeleteAsync(int id)
+    {
+        var response = await client.DeleteAsync($"properties/{id}");
+
+        if (!response.IsSuccessStatusCode)
+        {
+            string err = await response.Content.ReadAsStringAsync();
+            throw new Exception(string.IsNullOrWhiteSpace(err)
+                ? "Failed to delete property"
+                : err);
+        }
+    }
 }
 

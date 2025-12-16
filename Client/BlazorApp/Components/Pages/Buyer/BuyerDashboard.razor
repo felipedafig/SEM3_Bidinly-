@@ -138,18 +138,8 @@
     private string welcomeRoleName = "Buyer";
     private string welcomeIconPath = "/assets/icons/buyerIcon.png";
     private string welcomeIconAlt = "Buyer Icon";
-    private IEnumerable<PropertyDto> filteredProperties =>
-        (properties ?? Enumerable.Empty<PropertyDto>())
-        .Where(p => p.Status == "Available" || p.Status == "Active") 
-        .Where(p => string.IsNullOrWhiteSpace(searchQuery) || 
-                    p.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
-        .Where(p => string.IsNullOrWhiteSpace(filterCity) || 
-                    p.Address.Contains(filterCity, StringComparison.OrdinalIgnoreCase))
-        .Where(p => !filterBedrooms.HasValue || p.Bedrooms >= filterBedrooms.Value)
-        .Where(p => !filterBathrooms.HasValue || p.Bathrooms >= filterBathrooms.Value)
-        .Where(p => !filterMinPrice.HasValue || p.StartingPrice >= filterMinPrice.Value)
-        .Where(p => !filterMaxPrice.HasValue || p.StartingPrice <= filterMaxPrice.Value);
-
+    
+    
     protected override async Task OnInitializedAsync()
     {
         await LoadAuthState();
@@ -198,8 +188,10 @@
         try
         {
             var allProps = await PropertyService.GetAllAsync();
+
             properties = allProps
-                .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase))
+                .Where(p => p.CreationStatus == "Approved")            // Only approved
+                .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase)) // No sold
                 .ToList();
         }
         catch
@@ -217,5 +209,23 @@
         Navigation.NavigateTo($"/property/{propertyId}");
     }
     
+    private IEnumerable<PropertyDto> filteredProperties =>
+        (properties ?? Enumerable.Empty<PropertyDto>())
+
+        // Must be approved
+        .Where(p => p.CreationStatus == "Approved")
+
+        // Must not be sold
+        .Where(p => !string.Equals(p.Status, "Sold", StringComparison.OrdinalIgnoreCase))
+
+        // Search & filters
+        .Where(p => string.IsNullOrWhiteSpace(searchQuery) 
+                    || p.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+        .Where(p => string.IsNullOrWhiteSpace(filterCity) 
+                    || p.Address.Contains(filterCity, StringComparison.OrdinalIgnoreCase))
+        .Where(p => !filterBedrooms.HasValue || p.Bedrooms >= filterBedrooms.Value)
+        .Where(p => !filterBathrooms.HasValue || p.Bathrooms >= filterBathrooms.Value)
+        .Where(p => !filterMinPrice.HasValue || p.StartingPrice >= filterMinPrice.Value)
+        .Where(p => !filterMaxPrice.HasValue || p.StartingPrice <= filterMaxPrice.Value);
 
 }

@@ -141,7 +141,33 @@
 
                         </div>
 
-                        <div class="card-status">Status: @property.Status</div>
+                        <div class="card-status-section">
+
+                            @if (property.CreationStatus == "Pending")
+                            {
+                                <span class="card-status pending">Waiting for approval</span>
+                            }
+                            else if (property.CreationStatus == "Rejected")
+                            {
+                                <span class="card-status rejected">Rejected</span>
+                            }
+                            else
+                            {
+                                @if (property.Status == "Available" || property.Status == "Active")
+                                {
+                                    <span class="card-status normal">@property.Status</span>
+                                }
+                                else if (property.Status == "Sold")
+                                {
+                                    <span class="card-status sold">Sold</span>
+                                }
+                                else if (!string.IsNullOrWhiteSpace(property.Status))
+                                {
+                                    <span class="card-status normal">@property.Status</span>
+                                }
+                            }
+
+                        </div>
 
                     </div>
 
