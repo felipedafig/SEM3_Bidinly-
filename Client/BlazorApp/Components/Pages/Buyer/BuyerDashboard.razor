@@ -83,7 +83,9 @@
         </div>
     </div>
     <div class="clear-filters-container">
-        <button class="clear-filters-button" @onclick="ClearFilters">Clear Filters</button>
+        <button class="clear-filters-button" @onclick="ClearFilters" type="button">
+            Clear Filters
+        </button>
     </div>
 </div>
 
@@ -257,5 +259,4 @@
         filterMaxPrice = null;
         StateHasChanged();
     }
-
 }
