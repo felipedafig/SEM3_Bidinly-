@@ -56,10 +56,22 @@
     align-items: center;
 }
 
+.bid-buyer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .bid-buyer {
     margin: 0;
     font-size: 20px;
     font-weight: 700;
+}
+
+.bid-buyer-email {
+    font-size: 14px;
+    color: #666;
+    font-weight: normal;
 }
 
 .bid-status {

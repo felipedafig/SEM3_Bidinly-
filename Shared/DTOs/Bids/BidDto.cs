@@ -8,6 +8,7 @@ namespace Shared.DTOs.Bids
         public int BuyerId { get; set; }
 
         public string? BuyerUsername { get; set; }//enrichment
+        public string? BuyerEmail { get; set; }//enrichment
         public string? PropertyTitle { get; set; }//erichment
 
         public decimal Amount { get; set; }

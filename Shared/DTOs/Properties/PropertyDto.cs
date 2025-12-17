@@ -6,6 +6,7 @@ namespace Shared.DTOs.Properties
         public string? Title { get; set; }
         public int? AgentId { get; set; }
         public string? AgentName { get; set; } //not displaying agentId
+        public string? AgentEmail { get; set; }
         public string? Address { get; set; }
         public decimal StartingPrice { get; set; }
         public int Bedrooms { get; set; }

@@ -34,7 +34,13 @@
             @(bid.Status == "Expired" ? "expired-bid" : "")">
 
                         <div class="bid-header">
-                            <h3 class="bid-buyer">@bid.BuyerUsername</h3>
+                            <div class="bid-buyer-info">
+                                <h3 class="bid-buyer">@bid.BuyerUsername</h3>
+                                @if (!string.IsNullOrWhiteSpace(bid.BuyerEmail))
+                                {
+                                    <span class="bid-buyer-email">@bid.BuyerEmail</span>
+                                }
+                            </div>
 
                             @if (bid.Status == "Pending")
                             {
