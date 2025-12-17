@@ -55,7 +55,29 @@ namespace MainServer.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                return Unauthorized(new { message = ex.Message });
+                // Extract user-friendly error message, removing any technical details
+                string errorMessage = ex.Message;
+                
+                // If the message contains technical gRPC prefixes, extract just the meaningful part
+                if (errorMessage.Contains("gRPC error") || errorMessage.Contains("StatusCode"))
+                {
+                    // The error message should already be clean from DataTierGrpcClient, but double-check
+                    if (errorMessage.Contains("Invalid username or password"))
+                    {
+                        errorMessage = "Invalid username or password";
+                    }
+                    else if (errorMessage.Contains("deactivated"))
+                    {
+                        // Keep deactivation messages as-is
+                        errorMessage = ex.Message;
+                    }
+                    else
+                    {
+                        errorMessage = "Invalid username or password";
+                    }
+                }
+                
+                return Unauthorized(new { message = errorMessage });
             }
         }
     }
