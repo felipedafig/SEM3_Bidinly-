@@ -82,6 +82,11 @@
             <input type="number" class="filter-input" placeholder="max price?" min="0" @bind="filterMaxPrice" @bind:event="oninput" />
         </div>
     </div>
+    <div class="clear-filters-container">
+        <button class="clear-filters-button" @onclick="ClearFilters" type="button">
+            Clear Filters
+        </button>
+    </div>
 </div>
 
 <div class="properties-section">
@@ -244,4 +249,14 @@
         .Where(p => !filterMinPrice.HasValue || p.StartingPrice >= filterMinPrice.Value)
         .Where(p => !filterMaxPrice.HasValue || p.StartingPrice <= filterMaxPrice.Value);
 
+    private void ClearFilters()
+    {
+        searchQuery = string.Empty;
+        filterCity = string.Empty;
+        filterBedrooms = null;
+        filterBathrooms = null;
+        filterMinPrice = null;
+        filterMaxPrice = null;
+        StateHasChanged();
+    }
 }

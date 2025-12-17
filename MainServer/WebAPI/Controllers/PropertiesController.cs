@@ -52,12 +52,14 @@ namespace MainServer.WebAPI.Controllers
 
                 List<PropertyDto> responseDtos = response.Properties.Select(propertyResponse =>
                 {
+                    var agent = agentLookup.GetValueOrDefault(propertyResponse.AgentId);
                     return new PropertyDto
                     {
                         Id = propertyResponse.Id,
                         Title = propertyResponse.Title,
                         AgentId = propertyResponse.AgentId,
-                        AgentName = agentLookup.GetValueOrDefault(propertyResponse.AgentId)?.Username,
+                        AgentName = agent?.Username,
+                        AgentEmail = agent?.HasEmail == true ? agent.Email : null,
                         Address = propertyResponse.Address,
                         StartingPrice = (decimal)propertyResponse.StartingPrice,
                         Bedrooms = propertyResponse.Bedrooms,
@@ -100,6 +102,7 @@ namespace MainServer.WebAPI.Controllers
                     Title = propertyResponse.Title,
                     AgentId = propertyResponse.AgentId,
                     AgentName = agentUser?.Username,
+                    AgentEmail = agentUser?.HasEmail == true ? agentUser.Email : null,
                     Address = propertyResponse.Address,
                     StartingPrice = (decimal)propertyResponse.StartingPrice,
                     Bedrooms = propertyResponse.Bedrooms,

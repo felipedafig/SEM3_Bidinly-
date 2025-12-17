@@ -81,7 +81,23 @@ public class AuthProvider : AuthenticationStateProvider
                 await jsRuntime.InvokeVoidAsync("console.error", $"[AuthProvider] Login failed - Status: {response.StatusCode}, Response: {content}");
             }
             catch { }
-            throw new Exception(content);
+            
+            // Try to extract user-friendly error message from JSON response
+            string errorMessage = content;
+            try
+            {
+                var errorJson = JsonSerializer.Deserialize<JsonElement>(content);
+                if (errorJson.TryGetProperty("message", out var messageElement))
+                {
+                    errorMessage = messageElement.GetString() ?? content;
+                }
+            }
+            catch
+            {
+                // If parsing fails, use the raw content
+            }
+            
+            throw new Exception(errorMessage);
         }
 
         try

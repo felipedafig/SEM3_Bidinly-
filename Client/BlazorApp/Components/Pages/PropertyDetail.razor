@@ -144,6 +144,13 @@ else
                                 <span class="spec-value">@property.AgentName</span>
                             </div>
                         }
+                        @if (!string.IsNullOrWhiteSpace(property.AgentEmail))
+                        {
+                            <div class="spec-item">
+                                <span class="spec-label">Agent Email:</span>
+                                <span class="spec-value">@property.AgentEmail</span>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

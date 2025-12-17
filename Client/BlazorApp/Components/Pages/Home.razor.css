@@ -170,9 +170,9 @@
     padding: 2rem 0;
     background-color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 130px;
 }
 
 .filter-search-container {
@@ -224,6 +224,37 @@
     height: 40px;
     background-color: #e0e0e0;
     margin: 0 0.5rem;
+}
+
+.clear-filters-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.clear-filters-button {
+    padding: 0.5rem 1.5rem;
+    background-color: #f0f0f0;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.clear-filters-button:hover {
+    background-color: #e0e0e0;
+    color: #333;
+    border-color: #ccc;
+}
+
+.clear-filters-button:active {
+    transform: scale(0.98);
 }
 
 .white-section {

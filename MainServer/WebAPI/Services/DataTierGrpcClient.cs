@@ -286,7 +286,11 @@ namespace MainServer.WebAPI.Services
             }
             catch (Grpc.Core.RpcException ex)
             {
-                throw new Exception($"gRPC error ({ex.StatusCode}): {ex.Status.Detail}", ex);
+                // Extract the user-friendly error message from the gRPC status detail
+                var errorMessage = !string.IsNullOrWhiteSpace(ex.Status.Detail) 
+                    ? ex.Status.Detail 
+                    : "Invalid username or password";
+                throw new Exception(errorMessage, ex);
             }
             catch
             {

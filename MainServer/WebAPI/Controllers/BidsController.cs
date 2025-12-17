@@ -114,13 +114,15 @@ namespace MainServer.WebAPI.Controllers
                 var dtos = filtered.Select(b =>
                 {
                     var expiry = DateTimeOffset.FromUnixTimeSeconds(b.ExpiryDateSeconds).DateTime;
+                    var buyer = userLookup[b.BuyerId];
 
                     return new BidDto
                     {
                         Id = b.Id,
                         PropertyId = b.PropertyId,
                         BuyerId = b.BuyerId,
-                        BuyerUsername = userLookup[b.BuyerId]?.Username,
+                        BuyerUsername = buyer?.Username,
+                        BuyerEmail = buyer?.HasEmail == true ? buyer.Email : null,
                         PropertyTitle = property?.Title,
                         Amount = (decimal)b.Amount,
                         ExpiryDate = expiry,
