@@ -43,6 +43,9 @@
                     </svg>
                 </button>
             </div>
+            <div class="clear-filters-container">
+                <button class="clear-filters-button" @onclick="ClearFilters">Clear Filters</button>
+            </div>
         </div>
         <table class="bids-table">
             <thead>
@@ -227,6 +230,16 @@
              (sale.BuyerUsername != null && sale.BuyerUsername.Contains(filterBuyerName, StringComparison.OrdinalIgnoreCase))) &&
             (filterBidId == null || sale.WinningBidId == filterBidId.Value)
         ).ToList();
+    }
+    
+    private void ClearFilters()
+    {
+        filterId = null;
+        filterPropertyName = string.Empty;
+        filterBuyerName = string.Empty;
+        filterBidId = null;
+        ApplyFilters();
+        StateHasChanged();
     }
 }
 

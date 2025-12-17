@@ -214,6 +214,34 @@
     padding: 0;
 }
 
+.clear-filters-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.clear-filters-button {
+    padding: 0.5rem 1.5rem;
+    background-color: #666;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.clear-filters-button:hover {
+    background-color: #888;
+}
+
+.clear-filters-button:active {
+    transform: scale(0.95);
+}
+}
+
 .filter-input::placeholder {
     color: #999;
     font-size: 0.9rem;
